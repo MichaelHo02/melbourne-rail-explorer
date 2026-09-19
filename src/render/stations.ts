@@ -4,7 +4,7 @@ import { labelTexture, surfaceTexture } from './materials';
 
 type Station={name:string;code:string;underground:boolean;color:string};
 // Authored architectural cues, not a survey of any operational platform.
-export function stationArchitecture(group:T.Group,station:Station,index=0){
+export function stationArchitecture(group:T.Group,station:Station,index:number,ballast:T.Material){
   const structure=new T.MeshStandardMaterial({color:station.underground?'#b3b5aa':station.code==='FSS'?'#c6b987':'#647777',roughness:.78,metalness:.22});
   const parts:T.BufferGeometry[]=[];
   const box=(w:number,h:number,d:number,x:number,y:number,z:number)=>{const g=new T.BoxGeometry(w,h,d,1,1,Math.max(1,Math.ceil(d/3)));g.translate(x,y,z);parts.push(g);};
@@ -54,13 +54,17 @@ export function stationArchitecture(group:T.Group,station:Station,index=0){
     // The playable platform belongs to a broad railway precinct, not an
     // isolated viaduct. These adjacent roads are scenic, without false services.
     const batch=new Map<T.Material,T.BufferGeometry[]>();
-    const ballast=new T.MeshStandardMaterial({map:surfaceTexture('ballast'),color:'#8b8070',roughness:1});
     const concrete=new T.MeshStandardMaterial({map:surfaceTexture('concrete'),color:'#aaab9c',roughness:1});
     const rail=new T.MeshStandardMaterial({color:'#8d9390',metalness:.75,roughness:.4});
     const roof=new T.MeshStandardMaterial({color:'#9fa89c',metalness:.3,roughness:.75});
     const redIron=new T.MeshStandardMaterial({color:'#633d2c',roughness:.7,metalness:.4});
     const yellow=new T.MeshStandardMaterial({color:'#dbc460',roughness:.85});
-    const put=(material:T.Material,w:number,h:number,d:number,x:number,y:number,z:number)=>{const geometry=new T.BoxGeometry(w,h,d,1,1,Math.max(1,Math.ceil(d/4)));geometry.translate(x,y,z);const list=batch.get(material)??[];list.push(geometry);batch.set(material,list);};
+    const put=(material:T.Material,w:number,h:number,d:number,x:number,y:number,z:number)=>{const geometry=new T.BoxGeometry(w,h,d,1,1,Math.max(1,Math.ceil(d/4)));geometry.translate(x,y,z);
+      if((material as T.MeshStandardMaterial).map){
+        const p=geometry.attributes.position,n=geometry.attributes.normal,uv=geometry.attributes.uv;
+        for(let i=0;i<p.count;i++)uv.setXY(i,(Math.abs(n.getX(i))>.5?p.getZ(i):p.getX(i))/2,(Math.abs(n.getY(i))>.5?p.getZ(i):p.getY(i))/2);
+      }
+      const list=batch.get(material)??[];list.push(geometry);batch.set(material,list);};
     put(concrete,112,6,395,-23,-3.35,-25);put(ballast,112,.16,395,-23,-.22,-25);
     for(const x of [12,17,-7,-12,-26,-31,-45,-50,-64,-69]){
       for(const offset of [-.8,.8])put(rail,.075,.15,390,x+offset,.22,-25);

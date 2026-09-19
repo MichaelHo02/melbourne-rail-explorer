@@ -7,16 +7,17 @@ import { HUD } from './ui/hud';
 const app=document.querySelector<HTMLDivElement>('#app')!;
 app.innerHTML='<div id="viewport" role="img" aria-label="Three-dimensional Melbourne train driving scene"></div><div id="ui"></div>';
 const sim=new Simulation(),audio=new TrainAudio();const SAVE_KEY='melbourne-rail-explorer:service:v2';
+let inspectionScenario=import.meta.env.DEV&&new URLSearchParams(location.search).has('scene');
 let saved:unknown=null;try{saved=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');}catch{/* Invalid or unavailable storage does not prevent driving. */}
 const validator=new Simulation();const hasSave=validator.restore(saved)&&validator.state.phase!=='complete';
 let renderer:GameRenderer|undefined;
-function save(){try{if(sim.state.phase!=='ready')localStorage.setItem(SAVE_KEY,JSON.stringify(sim.snapshot()));}catch{/* Private browsing can reject persistence. */}}
+function save(){if(inspectionScenario)return;try{if(sim.state.phase!=='ready')localStorage.setItem(SAVE_KEY,JSON.stringify(sim.snapshot()));}catch{/* Private browsing can reject persistence. */}}
 function pause(){sim.pause();save();}
 function changeView(){if(renderer){renderer.view=renderer.view==='cab'?'chase':'cab';renderer.render(sim.state,0);}}
 const hud=new HUD(document.querySelector('#ui')!,{
-  start:()=>{sim.start();hud.closePanel();renderer?.render(sim.state,0);},
-  resume:()=>{if(sim.restore(saved)){sim.pause();renderer?.render(sim.state,0);}else hud.error('This saved service could not be restored. Start a new service instead.');},
-  restart:()=>{sim.reset();sim.start();hud.closePanel();renderer?.render(sim.state,0);save();},
+  start:()=>{inspectionScenario=false;sim.start();hud.closePanel();renderer?.render(sim.state,0);},
+  resume:()=>{if(sim.restore(saved)){inspectionScenario=false;sim.pause();renderer?.render(sim.state,0);}else hud.error('This saved service could not be restored. Start a new service instead.');},
+  restart:()=>{inspectionScenario=false;sim.reset();sim.start();hud.closePanel();renderer?.render(sim.state,0);save();},
   pause,view:changeView,sound:()=>{void audio.toggle().then(on=>hud.setSound(on)).catch(()=>hud.error('Audio could not start in this browser. Driving is still available.'));},
   doors:()=>sim.toggleDoors(),controller:n=>sim.setController(n),emergency:()=>sim.emergencyBrake(),
 },hasSave);
@@ -61,7 +62,7 @@ if(renderer){
   void renderer.loadCity(message=>hud.loading(message),sim.state).then(async()=>{
     if(import.meta.env.DEV){
       const scene=new URLSearchParams(location.search).get('scene');
-      if(scene==='tunnel'||scene==='approach'||scene==='departure'||scene==='platform'){sim.loadScenario(scene);renderer?.render(sim.state,0);}
+      if(scene==='tunnel'||scene==='approach'||scene==='departure'||scene==='platform'||scene==='viaduct'){sim.loadScenario(scene);renderer?.render(sim.state,0);}
     }
     previous=performance.now();
     await renderer!.startLoop(frame);
@@ -78,7 +79,7 @@ if(import.meta.env.DEV){
   Object.assign(window,{__RAIL_EXPLORER__:{
     state:()=>sim.snapshot(),
     metrics:()=>({...renderer?.metrics(),averageFrameMs:frameTimes.reduce((a,b)=>a+b,0)/(frameTimes.length||1)}),
-    scenario:(name:'departure'|'tunnel'|'approach'|'platform')=>{sim.loadScenario(name);renderer?.render(sim.state,0);},
+    scenario:(name:'departure'|'tunnel'|'approach'|'platform'|'viaduct')=>{inspectionScenario=true;sim.loadScenario(name);renderer?.render(sim.state,0);},
     restore:(state:unknown)=>sim.restore(state),
   }});
 }

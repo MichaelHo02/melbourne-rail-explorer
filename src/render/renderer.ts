@@ -12,7 +12,7 @@ export class GameRenderer {
   world:World;train:TrainVisual;view:View='cab';look=0;ready=false;
   private lastCamera=new T.Vector3();private target=new T.Vector3();private contextLost=false;
   private backend='initializing';
-  private riverInspection=import.meta.env.DEV&&new URLSearchParams(location.search).get('view')==='river';
+  private inspectionView=import.meta.env.DEV?new URLSearchParams(location.search).get('view'):null;
   constructor(container:HTMLElement,onFailure:(message:string)=>void){
     this.renderer=createNativeRenderer();
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio,1.65));this.renderer.outputColorSpace=T.SRGBColorSpace;
@@ -71,7 +71,12 @@ export class GameRenderer {
   private updateScene(state:TrainState,dt:number){
     const p=positionAt(state.distance),t=tangentAt(state.distance),side=new T.Vector3(-t.z,0,t.x);
     const menu=state.phase==='ready',cab=this.view==='cab'&&!menu;
-    if(this.riverInspection){
+    if(this.inspectionView==='viaduct'){
+      const anchor=positionAt(640),t=tangentAt(640),side=new T.Vector3(-t.z,0,t.x);
+      this.camera.position.set(anchor.x-side.x*85-t.x*45,19,anchor.z-side.z*85-t.z*45);
+      this.target.set(anchor.x+t.x*45,6,anchor.z+t.z*45);
+    }
+    else if(this.inspectionView==='river'){
       const river=project(144.9667,-37.81965);
       this.camera.position.set(river.x+45,18,river.z+45);this.target.set(river.x-35,-.6,river.z-55);
     }
@@ -84,7 +89,7 @@ export class GameRenderer {
       if(dt===0)this.camera.position.copy(this.lastCamera);else this.camera.position.lerp(this.lastCamera,1-Math.exp(-dt*5));
       this.target.set(p.x+t.x*25,p.y+1,p.z+t.z*25);
     }
-    this.camera.lookAt(this.target);this.train.update(state.distance,cab&&!this.riverInspection,state.doors);this.world.update(state.distance,this.camera,state.time);
+    this.camera.lookAt(this.target);this.train.update(state.distance,cab&&!this.inspectionView,state.doors);this.world.update(state.distance,this.camera,state.time);
   }
   metrics(){const i=this.renderer.info;return {drawCalls:i.render.drawCalls,triangles:i.render.triangles,geometries:i.memory.geometries,textures:i.memory.textures,cityReady:this.ready,buildingSections:this.world.buildingCount,backend:this.backend};}
 }

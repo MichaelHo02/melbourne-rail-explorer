@@ -19,8 +19,8 @@ export class EnvironmentEffects {
     Object.assign(scene, { fogNode: fog(this.fogColor, factor) });
 
     this.water = new MeshPhysicalNodeMaterial({
-      color: '#45594b', roughness: .24, metalness: 0, ior: 1.333,
-      clearcoat: 1, clearcoatRoughness: .17,
+      color: '#625c43', roughness: .31, metalness: 0, ior: 1.333,
+      clearcoat: .65, clearcoatRoughness: .22,
     });
     // Two gentle travelling wave directions, in metres, independent of mesh UVs.
     const a = positionWorld.x.mul(.42).add(positionWorld.z.mul(.23)).add(this.seconds.mul(.8));

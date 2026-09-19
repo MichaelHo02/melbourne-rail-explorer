@@ -6,9 +6,11 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { SkyMesh } from 'three/addons/objects/SkyMesh.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { positionAt, tangentAt, ROUTE_LENGTH, STATIONS, project, isUnderground } from '../data/route';
-import { facadeTexture, labelTexture, surfaceTexture } from './materials';
+import { labelTexture, surfaceTexture } from './materials';
+import { createBuildingMaterial } from './building-materials';
+import { SurfaceLibrary } from './surface-library';
+import { CorridorScenery } from './corridor';
 
-const up=new T.Vector3(0,1,0);
 const vector=(v:{x:number;y:number;z:number})=>new T.Vector3(v.x,v.y,v.z);
 export class World {
   surface=new T.Group();railway=new T.Group();stations=new T.Group();
@@ -16,6 +18,8 @@ export class World {
   exteriorBackground?:T.Texture;
   sun:T.DirectionalLight;ambient:T.HemisphereLight;sky:SkyMesh;
   private effects:EnvironmentEffects;
+  private surfaces=new SurfaceLibrary();
+  private corridor:CorridorScenery;
   private concrete=new T.MeshStandardMaterial({map:surfaceTexture('concrete'),color:'#95978b',roughness:.96});
   private metal=new T.MeshStandardMaterial({color:'#657579',metalness:.7,roughness:.35});
   private dark=new T.MeshStandardMaterial({color:'#243139',roughness:.8});
@@ -31,8 +35,9 @@ export class World {
     this.sun.castShadow=true;this.sun.shadow.mapSize.set(2048,2048);this.sun.shadow.camera.left=-170;this.sun.shadow.camera.right=170;
     this.sun.shadow.camera.top=170;this.sun.shadow.camera.bottom=-170;this.sun.shadow.camera.near=.5;this.sun.shadow.camera.far=900;
     this.sun.shadow.bias=-.0002;this.sun.shadow.normalBias=.08;scene.add(this.sun,this.sun.target);
-    this.ambient=new T.HemisphereLight('#c4ddeb','#787766',2.0);scene.add(this.ambient);
-    this.buildGround();this.buildRiverside();this.buildTrack();this.buildStations();this.buildLandmarks();
+    this.ambient=new T.HemisphereLight('#c4ddeb','#787766',1.1);scene.add(this.ambient);
+    this.corridor=new CorridorScenery(this.surfaces);this.surface.add(this.corridor.group);
+    this.buildGround();this.buildTrack();this.buildStations();this.buildLandmarks();
   }
   private box(parent:T.Object3D,w:number,h:number,d:number,x:number,y:number,z:number,material:T.Material){
     const geometry=new T.BoxGeometry(w,h,d,1,1,Math.max(1,Math.ceil(d/4)));
@@ -57,7 +62,9 @@ export class World {
       const hole=new T.Path(outline);hole.closePath();groundShape.holes.push(hole);approach=[];
     };
     for(let s=0;s<=ROUTE_LENGTH;s+=4){const y=positionAt(s).y;if(y<2&&y>-9)approach.push(s);else finishApproach();}finishApproach();
-    const ground=new T.Mesh(new T.ShapeGeometry(groundShape),new T.MeshStandardMaterial({color:'#8b9384',roughness:1}));
+    const groundGeometry=new T.ShapeGeometry(groundShape),uv=groundGeometry.attributes.uv;
+    for(let i=0;i<uv.count;i++)uv.setXY(i,uv.getX(i)/3.1,uv.getY(i)/3.1);
+    const ground=new T.Mesh(groundGeometry,this.concrete);
     ground.rotation.x=-Math.PI/2;ground.position.y=-1;ground.receiveShadow=true;this.surface.add(ground);
     // Preserve both surveyed banks and variable width; no smoothing across city blocks.
     const waterRings=riverSource.geometry.coordinates.map(ring=>ring.map(([lon,lat])=>{
@@ -67,42 +74,13 @@ export class World {
     waterShape.holes.push(...waterRings.slice(1).map(ring=>new T.Path(ring)));
     const river=new T.Mesh(new T.ShapeGeometry(waterShape),this.effects.water);
     river.rotation.x=-Math.PI/2;river.position.y=-.6;river.receiveShadow=true;this.surface.add(river);
-    const roadMat=new T.MeshStandardMaterial({color:'#626967',roughness:1});
-    // Approximate Hoddle-grid streets; geographic building footprints provide the block edges.
-    for(let i=0;i<7;i++){
-      const a=project(144.950+i*.0035,-37.811+i*.00103,-.75),b=project(144.956+i*.0035,-37.820+i*.00103,-.75);
-      this.surface.add(this.ribbon(new T.LineCurve3(vector(a),vector(b)),18,roadMat,1));
-    }
-    for(let i=0;i<6;i++){
-      const a=project(144.951+i*.00115,-37.809-i*.00175,-.7),b=project(144.974+i*.00115,-37.8154-i*.00175,-.7);
-      this.surface.add(this.ribbon(new T.LineCurve3(vector(a),vector(b)),20,roadMat,1));
-    }
-  }
-  private buildRiverside(){
-    // Riverside tree groups break up the rail precinct's hard surfaces.
-    const trunks=new T.InstancedMesh(new T.CylinderGeometry(.2,.28,3.5,7),new T.MeshStandardMaterial({color:'#746851',roughness:1}),54);
-    const crowns=new T.InstancedMesh(new T.IcosahedronGeometry(2.6,2),new T.MeshStandardMaterial({color:'#536b3d',roughness:1}),54);
-    const matrix=new T.Matrix4(),rotation=new T.Quaternion();
-    for(let i=0;i<54;i++){
-      const lon=144.958+i*.00026,intersections:number[]=[];
-      const ring=riverSource.geometry.coordinates[0];
-      for(let j=1;j<ring.length;j++){
-        const a=ring[j-1],b=ring[j];
-        if((a[0]<=lon&&b[0]>lon)||(b[0]<=lon&&a[0]>lon))intersections.push(a[1]+(b[1]-a[1])*(lon-a[0])/(b[0]-a[0]));
-      }
-      const lat=Math.max(...intersections)+.00007;
-      const p=project(lon,lat),size=.8+(i%7)*.065;
-      matrix.compose(new T.Vector3(p.x,1.25,p.z),rotation,new T.Vector3(1,1,1));trunks.setMatrixAt(i,matrix);
-      matrix.compose(new T.Vector3(p.x,4,p.z),rotation,new T.Vector3(size,1.25*size,size));crowns.setMatrixAt(i,matrix);
-    }
-    trunks.castShadow=true;crowns.castShadow=true;crowns.receiveShadow=true;this.surface.add(trunks,crowns);
   }
   private ribbon(curve:T.Curve<T.Vector3>,width:number,mat:T.Material,steps:number){
     const pos:number[]=[],uv:number[]=[];
     for(let i=0;i<steps;i++){
       const a=curve.getPoint(i/steps),b=curve.getPoint((i+1)/steps),t=b.clone().sub(a).normalize(),side=new T.Vector3(-t.z,0,t.x).multiplyScalar(width/2);
       const points=[a.clone().add(side),b.clone().add(side),a.clone().sub(side),a.clone().sub(side),b.clone().add(side),b.clone().sub(side)];
-      points.forEach(p=>pos.push(p.x,p.y,p.z));uv.push(0,i,0,i+1,1,i,1,i,0,i+1,1,i+1);
+      points.forEach(p=>{pos.push(p.x,p.y,p.z);uv.push(p.x/2,p.z/2);});
     }
     const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(pos,3));g.setAttribute('uv',new T.Float32BufferAttribute(uv,2));g.computeVertexNormals();
     const mesh=new T.Mesh(g,mat);mesh.receiveShadow=true;return mesh;
@@ -110,7 +88,7 @@ export class World {
   private buildTrack(){
     const decks:T.BufferGeometry[]=[];
     for(let s=0;s<ROUTE_LENGTH;s+=12){
-      const p=vector(positionAt(s+6)),t=vector(tangentAt(s+6));if(p.y<1.5)continue;
+      const p=vector(positionAt(s+6)),t=vector(tangentAt(s+6));if(p.y<1.5||(s>=162&&s<1146))continue;
       const q=new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,1),t);
       const deck=new T.BoxGeometry(5.5,.6,12.4);deck.applyQuaternion(q);deck.translate(p.x,p.y-.35,p.z);decks.push(deck);
       if(Math.floor(s/12)%3===0){const support=new T.BoxGeometry(1.2,p.y,1.2);support.translate(p.x,p.y/2-.5,p.z);decks.push(support);}
@@ -125,7 +103,7 @@ export class World {
     const viaduct=new T.Mesh(mergeGeometries(decks),this.concrete);viaduct.receiveShadow=true;this.railway.add(viaduct);decks.forEach(g=>g.dispose());
     const points=Array.from({length:Math.ceil(ROUTE_LENGTH/4)+1},(_,i)=>vector(positionAt(Math.min(ROUTE_LENGTH,i*4))));
     const curve=new T.CatmullRomCurve3(points);
-    const ballast=new T.MeshStandardMaterial({map:surfaceTexture('ballast'),color:'#b1a590',roughness:1});
+    const ballast=this.surfaces.ballast;
     this.railway.add(this.ribbon(curve,4.3,ballast,Math.ceil(ROUTE_LENGTH/4)));
     const steel=new T.MeshStandardMaterial({color:'#b4b7af',metalness:.9,roughness:.32});
     // Broad gauge: 1,600 mm between running rails. Instancing limits draw calls.
@@ -144,13 +122,13 @@ export class World {
     sleepers.count=count;sleepers.receiveShadow=true;this.railway.add(sleepers);
     const poles:T.BufferGeometry[]=[],wires:T.Vector3[]=[];
     for(let s=10;s<ROUTE_LENGTH;s+=42){
-      if(isUnderground(s))continue;
+      if(isUnderground(s)||(s>=145&&s<1160))continue;
       const p=vector(positionAt(s)),t=vector(tangentAt(s)),side=new T.Vector3(-t.z,0,t.x);
       const post=new T.BoxGeometry(.18,6.8,.18);post.translate(p.x+side.x*3.2,p.y+3.4,p.z+side.z*3.2);poles.push(post);
       const arm=new T.BoxGeometry(4.1,.13,.13);arm.rotateY(-Math.atan2(side.z,side.x));arm.translate(p.x+side.x*1.5,p.y+6.65,p.z+side.z*1.5);poles.push(arm);
     }
     this.railway.add(new T.Mesh(mergeGeometries(poles),this.metal));poles.forEach(g=>g.dispose());
-    for(let s=0;s<ROUTE_LENGTH;s+=6){const a=vector(positionAt(s)),b=vector(positionAt(Math.min(s+6,ROUTE_LENGTH)));a.y+=5.9;b.y+=5.9;wires.push(a,b);}
+    for(let s=0;s<ROUTE_LENGTH;s+=6){if(s>=145&&s<1160)continue;const a=vector(positionAt(s)),b=vector(positionAt(Math.min(s+6,ROUTE_LENGTH)));a.y+=5.9;b.y+=5.9;wires.push(a,b);}
     this.railway.add(new T.LineSegments(new T.BufferGeometry().setFromPoints(wires),new T.LineBasicMaterial({color:'#343e3f'})));
     // Continuous tunnel cross-section, opening into larger station chambers.
     const tunnelPos:number[]=[],tunnelUv:number[]=[];
@@ -188,7 +166,7 @@ export class World {
     const lampMaterial=new T.MeshBasicMaterial({color:'#f6edd1'});
     for(const [index,station] of STATIONS.entries()){
       const p=vector(positionAt(station.distance-65)),group=new T.Group();
-      group.userData.center=p;this.stations.add(group);
+      group.userData.center=p;group.userData.underground=station.underground;this.stations.add(group);
       const platformMaterial=new T.MeshStandardMaterial({map:surfaceTexture('concrete'),color:'#bec0b5',roughness:1});
       this.box(group,6,1.1,200,5.25,.5,0,platformMaterial);
       this.box(group,.45,.03,198,2.48,1.065,0,yellow);
@@ -200,7 +178,7 @@ export class World {
         this.box(group,13,.3,206,2.7,5.6,0,this.concrete);
         this.box(group,.07,.45,198,7.94,2.7,0,new T.MeshStandardMaterial({color:station.color}));
       }
-      stationArchitecture(group,station,index);
+      stationArchitecture(group,station,index,this.surfaces.ballast);
       for(let z=-90;z<=90;z+=20){
         this.box(group,.2,4.8,.2,6,3.4,z,this.metal);
         this.box(group,4,.07,.3,4.8,5.2,z,lampMaterial);
@@ -266,14 +244,14 @@ export class World {
       landmark.position.set(p.x,0,p.z);landmark.rotation.y=.22;
       landmark.traverse(child=>{if(child instanceof T.Mesh){child.castShadow=true;child.receiveShadow=true;}});
       this.surface.add(landmark);
-    }).catch(error=>{console.warn('Flinders Street landmark could not load',error);});
+    });
   }
   async loadCity(onProgress:(message:string)=>void){
     onProgress('Loading Melbourne building survey…');
-    await this.landmarkReady;
+    await Promise.all([this.landmarkReady,this.surfaces.ready,this.corridor.ready]);
     const response=await fetch('/data/buildings.json');if(!response.ok)throw new Error('Building dataset could not be loaded.');
     const data=await response.json();
-    const map=facadeTexture();const materials=[new T.MeshStandardMaterial({map,color:'#ffffff',vertexColors:true,metalness:.25,roughness:.52})];
+    const materials=[createBuildingMaterial()];
     this.worker=new Worker(new URL('./city.worker.ts',import.meta.url),{type:'module'});
     return new Promise<void>((resolve,reject)=>{
       this.worker!.onerror=()=>{this.worker?.terminate();reject(new Error('City geometry could not be prepared.'));};
@@ -290,14 +268,20 @@ export class World {
   update(distance:number,camera:T.Camera,seconds=0){
     const p=vector(positionAt(distance)),underground=isUnderground(distance);
     const darkness=T.MathUtils.smoothstep(-p.y,0,15);
-    this.scene.environmentIntensity=.45*(1-darkness)+.025*darkness;
-    this.surface.visible=!underground;this.sun.intensity=3.2*(1-darkness);this.ambient.intensity=2-1.45*darkness;
+    this.scene.environmentIntensity=.55*(1-darkness)+.025*darkness;
+    this.surface.visible=!underground;this.sun.intensity=3.2*(1-darkness);this.ambient.intensity=1.1-.55*darkness;
     this.scene.background=underground?new T.Color('#141d21'):(this.exteriorBackground??null);
     this.sky.visible=!this.exteriorBackground;
-    this.effects.update(darkness,seconds);
+    this.effects.update(darkness,seconds);this.corridor.update(camera);
     this.sun.position.copy(p).add(new T.Vector3(350,280,150));this.sun.target.position.copy(p);this.sun.target.updateMatrixWorld();
     for(const chunk of this.cityChunks)chunk.visible=chunk.userData.center.distanceTo(camera.position)<2300;
     // Only nearby platform lamps contribute to the lighting shader.
-    this.stations.children.forEach(st=>{st.visible=st.userData.center.distanceTo(camera.position)<620;const near=st.userData.center.distanceTo(p)<280;st.children.forEach(c=>{if(c instanceof T.PointLight)c.visible=near;});});
+    this.stations.children.forEach(st=>{
+      st.visible=st.userData.center.distanceTo(camera.position)<620;
+      // Sunlit platforms retain their visible lamp fittings. The local point
+      // lights illuminate enclosed stations, where they affect the scene.
+      const near=st.userData.underground&&st.userData.center.distanceTo(p)<280;
+      st.children.forEach(c=>{if(c instanceof T.PointLight)c.visible=near;});
+    });
   }
 }

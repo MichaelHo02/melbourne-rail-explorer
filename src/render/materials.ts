@@ -7,12 +7,12 @@ function canvasTexture(size:number,draw:(ctx:CanvasRenderingContext2D)=>void){
   texture.wrapS=texture.wrapT=THREE.RepeatWrapping;texture.anisotropy=8;return texture;
 }
 let seed=712;const random=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};
-export function surfaceTexture(kind:'ballast'|'concrete'|'brick'){
+export function surfaceTexture(kind:'concrete'|'brick'){
   return canvasTexture(256,ctx=>{
-    ctx.fillStyle=kind==='ballast'?'#5d594f':kind==='brick'?'#857766':'#98988e';ctx.fillRect(0,0,256,256);
+    ctx.fillStyle=kind==='brick'?'#857766':'#98988e';ctx.fillRect(0,0,256,256);
     for(let i=0;i<18000;i++){
-      const v=Math.floor(45+random()*110);ctx.fillStyle=`rgba(${v},${v},${v},${kind==='ballast'?.6:.15})`;
-      const r=kind==='ballast'?1+random()*4:1;ctx.fillRect(random()*256,random()*256,r,r);
+      const v=Math.floor(45+random()*110);ctx.fillStyle=`rgba(${v},${v},${v},0.15)`;
+      ctx.fillRect(random()*256,random()*256,1,1);
     }
     if(kind==='brick'){
       ctx.strokeStyle='#635f56';ctx.lineWidth=2;
@@ -21,18 +21,6 @@ export function surfaceTexture(kind:'ballast'|'concrete'|'brick'){
     }
   });
 }
-export function facadeTexture(){return canvasTexture(512,ctx=>{
-  ctx.fillStyle='#8c9798';ctx.fillRect(0,0,512,512);
-  for(let x=0;x<512;x+=64)for(let y=0;y<512;y+=64){
-    const light=random();ctx.fillStyle=light>.84?'#a5acac':light>.35?'#667c85':'#4d646e';ctx.fillRect(x+5,y+5,54,47);
-    const g=ctx.createLinearGradient(x,y,x+54,y+47);g.addColorStop(0,'rgba(184,205,210,.22)');g.addColorStop(1,'rgba(18,30,40,.25)');ctx.fillStyle=g;ctx.fillRect(x+5,y+5,54,47);
-    ctx.fillStyle='#abb3b0';ctx.fillRect(x+31,y+5,2,47);
-  }
-});}
-export function facadeRoughnessTexture(){const texture=canvasTexture(512,ctx=>{
-  ctx.fillStyle='#ebebeb';ctx.fillRect(0,0,512,512);
-  for(let x=0;x<512;x+=64)for(let y=0;y<512;y+=64){ctx.fillStyle='#606060';ctx.fillRect(x+5,y+5,54,47);ctx.fillStyle='#cccccc';ctx.fillRect(x+31,y+5,2,47);}
-});texture.colorSpace=THREE.NoColorSpace;return texture;}
 export function labelTexture(text:string,bg='#16303b',fg='#ffffff',width=1024,height=128){
   const canvas=document.createElement('canvas');canvas.width=width;canvas.height=height;
   const ctx=canvas.getContext('2d')!;ctx.fillStyle=bg;ctx.fillRect(0,0,width,height);

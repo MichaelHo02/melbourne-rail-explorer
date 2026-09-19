@@ -9,6 +9,10 @@ const project = ([lon, lat]) => [Math.round((lon-origin[0])*87939*10)/10, Math.r
 // 3295/3296 are the station structure's broad base and gabled roof sections;
 // replacing only these retains the separate neighbouring commercial towers.
 const southernCrossRoof = new Set(['3295','3296']);
+// This bank-side viaduct deck becomes a solid slab above the authored railway
+// if its survey top is used literally. Replace this exact non-river-crossing
+// footprint with the Blender viaduct, retaining neighbouring structures.
+const viaductReplacement = new Set(['19385']);
 // Platform corridor sample at lateral +2/+4/+6/+8m identifies the following
 // connected source stack. Its lower levels occupy the platform; the upper
 // parts are retained here in the exclusion to avoid suspended building caps.
@@ -20,7 +24,7 @@ const southernCrossBridge = new Set(['4244']);
 // for 30m immediately south of the station. Remove it for playable clearance;
 // this is a game reconciliation, not a claim the real railway passes through it.
 const approachShapeConflict = new Set(['28201','28202','28203','28204']);
-const excludedCounts={southernCrossRoof:0,southernCrossPlatformConflict:0,southernCrossBridge:0,approachShapeConflict:0};
+const excludedCounts={viaductReplacement:0,southernCrossRoof:0,southernCrossPlatformConflict:0,southernCrossBridge:0,approachShapeConflict:0};
 const buildings = [];
 for (const b of records) {
   const {lat,lon} = b.geo_point_2d;
@@ -28,6 +32,7 @@ for (const b of records) {
   // Replace the station's survey blocks with our detailed heritage facade.
   if (lon > 144.9634 && lon < 144.9680 && lat > -37.81885 && lat < -37.81745) continue;
   const id=String(b.objectid);
+  if(viaductReplacement.has(id)){excludedCounts.viaductReplacement++;continue;}
   if(southernCrossRoof.has(id)){excludedCounts.southernCrossRoof++;continue;}
   if(southernCrossPlatformConflict.has(id)){excludedCounts.southernCrossPlatformConflict++;continue;}
   if(southernCrossBridge.has(id)){excludedCounts.southernCrossBridge++;continue;}
@@ -40,13 +45,16 @@ for (const b of records) {
     for (let i=1;i<ring.length;i++) area += ring[i-1][0]*ring[i][1]-ring[i][0]*ring[i-1][1];
     if (Math.abs(area)/2 < 35 || b.footprint_extrusion < 1) continue;
     const base = Math.max(0, b.footprint_min_elevation - b.structure_min_elevation);
-    buildings.push({id:b.objectid, ring, base:Math.round(base*10)/10, height:b.footprint_extrusion});
+    buildings.push({id:b.objectid, kind:b.footprint_type, ring, base:Math.round(base*10)/10, height:b.footprint_extrusion});
   }
 }
 fs.writeFileSync('public/data/buildings.json', JSON.stringify({
   source:'City of Melbourne — 2023 Building Footprints',
   url:'https://data.melbourne.vic.gov.au/explore/dataset/2023-building-footprints/',
   license:'CC BY 4.0', origin,
-  exclusions:{southernCrossRoof:[...southernCrossRoof],southernCrossPlatformConflict:[...southernCrossPlatformConflict],southernCrossBridge:[...southernCrossBridge],approachShapeConflict:[...approachShapeConflict]}, buildings
+  exclusions:{viaductReplacement:[...viaductReplacement],southernCrossRoof:[...southernCrossRoof],southernCrossPlatformConflict:[...southernCrossPlatformConflict],southernCrossBridge:[...southernCrossBridge],approachShapeConflict:[...approachShapeConflict]}, buildings
 }));
 console.log(`Prepared ${buildings.length} measured building sections; Southern Cross exclusions: ${JSON.stringify(excludedCounts)}.`);
+
+// Retain survey bridge tops to align textured road decks with their existing meshes.
+fs.writeFileSync('src/data/bridge-decks.json',JSON.stringify(buildings.filter(b=>b.kind==='Bridge').map(b=>({id:b.id,ring:b.ring,top:b.base+b.height}))));
