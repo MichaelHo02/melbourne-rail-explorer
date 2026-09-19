@@ -25,6 +25,12 @@ Research checked September 19, 2026. An authenticated transport API call has not
 
 Changes: reverse the Frankston western leg from Flinders Street through Southern Cross and Flagstaff; join the Upfield leg toward Melbourne Central, Parliament and Flinders Street; blend the final 300 metres to close adjacent platform alignments; smooth the path and author elevations/level platforms. This is a fictional continuous training connection, not an operational turnout, surveyed track or current scheduled HCMT service.
 
+## Included river geometry
+
+**State of Victoria (Department of Transport and Planning) — Vicmap Hydro, Water Area (HY_WATER_AREA_POLYGON)**, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). [Official catalogue](https://discover.data.vic.gov.au/dataset/vicmap-hydro-water-polygon), [source API layer](https://vicmap.land.vic.gov.au/agsgis/rest/services/vicmap/Vicmap_Hydro/MapServer/1).
+
+`src/data/river-source.json` retains the Yarra River polygon, source identifiers, query, licence and retrieval time (September 19, 2026). Changes: clipped to central Melbourne, coordinates rounded to eight decimal places, projected and triangulated for rendering. Both banks retain their geographic shape; water level, waves and bank structures remain authored. `scripts/prepare-river.py` regenerates the derivative. See [river geography](river-geography.md) for the exact query and coordinate checks.
+
 ## Network references
 
 - [Transport Victoria: City Loop and Metro Tunnel stations](https://transport.vic.gov.au/help-and-support/other-public-transport-help/city-loop-and-metro-tunnel-stations): confirms the City Loop's five stations and distinguishes them from the Metro Tunnel.

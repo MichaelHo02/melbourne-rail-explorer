@@ -11,7 +11,13 @@ npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite. Requires WebGL2. `npm run build` creates a static site in `dist/`.
+Open the local URL printed by Vite. Uses Three.js WebGPU when available, with automatic WebGL2 fallback. `npm run build` creates a static site in `dist/`.
+
+## Graphics
+
+The renderer now uses `three/webgpu`, with TSL height-aware haze and animated Yarra water normals. The train simulation, controls and saves remain independent of the renderer. Start stays disabled until graphics, assets and initial material compilation finish.
+
+Use `/?renderer=webgl` to explicitly test the compatibility backend. Development builds expose the actual backend and frame statistics on the canvas dataset; `/?view=river&scene=departure` selects a water inspection camera. Renderer migration does not make the scenery photorealistic or guarantee a frame-rate increase.
 
 ## Controls
 
@@ -33,6 +39,7 @@ The controller has four brake notches, coast, and four power notches. Stop withi
 - 8,534 measured building sections from City of Melbourne's **2023 Building Footprints** dataset, cropped to the CBD. The source contains capture dates including 2018; the dataset name is not a guarantee of contemporary scenery.
 - Projected local metre coordinates anchored near Flinders Street, with measured building footprints, vertical offsets, and extrusion heights.
 - Official Transport Victoria route shape legs and station coordinates, assembled into a continuous five-station training circuit.
+- The Yarra's variable-width water boundary from Victoria's Vicmap Hydro dataset, including the central-city banks.
 
 ## Prototype boundaries
 
@@ -40,7 +47,7 @@ The horizontal railway is derived from **official Transport Victoria route shape
 
 The seven-car HCMT exterior is recreated in Blender from photographic reference, with animated doors and an editable source file. Flinders Street has an authored heritage façade; Southern Cross has its characteristic wave roof. The PT-inspired interface uses navy, blue and white wayfinding, with local system fonts.
 
-Building outlines and heights are real, but this is **not yet a photorealistic recreation**. Building façades, station interiors, ground, roads, river, gradients and cab controls remain approximations. No accurate signalling, switches, operational safety systems, live trains, or collisions with other trains are claimed. Train braking and acceleration are deliberately approachable and are not fleet-calibrated.
+Building outlines, heights and river boundaries use real data, but this is **not yet a photorealistic recreation**. Building façades, station interiors, ground, roads, river level and bank structures, gradients and cab controls remain approximations. Water reflects the sky environment; it does not yet mirror nearby buildings. No accurate signalling, switches, operational safety systems, live trains, or collisions with other trains are claimed. Train braking and acceleration are deliberately approachable and are not fleet-calibrated.
 
 See [architecture](docs/architecture.md) for the Void Explorer-inspired boundaries and the realistic-asset integration path, and [sources](docs/sources.md) for provenance and attribution.
 

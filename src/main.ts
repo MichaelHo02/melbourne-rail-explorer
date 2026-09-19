@@ -21,7 +21,7 @@ const hud=new HUD(document.querySelector('#ui')!,{
   doors:()=>sim.toggleDoors(),controller:n=>sim.setController(n),emergency:()=>sim.emergencyBrake(),quality:high=>renderer?.setQuality(high),
 },hasSave);
 try{renderer=new GameRenderer(document.querySelector('#viewport')!,message=>{if(sim.state.phase==='driving')sim.pause();save();hud.error(message);});}
-catch(error){hud.error(`The 3D scene could not start. A browser with WebGL2 support is required. ${error instanceof Error?error.message:''}`);}
+catch(error){hud.error(`The 3D scene could not start. A browser with WebGPU or WebGL2 support is required. ${error instanceof Error?error.message:''}`);}
 
 window.addEventListener('keydown',e=>{
   const element=e.target as HTMLElement;
@@ -41,25 +41,31 @@ window.addEventListener('blur',()=>{if(sim.state.phase==='driving')pause();});
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&sim.state.phase==='driving')pause();});
 window.addEventListener('pagehide',save);
 
-let previous=performance.now(),accumulator=0,lastUi=0,lastSave=0;
+let previous=performance.now(),accumulator=0,lastUi=0,lastSave=0,lastDiagnostics=0;
 const frameTimes:number[]=[];
 function frame(now:number){
-  const elapsed=Math.min(.1,(now-previous)/1000);previous=now;accumulator+=elapsed;
+  const rawFrameMs=now-previous,elapsed=Math.min(.1,rawFrameMs/1000);previous=now;accumulator+=elapsed;
   while(accumulator>=FIXED_STEP){sim.step(FIXED_STEP);accumulator-=FIXED_STEP;}
   renderer?.render(sim.state,elapsed);audio.update(sim.state.speed,sim.state.phase==='driving');
   if(now-lastUi>80){hud.update(sim,renderer?.view??'cab');lastUi=now;}
   if(now-lastSave>5000){save();lastSave=now;}
-  frameTimes.push(elapsed*1000);if(frameTimes.length>180)frameTimes.shift();
-  requestAnimationFrame(frame);
+  frameTimes.push(rawFrameMs);if(frameTimes.length>180)frameTimes.shift();
+  if(import.meta.env.DEV&&now-lastDiagnostics>1000){
+    // DOM-readable diagnostics let the in-app browser verify the actual backend.
+    const canvas=document.querySelector('canvas');
+    if(canvas)canvas.dataset.renderMetrics=JSON.stringify({...renderer?.metrics(),averageFrameMs:frameTimes.reduce((a,b)=>a+b,0)/frameTimes.length});
+    lastDiagnostics=now;
+  }
 }
-requestAnimationFrame(frame);
 if(renderer){
-  void renderer.loadCity(message=>hud.loading(message)).then(()=>{
-    hud.ready();
+  void renderer.loadCity(message=>hud.loading(message),sim.state).then(async()=>{
     if(import.meta.env.DEV){
       const scene=new URLSearchParams(location.search).get('scene');
       if(scene==='tunnel'||scene==='approach'||scene==='departure'||scene==='platform'){sim.loadScenario(scene);renderer?.render(sim.state,0);}
     }
+    previous=performance.now();
+    await renderer!.startLoop(frame);
+    hud.ready();
   }).catch(error=>{hud.error(`The service could not load: ${error.message} Please reload to try again.`);});
 }
 

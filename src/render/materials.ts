@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import * as THREE from 'three/webgpu';
 
 function canvasTexture(size:number,draw:(ctx:CanvasRenderingContext2D)=>void){
   const canvas=document.createElement('canvas');canvas.width=canvas.height=size;

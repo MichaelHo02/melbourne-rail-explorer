@@ -1,7 +1,9 @@
-import * as T from 'three';
+import * as T from 'three/webgpu';
+import { EnvironmentEffects } from './environment';
+import riverSource from '../data/river-source.json';
 import { stationArchitecture, platformPassengers } from './stations';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { Sky } from 'three/addons/objects/Sky.js';
+import { SkyMesh } from 'three/addons/objects/SkyMesh.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { positionAt, tangentAt, ROUTE_LENGTH, STATIONS, project, isUnderground } from '../data/route';
 import { facadeTexture, labelTexture, surfaceTexture } from './materials';
@@ -12,17 +14,19 @@ export class World {
   surface=new T.Group();railway=new T.Group();stations=new T.Group();
   cityChunks:T.Mesh[]=[];cityReady=false;buildingCount=0;
   exteriorBackground?:T.Texture;
-  sun:T.DirectionalLight;ambient:T.HemisphereLight;sky:Sky;
+  sun:T.DirectionalLight;ambient:T.HemisphereLight;sky:SkyMesh;
+  private effects:EnvironmentEffects;
   private concrete=new T.MeshStandardMaterial({map:surfaceTexture('concrete'),color:'#95978b',roughness:.96});
   private metal=new T.MeshStandardMaterial({color:'#657579',metalness:.7,roughness:.35});
   private dark=new T.MeshStandardMaterial({color:'#243139',roughness:.8});
   private worker?:Worker;
   private landmarkReady:Promise<void>=Promise.resolve();
   constructor(public scene:T.Scene){
+    this.effects=new EnvironmentEffects(scene);
     scene.add(this.surface,this.railway,this.stations);
-    this.sky=new Sky();this.sky.scale.setScalar(45000);this.surface.add(this.sky);
-    this.sky.material.uniforms.turbidity.value=3.5;this.sky.material.uniforms.rayleigh.value=1.4;
-    const sunPosition=new T.Vector3(.7,.55,.3).normalize();this.sky.material.uniforms.sunPosition.value.copy(sunPosition);
+    this.sky=new SkyMesh();this.sky.scale.setScalar(45000);this.surface.add(this.sky);
+    this.sky.turbidity.value=3.5;this.sky.rayleigh.value=1.4;
+    const sunPosition=new T.Vector3(.7,.55,.3).normalize();this.sky.sunPosition.value.copy(sunPosition);
     this.sun=new T.DirectionalLight('#fff0ce',3.2);this.sun.position.copy(sunPosition).multiplyScalar(300);
     this.sun.castShadow=true;this.sun.shadow.mapSize.set(2048,2048);this.sun.shadow.camera.left=-170;this.sun.shadow.camera.right=170;
     this.sun.shadow.camera.top=170;this.sun.shadow.camera.bottom=-170;this.sun.shadow.camera.near=.5;this.sun.shadow.camera.far=900;
@@ -55,10 +59,14 @@ export class World {
     for(let s=0;s<=ROUTE_LENGTH;s+=4){const y=positionAt(s).y;if(y<2&&y>-9)approach.push(s);else finishApproach();}finishApproach();
     const ground=new T.Mesh(new T.ShapeGeometry(groundShape),new T.MeshStandardMaterial({color:'#8b9384',roughness:1}));
     ground.rotation.x=-Math.PI/2;ground.position.y=-1;ground.receiveShadow=true;this.surface.add(ground);
-    const riverAnchors=[[144.94,-37.825],[144.95,-37.8232],[144.957,-37.8222],[144.965,-37.8209],[144.969,-37.821],[144.974,-37.8196],[144.98,-37.8202],[144.988,-37.8219]];
-    const river=new T.CatmullRomCurve3(riverAnchors.map(([lon,lat])=>vector(project(lon,lat,-.6))));
-    const water=new T.MeshStandardMaterial({color:'#527b79',metalness:.35,roughness:.28});
-    this.surface.add(this.ribbon(river,80,water,220));
+    // Preserve both surveyed banks and variable width; no smoothing across city blocks.
+    const waterRings=riverSource.geometry.coordinates.map(ring=>ring.map(([lon,lat])=>{
+      const p=project(lon,lat);return new T.Vector2(p.x,-p.z);
+    }));
+    const waterShape=new T.Shape(waterRings[0]);
+    waterShape.holes.push(...waterRings.slice(1).map(ring=>new T.Path(ring)));
+    const river=new T.Mesh(new T.ShapeGeometry(waterShape),this.effects.water);
+    river.rotation.x=-Math.PI/2;river.position.y=-.6;river.receiveShadow=true;this.surface.add(river);
     const roadMat=new T.MeshStandardMaterial({color:'#626967',roughness:1});
     // Approximate Hoddle-grid streets; geographic building footprints provide the block edges.
     for(let i=0;i<7;i++){
@@ -76,7 +84,13 @@ export class World {
     const crowns=new T.InstancedMesh(new T.IcosahedronGeometry(2.6,2),new T.MeshStandardMaterial({color:'#536b3d',roughness:1}),54);
     const matrix=new T.Matrix4(),rotation=new T.Quaternion();
     for(let i=0;i<54;i++){
-      const lon=144.958+i*.00026,lat=-37.8214+(lon-144.958)*.15;
+      const lon=144.958+i*.00026,intersections:number[]=[];
+      const ring=riverSource.geometry.coordinates[0];
+      for(let j=1;j<ring.length;j++){
+        const a=ring[j-1],b=ring[j];
+        if((a[0]<=lon&&b[0]>lon)||(b[0]<=lon&&a[0]>lon))intersections.push(a[1]+(b[1]-a[1])*(lon-a[0])/(b[0]-a[0]));
+      }
+      const lat=Math.max(...intersections)+.00007;
       const p=project(lon,lat),size=.8+(i%7)*.065;
       matrix.compose(new T.Vector3(p.x,1.25,p.z),rotation,new T.Vector3(1,1,1));trunks.setMatrixAt(i,matrix);
       matrix.compose(new T.Vector3(p.x,4,p.z),rotation,new T.Vector3(size,1.25*size,size));crowns.setMatrixAt(i,matrix);
@@ -273,14 +287,14 @@ export class World {
       this.worker!.postMessage({buildings:data.buildings});
     });
   }
-  update(distance:number,camera:T.Camera){
+  update(distance:number,camera:T.Camera,seconds=0){
     const p=vector(positionAt(distance)),underground=isUnderground(distance);
     const darkness=T.MathUtils.smoothstep(-p.y,0,15);
     this.scene.environmentIntensity=.45*(1-darkness)+.025*darkness;
     this.surface.visible=!underground;this.sun.intensity=3.2*(1-darkness);this.ambient.intensity=2-1.45*darkness;
     this.scene.background=underground?new T.Color('#141d21'):(this.exteriorBackground??null);
     this.sky.visible=!this.exteriorBackground;
-    this.scene.fog=new T.Fog(underground?'#141d21':'#c8d4d5',underground?45:1100,underground?280:6500);
+    this.effects.update(darkness,seconds);
     this.sun.position.copy(p).add(new T.Vector3(350,280,150));this.sun.target.position.copy(p);this.sun.target.updateMatrixWorld();
     for(const chunk of this.cityChunks)chunk.visible=chunk.userData.center.distanceTo(camera.position)<2300;
     // Only nearby platform lamps contribute to the lighting shader.

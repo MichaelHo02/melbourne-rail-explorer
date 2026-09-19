@@ -1,45 +1,83 @@
-import * as T from 'three';
+import * as T from 'three/webgpu';
 import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
 import { World } from './world';
 import { TrainVisual } from './train';
-import { positionAt, tangentAt } from '../data/route';
+import { positionAt, tangentAt, project } from '../data/route';
 import type { TrainState } from '../game/simulation';
 
 export type View='cab'|'chase';
 export class GameRenderer {
-  renderer:T.WebGLRenderer;scene=new T.Scene();camera=new T.PerspectiveCamera(60,1,.08,12000);
+  renderer:T.WebGPURenderer;scene=new T.Scene();camera=new T.PerspectiveCamera(60,1,.08,12000);
   world:World;train:TrainVisual;view:View='cab';look=0;ready=false;
   private lastCamera=new T.Vector3();private target=new T.Vector3();private contextLost=false;
+  private backend='initializing';
+  private riverInspection=import.meta.env.DEV&&new URLSearchParams(location.search).get('view')==='river';
   constructor(container:HTMLElement,onFailure:(message:string)=>void){
-    this.renderer=new T.WebGLRenderer({antialias:true,powerPreference:'high-performance'});
+    // A reproducible compatibility route also works in a production preview.
+    const forceWebGL=new URLSearchParams(location.search).get('renderer')==='webgl';
+    this.renderer=new T.WebGPURenderer({antialias:true,powerPreference:'high-performance',forceWebGL});
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio,1.65));this.renderer.outputColorSpace=T.SRGBColorSpace;
     this.renderer.toneMapping=T.ACESFilmicToneMapping;this.renderer.toneMappingExposure=1.0;
     this.renderer.shadowMap.enabled=true;this.renderer.shadowMap.type=T.PCFSoftShadowMap;
     container.appendChild(this.renderer.domElement);
-    this.renderer.domElement.addEventListener('webglcontextlost',e=>{e.preventDefault();this.contextLost=true;onFailure('Graphics were interrupted. Reload to restore the scene; your driving progress has been saved.');});
+    const handleDeviceLost=this.renderer.onDeviceLost.bind(this.renderer);
+    this.renderer.onDeviceLost=info=>{
+      handleDeviceLost(info);this.contextLost=true;
+      this.renderer.domElement.dataset.rendererStatus='lost';
+      onFailure('Graphics were interrupted. Reload to restore the scene; your driving progress has been saved.');
+    };
     this.world=new World(this.scene);this.train=new TrainVisual(this.scene,this.camera);
     const resize=()=>{this.camera.aspect=container.clientWidth/container.clientHeight;this.camera.updateProjectionMatrix();this.renderer.setSize(container.clientWidth,container.clientHeight);};
     window.addEventListener('resize',resize);resize();
   }
-  async loadCity(onProgress:(s:string)=>void){
+  async loadCity(onProgress:(s:string)=>void,initialState:TrainState){
+    onProgress('Starting graphics…');
+    try{await this.renderer.init();}
+    catch(error){this.renderer.domElement.dataset.rendererStatus='failed';throw new Error(`Graphics could not start on WebGPU or WebGL2. ${error instanceof Error?error.message:''}`);}
+    this.backend='isWebGPUBackend' in this.renderer.backend?'WebGPU':'WebGL2';
+    this.renderer.domElement.dataset.rendererBackend=this.backend;
     await Promise.all([
       this.world.loadCity(onProgress),
       this.train.ready,
-      new HDRLoader().loadAsync('/environment/morning-sky.hdr').then(texture=>{
+      new HDRLoader().loadAsync('/environment/morning-sky.hdr').then(async texture=>{
         texture.mapping=T.EquirectangularReflectionMapping;
-        this.world.exteriorBackground=texture;this.scene.environment=texture;
+        // Generate reflections before compileAsync: nested PMREM renders during
+        // compilation in Three r180 can cache an empty environment texture.
+        // @types/three r180 omits this method exposed by the WebGPU generator.
+        const pmrem=new T.PMREMGenerator(this.renderer) as T.PMREMGenerator & {
+          fromEquirectangularAsync(texture:T.Texture):Promise<T.RenderTarget>;
+        };
+        const environment=await pmrem.fromEquirectangularAsync(texture);
+        this.world.exteriorBackground=environment.texture;this.scene.environment=environment.texture;
+        pmrem.dispose();texture.dispose();
         this.scene.backgroundBlurriness=.015;this.scene.backgroundIntensity=.7;
         this.scene.environmentIntensity=.45;
       }),
     ]);
+    onProgress('Preparing lighting and materials…');
+    // Compile both entry views before accepting input, including the cab GLB.
+    this.updateScene({...initialState,phase:'driving'},0);
+    await this.renderer.compileAsync(this.scene,this.camera);
+    this.updateScene(initialState,0);
+    await this.renderer.compileAsync(this.scene,this.camera);
     this.ready=true;
+    this.renderer.domElement.dataset.rendererStatus='ready';
   }
+  async startLoop(frame:(now:number)=>void){await this.renderer.setAnimationLoop(frame);}
   setQuality(high:boolean){this.renderer.setPixelRatio(high?Math.min(devicePixelRatio,1.65):1);this.renderer.shadowMap.enabled=high;}
   render(state:TrainState,dt:number){
-    if(this.contextLost)return;
+    if(this.contextLost||!this.ready)return;
+    this.updateScene(state,dt);
+    this.renderer.render(this.scene,this.camera);
+  }
+  private updateScene(state:TrainState,dt:number){
     const p=positionAt(state.distance),t=tangentAt(state.distance),side=new T.Vector3(-t.z,0,t.x);
     const menu=state.phase==='ready',cab=this.view==='cab'&&!menu;
-    if(menu){this.camera.position.set(p.x+110,p.y+55,p.z+110);this.target.set(p.x-75,p.y+10,p.z-50);}
+    if(this.riverInspection){
+      const river=project(144.9667,-37.81965);
+      this.camera.position.set(river.x+45,18,river.z+45);this.target.set(river.x-35,-.6,river.z-55);
+    }
+    else if(menu){this.camera.position.set(p.x+110,p.y+55,p.z+110);this.target.set(p.x-75,p.y+10,p.z-50);}
     else if(cab){
       this.camera.position.set(p.x,p.y+2.85,p.z);
       this.target.set(p.x+t.x*55+side.x*this.look*24,p.y+2.72+t.y*55,p.z+t.z*55+side.z*this.look*24);
@@ -48,8 +86,7 @@ export class GameRenderer {
       if(dt===0)this.camera.position.copy(this.lastCamera);else this.camera.position.lerp(this.lastCamera,1-Math.exp(-dt*5));
       this.target.set(p.x+t.x*25,p.y+1,p.z+t.z*25);
     }
-    this.camera.lookAt(this.target);this.train.update(state.distance,cab,state.doors);this.world.update(state.distance,this.camera);
-    this.renderer.render(this.scene,this.camera);
+    this.camera.lookAt(this.target);this.train.update(state.distance,cab&&!this.riverInspection,state.doors);this.world.update(state.distance,this.camera,state.time);
   }
-  metrics(){const i=this.renderer.info;return {drawCalls:i.render.calls,triangles:i.render.triangles,geometries:i.memory.geometries,textures:i.memory.textures,cityReady:this.ready,buildingSections:this.world.buildingCount,backend:'WebGL2'};}
+  metrics(){const i=this.renderer.info;return {drawCalls:i.render.drawCalls,triangles:i.render.triangles,geometries:i.memory.geometries,textures:i.memory.textures,cityReady:this.ready,buildingSections:this.world.buildingCount,backend:this.backend};}
 }

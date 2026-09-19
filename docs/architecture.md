@@ -18,7 +18,9 @@ The player operates a train, looking out from its cab into a geographically reco
 | Screenshot and state inspection | Named departure, approach, and tunnel scenarios, renderer counters, browser screenshots, keyboard tests |
 | Preserve gameplay while evolving graphics | The renderer is an adapter around train state; route, station service, and save files do not own Three.js objects |
 
-The article began with WebGL2 and later moved to WebGPU. This prototype starts with **WebGL2**, which is the tested renderer here. A future `three/webgpu` adapter can use TSL and richer atmosphere/materials without replacing train simulation. WebGPU support is not claimed in this build.
+Following the article’s progression, the renderer now uses **Three.js WebGPURenderer**, preferring native WebGPU and automatically falling back to its WebGL2 backend. The same TSL material graphs run on both paths. Actual backend identity is inspected after asynchronous initialization; the renderer class name alone cannot establish native WebGPU use.
+
+Initialization awaits GPU setup, city/train/HDRI assets, explicit PMREM environment generation, and shader compilation for the initial menu and cab views. Generating the environment before `compileAsync` prevents Three r180's nested PMREM render from caching a black texture during compilation. Three.js owns the animation loop; the existing fixed-step simulation runs inside it. The legacy ShaderMaterial sky has been replaced with SkyMesh. Standard GLB materials are handled by the node material library. TSL uniforms control height-aware distance haze and travelling water normals; water animation follows simulation time and pauses with the service. Water geometry preserves the official Vicmap Hydro banks, without spline smoothing. Its reflections currently sample the sky environment, not the surrounding buildings.
 
 ## Module ownership
 
@@ -27,6 +29,7 @@ src/data/route.ts       Geographic projection, continuous path sampling, station
 src/game/simulation.ts Fixed-step train dynamics, controls, dwell, stop results, save validation
 src/game/audio.ts      Optional synthesized traction/rail ambience and horn
 src/render/renderer.ts Renderer lifecycle, cameras, quality, metrics
+src/render/environment.ts TSL atmosphere and water shared by both backends
 src/render/world.ts    Track, tunnel, station and city scene adapters
 src/render/city.worker.ts Building triangulation/merging off the main thread
 src/render/materials.ts  Generated material textures and station signs
@@ -44,8 +47,8 @@ One route-distance value is authoritative for train position. Camera and each ca
 - Sleepers use instancing. Rails, tunnel lining, viaducts, and furniture geometry are merged where practical.
 - Nearby platform lights only; a train headlamp lights tunnels. A movable directional shadow volume follows the train.
 - Device pixel ratio is capped. A pause-menu quality switch disables shadows and reduces pixel ratio.
-- Tab blur and visibility changes pause simulation. Lost WebGL context pauses and saves; the UI asks for reload rather than pretending recovery succeeded.
-- Debug metrics distinguish draw calls, triangles, resources, and observed frame timings. Browser timings must not be described as measured GPU execution times.
+- Tab blur and visibility changes pause simulation. Graphics device/context loss pauses and saves; the UI asks for reload rather than pretending recovery succeeded.
+- Debug metrics use the new renderer’s per-frame `render.drawCalls` rather than cumulative `render.calls`, and distinguish triangles, resources, and raw observed frame intervals. Browser timings must not be described as measured GPU execution times.
 
 ## Realism milestones
 
