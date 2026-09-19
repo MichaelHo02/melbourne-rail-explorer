@@ -15,7 +15,7 @@ const icon=(name:string)=>{
   };
   return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${shapes[name]??shapes.train}</svg>`;
 };
-export interface Actions{start:()=>void;resume:()=>void;restart:()=>void;pause:()=>void;view:()=>void;sound:()=>void;doors:()=>void;controller:(n:number)=>void;emergency:()=>void;quality:(high:boolean)=>void}
+export interface Actions{start:()=>void;resume:()=>void;restart:()=>void;pause:()=>void;view:()=>void;sound:()=>void;doors:()=>void;controller:(n:number)=>void;emergency:()=>void}
 export class HUD {
   private root:HTMLElement;private dialog:'map'|'help'|null=null;private lastPhase='';private lastDistance:number=STATIONS[0].distance;
   private byId=(id:string)=>this.root.querySelector<HTMLElement>(`#${id}`)!;
@@ -45,7 +45,7 @@ export class HUD {
       </div><div class="drive-footer"><span id="view-label">CAB VIEW</span><span>HCMT · 7 CARS <i></i> <span id="clock">06:42:00</span></span></div>
     </main>
     <aside id="drawer" class="drawer" hidden><div class="drawer-heading"><span id="drawer-title">The City Loop</span><button id="close-drawer" class="icon-button" aria-label="Close panel">${icon('close')}</button></div><div id="drawer-content"></div></aside>
-    <section id="pause-overlay" class="modal-overlay" hidden><div class="modal"><span class="eyebrow">City Loop · Driver training</span><h2>Service paused</h2><p>Resume your service when ready.</p><button id="continue-btn" class="primary">Back to the cab ${icon('arrow')}</button><button id="restart-btn" class="secondary">Restart service</button><label class="quality-option"><input type="checkbox" id="quality-toggle" checked/> High quality lighting</label></div></section>
+    <section id="pause-overlay" class="modal-overlay" hidden><div class="modal"><span class="eyebrow">City Loop · Driver training</span><h2>Service paused</h2><p>Resume your service when ready.</p><button id="continue-btn" class="primary">Back to the cab ${icon('arrow')}</button><button id="restart-btn" class="secondary">Restart service</button></div></section>
     <section id="complete-overlay" class="modal-overlay" hidden><div class="modal"><span class="eyebrow">BACK AT FLINDERS STREET</span><h2>Service complete</h2><p id="results-summary"></p><div id="results-list"></div><button id="again-btn" class="primary">Run another service ${icon('arrow')}</button></div></section>
     <div id="error" class="error-banner" hidden role="alert"></div>
     <footer id="credits" class="credits">Independent simulator · Development build<span>City geography © City of Melbourne · CC BY 4.0</span></footer>`;
@@ -56,10 +56,10 @@ export class HUD {
     bind('doors-btn',actions.doors);bind('emergency-btn',actions.emergency);bind('map-btn',()=>this.togglePanel('map'));
     bind('help-btn',()=>this.togglePanel('help'));bind('close-drawer',()=>this.closePanel());
     this.byId('controller').addEventListener('input',e=>actions.controller(Number((e.target as HTMLInputElement).value)));
-    this.byId('quality-toggle').addEventListener('change',e=>actions.quality((e.target as HTMLInputElement).checked));
   }
   loading(message:string){this.byId('load-status').textContent=message;}
   ready(){(this.byId('start-btn') as HTMLButtonElement).disabled=false;const resume=this.root.querySelector<HTMLButtonElement>('#resume-save');if(resume)resume.disabled=false;this.byId('start-label').textContent='Take the driver’s seat';this.byId('load-status').hidden=true;}
+  startupError(message:string){this.byId('load-status').hidden=true;this.byId('start-label').textContent='Service unavailable';this.error(message);}
   error(message:string){this.byId('error').hidden=false;this.byId('error').textContent=message;}
   setSound(on:boolean){this.byId('sound-btn').classList.toggle('muted',!on);this.byId('sound-btn').setAttribute('aria-pressed',String(on));this.byId('sound-btn').setAttribute('aria-label',on?'Mute sound':'Enable sound');}
   closePanel(){this.dialog=null;this.byId('drawer').hidden=true;}

@@ -6,7 +6,7 @@ test('loads Melbourne and drives with real input through braking, pause, and cam
   await page.goto('/');
   const start=page.getByRole('button',{name:'Take the driver’s seat'});
   await expect(start).toBeEnabled({timeout:60000});
-  await expect(page.locator('#viewport canvas')).toHaveAttribute('data-renderer-backend',/^(WebGPU|WebGL2)$/);
+  await expect(page.locator('#viewport canvas')).toHaveAttribute('data-renderer-backend','WebGPU');
   await page.screenshot({path:'artifacts/01-city-menu.png'});
   await start.click();
   await expect(page.locator('#driving-hud')).toBeVisible();
@@ -38,20 +38,6 @@ test('loads Melbourne and drives with real input through braking, pause, and cam
   await expect(page.getByRole('button',{name:'Take the driver’s seat'})).toBeEnabled({timeout:60000});
   await page.getByRole('button',{name:'Continue saved service'}).click();await expect(page.locator('#driving-hud')).toBeVisible();
   console.log('RENDER_METRICS',await page.evaluate(()=>(window as any).__RAIL_EXPLORER__.metrics()));
-  expect(errors).toEqual([]);
-});
-
-test('WebGPU renderer can use its WebGL2 compatibility backend',async({page})=>{
-  const errors:string[]=[];
-  page.on('pageerror',error=>errors.push(error.message));
-  page.on('console',message=>{if(message.type()==='error')errors.push(message.text());});
-  await page.goto('/?renderer=webgl&scene=platform');
-  await expect(page.locator('#driving-hud')).toBeVisible({timeout:60000});
-  await expect(page.locator('#viewport canvas')).toHaveAttribute('data-renderer-backend','WebGL2');
-  await page.keyboard.press('d');
-  await expect(page.locator('#doors-label')).toContainText('Boarding');
-  await expect.poll(()=>page.evaluate(()=>(window as any).__RAIL_EXPLORER__.metrics().drawCalls)).toBeGreaterThan(0);
-  await page.screenshot({path:'artifacts/webgl-compatibility.png'});
   expect(errors).toEqual([]);
 });
 

@@ -2,11 +2,21 @@
 
 ## Automated checks
 
-- `npm test`: 16 tests pass, including all six station visits in a complete service, stopping/boarding interlocks, emergency braking, pause behaviour, save validation, route continuity, official station anchors and the Yarra polygon regression checks.
-- `npm run build`: strict TypeScript and production Vite build pass. The WebGPU/TSL engine chunk is 816.99 KB (225.00 KB gzip), compared with approximately 573 KB before migration. This produces a size advisory, not a build failure.
-- Earlier automated browser checks passed before the final asset/style changes. The optional harness now checks actual renderer identity, console errors and forced WebGL2 compatibility, but was not rerun in Chrome after the user requested Codex browser verification.
+- `npm test`: 19 tests pass, including all six station visits in a complete service, stopping/boarding interlocks, emergency braking, pause behaviour, save validation, route continuity, official station anchors, Yarra geography and WebGPU failure handling. The latter uses real Three.js renderer initialization with mocked browser API/adapter/device failures, asserting that no alternate graphics context is requested.
+- `npm run build`: strict TypeScript, production Vite build and the no-WebGL-backend bundle guard pass. Native WebGPU and application JS total approximately 783 KB before gzip (225 KB gzip), excluding the worker, versus 944 KB (269 KB gzip) for the previous dual-backend build. This is a payload measurement, not a frame-rate benchmark.
+- The optional browser harness now requires WebGPU; the compatibility test and WebGL launch flags were removed. It was not rerun in Chrome, following the user's request for Codex browser verification.
 
-## WebGPU migration: Codex in-app browser
+## Native-only renderer: Codex in-app browser
+
+- Production preview initializes as WebGPU, enables Start, and renders the sky, city, water and HCMT.
+- Development build initializes with the shared source modules. Real door/controller input accelerates the train from Flinders Street toward Southern Cross; cab lighting and scenery render correctly.
+- The pause menu retains resume/restart and has no quality switch. Shadows and the existing high-quality settings are always enabled.
+- No new graphics errors or warnings after the final server restart. A stale development server initially mixed old prebuilt shaders with the new source renderer; restarting Vite with the updated aliases resolved it. The production build was unaffected.
+- Unavailable API, adapter and device cases were tested at renderer level with mocked browser capabilities, not by disabling WebGPU in the user's browser.
+
+## Historical dual-backend migration: Codex in-app browser
+
+These checks describe commit `4a5bd55`. The compatibility backend and quality switch described here have since been removed.
 
 - Confirmed native `WebGPU` and explicitly forced `WebGL2` via the renderer's actual backend, exposed on the canvas dataset after initialization.
 - Reviewed the menu, HCMT/cab, city exterior, tunnel and underground platform; checked door interlock, departure acceleration, camera switching and platform boarding with real input.

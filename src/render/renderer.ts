@@ -2,20 +2,19 @@ import * as T from 'three/webgpu';
 import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
 import { World } from './world';
 import { TrainVisual } from './train';
+import { createNativeRenderer } from './native-renderer';
 import { positionAt, tangentAt, project } from '../data/route';
 import type { TrainState } from '../game/simulation';
 
 export type View='cab'|'chase';
 export class GameRenderer {
-  renderer:T.WebGPURenderer;scene=new T.Scene();camera=new T.PerspectiveCamera(60,1,.08,12000);
+  renderer:ReturnType<typeof createNativeRenderer>;scene=new T.Scene();camera=new T.PerspectiveCamera(60,1,.08,12000);
   world:World;train:TrainVisual;view:View='cab';look=0;ready=false;
   private lastCamera=new T.Vector3();private target=new T.Vector3();private contextLost=false;
   private backend='initializing';
   private riverInspection=import.meta.env.DEV&&new URLSearchParams(location.search).get('view')==='river';
   constructor(container:HTMLElement,onFailure:(message:string)=>void){
-    // A reproducible compatibility route also works in a production preview.
-    const forceWebGL=new URLSearchParams(location.search).get('renderer')==='webgl';
-    this.renderer=new T.WebGPURenderer({antialias:true,powerPreference:'high-performance',forceWebGL});
+    this.renderer=createNativeRenderer();
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio,1.65));this.renderer.outputColorSpace=T.SRGBColorSpace;
     this.renderer.toneMapping=T.ACESFilmicToneMapping;this.renderer.toneMappingExposure=1.0;
     this.renderer.shadowMap.enabled=true;this.renderer.shadowMap.type=T.PCFSoftShadowMap;
@@ -33,8 +32,8 @@ export class GameRenderer {
   async loadCity(onProgress:(s:string)=>void,initialState:TrainState){
     onProgress('Starting graphics…');
     try{await this.renderer.init();}
-    catch(error){this.renderer.domElement.dataset.rendererStatus='failed';throw new Error(`Graphics could not start on WebGPU or WebGL2. ${error instanceof Error?error.message:''}`);}
-    this.backend='isWebGPUBackend' in this.renderer.backend?'WebGPU':'WebGL2';
+    catch(error){this.renderer.domElement.dataset.rendererStatus='failed';throw new Error(`WebGPU could not start. Check that your browser and GPU support WebGPU and hardware acceleration is enabled. ${error instanceof Error?error.message:''}`);}
+    this.backend='WebGPU';
     this.renderer.domElement.dataset.rendererBackend=this.backend;
     await Promise.all([
       this.world.loadCity(onProgress),
@@ -64,7 +63,6 @@ export class GameRenderer {
     this.renderer.domElement.dataset.rendererStatus='ready';
   }
   async startLoop(frame:(now:number)=>void){await this.renderer.setAnimationLoop(frame);}
-  setQuality(high:boolean){this.renderer.setPixelRatio(high?Math.min(devicePixelRatio,1.65):1);this.renderer.shadowMap.enabled=high;}
   render(state:TrainState,dt:number){
     if(this.contextLost||!this.ready)return;
     this.updateScene(state,dt);

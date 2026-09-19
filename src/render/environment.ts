@@ -1,7 +1,7 @@
 import { Color, MeshPhysicalNodeMaterial, Scene } from 'three/webgpu';
 import { fog, mix, positionWorld, rangeFogFactor, smoothstep, transformNormalToView, uniform, vec3 } from 'three/tsl';
 
-/** One TSL graph for both graphics backends; only uniforms change during play. */
+/** Native WebGPU atmosphere and water; only uniforms change during play. */
 export class EnvironmentEffects {
   private near = uniform(700);
   private far = uniform(4300);

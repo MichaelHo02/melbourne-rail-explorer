@@ -11,13 +11,13 @@ npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite. Uses Three.js WebGPU when available, with automatic WebGL2 fallback. `npm run build` creates a static site in `dist/`.
+Open the local URL printed by Vite. A WebGPU-capable browser and GPU are required. `npm run build` creates a static site in `dist/`.
 
 ## Graphics
 
-The renderer now uses `three/webgpu`, with TSL height-aware haze and animated Yarra water normals. The train simulation, controls and saves remain independent of the renderer. Start stays disabled until graphics, assets and initial material compilation finish.
+The renderer uses Three.js's native WebGPU backend, with TSL height-aware haze and animated Yarra water normals. Shadows, antialiasing and the current high-quality lighting are always enabled. The train simulation, controls and saves remain independent of the renderer. Start stays disabled until graphics, assets and initial material compilation finish. If WebGPU cannot initialize, the game shows an error and leaves the service unavailable.
 
-Use `/?renderer=webgl` to explicitly test the compatibility backend. Development builds expose the actual backend and frame statistics on the canvas dataset; `/?view=river&scene=departure` selects a water inspection camera. Renderer migration does not make the scenery photorealistic or guarantee a frame-rate increase.
+There is no WebGL rendering path or reduced-quality mode. The production build rejects inclusion of Three.js's WebGL fallback backend. Development builds expose the backend and frame statistics on the canvas dataset; `/?view=river&scene=departure` selects a water inspection camera. This establishes one graphics target; detailed Melbourne assets and scenery still require further work.
 
 ## Controls
 

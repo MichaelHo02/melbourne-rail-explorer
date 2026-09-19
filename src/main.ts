@@ -18,10 +18,10 @@ const hud=new HUD(document.querySelector('#ui')!,{
   resume:()=>{if(sim.restore(saved)){sim.pause();renderer?.render(sim.state,0);}else hud.error('This saved service could not be restored. Start a new service instead.');},
   restart:()=>{sim.reset();sim.start();hud.closePanel();renderer?.render(sim.state,0);save();},
   pause,view:changeView,sound:()=>{void audio.toggle().then(on=>hud.setSound(on)).catch(()=>hud.error('Audio could not start in this browser. Driving is still available.'));},
-  doors:()=>sim.toggleDoors(),controller:n=>sim.setController(n),emergency:()=>sim.emergencyBrake(),quality:high=>renderer?.setQuality(high),
+  doors:()=>sim.toggleDoors(),controller:n=>sim.setController(n),emergency:()=>sim.emergencyBrake(),
 },hasSave);
 try{renderer=new GameRenderer(document.querySelector('#viewport')!,message=>{if(sim.state.phase==='driving')sim.pause();save();hud.error(message);});}
-catch(error){hud.error(`The 3D scene could not start. A browser with WebGPU or WebGL2 support is required. ${error instanceof Error?error.message:''}`);}
+catch(error){hud.startupError(`The 3D scene could not start. WebGPU is required. ${error instanceof Error?error.message:''}`);}
 
 window.addEventListener('keydown',e=>{
   const element=e.target as HTMLElement;
@@ -66,7 +66,10 @@ if(renderer){
     previous=performance.now();
     await renderer!.startLoop(frame);
     hud.ready();
-  }).catch(error=>{hud.error(`The service could not load: ${error.message} Please reload to try again.`);});
+  }).catch(error=>{
+    if(import.meta.env.DEV)console.error(error);
+    hud.startupError(`The service could not load: ${error.message} Please reload to try again.`);
+  });
 }
 
 // Named scenarios and serializable state let browser tests inspect the same game
