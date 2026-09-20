@@ -35,7 +35,7 @@ export class HUD {
   private byId=(id:string)=>this.root.querySelector<HTMLElement>(`#${id}`)!;
   constructor(root:HTMLElement,private actions:Actions,hasSave:boolean){
     this.root=root;root.innerHTML=`
-    <header class="topbar"><a class="brand" href="/" aria-label="Melbourne Rail Explorer home"><span class="brand-icon"><img src="/brand/melbourne-rail-explorer.png" alt="" width="62" height="62"/></span><span>Melbourne<span class="brand-sub">Rail Explorer</span></span></a>
+    <header id="topbar" class="topbar"><a class="brand" href="/" aria-label="Melbourne Rail Explorer home"><span class="brand-icon"><img src="/brand/melbourne-rail-explorer.png" alt="" width="62" height="62"/></span><span>Melbourne<span class="brand-sub">Rail Explorer</span></span></a>
       <nav class="topbar-controls" aria-label="Game controls">
         <button id="map-btn" class="route-map-action" aria-label="Route map" aria-expanded="false" aria-controls="drawer" title="Open the City Loop route map · M">${buttonArt('route')}<span><small>CITY LOOP</small><strong>Route map</strong></span><kbd>M</kbd></button>
         <button id="sound-btn" class="top-action sound-action muted" aria-label="Enable sound" aria-pressed="false">${buttonArt('sound')}<span id="sound-label">Sound off</span></button>
@@ -52,6 +52,7 @@ export class HUD {
     <div id="scene-caption" class="scene-caption"><span>Melbourne metropolitan network</span><strong>${icon('train')} Flinders Street</strong><span>City Loop training service</span></div>
     <div id="load-status" role="status" class="load-status">Preparing your service…</div>
     <main id="driving-hud" hidden>
+      <button id="cab-pause-btn" class="cab-pause" aria-label="Pause" title="Pause · Esc">${icon('pause')}</button>
       <span id="camera-hint" class="camera-hint">Drag platform view to look · Double-click to recenter</span><span id="door-check-label" class="door-check-label" role="status" hidden>PLATFORM CAMERA · DOOR CHECK</span>
       <div class="next-stop"><span class="eyebrow">NEXT STATION</span><h2 id="station-name">Southern Cross</h2><div><span id="station-distance">—</span><span class="next-dot">•</span><span id="station-instruction">Departure</span></div><div id="stop-guide" class="stop-guide" hidden><span>TRAINING ASSIST</span><strong id="stop-guidance"></strong><div id="stop-scale" class="stop-scale" aria-hidden="true"><i></i><b id="stop-prediction"></b></div><small id="stop-guide-detail"></small></div></div>
       <div class="journey-strip" id="journey-strip" role="group" aria-label="City Loop station progress">${STATIONS.slice(0,-1).map((s,i)=>`<span class="journey-stop" data-index="${i}"><i></i>${s.short}</span>`).join('')}</div>
@@ -127,7 +128,7 @@ export class HUD {
     <footer id="credits" class="credits">Independent simulator · Development build<span>Geography © City of Melbourne & State of Victoria · CC BY 4.0</span></footer>`;
     this.byId('route-length').textContent=`${(ROUTE_LENGTH/1000).toFixed(1)} km`;
     const bind=(id:string,fn:()=>void)=>this.root.querySelector(`#${id}`)?.addEventListener('click',fn);
-    bind('start-btn',actions.start);bind('resume-save',actions.resume);bind('pause-btn',actions.pause);bind('continue-btn',actions.pause);
+    bind('start-btn',actions.start);bind('resume-save',actions.resume);bind('pause-btn',actions.pause);bind('cab-pause-btn',actions.pause);bind('continue-btn',actions.pause);
     bind('restart-btn',actions.restart);bind('again-btn',actions.restart);bind('sound-btn',actions.sound);
     bind('door-release-btn',()=>{if(this.currentState&&!this.currentState.doors)actions.doors();});
     bind('doors-btn',()=>{if(this.currentState?.doors)actions.doors();});bind('emergency-btn',actions.emergency);bind('map-btn',()=>this.togglePanel('map'));
@@ -157,6 +158,11 @@ export class HUD {
     this.currentState=s;
     this.lastDistance=s.distance;
     if(this.lastPhase!==s.phase){
+      this.byId('topbar').hidden=!menu&&s.phase!=='paused';
+      this.root.classList.toggle('service-paused',s.phase==='paused');
+      this.root.querySelector<HTMLElement>('.next-stop')!.hidden=!menu;
+      this.byId('journey-strip').hidden=!menu;
+      this.byId('cab-pause-btn').hidden=s.phase==='paused'||s.phase==='complete';
       this.byId('welcome').hidden=!menu;this.byId('scene-caption').hidden=!menu;this.byId('credits').hidden=!menu;
       this.byId('driving-hud').hidden=menu;this.byId('pause-overlay').hidden=s.phase!=='paused';this.byId('complete-overlay').hidden=s.phase!=='complete';
       this.byId('pause-btn').setAttribute('aria-label',s.phase==='paused'?'Resume':'Pause');

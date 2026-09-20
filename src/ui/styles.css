@@ -87,3 +87,10 @@ body{background:#040d19;width:100vw;height:100vh}
 .toolbar-art{display:block;width:34px;height:34px;object-fit:contain;flex-shrink:0;pointer-events:none;filter:drop-shadow(0 1px 1px #0005)}
 .topbar-controls{gap:12px}.route-map-action{gap:9px;padding:4px 11px;height:50px}.route-map-action .toolbar-art{width:42px;height:42px}.route-map-action kbd{margin-left:3px}
 .top-action{height:44px;gap:7px;padding-inline:5px}.sound-action.muted .toolbar-art{filter:grayscale(.8);opacity:.6}.top-action .toolbar-art{width:31px;height:31px}.pause-action{padding-inline:10px;height:38px}
+
+/* Keep the windscreen clear while retaining a pointer-accessible pause action. */
+.cab-pause{position:absolute;top:18px;left:20px;width:40px;height:40px;display:grid;place-items:center;color:white;background:#071c3966;border-radius:4px}
+.cab-pause:hover{background:#071c39cc}
+
+.service-paused .topbar{z-index:9}
+.service-paused .drawer{z-index:10}
