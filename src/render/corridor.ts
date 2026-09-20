@@ -1,3 +1,4 @@
+import {distanceDetailVisible} from './distance-detail';
 import * as T from 'three/webgpu';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
@@ -559,7 +560,7 @@ export class CorridorScenery {
 
   update(camera:T.Camera){
     for(const chunk of this.treeChunks){
-      const distance=chunk.center.distanceTo(camera.position),near=!!chunk.detail&&distance<330;
+      const distance=chunk.center.distanceTo(camera.position),near=!!chunk.detail&&distanceDetailVisible(distance,chunk.detail.visible,330,370);
       chunk.group.visible=!near&&distance<1000;
       if(chunk.detail)chunk.detail.visible=near;
     }

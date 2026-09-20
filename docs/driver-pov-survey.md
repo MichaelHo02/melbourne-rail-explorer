@@ -67,3 +67,9 @@ probes and timing percentiles. The latest counter-timing correction passes the
 build but its fresh runtime sample remains unverified: the test tab entered a
 connection-error page during a Vite configuration reload. The server was
 subsequently confirmed listening on port 5174; no server restart was performed.
+
+Counter follow-up: `counter-verification/01200.json` now reports 615 draw calls
+and 2,793,569 triangles, with 44 static timing samples (mean 16.675 ms, p99
+17.2 ms). The earlier zero counters were captured after an asynchronous frame
+reset; this verification supersedes that pending check. Moving approach
+measurements are recorded separately in station-lod-plan.md.

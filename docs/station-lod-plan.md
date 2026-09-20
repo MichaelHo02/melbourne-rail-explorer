@@ -40,3 +40,36 @@ station LOD is complete or that current performance meets 60 fps.
 The POV harness now records timing percentiles and samples render counters
 before asynchronous PNG encoding. Its static samples locate problems but do
 not measure moving approach stutter; a moving profile remains required.
+
+## First implementation and measured diagnosis
+
+Station decorative fittings now have a 360 m entry / 400 m exit tier. The
+structural platform, coping, roof, stop marker and signals stay in the core
+representation. Whole-station visibility has a 620/660 m hysteresis band;
+tree detail has 330/370 m. Geometry batching keeps core/detail materials apart.
+This is an initial detail tier, not a completed multi-resolution station asset.
+
+`/scripts/station-profile.html` now replays three 260 m approaches at a fixed
+20 m/s simulation rate, then repeats them in the same loaded scene. Each pass
+collects 780 frame intervals after 60 settling frames. No screenshot encoding
+occurs in the timed interval. These are browser frame intervals at 1280×720 on
+the current Mac's IAB WebGPU backend, not GPU timestamp measurements or actual
+manual driving. Build/test processes were idle during the final two-pass run.
+
+| Station | First-use mean / p99 / max ms | Warm mean / p99 / max ms | Peak draws / triangles |
+| --- | --- | --- | --- |
+| Southern Cross | 20.98 / 101.0 / 201.0 | 17.57 / 33.5 / 34.3 | 700 / 3,566,694 |
+| Flagstaff | 18.65 / 133.3 / 216.4 | 18.46 / 133.3 / 134.0 | 467 / 1,082,189 |
+| Flinders Street | 21.22 / 99.9 / 100.6 | 21.50 / 100.0 / 116.5 | 974 / 4,321,208 |
+
+These results do NOT prove a performance improvement from the initial LOD tier.
+The earlier comparison overlapped a build and was discarded as a timing
+comparison. First-use preparation appears significant at Southern Cross;
+Flagstaff and Flinders retain repeatable expensive frames after warm-up.
+Investigate changing light sets and passenger batches before adding more LOD
+complexity. Stable global light identities may avoid rebuilding lighting shader
+variants, but this is a hypothesis requiring an isolated comparison.
+
+A screenshot after the final pass confirms the Flinders platform, rails,
+station signs and nearby fittings remain present. Full service and visual
+transition validation remain outstanding for the overall environment goal.

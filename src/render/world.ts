@@ -1,3 +1,4 @@
+import {distanceDetailVisible} from './distance-detail';
 import * as T from 'three/webgpu';
 import { EnvironmentEffects } from './environment';
 import riverSource from '../data/river-source.json';
@@ -220,7 +221,11 @@ export class World {
         this.box(group,1,3.3,206,-3.5,1.65,0,backMaterial);
       }
       stationArchitecture(group,station,index,this.surfaces.ballast);
+      const architecture=new Set(group.children);
       stationDetails(group,station.code,station.name);
+      // The core platform, coping, stop marker, signals and roof remain in
+      // the structural tier. Added furniture/ornament is a nearer tier.
+      for(const child of group.children)if(!architecture.has(child))child.userData.stationDetail=true;
       for(let z=-90;z<=90;z+=20){
         const lamp=new T.PointLight('#fff1d3',station.underground?55:8,20,2);lamp.position.set(4,4.5,z);group.add(lamp);
         if(station.underground&&station.code!=='MCE'&&(Math.abs(z+50)<3.3||Math.abs(z-45)<3.3))continue;
@@ -265,12 +270,13 @@ export class World {
         }else if(child instanceof T.PointLight){child.position.copy(warp(child.position.x,child.position.y,child.position.z));}
       }
       // Geometry is already in world space; merge repeated fittings by material.
-      const batches=new Map<T.Material,T.Mesh[]>();
-      for(const child of group.children){if(child instanceof T.Mesh&&!Array.isArray(child.material)){const batch=batches.get(child.material)??[];batch.push(child);batches.set(child.material,batch);}}
-      for(const [material,meshes] of batches){
+      const batches=new Map<string,T.Mesh[]>();
+      for(const child of group.children){if(child instanceof T.Mesh&&!Array.isArray(child.material)){const key=child.material.uuid+':'+!!child.userData.stationDetail;const batch=batches.get(key)??[];batch.push(child);batches.set(key,batch);}}
+      for(const meshes of batches.values()){
+        const material=meshes[0].material;
         if(meshes.length<2)continue;
         const merged=mergeGeometries(meshes.map(mesh=>mesh.geometry));if(!merged)continue;
-        const mesh=new T.Mesh(merged,material);mesh.castShadow=true;mesh.receiveShadow=true;group.add(mesh);
+        const mesh=new T.Mesh(merged,material);mesh.userData.stationDetail=!!meshes[0].userData.stationDetail;mesh.castShadow=true;mesh.receiveShadow=true;group.add(mesh);
         meshes.forEach(old=>{group.remove(old);old.geometry.dispose();});
       }
     }
@@ -355,7 +361,10 @@ export class World {
     for(const chunk of this.cityChunks)chunk.visible=chunk.userData.center.distanceTo(camera.position)<2300;
     // Only nearby platform lamps contribute to the lighting shader.
     this.stations.children.forEach(st=>{
-      st.visible=st.userData.center.distanceTo(camera.position)<620;
+      const stationDistance=st.userData.center.distanceTo(camera.position);
+      st.visible=distanceDetailVisible(stationDistance,st.visible,620,660);
+      st.userData.detailVisible=distanceDetailVisible(stationDistance,!!st.userData.detailVisible,360,400);
+      for(const child of st.children)if(child.userData.stationDetail)child.visible=st.userData.detailVisible;
       // Sunlit platforms retain their visible lamp fittings. The local point
       // lights illuminate enclosed stations, where they affect the scene.
       const near=st.userData.underground&&st.userData.center.distanceTo(p)<280;
