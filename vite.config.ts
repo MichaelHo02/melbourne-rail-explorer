@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import {povCapturePlugin} from './scripts/dev/pov-capture-plugin.mjs';
 import { fileURLToPath } from 'node:url';
 export default defineConfig({
   resolve:{alias:[
@@ -6,7 +7,7 @@ export default defineConfig({
     {find:/^three\/tsl$/,replacement:'three/src/nodes/TSL.js'},
     {find:/^three$/,replacement:'three/src/Three.Core.js'},
   ]},
-  plugins:[{
+  plugins:[povCapturePlugin(),{
     name:'require-native-webgpu',
     generateBundle(_options,bundle){
       for(const output of Object.values(bundle))if(output.type==='chunk'){

@@ -267,7 +267,7 @@ export class CorridorScenery {
     this.group.userData.northbankBenches=benches.length;
   }
   private buildTrees(){
-    const trackSamples=Array.from({length:Math.ceil(ROUTE_LENGTH/8)},(_,i)=>positionAt(i*8)).filter(p=>p.y>-.5);
+    const trackSamples=Array.from({length:Math.ceil(ROUTE_LENGTH/8)},(_,i)=>positionAt(i*8)).filter(p=>p.y> -8);
     const groups=new Map<string,TreeFeature[]>();
     const detailedPlacements=new Map<T.Group,{kind:string;matrix:T.Matrix4}[]>();
     for(const feature of data.layers.trees.features){
@@ -275,6 +275,9 @@ export class CorridorScenery {
       // The playable station hall is wider than the source alignment. Retain
       // source records, but do not grow street trees through platforms or roofs.
       if(insideFootprint(p.x,p.z,SOUTHERN_CROSS_CLEARANCE))continue;
+      // A low cutting can put the cab at canopy/root height. The former
+      // surface-only samples missed these approach trees entirely.
+      if(trackSamples.some(t=>t.y<3&&Math.hypot(t.x-p.x,t.z-p.z)<12))continue;
       const list=groups.get(key)??[];list.push(feature);groups.set(key,list);
     }
     const bark=new T.MeshStandardMaterial({color:'#706856',roughness:1});

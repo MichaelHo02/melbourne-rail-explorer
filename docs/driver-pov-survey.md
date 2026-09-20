@@ -1,0 +1,53 @@
+# Driver POV environment survey
+
+The development-only page `/scripts/pov-survey.html?run=UNIQUE-NAME`
+loads the normal WebGPU world and captures the seated cab camera every 200 m,
+plus endpoints, over Flinders Street–Southern Cross–Flagstaff and
+Parliament–Flinders Street. It currently produces 24 views at 1280 × 720.
+
+Each position settles for 60 rendered frames. Time, camera and resolution are
+fixed for comparison. PNGs and JSON camera/render metrics are written under
+`artifacts/pov-survey/UNIQUE-NAME/`. Use a new name for each run: existing files
+are deliberately not overwritten. The capture endpoint only runs in Vite dev,
+accepts same-origin loopback requests and writes to this fixed artifact root.
+
+Generate an overview with:
+
+```sh
+python3 scripts/pov-contact-sheet.py artifacts/pov-survey/UNIQUE-NAME
+```
+
+This is a scene inspection harness, not a driving test. Teleporting between
+views does not validate intermediate geometry, collisions or gameplay. Sampled
+frame times are diagnostic, not a controlled performance benchmark. Use the
+continuous rendered route audit separately.
+
+## 20 September 2026 inspection
+
+`baseline-1280`: all 24 captures completed. This baseline already includes the
+initial surveyed-building running-line clearance and lowered-approach tree
+filter; it is not a before-image for those changes.
+
+Observed priorities:
+
+- 600–1000 m: relatively continuous viaduct environment; generic facades and
+  canopy material still need refinement.
+- 1200 m: floating photographic fragments beside Southern Cross approach.
+- 1600–1800 m: bare rail-yard surfaces and abrupt terrain boundaries.
+- 2000 m and 5000 m: sky visible beside the narrow ballast at tunnel mouths.
+- 5200–5400 m: eastern approach needs better bridge/ground connections and
+  photographic mesh cleanup.
+
+The first repair adds a continuous concrete bed below ballast through lowered
+sections. Surveyed building volumes are now tested against a 6 m-wide running
+corridor with vertical clearance, preserving buildings over deep tunnels and
+bridges above the train. Trees close to low approaches are excluded before
+instancing. These changes do not establish that every decorative mesh is clear;
+Blender and aerial meshes require visual and geometric follow-up.
+
+`track-bed-repair`: all 24 matching captures completed. Full-size inspection at
+2000 m and 5000 m confirms the sky strips beside the ballast are closed.
+Validation: 136 tests across 18 files passed for the clearance changes;
+TypeScript and production build passed after the floor repair. The full service
+was not rerun for this checkpoint. Floating aerial fragments and unfinished
+landscape remain open work under the environment goal.

@@ -58,6 +58,21 @@ export function ringsIntersect(a:Ring,b:Ring){
     if(t>=0&&t<=1&&u>=0&&u<=1)return true;
   }return false;
 }
+// Render clearance follows the authored training alignment, not a claim that
+// the official buildings are misplaced. Include lowered approaches as well.
+const runningLine=Array.from({length:Math.ceil(ROUTE_LENGTH/4)},(_,i)=>{
+  const a=positionAt(i*4),b=positionAt(Math.min(ROUTE_LENGTH,(i+1)*4));
+  const dx=b.x-a.x,dz=b.z-a.z,length=Math.hypot(dx,dz)||1;
+  const ring=rectangle({x:(a.x+b.x)/2,z:(a.z+b.z)/2},{x:dx/length,z:dz/length},-3,3,length/2+.1);
+  return {ring,minX:Math.min(...ring.map(p=>p[0])),maxX:Math.max(...ring.map(p=>p[0])),minZ:Math.min(...ring.map(p=>p[1])),maxZ:Math.max(...ring.map(p=>p[1])),bottom:Math.min(a.y,b.y)+.15,top:Math.max(a.y,b.y)+4.8};
+});
+export function conflictsWithRunningLine(building:{ring:Ring;base:number;height:number;kind?:string}){
+  const minX=Math.min(...building.ring.map(p=>p[0])),maxX=Math.max(...building.ring.map(p=>p[0]));
+  const minZ=Math.min(...building.ring.map(p=>p[1])),maxZ=Math.max(...building.ring.map(p=>p[1]));
+  const top=building.base+building.height;
+  const bottom=building.kind==='Bridge'||building.kind==='Jetty'?top-Math.min(.6,building.height):building.base;
+  return runningLine.some(track=>top>track.bottom&&bottom<track.top&&maxX>=track.minX&&minX<=track.maxX&&maxZ>=track.minZ&&minZ<=track.maxZ&&ringsIntersect(building.ring,track.ring));
+}
 function disk(x:number,z:number,radius:number,maxY:number,name:string){
   // Circumscribed 24-gon: the historic radial clearance is never narrowed;
   // its largest excess is 0.33m at radius 38m (0.22m for the bank).

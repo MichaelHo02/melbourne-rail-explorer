@@ -153,7 +153,18 @@ export class World {
     const tunnelBreaks=[0,ROUTE_LENGTH,...Array.from({length:Math.ceil(ROUTE_LENGTH/5)},(_,i)=>i*5),...STATIONS.filter(st=>st.underground).flatMap(st=>[st.distance-168,st.distance+38])].sort((a,b)=>a-b);
     for(let segment=0;segment<tunnelBreaks.length-1;segment++){
       const s=tunnelBreaks[segment],end=tunnelBreaks[segment+1],mid=(s+end)/2;
-      if(end<=s||positionAt(mid).y>-5.6)continue;
+      if(end<=s)continue;
+      // Close the full lowered track bed beneath the narrower ballast ribbon.
+      // The terrain opening is wider than the rails; without this slab the
+      // sky is visible between the ballast and cutting/tunnel walls.
+      if(positionAt(mid).y<-.5){
+        const a=vector(positionAt(s)),b=vector(positionAt(end));
+        const ta=vector(tangentAt(s)),tb=vector(tangentAt(end));
+        const sa=new T.Vector3(-ta.z,0,ta.x).normalize(),sb=new T.Vector3(-tb.z,0,tb.x).normalize();
+        const corners=[a.clone().addScaledVector(sa,-5.3),a.clone().addScaledVector(sa,5.3),b.clone().addScaledVector(sb,-5.3),b.clone().addScaledVector(sb,5.3)];
+        for(const index of [0,2,1,1,2,3]){const p=corners[index];tunnelPos.push(p.x,p.y-.08,p.z);tunnelUv.push(p.x/4,p.z/4);}
+      }
+      if(positionAt(mid).y>-5.6)continue;
       if(STATIONS.some(st=>st.underground&&mid>st.distance-168&&mid<st.distance+38))continue;
       const a=vector(positionAt(s)),b=vector(positionAt(end));
       const ta=vector(tangentAt(s)),tb=vector(tangentAt(end));const sa=new T.Vector3(-ta.z,0,ta.x),sb=new T.Vector3(-tb.z,0,tb.x);

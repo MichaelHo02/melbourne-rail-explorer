@@ -2,7 +2,7 @@ import * as T from 'three/webgpu';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import manifest from '../data/photomesh-source.json';
 import foreground from '../data/photomesh-foreground.json';
-import { conflictsWithStationClearance, insideFootprint } from './photomesh-clearance';
+import { conflictsWithStationClearance, conflictsWithRunningLine, insideFootprint } from './photomesh-clearance';
 import type { ClippedGeometry, PhotomeshGeometry } from './photomesh-clip';
 
 type Footprint=[number,number][];
@@ -81,7 +81,7 @@ export class PhotographicCity {
     }
   }
   /** Explicit geometric conflict, not a claim that a photograph replaces it. */
-  conflictsWithClearance(building:Building){return conflictsWithStationClearance(building.ring);}
+  conflictsWithClearance(building:Building){return conflictsWithStationClearance(building.ring)||conflictsWithRunningLine(building);}
   replacesBuilding(building:Building){
     // Keep every storey from the same measured structure. The corresponding
     // photographic envelope was removed in the worker, so facades cannot mix.
