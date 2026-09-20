@@ -16,6 +16,13 @@ function area(geometry:PhotomeshGeometry){
 const square=prism([[0,0],[2,0],[2,2],[0,2]],-Infinity,10);
 
 describe('photographic clearance clipping',()=>{
+  it('clears suspended aerial sheets over the eastern return while retaining the skyline',()=>{
+    const p=positionAt(5200),mask=createPhotomeshClearance();
+    const triangle=(y:number)=>mesh([[p.x,y,p.z],[p.x+1,y,p.z],[p.x,y,p.z+1]]);
+    expect(clipPhotomesh(triangle(p.y+5),mask).index.length).toBe(0);
+    expect(clipPhotomesh(triangle(80),mask).index.length).toBe(3);
+  });
+
   it('cuts the intruding part of a long triangle whose centroid is outside the hall',()=>{
     // Centroid (-1, 1) previously kept the entire tooth inside the platform.
     const source=mesh([[-4,5,0],[2,5,0],[-1,5,3]]),result=clipPhotomesh(source,new ClearanceIndex([square]));

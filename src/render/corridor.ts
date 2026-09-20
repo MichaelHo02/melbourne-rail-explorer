@@ -381,7 +381,8 @@ export class CorridorScenery {
     // authored cut/fill shoulders that reconcile it with the flat game ground.
     const ballast:T.BufferGeometry[]=[],paths:T.BufferGeometry[]=[];
     const crossingRoads=data.layers.roads.features.filter(f=>!['trail','tunnel','foot_bridge'].includes(String(f.properties.feature_type_code))).flatMap(f=>lines(f).flatMap(line=>line.slice(1).map((b,i)=>({a:line[i],b,width:streetWidth(f)}))));
-    for(let s=1154;s<STATIONS[1].distance+550;s+=4){
+    const approachRanges=[[1154,STATIONS[1].distance+550],[STATIONS[4].distance+120,ROUTE_LENGTH-250]];
+    for(const [start,end] of approachRanges)for(let s=start;s<end;s+=4){
       const a=vec(positionAt(s)),b=vec(positionAt(s+4));if((a.y+b.y)/2< -8)continue;
       const t=b.clone().sub(a);t.y=0;t.normalize();const side=new T.Vector3(-t.z,0,t.x),mid=a.clone().add(b).multiplyScalar(.5);
       const footprint=[a.clone().addScaledVector(side,18),b.clone().addScaledVector(side,18),b.clone().addScaledVector(side,-18),a.clone().addScaledVector(side,-18)].map(p=>[p.x,p.z]);

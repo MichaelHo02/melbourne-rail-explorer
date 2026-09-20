@@ -3,7 +3,7 @@ import riverSource from '../data/river-source.json';
 import stationClearance from '../data/station-clearance.json';
 import foreground from '../data/photomesh-foreground.json';
 import northbank from '../data/photomesh-northbank.json';
-import { positionAt, project, STATIONS, tangentAt } from '../data/route';
+import { positionAt, project, ROUTE_LENGTH, STATIONS, tangentAt } from '../data/route';
 import { ClearanceIndex, prism, type ClearanceVolume } from './photomesh-clip';
 
 export type Ring=readonly (readonly number[])[];
@@ -101,9 +101,12 @@ export function createPhotomeshClearance():ClearanceIndex {
     if(length>1e-5)volumes.push(prism(rectangle({x:(a[0]+b[0])/2,z:(a[1]+b[1])/2},{x:dx/length,z:dz/length},-25,25,length/2),-Infinity,18,'Yarra bank'));
     volumes.push(disk(a[0],a[1],25,18,'Yarra bank join'));
   }
-  const railway=Array.from({length:176},(_,i)=>positionAt(i*10));
+  // Apply the same low aerial-sheet clearance to both surface approaches.
+  // The old 1.75km bound left photographic ground suspended over the eastern
+  // return and Flinders platforms. Underground context remains untouched.
+  const railway=Array.from({length:Math.ceil(ROUTE_LENGTH/10)+1},(_,i)=>positionAt(Math.min(ROUTE_LENGTH,i*10)));
   for(let i=0;i<railway.length;i++){
-    const a=railway[i];volumes.push(disk(a.x,a.z,38,Math.min(18,a.y+9.5),'railway join'));
+    const a=railway[i];if(a.y< -9)continue;volumes.push(disk(a.x,a.z,38,Math.min(18,a.y+9.5),'railway join'));
     if(i===railway.length-1)continue;
     const b=railway[i+1],dx=b.x-a.x,dz=b.z-a.z,length=Math.hypot(dx,dz);
     if(length<1e-5)continue;
