@@ -62,6 +62,10 @@ export class World {
   }
   private buildGround(){
     const groundShape=new T.Shape();groundShape.moveTo(-9000,-9000);groundShape.lineTo(9000,-9000);groundShape.lineTo(9000,9000);groundShape.lineTo(-9000,9000);groundShape.closePath();
+    const waterRings=riverSource.geometry.coordinates.map(ring=>ring.map(([lon,lat])=>{
+      const p=project(lon,lat);return new T.Vector2(p.x,-p.z);
+    }));
+    groundShape.holes.push(new T.Path(waterRings[0]));
     // Cut narrow, route-following approach trenches. Without these, the flat
     // city ground clips through the windscreen before the tunnel transition.
     let approach:number[]=[];
@@ -77,13 +81,15 @@ export class World {
     const ground=new T.Mesh(groundGeometry,this.concrete);
     ground.rotation.x=-Math.PI/2;ground.position.y=-1;ground.receiveShadow=true;this.surface.add(ground);
     // Preserve both surveyed banks and variable width; no smoothing across city blocks.
-    const waterRings=riverSource.geometry.coordinates.map(ring=>ring.map(([lon,lat])=>{
-      const p=project(lon,lat);return new T.Vector2(p.x,-p.z);
-    }));
     const waterShape=new T.Shape(waterRings[0]);
     waterShape.holes.push(...waterRings.slice(1).map(ring=>new T.Path(ring)));
+    for(const ring of waterRings.slice(1)){
+      const island=new T.Mesh(new T.ShapeGeometry(new T.Shape(ring)),this.concrete);
+      island.rotation.x=-Math.PI/2;island.position.y=-1;island.receiveShadow=true;this.surface.add(island);
+    }
     const river=new T.Mesh(new T.ShapeGeometry(waterShape),this.effects.water);
-    river.rotation.x=-Math.PI/2;river.position.y=-.6;river.receiveShadow=true;this.surface.add(river);
+    // Authored water datum must sit below the mapped promenade/park surfaces.
+    river.rotation.x=-Math.PI/2;river.position.y=-1.65;river.receiveShadow=true;this.surface.add(river);
   }
   private ribbon(curve:T.Curve<T.Vector3>,width:number,mat:T.Material,steps:number){
     const pos:number[]=[],uv:number[]=[];
@@ -185,13 +191,18 @@ export class World {
       this.box(group,.1,.09,198,2.21,.96,0,this.concrete);
       const backMaterial=new T.MeshStandardMaterial({color:station.color,roughness:station.code==='PAR'?.36:.7,metalness:station.underground?.18:0});
       if(station.underground){
-        if(station.code!=='MCE')this.box(group,1,3.3,206,8.5,1.65,0,backMaterial);
+        if(station.code!=='MCE'){
+          // Circulation openings meet the reference-based side vestibules.
+          for(const [from,to] of [[-103,-53.2],[-46.8,41.8],[48.2,103]])
+            this.box(group,1,3.3,to-from,8.5,1.65,(from+to)/2,backMaterial);
+        }
         this.box(group,1,3.3,206,-3.5,1.65,0,backMaterial);
       }
       stationArchitecture(group,station,index,this.surfaces.ballast);
       stationDetails(group,station.code,station.name);
       for(let z=-90;z<=90;z+=20){
         const lamp=new T.PointLight('#fff1d3',station.underground?55:8,20,2);lamp.position.set(4,4.5,z);group.add(lamp);
+        if(station.underground&&station.code!=='MCE'&&(Math.abs(z+50)<3.3||Math.abs(z-45)<3.3))continue;
         const sign=new T.Mesh(new T.PlaneGeometry(station.underground?3.4:5.5,station.underground?.45:.7),new T.MeshBasicMaterial({map:labelTexture(station.name,station.underground?'#e3e4d7':'#16303b',station.underground?'#172421':'#ffffff'),side:T.DoubleSide}));
         sign.rotation.y=-Math.PI/2;sign.position.set(7.92,station.underground&&station.code!=='MCE'?2.7:3.8,z);group.add(sign);
       }

@@ -8,6 +8,11 @@ export class TrainAudio{
   private loading?:Promise<void>;
   private ready=false;private running=false;private clockChange?:Promise<void>;private clockFailed=false;
   private parliament?:AudioBuffer;private parliamentSource?:AudioBufferSourceNode;private parliamentPlayed=false;private previousTime=0;
+  private effectNoise?:AudioBuffer;
+  private mechanicalState?:TrainState;
+  private previousMechanical?:Pick<TrainState,'phase'|'time'|'doors'|'controller'|'speed'|'emergency'>;
+  private movedSinceStop=false;
+  private mechanicalSources=new Map<AudioBufferSourceNode,()=>void>();
   readonly announcements=new AnnouncementCues();
   enabled=false;
   private async initialise(){
@@ -18,6 +23,10 @@ export class TrainAudio{
     const buffer=ctx.createBuffer(1,ctx.sampleRate*2,ctx.sampleRate),data=buffer.getChannelData(0);
     let last=0;for(let i=0;i<data.length;i++){last=(last+Math.random()*.04-.02)/1.02;data[i]=last*3;}
     const noise=ctx.createBufferSource();noise.buffer=buffer;noise.loop=true;this.noiseGain=ctx.createGain();this.noiseGain.gain.value=0;noise.connect(this.noiseGain);this.noiseGain.connect(this.master);noise.start();
+    // Original broad-band air/mechanical excitation, separate from field recordings.
+    this.effectNoise=ctx.createBuffer(1,ctx.sampleRate,ctx.sampleRate);
+    const air=this.effectNoise.getChannelData(0);let seed=0x4d5245;
+    for(let i=0;i<air.length;i++){seed=(Math.imul(seed,1664525)+1013904223)>>>0;air[i]=seed/0x80000000-1;}
     await Promise.all([
       {file:'southern-cross-ambience.mp3',station:1,exterior:false},
       {file:'flinders-exterior-ambience.mp3',station:0,exterior:true},
@@ -38,6 +47,7 @@ export class TrainAudio{
     if(!this.loading)this.loading=this.initialise().catch(async error=>{
       const ctx=this.context;this.context=undefined;this.ready=false;this.enabled=false;
       this.parliamentSource?.stop();this.parliamentSource=undefined;this.parliament=undefined;this.parliamentPlayed=false;
+      this.clearMechanical();this.effectNoise=undefined;
       this.loops=[];this.oscillator=undefined;this.master=undefined;this.gain=undefined;this.noiseGain=undefined;
       this.clockChange=undefined;
       try{if(ctx&&ctx.state!=='closed')await ctx.close();}finally{this.loading=undefined;}
@@ -64,6 +74,7 @@ export class TrainAudio{
       this.parliamentSource.stop();this.parliamentSource=undefined;
     }
     this.previousTime=state.time;
+    this.updateMechanical(state,cabView);
     this.running=state.phase==='driving';this.syncClock();
     if(!this.context)return;const time=this.context.currentTime,running=this.running;
     this.master!.gain.setTargetAtTime(this.enabled&&running?1:0,time,.12);
@@ -84,6 +95,53 @@ export class TrainAudio{
       source.onended=()=>{source.disconnect();gain.disconnect();if(this.parliamentSource===source)this.parliamentSource=undefined;};this.parliamentPlayed=true;
     }
     if(cue&&this.enabled)this.chime();
+  }
+  private updateMechanical(state:TrainState,cabView:boolean){
+    const previous=this.previousMechanical;
+    const baseline=!previous||this.mechanicalState!==state||state.time<previous.time||state.phase==='ready'||state.phase==='complete';
+    this.mechanicalState=state;
+    this.previousMechanical={phase:state.phase,time:state.time,doors:state.doors,controller:state.controller,speed:state.speed,emergency:state.emergency};
+    if(baseline){this.clearMechanical();this.movedSinceStop=state.speed>.5;return;}
+    if(state.speed>.5)this.movedSinceStop=true;
+    const stopped=this.movedSinceStop&&state.speed<=.05;
+    if(stopped)this.movedSinceStop=false;
+    // Always consume transitions, including while muted/loading. Enabling sound
+    // cannot replay a door/controller change that happened earlier.
+    if(!this.enabled||!this.ready||state.phase!=='driving'||previous.phase!=='driving')return;
+    const doorChanged=previous.doors!==state.doors;
+    if(doorChanged){
+      const level=cabView?.036:.068;
+      // A short pressure release followed by the mechanical end-stop. Both are
+      // original filtered noise, not a recording or reproduction of an HCMT door.
+      this.airEffect(state.doors?.52:.62,level,state.doors?1550:900,state.doors?850:1450,.04);
+      this.airEffect(.055,level*.62,260,180,.004,state.doors?.43:.56);
+    }
+    if(previous.controller!==state.controller&&!doorChanged){
+      this.airEffect(.032,cabView?.030:.006,2100,1250,.002);
+      if(!state.doors&&previous.controller<0&&state.controller>=0&&!state.emergency){
+        this.airEffect(.30,cabView?.027:.055,1900,900,.018);
+      }
+    }
+    if(stopped&&!doorChanged&&!state.doors&&(state.controller<0||state.emergency||previous.controller<0||previous.emergency)){
+      this.airEffect(.44,cabView?.032:.068,1250,650,.035);
+    }
+  }
+  private airEffect(duration:number,level:number,frequency:number,endFrequency:number,attack:number,delay=0){
+    const ctx=this.context;if(!ctx||!this.master||!this.effectNoise)return;
+    const source=ctx.createBufferSource(),filter=ctx.createBiquadFilter(),gain=ctx.createGain();
+    source.buffer=this.effectNoise;filter.type='bandpass';filter.Q.value=.72;
+    const start=ctx.currentTime+delay,end=start+duration;
+    filter.frequency.setValueAtTime(frequency,start);filter.frequency.exponentialRampToValueAtTime(endFrequency,end);
+    gain.gain.setValueAtTime(.0001,start);gain.gain.exponentialRampToValueAtTime(level,start+attack);gain.gain.exponentialRampToValueAtTime(.0001,end);
+    source.connect(filter);filter.connect(gain);gain.connect(this.master);
+    const cleanup=()=>{if(!this.mechanicalSources.delete(source))return;source.disconnect();filter.disconnect();gain.disconnect();};
+    this.mechanicalSources.set(source,cleanup);source.onended=cleanup;
+    // Scheduling is entirely on the AudioContext clock, which syncClock freezes
+    // on pause/mute. No wall-clock timers consume a paused effect in the background.
+    source.start(start);source.stop(end+.012);
+  }
+  private clearMechanical(){
+    for(const [source,cleanup]of this.mechanicalSources){source.stop();cleanup();}
   }
   private chime(){
     const ctx=this.context;if(!ctx)return;

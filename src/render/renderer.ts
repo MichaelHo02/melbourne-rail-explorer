@@ -79,9 +79,17 @@ export class GameRenderer {
       this.camera.position.set(anchor.x-side.x*85-t.x*45,19,anchor.z-side.z*85-t.z*45);
       this.target.set(anchor.x+t.x*45,6,anchor.z+t.z*45);
     }
+    else if(this.inspectionView==='northbank'){
+      this.camera.position.set(-890,6,490);this.target.set(-930,-.8,418);
+    }
     else if(this.inspectionView==='river'){
       const river=project(144.9667,-37.81965);
       this.camera.position.set(river.x+45,18,river.z+45);this.target.set(river.x-35,-.6,river.z-55);
+    }
+    else if(this.inspectionView==='entrance'){
+      const station=STATIONS[state.nextStation]??STATIONS[0];
+      const at=(along:number,x:number,y:number)=>{const p=positionAt(station.distance-65+along),t=tangentAt(station.distance-65+along);return new T.Vector3(p.x+t.z*x,p.y+y,p.z-t.x*x);};
+      this.camera.position.copy(at(-62,4.8,2.65));this.target.copy(at(-50,10,2.5));
     }
     else if(this.inspectionView==='platform'){
       const station=STATIONS[state.nextStation]??STATIONS[0],distance=station.distance-65,anchor=positionAt(distance),forward=tangentAt(Math.max(0,distance)),normal=new T.Vector3(-forward.z,0,forward.x),offset=station.code==='FSS'?5.4:-5.4;
@@ -98,7 +106,7 @@ export class GameRenderer {
       if(dt===0)this.camera.position.copy(this.lastCamera);else this.camera.position.lerp(this.lastCamera,1-Math.exp(-dt*5));
       this.target.set(p.x+t.x*25,p.y+1,p.z+t.z*25);
     }
-    this.camera.lookAt(this.target);this.train.update(state.distance,cab&&!this.inspectionView,state.doors);this.world.update(state.distance,this.camera,state.time);
+    this.camera.lookAt(this.target);this.train.update(state.distance,cab&&!this.inspectionView,state.doors,state.time,state.phase==='complete');this.world.update(state.distance,this.camera,state.time);
     this.traffic.update(state.time,this.camera,isUnderground(state.distance));
   }
   metrics(){const i=this.renderer.info;return {drawCalls:i.render.drawCalls,triangles:i.render.triangles,geometries:i.memory.geometries,textures:i.memory.textures,cityReady:this.ready,buildingSections:this.world.buildingCount,passengers:this.world.passengerMetrics(),trafficTrains:this.traffic.visibleTrains,backend:this.backend};}

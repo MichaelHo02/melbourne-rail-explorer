@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { ClearanceIndex, clipPhotomesh, facadeSamples, prism, subtractVolume, type PhotomeshGeometry } from '../src/render/photomesh-clip';
-import { conflictsWithStationClearance, createPhotomeshClearance, insideFootprint, SOUTHERN_CROSS_CLEARANCE } from '../src/render/photomesh-clearance';
+import { conflictsWithStationClearance, createPhotomeshClearance, insideFootprint, northbankVegetationVolumes, SOUTHERN_CROSS_CLEARANCE } from '../src/render/photomesh-clearance';
+import foreground from '../src/data/photomesh-foreground.json';
+import northbank from '../src/data/photomesh-northbank.json';
+import {positionAt,tangentAt} from '../src/data/route';
 
 function mesh(vertices:number[][]):PhotomeshGeometry {
   return {position:new Float32Array(vertices.flat()),normal:new Float32Array(vertices.flatMap(()=>[0,1,0])),uv:new Float32Array(vertices.flatMap(([x,,z])=>[x/10,z/10])),index:new Uint32Array(vertices.map((_,i)=>i)),offset:[0,0,0]};
@@ -77,5 +80,57 @@ describe('photographic clearance clipping',()=>{
     expect(Array.from(clipPhotomesh(high,mask).index)).toEqual([0,1,2]);
     const remote=mesh([[500,30,500],[505,30,500],[500,30,505]]);
     expect(Array.from(clipPhotomesh(remote,mask).index)).toEqual([0,1,2]);
+  });
+  it('cleans low viaduct sheets only in the immediate city-side strip',()=>{
+    const all=createPhotomeshClearance(),mask=new ClearanceIndex(all.volumes.filter(v=>v.name==='viaduct low aerial context'));
+    const p=positionAt(640),t=tangentAt(640),at=(across:number,y:number)=>mesh([[p.x+t.z*across,y,p.z-t.x*across],[p.x+t.z*across+1,y,p.z-t.x*across],[p.x+t.z*across,y,p.z-t.x*across+1]]);
+    expect(clipPhotomesh(at(-70,30),mask).index.length).toBe(0);
+    expect(clipPhotomesh(at(-70,45),mask).index.length).toBe(3);
+    expect(clipPhotomesh(at(-180,30),mask).index.length).toBe(3);
+  });
+  it('removes photographic storeys throughout selected complete survey structures',()=>{
+    const structure=foreground.structures.find(s=>s.structureId==='809141')!;
+    expect(structure.objectIds).toEqual(['12196','12197','12198']);
+    const ring=structure.photographicExclusionXZ,x=ring.reduce((sum,p)=>sum+p[0],0)/ring.length,z=ring.reduce((sum,p)=>sum+p[1],0)/ring.length;
+    const mask=createPhotomeshClearance();
+    for(const height of [10,50,90])expect(clipPhotomesh(mesh([[x,height,z],[x+1,height,z],[x,height,z+1]]),mask).index.length).toBe(0);
+  });
+  it('clears the measured I3S 141755 residual patch without widening every building envelope',()=>{
+    expect(foreground.structures.find(s=>s.structureId==='817607')!.photographicMarginMetres).toBe(6);
+    expect(foreground.structures.filter(s=>s.structureId!=='817607').every(s=>s.photographicMarginMetres===3)).toBe(true);
+    // World point measured by a ray through screen (1020,385) in the viaduct
+    // fixture, 2.48m outside this structure's original 3m exclusion envelope.
+    const source=mesh([[-726.40,43.43,116.88],[-726.35,43.43,116.88],[-726.40,43.43,116.93]]);
+    expect(clipPhotomesh(source,createPhotomeshClearance()).index.length).toBe(0);
+  });
+  it('removes only the measured detached seam fragments within finite vertical bounds',()=>{
+    const all=createPhotomeshClearance(),mask=new ClearanceIndex(all.volumes.filter(v=>v.name.startsWith('measured residual ')));
+    expect(foreground.residualFragments.map(f=>f.retainedTrianglesBeforeRepair)).toEqual([31,7]);
+    expect(clipPhotomesh(mesh([[-734.43,46.37,110.42],[-734.38,46.37,110.42],[-734.43,46.37,110.47]]),mask).index.length).toBe(0);
+    // Preserve roof/ground geometry directly above/below the same footprint;
+    // this correction is not another full-height building or district mask.
+    for(const y of [30,60])expect(clipPhotomesh(mesh([[-734.43,y,110.42],[-734.38,y,110.42],[-734.43,y,110.47]]),mask).index.length).toBe(3);
+  });
+  it('removes aerial crowns above the mapped northbank park trees, preserving higher context',()=>{
+    const mask=new ClearanceIndex(northbankVegetationVolumes());
+    expect(northbank.parcels.map(p=>p.veacId).sort()).toEqual(['P361466','P383229']);
+    expect(northbank.mappedTrees.length).toBeGreaterThan(40);
+    for(const tree of northbank.mappedTrees){
+      const [x,z]=tree.positionXZ;
+      const crown=(y:number)=>mesh([[x,y,z],[x+.02,y,z],[x,y,z+.02]]);
+      expect(clipPhotomesh(crown(30),mask).index.length).toBe(0);
+      expect(clipPhotomesh(crown(northbank.maxHeight+1),mask).index.length).toBe(3);
+    }
+    const [x,z]=northbank.mappedTrees[0].positionXZ;
+    expect(clipPhotomesh(mesh([[x,30,z],[x+.02,30,z],[x,30,z+.02]]),createPhotomeshClearance()).index.length).toBe(0);
+  });
+  it('covers a modest canopy overhang without widening the northbank mask into the city',()=>{
+    const mask=new ClearanceIndex(northbankVegetationVolumes());
+    const west=northbank.parcels.flatMap(p=>p.polygonsXZ.flatMap(r=>r[0])).reduce((a,b)=>a[0]<b[0]?a:b);
+    const patch=(x:number,z:number)=>mesh([[x,30,z],[x+.02,30,z],[x,30,z+.02]]);
+    expect(clipPhotomesh(patch(west[0]-6,west[1]),mask).index.length).toBe(0);
+    expect(clipPhotomesh(patch(west[0]-10,west[1]),mask).index.length).toBe(3);
+    expect(clipPhotomesh(patch(-750,100),mask).index.length).toBe(3);
+    expect(clipPhotomesh(patch(-900,600),mask).index.length).toBe(3);
   });
 });

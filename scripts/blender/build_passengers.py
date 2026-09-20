@@ -82,7 +82,7 @@ CONFIGS=[
  {'h':1.68,'width':.96,'skin':(.68,.46,.34),'top':(.48,.35,.22),'pants':(.105,.13,.16),'hair':(.09,.052,.025),'style':'coat','pose':'phone','bag':'shoulder'},
  {'h':1.77,'width':1.08,'skin':(.22,.13,.085),'top':(.16,.22,.18),'pants':(.075,.12,.17),'hair':(.02,.018,.015),'style':'hoodie','pose':'relaxed','bag':'backpack'},
  {'h':1.72,'width':1.00,'skin':(.58,.37,.25),'top':(.35,.105,.11),'pants':(.13,.14,.15),'hair':(.035,.024,.019),'style':'knit','pose':'weightshift','bag':'shoulder'},
- {'h':1.85,'width':1.00,'skin':(.72,.50,.37),'top':(.23,.28,.33),'pants':(.09,.11,.14),'hair':(.30,.29,.27),'style':'jacket','pose':'relaxed','bag':'backpack'},
+ {'h':1.85,'width':1.00,'skin':(.72,.50,.37),'top':(.49,.61,.68),'pants':(.09,.11,.14),'hair':(.30,.29,.27),'style':'shirt','pose':'relaxed','bag':'backpack'},
  {'h':1.65,'width':.94,'skin':(.39,.24,.16),'top':(.22,.24,.32),'pants':(.18,.16,.14),'hair':(.045,.028,.019),'style':'coat','pose':'relaxed','bag':'shoulder'},
 ]
 for index,cfg in enumerate(CONFIGS,1):
@@ -128,7 +128,7 @@ for index,cfg in enumerate(CONFIGS,1):
  labels=[];faces_by=collections.defaultdict(list)
  for face in GROUPS['body']:
   ids=[i for i,uv in face];center=np.mean(V[ids],axis=0);hand=np.mean(HAND[ids])
-  label='skin'if (center[1]>5.65 and abs(center[0])<.67) or center[1]>6.5 or hand>.35 else 'trousers'if center[1]<.35 else 'top'
+  label='skin'if (center[1]>5.65 and abs(center[0])<.67) or center[1]>6.5 or hand>.12 else 'trousers'if center[1]<.35 else 'top'
   if center[1]<-7.0:continue # Foot anatomy is enclosed by authored shoes.
   faces_by[label].append(face)
  for label,faces in faces_by.items():
@@ -139,7 +139,8 @@ for index,cfg in enumerate(CONFIGS,1):
     # Loose garments soften anatomical contours, with slight gravity/wrinkle variation.
     puff=.019 if label=='trousers' else (.044 if cfg['style']in ['coat','hoodie']else .032)
     n=NORMAL[i].copy();n[1]*=.3;v+=n*puff
-    if label=='top' and V[i,1]<1.0:v[1]-=.022
+    if label=='top' and V[i,1]<1.0:v[1]-=.035
+    if label=='trousers' and V[i,1]>-.25:v[1]+=.032
     if label=='top' and .6<V[i,1]<5.05 and abs(rest[i,0])<.20:
      # A loose elliptical garment hangs over the anatomical chest. This
      # removes the painted-on breast/nipple relief of an inflated basemesh.
@@ -162,31 +163,53 @@ for index,cfg in enumerate(CONFIGS,1):
   mesh('eyeball',[pose_point(rest[i],'head')for i in ids],[[look[i]for i,uv in f]for f in faces],'eyes',(.70,.68,.63),root)
   centre=np.mean(V[ids],axis=0);centre[2]=max(V[i,2]for i in ids)+.012
   sphere('iris',fromsource(centre),(.0043,.0043,.0016),'eyes',(.042,.031,.019),root,12,6)
- # Hair follows anatomical scalp. Lower back hair and a bun vary silhouettes.
+ # Six different hairlines remove the identical bowl-cut silhouette.
  hairfaces=[]
  for f in GROUPS['body']:
-  c=np.mean(V[[i for i,uv in f]],axis=0);threshold=7.65 if c[2]>.55 else 6.75
+  c=np.mean(V[[i for i,uv in f]],axis=0)
+  front=[7.96,7.88,8.02,7.86,8.13,7.95][index-1]
+  side=[7.18,6.85,7.3,6.75,7.1,6.85][index-1]
+  threshold=(front+(.14*c[0]if index in[1,4,5]else 0))if c[2]>.55 else side
   if c[1]>threshold and c[1]>6.6:hairfaces.append(f)
  ids=sorted({i for f in hairfaces for i,uv in f});look={old:new for new,old in enumerate(ids)}
- mesh('scalp_hair',[posed[i]+NORMAL[i]*.006 for i in ids],[[look[i]for i,uv in f]for f in hairfaces],'hair',cfg['hair'],root)
- if index in [2,6]:sphere('hair_bun',fromsource((0,7.1,-.72)),(.055,.06,.05),'hair',cfg['hair'],root,20,12)
- if index==4:
-  sphere('back_hair',fromsource((0,6.66,-.51)),(.078,.14,.044),'hair',cfg['hair'],root,20,12)
- # A continuous ribbed collar covers the irregular cut edge of the basemesh.
+ mesh('scalp_hair',[posed[i]+NORMAL[i]*(.003 if index in[3,5]else .009)for i in ids],[[look[i]for i,uv in f]for f in hairfaces],'hair',cfg['hair'],root)
+ if index==2:sphere('high_hair_bun',fromsource((0,7.55,-.76)),(.052,.065,.052),'hair',cfg['hair'],root,20,12)
+ if index in[4,6]:
+  # Connected side/back lobes form a shoulder-length style and a shorter bob.
+  length=.12 if index==4 else .09
+  for side in[-1,1]:sphere('side_hair',fromsource((side*.75,6.50 if index==4 else 6.75,.06)),(.043,length,.058),'hair',cfg['hair'],root,20,14)
+  sphere('back_hair',fromsource((0,6.50 if index==4 else 6.75,-.56)),(.092,length,.058),'hair',cfg['hair'],root,24,14)
+ # A smooth undershirt collar reaches inside the neckline instead of leaving
+ # the serrated open edge of independently smoothed body pieces exposed.
  collar=[];collarfaces=[]
- for ring,(height,radius) in enumerate([(5.62,.080),(5.89,.074),(5.95,.064),(5.64,.067)]):
+ collarcolour=tuple(x*.92 for x in cfg['top'])
+ for height,rx,rz in[(5.43,.096,.087),(5.82,.09,.078),(5.98,.065,.059),(5.48,.058,.052)]:
   for j in range(40):
-   angle=j*2*math.pi/40;point=fromsource((0,height,.03),'spine01');collar.append((point[0]+radius*math.cos(angle),point[1],point[2]+radius*.84*math.sin(angle)))
+   a=j*2*math.pi/40;point=fromsource((0,height,.09),'spine01');collar.append((point[0]+rx*math.cos(a),point[1],point[2]+rz*math.sin(a)))
  for k in range(4):
   for j in range(40):collarfaces.append((k*40+j,k*40+(j+1)%40,((k+1)%4)*40+(j+1)%40,((k+1)%4)*40+j))
- mesh('ribbed_collar',collar,collarfaces,'cloth',tuple(x*.77 for x in cfg['top']),root)
- # Thin eyebrow strips and swept scalp ridges read as hair, not plastic caps.
- for side in [-1,1]:
-  a=fromsource((side*.23,7.64,1.04));b=fromsource((side*.57,7.61,.98));line('eyebrow',a,b,.0028,'hair',cfg['hair'],root)
- for j in range(9):
-  x=(j-4)*.105
-  a=fromsource((x,8.17,.53));b=fromsource((x+.08,8.27,.02))
-  line('swept_hair',a,b,.004,'hair',tuple(min(1,x*1.18)for x in cfg['hair']),root)
+ mesh('continuous_neck_collar',collar,collarfaces,'cloth',collarcolour,root)
+ # An overlapping elliptical hem replaces the black saw-tooth waist gap.
+ hem=[];hemfaces=[];hem_y=(.35-BOTTOM)*scale
+ for y,rx,rz in[(hem_y+.022,.211,.153),(hem_y-.026,.208,.152),(hem_y-.028,.184,.130),(hem_y+.018,.186,.13)]:
+  for j in range(48):
+   a=j*2*math.pi/48;hem.append(pose_point((math.sin(a)*rx*cfg['width'],y,math.cos(a)*rz),'spine02'))
+ for k in range(4):
+  for j in range(48):hemfaces.append((k*48+j,k*48+(j+1)%48,((k+1)%4)*48+(j+1)%48,((k+1)%4)*48+j))
+ mesh('finished_waist_hem',hem,hemfaces,'cloth',tuple(x*.9 for x in cfg['top']),root)
+ # Cuffs end at the wrist; the hand itself remains uncovered anatomical skin.
+ for side in['L','R']:
+  bone='wrist.'+side;wrist=np.array(pose_point(joints[SKEL['bones'][bone]['head']],bone))
+  forearm=np.array(pose_point(joints[SKEL['bones']['lowerarm02.'+side]['head']],'lowerarm02.'+side))
+  axis=wrist-forearm;axis/=np.linalg.norm(axis);u=np.cross(axis,np.array([0,0,1]));u/=np.linalg.norm(u);v=np.cross(axis,u)
+  verts=[];faces=[]
+  for along,r in[(-.024,.038),(.004,.036),(.004,.029),(-.024,.029)]:
+   for j in range(20):
+    a=2*math.pi*j/20;verts.append(wrist+axis*along+(u*math.cos(a)+v*math.sin(a))*r)
+  for k in range(4):
+   for j in range(20):faces.append((k*20+j,k*20+(j+1)%20,((k+1)%4)*20+(j+1)%20,((k+1)%4)*20+j))
+  mesh('tailored_cuff',verts,faces,'cloth',tuple(x*.87 for x in cfg['top']),root)
+ for side in[-1,1]:line('eyebrow',fromsource((side*.23,7.64,1.04)),fromsource((side*.57,7.61,.98)),.0028,'hair',cfg['hair'],root)
  # Original shoes in local rest foot space, then posed with anatomical foot bone.
  for side,suffix in [(1,'L'),(-1,'R')]:
   footbone='foot.'+suffix;head=joints[SKEL['bones'][footbone]['head']];cx=head.x
@@ -203,26 +226,56 @@ for index,cfg in enumerate(CONFIGS,1):
   # Broader sole with a real heel/toe silhouette, not a sphere at the foot.
   soleverts=[pose_point((cx+dx,.025,z0+dz),footbone)for dx,dz in [(-.05,-.06),(.05,-.06),(.054,.07),(.035,.16),(-.035,.16),(-.054,.07)]]
   mesh('shoe_sole',soleverts,[tuple(range(6))],'leather',(.018,.019,.021),root)
- # Garment tailoring details: collar, jacket opening, lapels and buttons.
- collar_y=5.63;front_z=.86
- a=fromsource((-.55,collar_y,front_z),'spine01');b=fromsource((.55,collar_y,front_z),'spine01');line('neckline',a,b,.009,'cloth',tuple(min(1,x*1.25)for x in cfg['top']),root)
- if cfg['style'] in ['jacket','coat']:
-  for side in [-1,1]:
-   v=[fromsource((side*.08,5.22,1.08)),fromsource((side*.72,4.98,1.03)),fromsource((side*.16,3.65,1.30))]
-   mesh('tailored_lapel',v,[(0,1,2)],'cloth',tuple(x*.70 for x in cfg['top']),root)
-  for y in [3.0,2.25,1.5]:sphere('jacket_button',fromsource((.10,y,1.22)),(.004,.004,.002),'leather',(.1,.085,.066),root,8,4)
+ # Distinct clothing constructions, rather than six recoloured sweaters.
+ if cfg['style']in['jacket','coat','shirt']:
+  shirt=(.78,.81,.80)if index in[1,2]else tuple(min(1,x*1.04)for x in cfg['top'])if index==5 else(.72,.68,.62)
+  levels=[(cfg['h']*.518,.070,.174),(cfg['h']*.67,.072,.171),(cfg['h']*.78,.080,.169),(cfg['h']*.84,.054,.113)]
+  verts=[];faces=[]
+  for y,width,z in levels:
+   for j in range(9):
+    x=(j/8*2-1)*width;verts.append(pose_point((x,y,z-.045*(x/width)**2)))
+  for k in range(len(levels)-1):
+   for j in range(8):faces.append((k*9+j,k*9+j+1,(k+1)*9+j+1,(k+1)*9+j))
+  mesh('visible_shirt_front',verts,faces,'cloth',shirt,root)
+  # Collar points lie above the shirt panel, with readable contrasting lapels.
+  for side in[-1,1]:
+   verts=[pose_point((side*.016,cfg['h']*.844,.124)),pose_point((side*.057,cfg['h']*.840,.126)),pose_point((side*.061,cfg['h']*.816,.161)),pose_point((side*.028,cfg['h']*.826,.151))]
+   mesh('shirt_collar_point',verts,[(0,1,2,3)],'cloth',shirt,root)
+  for y in[.56,.62,.68,.74,.80]:sphere('shirt_button',pose_point((0,cfg['h']*y,.178 if y<.78 else .151)),(.0028,.0028,.002),'leather',(.31,.33,.32),root,8,4)
+ if cfg['style']in['jacket','coat']:
+  bottom=cfg['h']*(.43 if cfg['style']=='coat'else .515)
+  levels=[(bottom,.220,.164,.035),(cfg['h']*.60,.214,.169,.030),(cfg['h']*.74,.233,.179,.045),(cfg['h']*.82,.228,.162,.080)]
+  verts=[];faces=[]
+  for y,rx,rz,opening in levels:
+   start=math.asin(opening/rx)
+   for j in range(49):
+    a=start+(2*math.pi-2*start)*j/48;verts.append(pose_point((math.sin(a)*rx*cfg['width'],y,math.cos(a)*rz+.003)))
+  for k in range(len(levels)-1):
+   for j in range(48):faces.append((k*49+j,k*49+j+1,(k+1)*49+j+1,(k+1)*49+j))
+  jacket=mesh('open_outer_jacket',verts,faces,'cloth',cfg['top'],root)
+  seam=jacket.modifiers.new('turned_jacket_edges','SOLIDIFY');seam.thickness=.005;seam.offset=-1;bpy.context.view_layer.objects.active=jacket;bpy.ops.object.modifier_apply(modifier=seam.name)
+  for side in[-1,1]:
+   verts=[pose_point((side*.073,cfg['h']*.829,.153)),pose_point((side*.137,cfg['h']*.801,.168)),pose_point((side*.038,cfg['h']*.731,.186)),pose_point((side*.063,cfg['h']*.772,.184))]
+   mesh('visible_jacket_lapel',verts,[(0,1,2,3)],'cloth',tuple(x*.72 for x in cfg['top']),root)
+   line('welt_pocket',pose_point((side*.09,cfg['h']*.58,.168)),pose_point((side*.177,cfg['h']*.58,.121)),.0027,'cloth',tuple(x*.6 for x in cfg['top']),root)
  elif cfg['style']=='hoodie':
-  for side in [-1,1]:line('hood_drawstring',fromsource((side*.3,5.35,1.17)),fromsource((side*.33,4.4,1.42)),.0025,'cloth',(.58,.59,.54),root)
+  sphere('down_hood',pose_point((0,cfg['h']*.81,-.076),'spine01'),(.104,.087,.093),'cloth',tuple(x*.86 for x in cfg['top']),root,24,14)
+  for side in[-1,1]:line('hood_drawstring',pose_point((side*.04,cfg['h']*.839,.11)),pose_point((side*.038,cfg['h']*.757,.183)),.0025,'cloth',(.61,.63,.57),root)
+  for side in[-1,1]:line('kangaroo_pocket_seam',pose_point((side*.072,cfg['h']*.647,.174)),pose_point((side*.118,cfg['h']*.565,.15)),.0024,'cloth',tuple(x*.64 for x in cfg['top']),root)
  # Practical commuter accessories, built at final world proportions.
  pelvis=pose_point((0,cfg['h']*.53,.01),'pelvis')if 'pelvis'in matrices else(0,cfg['h']*.53,.01)
  if cfg['bag']=='backpack':
   cube('backpack',pose_point((0,cfg['h']*.70,-.155)),(.25,.34,.12),'cloth',(.045,.052,.060),root,.04)
-  for side in [-1,1]:line('backpack_strap',pose_point((side*.11,cfg['h']*.82,-.07)),pose_point((side*.14,cfg['h']*.64,.105)),.018,'cloth',(.035,.042,.050),root)
+  for side in [-1,1]:
+   a=pose_point((side*.11,cfg['h']*.82,-.07));b=pose_point((side*.17,cfg['h']*.835,.08));c=pose_point((side*.17,cfg['h']*.675,.17))
+   line('backpack_strap_top',a,b,.016,'cloth',(.035,.042,.050),root);line('backpack_strap_front',b,c,.016,'cloth',(.035,.042,.050),root)
  else:
   color=(.19,.11,.055)if cfg['bag'] in ['briefcase','shoulder']else(.41,.39,.31)
   side=-1 if index%2 else 1;pos=(side*.24,cfg['h']*.43,.015)
   cube('commuter_bag',pos,(.075,.25,.25),'leather'if cfg['bag']!='tote'else'cloth',color,root,.02)
-  if cfg['bag']=='shoulder':line('shoulder_strap',(side*.14,cfg['h']*.82,.03),(side*.24,cfg['h']*.48,.03),.012,'leather',color,root)
+  if cfg['bag']=='shoulder':
+   line('shoulder_strap_top',(side*.14,cfg['h']*.82,.14),(side*.19,cfg['h']*.64,.10),.011,'leather',color,root)
+   line('shoulder_strap_lower',(side*.19,cfg['h']*.64,.10),(side*.24,cfg['h']*.48,.03),.011,'leather',color,root)
   else:
    for z in [-.07,.07]:line('bag_handle',(side*.24,cfg['h']*.545,z),(side*.24,cfg['h']*.60,z*.65),.006,'leather',color,root)
  if cfg['pose']=='phone':
@@ -284,5 +337,5 @@ mat=bpy.data.materials.new('studio');mat.diffuse_color=(.12,.14,.16,1)
 bpy.ops.mesh.primitive_plane_add(size=200);bpy.context.object.data.materials.append(mat)
 for pos,energy,size in [((-4,-5,7),1800,5),((4,2,5),1300,4)]:
  bpy.ops.object.light_add(type='AREA',location=pos);o=bpy.context.object;o.data.energy=energy;o.data.shape='DISK';o.data.size=size;o.rotation_euler=(Vector((0,0,1))-o.location).to_track_quat('-Z','Y').to_euler()
-bpy.ops.object.camera_add(location=(3,-9,3));cam=bpy.context.object;cam.rotation_euler=(Vector((0,0,.92))-cam.location).to_track_quat('-Z','Y').to_euler();cam.data.type='ORTHO';cam.data.ortho_scale=5.3;scene=bpy.context.scene;scene.camera=cam;scene.render.engine='CYCLES';scene.cycles.samples=32;scene.cycles.use_denoising=False;scene.render.threads_mode='FIXED';scene.render.threads=4;scene.render.resolution_x=1600;scene.render.resolution_y=880;scene.render.resolution_percentage=100;scene.view_settings.view_transform='AgX';scene.render.image_settings.file_format='PNG';scene.render.filepath='/tmp/passengers-lineup.png'
+bpy.ops.object.camera_add(location=(2.3,-10,2.5));cam=bpy.context.object;cam.rotation_euler=(Vector((0,0,.92))-cam.location).to_track_quat('-Z','Y').to_euler();cam.data.type='ORTHO';cam.data.ortho_scale=5.3;scene=bpy.context.scene;scene.camera=cam;scene.render.engine='CYCLES';scene.cycles.samples=32;scene.cycles.use_denoising=False;scene.render.threads_mode='FIXED';scene.render.threads=4;scene.render.resolution_x=1600;scene.render.resolution_y=880;scene.render.resolution_percentage=100;scene.view_settings.view_transform='AgX';scene.render.image_settings.file_format='PNG';scene.render.filepath='/tmp/passengers-lineup.png'
 bpy.ops.wm.save_as_mainfile(filepath=os.path.join(SRC,'commuters.blend'));bpy.ops.render.render(write_still=True);print('PASSENGERS_READY')

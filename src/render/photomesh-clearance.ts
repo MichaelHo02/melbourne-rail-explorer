@@ -1,6 +1,8 @@
 import { ShapeUtils, Vector2 } from 'three';
 import riverSource from '../data/river-source.json';
 import stationClearance from '../data/station-clearance.json';
+import foreground from '../data/photomesh-foreground.json';
+import northbank from '../data/photomesh-northbank.json';
 import { positionAt, project, STATIONS, tangentAt } from '../data/route';
 import { ClearanceIndex, prism, type ClearanceVolume } from './photomesh-clip';
 
@@ -52,6 +54,22 @@ function disk(x:number,z:number,radius:number,maxY:number,name:string){
   const radiusOut=radius/Math.cos(Math.PI/24);
   return prism(Array.from({length:24},(_,i)=>[x+Math.cos(i*Math.PI/12)*radiusOut,z+Math.sin(i*Math.PI/12)*radiusOut]),-Infinity,maxY,name);
 }
+/** Parcel-bounded replacement of coarse aerial vegetation by mapped trees.
+ * The modest outer buffer covers crowns overhanging the cadastral park edge. */
+export function northbankVegetationVolumes():ClearanceVolume[]{
+  const volumes:ClearanceVolume[]=[],margin=northbank.canopyMarginMetres;
+  for(const parcel of northbank.parcels)for(const rings of parcel.polygonsXZ){
+    const name=`northbank vegetation ${parcel.veacId}`;
+    volumes.push(...polygonVolumes(rings,-Infinity,northbank.maxHeight,name));
+    const ring=cleanRing(rings[0]);
+    for(let i=0;i<ring.length;i++){
+      const a=ring[i],b=ring[(i+1)%ring.length],dx=b[0]-a[0],dz=b[1]-a[1],length=Math.hypot(dx,dz);
+      if(length>1e-5)volumes.push(prism(rectangle({x:(a[0]+b[0])/2,z:(a[1]+b[1])/2},{x:dx/length,z:dz/length},-margin,margin,length/2),-Infinity,northbank.maxHeight,name));
+      volumes.push(disk(a[0],a[1],margin,northbank.maxHeight,name));
+    }
+  }
+  return volumes;
+}
 export function createPhotomeshClearance():ClearanceIndex {
   const volumes:ClearanceVolume[]=[
     prism(flinders,0,Infinity,'Flinders authored landmark'),
@@ -61,6 +79,19 @@ export function createPhotomeshClearance():ClearanceIndex {
     // complete surveyed procedural facades provide the station-scale detail.
     prism([[-1800,-450],[-1050,-450],[-1050,260],[-1800,260]],-Infinity,40,'Southern Cross low aerial context'),
   ];
+  volumes.push(...northbankVegetationVolumes());
+  for(const structure of foreground.structures)volumes.push(prism(structure.photographicExclusionXZ,-Infinity,Infinity,`complete foreground facade ${structure.structureId}`));
+  for(const fragment of foreground.residualFragments){
+    const [x0,y0,z0,x1,y1,z1]=fragment.exclusionBounds;
+    volumes.push(prism([[x0,z0],[x1,z0],[x1,z1],[x0,z1]],y0,y1,`measured residual ${fragment.sourceTile}`));
+  }
+  // Limit low photographic tree/road sheets to the viaduct's immediate city
+  // edge. Authored track/banks and measured foreground buildings supply the
+  // eye-level scene; the photographic skyline farther back remains untouched.
+  for(let distance=360;distance<1020;distance+=20){
+    const a=positionAt(distance),b=positionAt(distance+20),dx=b.x-a.x,dz=b.z-a.z,length=Math.hypot(dx,dz);
+    volumes.push(prism(rectangle({x:(a.x+b.x)/2,z:(a.z+b.z)/2},{x:dx/length,z:dz/length},-125,38,length/2+1),-Infinity,40,'viaduct low aerial context'));
+  }
   for(const feature of stationClearance.features)volumes.push(...polygonVolumes([feature.ring],-Infinity,Infinity,`survey conflict ${feature.objectId}`));
   const river=riverSource.geometry.coordinates.map(r=>r.map(([lon,lat])=>{const p=project(lon,lat);return [p.x,p.z];}));
   volumes.push(...polygonVolumes(river,-Infinity,18,'Yarra water'));

@@ -1,3 +1,37 @@
+# Station circulation, riverbank and driving feedback — 20 September 2026
+
+## Changes and evidence
+
+This pass adds station end walls and staff access gates, recessed Flagstaff/Parliament entrances, underground suspended information displays, and a second-road opening at Melbourne Central. Platform views were reviewed for all five stations. The entrance review caught ceiling geometry crossing the vestibules and floating station labels; both were corrected. The platform/track arrangement remains authored rather than a surveyed station model.
+
+Along the viaduct, seven foreground buildings now retain their complete survey-derived procedural structures rather than alternating between partial photographic storeys and replacement facades. Bounded clipping removes the remaining seam chips and aerial tree sheets above the two official Batman/Enterprise Park parcels. Five source photographic GLBs remain unchanged. The northbank review shows continuous buildings and mapped trees without the previous floating park crowns; distant aerial roof artifacts remain visible.
+
+The Yarra now occupies an opening in the ground mesh, with its authored water level below the park. Low stone bank faces, physically scaled paving, parcel grass variation and three benches improve the northbank. Browser review caught a mixed indexed/non-indexed geometry batch that prevented the bank from rendering; the revetment now uses compatible indexed geometry. These are authored surface/elevation details placed using official plan geometry, not a riverbank elevation survey.
+
+The Blender commuter export adds distinct jackets, a coat, hoodie, knitwear, shirt, hairstyles and bags while retaining shared materials and restrained idle morphs. It contains six near and six distant variants, 147,742 triangles and 8,378,836 bytes. The final lineup and in-game passengers were visually reviewed. Close-up faces remain stylised, and passengers do not walk or board.
+
+The training stop guide now uses the same motion equations, acceleration ramp and upcoming authored gradients as driving. Original controller, door and brake cues follow accepted simulation transitions. Door movement uses service time, freezing on pause and closing explicitly on service completion. The final-stop closure defect found during review has a regression test. Cab-reference documentation distinguishes the user's VLocity photographs from the game's HCMT-inspired controls; the photographs are not republished.
+
+## Automated validation
+
+- `npm test`: **71 tests pass across 12 files**, including predictive braking against actual simulation, final-stop door closure, pause timing, mechanical audio transitions, source commuter morphs and photographic clearance boundaries.
+- `npm run build`: strict TypeScript, production Vite build and native-WebGPU-only guard pass. The photographic worker is 51.99 KB; the application chunk is 2,344.94 KB before gzip (330.56 KB gzip), excluding the separate Three.js chunk and external assets. The existing large-chunk warning remains.
+- Final read-only review found no material correctness regressions in motion, guide integration, door timing, audio transition/cleanup or river geometry/material readiness. `git diff --check` passes.
+
+## Codex in-app browser
+
+Desktop review covered the five station platform views, Flagstaff/Parliament entrances and the viaduct/northbank. At 1280×720, the stopping guide remained clear of the driving controls; at 600×850, compact controls fit with document width equal to the viewport's 600 pixels. The temporary viewport override was reset.
+
+During a real-controller Flagstaff approach, brake two predicted a stop approximately 107 m short, and the train stopped 107 m short. The aligned-marker state was separately inspected using the stopped Melbourne Central development fixture. This is not a claim of a manually driven perfect stop or complete circuit. Opening doors hid the guide; closing after boarding advanced the next station. Sound startup changed the control to Mute without errors. This verifies startup and transition integration, not an audible mix review or a clean voiced-announcement library.
+
+Two paused Melbourne Central observations retained exactly 81.933333 seconds of passenger simulation time and idle-weight sum 7.038381. The northbank sample reported WebGPU, 647 draw calls, 1,574,620 triangles and an 18.89 ms recent average frame interval. These are local samples with other tabs present, not controlled performance guarantees.
+
+The production build was reviewed on port 5181, isolated from the user's port-5180 saved service. Actual controls verified open-door traction interlock, closed-door departure, acceleration to 46 km/h, rejection of opening doors while moving, emergency braking to zero, exterior camera and pause. Reloading and continuing retained the stopped position, 1.19 km to Southern Cross, and emergency state. Final development and production warning/error logs were empty. Screenshots and geometry audits remain locally under ignored `artifacts/`.
+
+Remaining boundaries: nearby traffic is the fixed-date timetable, not live positions; station geometry/cab controls and river levels are authored; some distant photographic roofs are coarse; crowd walking/boarding and a station-specific voiced announcement bank are not implemented. The current changes improve the prototype without claiming photorealism or operational calibration.
+
+---
+
 # Scenery and passenger refinement — 20 September 2026
 
 ## Changes and evidence

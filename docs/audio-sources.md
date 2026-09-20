@@ -40,3 +40,12 @@ Rebuild all three assets by adding `--parliament /path/to/parliament-departure-s
 The bounded search did not locate a suitable unrestricted Flagstaff platform recording or Melbourne Central platform recording. The CC0 Central result was a toilet ventilation fan; the Flagstaff results were Arizona recordings or a Melbourne outdoor cycling soundscape. None was relabelled as platform ambience. Whisper, faster-whisper and transcription CLI tools were absent, and no general audio-transcription tool was exposed in this session, so no automatic speech transcription or human listening review was claimed.
 
 Parliament output validation: 45.741474 seconds, 733,144 bytes, −21.8 LUFS integrated and −5.6 dBFS true peak; no clipping.
+
+
+## Original mechanical feedback
+
+`src/game/audio.ts` also synthesizes original short mechanical cues with WebAudio: a pressure burst and end-stop for accepted door opening/closing, a quiet controller-detent click, a brake-release hiss, and a single hiss when braking brings the train to a stop. These are project-authored filtered-noise effects. They are not HCMT recordings, a measured recreation of train equipment, sampled Metro branding or station speech. The licensed location recordings above are unchanged; no voice generation, TTS or external audio dependency is used.
+
+Cues follow accepted simulation state transitions. Initial/restored/restarted scenes establish a silent baseline, rejected door actions produce no effect, and camera switches cannot retrigger one. Muted/loading transitions are consumed instead of replaying when sound is enabled. A stop latch requires prior movement and clears after the stop, avoiding a continuous hiss at zero speed.
+
+All envelopes, delays and source stops use `AudioContext.currentTime`. The existing context suspension on pause/mute freezes partially played effects; they resume without being recreated. Finished sources, filters and gain nodes disconnect, and scene resets/completion cancel remaining mechanical nodes. `tests/audio.test.ts` verifies these transition, opt-in, pause/mute and cleanup behaviours. The synthesis has conservative gain levels; these automated tests do not constitute an audible mix review.

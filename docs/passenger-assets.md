@@ -6,6 +6,8 @@ Six clothed commuter variants replace the former capsule people at all five stat
 
 The second pose revision addresses the MakeHuman rest forearms pointing forward: both forearms and upper arms are posed so non-phone hands rest beside the thighs, with bent finger joints instead of splayed hands. Shoulder bags replace the disconnected briefcase/tote handles. Loose torso profiles remove the inflated anatomy beneath clothing; a continuous knit collar covers the neck seam. The phone pose includes an actual phone. These remain original stylised models rather than scanned people.
 
+The outfit pass adds a navy open jacket with a contrasting shirt, two longer open coats, a green hoodie with a dropped hood and pocket seams, a plain knit top, and a blue shirt with collar points. Continuous hem bands overlap the trousers instead of exposing serrated waist edges, and wrist cuffs keep the hands visibly uncovered. The six hairlines now include short cropped hair, a tied bun, longer side/back hair, a shorter bob, and a higher greying hairline. Shoulder bags, backpacks and the phone remain separate readable props.
+
 Rebuild and deduplicate with:
 
 ```sh
@@ -14,7 +16,7 @@ npx --yes @gltf-transform/cli@4.5.0 dedup public/models/passengers/commuters.glb
 cp /tmp/commuters-dedup.glb public/models/passengers/commuters.glb
 ```
 
-The GLB is approximately 8.3 MB and the complete set is approximately 142,000 triangles. Six full variants and six reduced meshes share five materials. Heights range from 1.65 to 1.85 metres; feet are at Y=0 and front is +Z in glTF. Nodes are `commuter_01` through `commuter_06`, with `_low` equivalents. The runtime instances each variant/material, uses full detail within 40 metres, reduced geometry from 40–150 metres, and hides distant people. There are 24 placements per unique station.
+The GLB is approximately 8.4 MB and the complete set is approximately 148,000 triangles. Six full variants and six reduced meshes share five materials. Heights range from 1.65 to 1.85 metres; feet are at Y=0 and front is +Z in glTF. Nodes are `commuter_01` through `commuter_06`, with `_low` equivalents. The runtime instances each variant/material, uses full detail within 40 metres, reduced geometry from 40–150 metres, and hides distant people. There are 24 placements per unique station.
 
 ## Restrained idle motion
 

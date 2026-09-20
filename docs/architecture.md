@@ -29,6 +29,7 @@ Initialization awaits GPU setup, city/photomesh/train/traffic/passenger/viaduct/
 ```text
 src/data/route.ts       Geographic projection, continuous path sampling, station markers
 src/game/simulation.ts Fixed-step train dynamics, controls, dwell, stop results, save validation
+src/game/motion.ts     Shared motion integration and training stop prediction
 src/game/audio.ts      Opt-in licensed location recordings, traction/horn/cue synthesis
 src/game/announcements.ts Simulation-time service captions
 src/game/traffic.ts    Official fixed-date GTFS timetable interpolation
@@ -48,6 +49,7 @@ src/render/corridor-geography.ts River intersections and connected bridge approa
 src/render/surface-library.ts Bundled physical surface maps and readiness
 src/render/materials.ts  Generated material textures and station signs
 src/render/train.ts    Exterior rolling stock and physical cab framing
+src/render/door-motion.ts Simulation-clock door interpolation and terminal closure
 src/ui/                DOM HUD, route map, menus, help, styles
 src/main.ts            Input mapping, fixed timestep, save lifecycle, composition
 ```

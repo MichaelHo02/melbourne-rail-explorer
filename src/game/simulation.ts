@@ -1,4 +1,5 @@
-import { STATIONS, ROUTE_LENGTH, speedLimitAt, tangentAt } from '../data/route';
+import { STATIONS, ROUTE_LENGTH, speedLimitAt } from '../data/route';
+import { advanceMotion } from './motion';
 
 export type Phase='ready'|'driving'|'paused'|'complete';
 export interface StopResult { station:string; error:number; outcome:'served'|'missed' }
@@ -47,17 +48,8 @@ export class Simulation {
     const s=this.state;if(s.phase!=='driving'||!Number.isFinite(dt)||dt<=0)return;
     s.time+=dt;
     if(s.doors){s.speed=0;s.acceleration=0;s.dwell=Math.min(8,s.dwell+dt);return;}
-    const gradient=tangentAt(s.distance).y;
-    const traction=s.controller>0?s.controller/4*.82*Math.max(.22,1-s.speed/36):0;
-    const brake=s.emergency?1.65:Math.max(0,-s.controller)/4*1.12;
-    const drag=.015+s.speed*s.speed*.00012;
-    const target=traction-brake-drag-9.81*gradient;
-    const delta=Math.max(-dt*.9,Math.min(dt*.9,target-s.acceleration));
-    s.acceleration+=delta;
-    if(s.speed===0&&s.controller<=0)s.acceleration=Math.min(0,s.acceleration);
-    const nextSpeed=Math.max(0,s.speed+s.acceleration*dt);
-    s.distance=Math.min(ROUTE_LENGTH,s.distance+(s.speed+nextSpeed)*.5*dt);
-    s.speed=nextSpeed;
+    const motion=advanceMotion(s,dt);
+    s.distance=Math.min(ROUTE_LENGTH,motion.distance);s.speed=motion.speed;s.acceleration=motion.acceleration;
     if(s.speed*3.6>speedLimitAt(s.distance)+2)s.overspeedSeconds+=dt;
     const station=STATIONS[s.nextStation];
     if(station&&s.distance>station.distance+24){

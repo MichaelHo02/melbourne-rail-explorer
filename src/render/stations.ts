@@ -10,11 +10,6 @@ export function stationArchitecture(group:T.Group,station:Station,index:number,b
   const parts:T.BufferGeometry[]=[];
   const box=(w:number,h:number,d:number,x:number,y:number,z:number)=>{const g=new T.BoxGeometry(w,h,d,1,1,Math.max(1,Math.ceil(d/3)));g.translate(x,y,z);parts.push(g);};
   if(station.underground){
-    // Chamber end walls meet the shell precisely while preserving its arch.
-    const portal=new T.Shape();portal.moveTo(-4,-.2);portal.lineTo(-4,5.7);portal.lineTo(9,5.7);portal.lineTo(9,-.2);portal.lineTo(3.4,-.2);
-    for(let i=0;i<=32;i++){const angle=-.22+i*(Math.PI+.44)/32;portal.lineTo(Math.cos(angle)*3.4,.9+Math.sin(angle)*3.9);}
-    portal.lineTo(-3.4,-.2);portal.closePath();
-    for(const z of [-103,103]){const g=new T.ShapeGeometry(portal);g.translate(0,0,z);const mesh=new T.Mesh(g,new T.MeshStandardMaterial({map:surfaceTexture('concrete'),color:'#8b908b',roughness:1,side:T.DoubleSide}));group.add(mesh);}
     const central=station.code==='MCE';
     const ceiling=new T.MeshStandardMaterial({color:central?'#c0c0b2':station.code==='FGS'?'#d4d6d0':'#c4cbce',roughness:.64,metalness:.3,side:T.DoubleSide});
     const joint=new T.MeshStandardMaterial({color:'#515956',roughness:.8});
@@ -27,21 +22,75 @@ export function stationArchitecture(group:T.Group,station:Station,index:number,b
       const y=x<0?3.25+(x+4)*.725:x>11?6.15-(x-11)*.34:6.15;
       return new T.Vector3(x,y,0);
     };
-    for(let z=-102;z<102;z+=3)for(let k=0;k<28;k++){
-      const a=cross(k/28),b=cross((k+1)/28);
-      for(const [p,dz] of [[a,z],[b,z],[a,z+3],[a,z+3],[b,z],[b,z+3]] as const){points.push(p.x,p.y,dz);uvs.push(k/28,dz/3);}
+    // A thick headwall follows the actual chamber profile. Its opening keeps
+    // the existing running-tunnel envelope, including pantograph clearance.
+    const portal=new T.Shape();portal.moveTo(-4,-.2);
+    for(let k=0;k<=28;k++){const p=cross(central?k/28:1-k/28);portal.lineTo(p.x,p.y+.025);}
+    if(central){
+      // The far island road also continues beyond the hall; do not terminate
+      // its rails against the wider headwall. The outboard part meets the
+      // chamber boundary, so it is an open contour rather than an invalid hole.
+      const start=Math.acos(2/3.4);portal.lineTo(15,.9+Math.sin(start)*3.9);
+      for(let i=0;i<=24;i++){const a=start+i*(Math.PI+.22-start)/24;portal.lineTo(13+Math.cos(a)*3.4,.9+Math.sin(a)*3.9);}
+      portal.lineTo(9.6,-.2);
+    }else portal.lineTo(9,-.2);
+    portal.lineTo(3.4,-.2);
+    for(let i=0;i<=32;i++){const a=-.22+i*(Math.PI+.44)/32;portal.lineTo(Math.cos(a)*3.4,.9+Math.sin(a)*3.9);}
+    portal.lineTo(-3.4,-.2);portal.closePath();
+    const headwall=new T.MeshStandardMaterial({map:surfaceTexture('concrete'),color:station.code==='PAR'?'#8c9594':'#a3a59a',roughness:.94});
+    const reveal=new T.MeshStandardMaterial({color:'#697370',roughness:.87});
+    for(const side of [-1,1]){
+      const wall=new T.ExtrudeGeometry(portal,{depth:.75,bevelEnabled:false,curveSegments:32});wall.translate(0,0,side*102.6-.375);
+      const uv=wall.attributes.uv,pos=wall.attributes.position;for(let i=0;i<uv.count;i++)uv.setXY(i,pos.getX(i)/2,pos.getY(i)/2);
+      group.add(new T.Mesh(wall,headwall));
+      // Radial concrete voussoirs give the mouth thickness and shadow without
+      // narrowing the route's established opening by even a centimetre.
+      const collar:number[]=[];
+      for(let i=0;i<24;i++){
+        const a=-.22+i*(Math.PI+.44)/24,b=-.22+(i+1)*(Math.PI+.44)/24;
+        const ring=(angle:number,r:number)=>[Math.cos(angle)*(3.4+r),.9+Math.sin(angle)*(3.9+r),side*102.18];
+        for(const v of [ring(a,0),ring(b,0),ring(a,.2),ring(a,.2),ring(b,0),ring(b,.2)])collar.push(...v);
+      }
+      const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(collar,3));g.computeVertexNormals();
+      const collarMat=reveal.clone();collarMat.side=T.DoubleSide;group.add(new T.Mesh(g,collarMat));
+      if(central){
+        const bore:number[]=[];
+        for(let z=102.3;z<111.99;z+=2.425)for(let k=0;k<24;k++){
+          const a=-.22+k*(Math.PI+.44)/24,b=-.22+(k+1)*(Math.PI+.44)/24;
+          const at=(angle:number,z:number)=>[13+Math.cos(angle)*3.4,.9+Math.sin(angle)*3.9,side*z];
+          for(const v of [at(a,z),at(b,z),at(a,z+2.425),at(a,z+2.425),at(b,z),at(b,z+2.425)])bore.push(...v);
+        }
+        const bg=new T.BufferGeometry();bg.setAttribute('position',new T.Float32BufferAttribute(bore,3));bg.computeVertexNormals();
+        group.add(new T.Mesh(bg,new T.MeshStandardMaterial({color:'#343d3c',roughness:1,side:T.DoubleSide})));
+      }
+      // Complete the short floor between the platform slab and headwall.
+      box(central?9:6,1.1,2.6,central?6.75:5.25,.5,side*101.2);
+    }
+    const entryAt=(z:number)=>!central&&(Math.abs(z+50)<3.2||Math.abs(z-45)<3.2);
+    const slices=Array.from(new Set([...Array.from({length:69},(_,i)=>-102+i*3),-53.2,-46.8,41.8,48.2])).sort((a,b)=>a-b);
+    for(let j=0;j<slices.length-1;j++)for(let k=0;k<28;k++){
+      const z=slices[j],end=slices[j+1],a=cross(k/28),b=cross((k+1)/28);
+      if(entryAt((z+end)/2)){
+        if(a.x>7.8&&b.x>7.8)continue;
+        if(a.x>7.8)a.lerp(b,(a.x-7.8)/(a.x-b.x));
+        if(b.x>7.8)b.lerp(a,(b.x-7.8)/(b.x-a.x));
+      }
+      for(const [p,dz] of [[a,z],[b,z],[a,end],[a,end],[b,z],[b,end]] as const){points.push(p.x,p.y,dz);uvs.push(k/28,dz/3);}
     }
     const shell=new T.BufferGeometry();shell.setAttribute('position',new T.Float32BufferAttribute(points,3));shell.setAttribute('uv',new T.Float32BufferAttribute(uvs,2));shell.computeVertexNormals();group.add(new T.Mesh(shell,ceiling));
     const seams:T.BufferGeometry[]=[];
-    for(let z=-102;z<=102;z+=3){const curve=new T.CatmullRomCurve3(Array.from({length:29},(_,k)=>{const p=cross(k/28);p.z=z;p.y-=.012;return p;}));seams.push(new T.TubeGeometry(curve,28,.012,3,false));}
-    for(let z=-99;z<=99;z+=1.6){const g=new T.BoxGeometry(.028,2.8,.026);g.translate(7.95,1.7,z);if(!central)seams.push(g);const left=g.clone();left.translate(-10.9,0,0);seams.push(left);}
+    for(let z=-102;z<=102;z+=3){const curve=new T.CatmullRomCurve3(Array.from({length:29},(_,k)=>{const p=cross(k/28);p.z=z;p.y-=.012;return p;}).filter(p=>!entryAt(z)||p.x<=7.8));seams.push(new T.TubeGeometry(curve,28,.012,3,false));}
+    for(let z=-99;z<=99;z+=1.6){const g=new T.BoxGeometry(.028,2.8,.026);g.translate(7.95,1.7,z);if(!central&&Math.abs(z+50)>3.3&&Math.abs(z-45)>3.3)seams.push(g);const left=g.clone();left.translate(-10.9,0,0);seams.push(left);}
     const seamsMesh=new T.Mesh(mergeGeometries(seams),joint);group.add(seamsMesh);seams.forEach(g=>g.dispose());
     // Longitudinal panel seams establish the scale of the metal soffit.
     for(const a of central?[.15,.29,.48,.68,.86]:[.13,.25,.38,.5,.62,.75,.87]){
-      const p=cross(a);const g=new T.BoxGeometry(.025,.018,204,1,1,68);g.translate(p.x,p.y-.025,0);
-      const mesh=new T.Mesh(g,joint);group.add(mesh);
+      const p=cross(a);
+      for(const [from,to] of !central&&p.x>7.8?[[-102,-53.2],[-46.8,41.8],[48.2,102]]:[[-102,102]]){
+        const g=new T.BoxGeometry(.025,.018,to-from,1,1,Math.ceil((to-from)/3));g.translate(p.x,p.y-.025,(from+to)/2);group.add(new T.Mesh(g,joint));
+      }
     }
-    box(.15,.12,204,7.65,3.25,0);
+    if(central)box(.15,.12,204,7.65,3.25,0);
+    else for(const [a,b] of [[-102,-53.2],[-46.8,41.8],[48.2,102]])box(.15,.12,b-a,7.65,3.25,(a+b)/2);
     if(central){
       for(let z=-88;z<=88;z+=22){box(.9,5.1,.9,7.8,3.5,z);box(3,.22,1.2,7.8,5.85,z);}
       const wall=new T.Mesh(new T.BoxGeometry(.5,6,204,1,1,68),new T.MeshStandardMaterial({color:'#494b47',roughness:.6,metalness:.3}));wall.position.set(14.7,3,0);group.add(wall);
@@ -55,12 +104,20 @@ export function stationArchitecture(group:T.Group,station:Station,index:number,b
     // beyond is not modelled; keep the platform's clear walking band intact.
     for(const z of [-50,45]){
       if(!central){
-        const back=new T.Mesh(new T.BoxGeometry(.04,2.7,4.5),recess);back.position.set(7.94,2.43,z);group.add(back);
-        for(const dz of [-2.28,2.28]){const reveal=new T.Mesh(new T.BoxGeometry(.45,2.75,.12),trim);reveal.position.set(7.74,2.43,z+dz);group.add(reveal);}
-        box(.48,.18,4.7,7.72,3.86,z);
+        // World wall is split around this 6.4m opening. A short return lobby
+        // supplies real parallax; no stairs or unverified concourse is implied.
+        const back=new T.Mesh(new T.BoxGeometry(.05,2.55,6.4),recess);back.position.set(11.02,2.325,z);group.add(back);
+        for(const dz of [-3.2,3.2]){const jamb=new T.Mesh(new T.BoxGeometry(3.1,2.65,.16),trim);jamb.position.set(9.48,2.375,z+dz);group.add(jamb);}
+        box(3.15,.16,6.55,9.48,3.77,z);box(3.15,.13,6.4,9.48,1.005,z);
+        // Close the high arch above the rectangular doorway; the vault ends
+        // at this header instead of slicing down through the lobby ceiling.
+        box(.28,1.35,6.55,7.94,4.36,z);
+        for(const dz of [-3.2,3.2])box(3.15,1.35,.16,9.48,4.36,z+dz);
+        // A concealed turn at the rear avoids a black void or fake flat door.
+        box(.14,2.55,2.1,10.7,2.325,z+2.1);
       }
       if(central){box(.16,.53,3.4,7.51,3.75,z);for(const dz of [-1.25,1.25])box(.04,2.1,.04,7.51,5.04,z+dz);}
-      const destination=station.code==='PAR'?'↑ Collins Street':station.code==='FGS'?'↑ William Street':'↑ Swanston Street';
+      const destination=station.code==='PAR'?'Way out →':station.code==='FGS'?'Way out →':'↑ Way out';
       const exit=new T.Mesh(new T.PlaneGeometry(3.2,.45),new T.MeshBasicMaterial({map:labelTexture(destination,'#172825')}));exit.rotation.y=-Math.PI/2;exit.position.set(7.46,3.75,z);group.add(exit);
       if(!central){
         const rail=new T.Mesh(new T.CylinderGeometry(.025,.025,16,6),trim);rail.rotation.x=Math.PI/2;rail.position.set(7.74,1.94,z+12);group.add(rail);

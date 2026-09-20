@@ -1,14 +1,16 @@
 import * as T from 'three/webgpu';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import manifest from '../data/photomesh-source.json';
+import foreground from '../data/photomesh-foreground.json';
 import { conflictsWithStationClearance, insideFootprint } from './photomesh-clearance';
 import type { ClippedGeometry, PhotomeshGeometry } from './photomesh-clip';
 
 type Footprint=[number,number][];
 interface Tile {footprintHullXZ?:number[][];worldBounds:{min:number[];max:number[]}}
-interface Building {ring:Footprint;base:number;height:number;kind?:string}
+interface Building {id?:string;ring:Footprint;base:number;height:number;kind?:string}
 interface FacadeSample {x:number;z:number;minY:number;maxY:number}
 type WorkerGeometry=ClippedGeometry&{facades:Float32Array};
+const completeForegroundSections=new Set(foreground.structures.flatMap(structure=>structure.objectIds));
 
 /** Actual aerial geometry and photographed colour. Clearance clipping happens
  * in a worker and preserves the JPEG atlas along newly created surface edges. */
@@ -81,6 +83,9 @@ export class PhotographicCity {
   /** Explicit geometric conflict, not a claim that a photograph replaces it. */
   conflictsWithClearance(building:Building){return conflictsWithStationClearance(building.ring);}
   replacesBuilding(building:Building){
+    // Keep every storey from the same measured structure. The corresponding
+    // photographic envelope was removed in the worker, so facades cannot mix.
+    if(building.id&&completeForegroundSections.has(String(building.id)))return false;
     if(building.kind&&building.kind!=='Structure')return false;
     const x=building.ring.reduce((sum,p)=>sum+p[0],0)/building.ring.length,z=building.ring.reduce((sum,p)=>sum+p[1],0)/building.ring.length;
     const candidates=this.tiles.filter(({source})=>source.footprintHullXZ&&insideFootprint(x,z,source.footprintHullXZ));

@@ -2,6 +2,7 @@ import * as T from 'three/webgpu';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { positionAt, tangentAt } from '../data/route';
 import { labelTexture } from './materials';
+import { DoorMotion } from './door-motion';
 
 /** Blender-authored metre-scale rolling stock. Camera-local cab preserves sightlines. */
 export class TrainVisual {
@@ -10,8 +11,7 @@ export class TrainVisual {
   cab=new T.Group();
   readonly ready:Promise<void>;
   private doorNodes:{node:T.Object3D;closed:number;direction:number}[]=[];
-  private doorAmount=0;
-  private previousTime=performance.now();
+  private doorMotion=new DoorMotion();
   constructor(scene:T.Scene,public camera:T.PerspectiveCamera){
     for(let i=0;i<7;i++){const car=new T.Group();car.name=`commuter-car-${i+1}`;this.cars.push(car);scene.add(car);}
     this.headlamp=new T.SpotLight('#f4eacb',100,160,Math.PI/5,.6,1);this.headlamp.castShadow=false;scene.add(this.headlamp,this.headlamp.target);
@@ -44,7 +44,7 @@ export class TrainVisual {
     this.cab.add(cab.scene);
     cab.scene.traverse(node=>{if(node instanceof T.Mesh){node.castShadow=false;node.receiveShadow=false;}});
   }
-  update(distance:number,cabView:boolean,doors:boolean){
+  update(distance:number,cabView:boolean,doors:boolean,seconds:number,complete=false){
     this.cars.forEach((car,i)=>{
       const s=distance-11.2-i*22.85,p=positionAt(s),t=tangentAt(s);
       if(s<0){p.x+=t.x*s;p.y+=t.y*s;p.z+=t.z*s;}
@@ -54,8 +54,7 @@ export class TrainVisual {
     const p=positionAt(distance),t=tangentAt(distance);
     this.headlamp.position.set(p.x,p.y+2,p.z);this.headlamp.target.position.set(p.x+t.x*70,p.y+1,p.z+t.z*70);
     this.cab.visible=cabView;
-    const now=performance.now(),dt=Math.min(.1,(now-this.previousTime)/1000);this.previousTime=now;
-    this.doorAmount=T.MathUtils.damp(this.doorAmount,doors?1:0,5,dt);
-    for(const {node,closed,direction} of this.doorNodes)node.position.z=closed+direction*this.doorAmount*.67;
+    const amount=this.doorMotion.sample(seconds,distance,doors,complete);
+    for(const {node,closed,direction} of this.doorNodes)node.position.z=closed+direction*amount*.67;
   }
 }

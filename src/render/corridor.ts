@@ -7,6 +7,7 @@ import bridgeDecks from '../data/bridge-decks.json';
 import { project,positionAt,tangentAt } from '../data/route';
 import type { SurfaceLibrary } from './surface-library';
 import { insideRing,riverCrossings,streetElevations } from './corridor-geography';
+import { detailLawn,lawnMaterial } from './corridor-surfaces';
 
 type LineFeature={geometry:{type:string;coordinates:number[][]|number[][][]};properties:Record<string,string|number|null>};
 type TreeFeature={geometry:{coordinates:number[]};properties:{com_id:string;species:number;diameter_breast_height?:number}};
@@ -43,8 +44,13 @@ function merge(parent:T.Object3D,geometries:T.BufferGeometry[],material:T.Materi
   const mesh=new T.Mesh(g,material);mesh.receiveShadow=true;mesh.castShadow=shadow;parent.add(mesh);
   geometries.forEach(g=>g.dispose());
 }
-function beam(a:T.Vector3,b:T.Vector3,width:number,height=width){
+function beam(a:T.Vector3,b:T.Vector3,width:number,height=width,textureMetres?:number){
   const g=new T.BoxGeometry(width,height,a.distanceTo(b));
+  if(textureMetres){
+    // Assign local metre UVs before rotating the bank segment into world space.
+    const p=g.attributes.position,n=g.attributes.normal,uv=g.attributes.uv;
+    for(let i=0;i<p.count;i++)uv.setXY(i,(Math.abs(n.getX(i))>.5?p.getZ(i):p.getX(i))/textureMetres,(Math.abs(n.getY(i))>.5?p.getZ(i):p.getY(i))/textureMetres);
+  }
   g.applyQuaternion(new T.Quaternion().setFromUnitVectors(new T.Vector3(0,0,1),b.clone().sub(a).normalize()));
   const m=a.clone().add(b).multiplyScalar(.5);g.translate(m.x,m.y,m.z);return g;
 }
@@ -58,10 +64,11 @@ function streetWidth(feature:LineFeature){
 /** Official horizontal geography with explicitly authored widths and elevations. */
 export class CorridorScenery {
   readonly group=new T.Group();readonly ready:Promise<void>;
+  private bankReady:Promise<void>=Promise.resolve();
   private treeChunks:{group:T.Group;center:T.Vector3}[]=[];
   constructor(private surfaces:SurfaceLibrary){
     this.buildStreets();this.buildBanks();this.buildTrees();this.buildRailDetails();
-    this.ready=this.loadViaduct();
+    this.ready=Promise.all([this.loadViaduct(),this.bankReady]).then(()=>{});
   }
   private buildStreets(){
     const asphalt:T.BufferGeometry[]=[],paving:T.BufferGeometry[]=[],paint:T.BufferGeometry[]=[],structure:T.BufferGeometry[]=[],rails:T.BufferGeometry[]=[];
@@ -154,13 +161,24 @@ export class CorridorScenery {
       for(const rings of polygons as number[][][][]){
         const paths=rings.map(r=>r.map(([lon,lat])=>{const p=project(lon,lat);return new T.Vector2(p.x,-p.z);}));
         const shape=new T.Shape(paths[0]);shape.holes.push(...paths.slice(1).map(p=>new T.Path(p)));
-        const g=new T.ShapeGeometry(shape);g.rotateX(-Math.PI/2);g.translate(0,-.91,0);green.push(g);
+        const g=new T.ShapeGeometry(shape);g.rotateX(-Math.PI/2);g.translate(0,-.91,0);green.push(detailLawn(g));
       }
     }
-    merge(this.group,green,new T.MeshStandardMaterial({color:'#697b43',roughness:1}));
+    merge(this.group,green,lawnMaterial());
   }
   private buildBanks(){
-    const stone:T.BufferGeometry[]=[],caps:T.BufferGeometry[]=[],walk:T.BufferGeometry[]=[];
+    const stone:T.BufferGeometry[]=[],caps:T.BufferGeometry[]=[],walk:T.BufferGeometry[]=[],seats:T.BufferGeometry[]=[],legs:T.BufferGeometry[]=[];
+    const benches:T.Vector3[]=[];
+    const parkRings=(data.layers.openSpaces?.features??[]).filter(f=>/Batman|Enterprise/i.test(String(f.properties.name??''))).flatMap(f=>{
+      const polygons=f.geometry.type==='MultiPolygon'?f.geometry.coordinates:[f.geometry.coordinates];
+      return (polygons as number[][][][]).map(rings=>rings.map(r=>r.map(([lon,lat])=>project(lon,lat))));
+    });
+    const inPark=(p:T.Vector3)=>parkRings.some(r=>insideRing(p,r[0])&&!r.slice(1).some(h=>insideRing(p,h)));
+    const roadSegments=data.layers.roads.features.filter(f=>!['trail','tunnel'].includes(String(f.properties.feature_type_code))).flatMap(f=>lines(f).flatMap(line=>line.slice(1).map((b,i)=>({a:line[i],b,clearance:Math.max(8,streetWidth(f)/2+3)}))));
+    const nearRoad=(p:T.Vector3)=>roadSegments.some(({a,b,clearance})=>{
+      const dx=b.x-a.x,dz=b.z-a.z,length=dx*dx+dz*dz,t=T.MathUtils.clamp(((p.x-a.x)*dx+(p.z-a.z)*dz)/(length||1),0,1);
+      return Math.hypot(p.x-a.x-dx*t,p.z-a.z-dz*t)<clearance;
+    });
     for(let i=1;i<riverSource.geometry.coordinates[0].length;i++){
       const [lon,lat]=riverSource.geometry.coordinates[0][i];
       if(lon<144.953||lon>144.974||lat< -37.824)continue;
@@ -168,13 +186,52 @@ export class CorridorScenery {
       const t=b.clone().sub(a),side=new T.Vector3(-t.z,0,t.x).normalize();
       const mid=a.clone().add(b).multiplyScalar(.5);
       if(waterAt(mid.clone().addScaledVector(side,1)))side.negate();
-      a.y=b.y=-.45;stone.push(beam(a,b,.45,1.2));
-      caps.push(beam(a.clone().add(new T.Vector3(0,.68,0)),b.clone().add(new T.Vector3(0,.68,0)),.65,.22));
+      const parkBank=side.z<-.2&&inPark(mid.clone().addScaledVector(side,3.13));
+      if(parkBank){
+        // Existing Batman Park photo shows a low sloping stone edge. The toe
+        // is below the authored -1.65 water datum, the crest meets the path.
+        const topA=a.clone().addScaledVector(side,.3).setY(-.82),topB=b.clone().addScaledVector(side,.3).setY(-.82);
+        const toeA=a.clone().addScaledVector(side,-1.4).setY(-1.85),toeB=b.clone().addScaledVector(side,-1.4).setY(-1.85);
+        const g=new T.BufferGeometry(),length=a.distanceTo(b)/3.1,slope=topA.distanceTo(toeA)/3.1;
+        g.setAttribute('position',new T.Float32BufferAttribute([topA,topB,toeA,toeA,topB,toeB].flatMap(p=>p.toArray()),3));
+        g.setIndex([0,1,2,3,4,5]); // Match indexed box sections in the shared bank batch.
+        g.setAttribute('uv',new T.Float32BufferAttribute([0,0,length,0,0,slope,0,slope,length,0,length,slope],2));g.computeVertexNormals();stone.push(g);
+        caps.push(beam(topA.clone().setY(-.825),topB.clone().setY(-.825),.25,.09,3.1));
+      }else{
+        // Other existing retaining walls keep their silhouette but extend below
+        // the corrected water plane, avoiding a floating lower edge.
+        a.y=b.y=-.85;stone.push(beam(a,b,.45,2,3.1));
+        caps.push(beam(a.clone().setY(.23),b.clone().setY(.23),.65,.22,3.1));
+      }
       const p=a.clone().addScaledVector(side,2),q=b.clone().addScaledVector(side,2);p.y=q.y=-.78;
       walk.push(ribbon([p,q],3.4,3.1));
+      const seatAt=mid.clone().addScaledVector(side,3.13);seatAt.y=-.78;
+      // Sparse backless benches at the inland side of the existing authored
+      // path, only in mapped northbank park parcels and clear of bridge landings.
+      if(side.z<-.2&&a.distanceTo(b)>8&&inPark(seatAt)&&!nearRoad(seatAt)&&benches.every(p=>p.distanceTo(seatAt)>65)&&benches.length<8){
+        benches.push(seatAt);const along=t.clone().normalize();along.y=0;along.normalize();
+        for(let j=0;j<4;j++){
+          const center=seatAt.clone().addScaledVector(side,(j-1.5)*.12).addScaledVector(up,.46);
+          seats.push(beam(center.clone().addScaledVector(along,-.95),center.clone().addScaledVector(along,.95),.10,.06));
+        }
+        for(const end of [-.7,.7]){
+          const center=seatAt.clone().addScaledVector(along,end);
+          for(const d of [-.18,.18]){const foot=center.clone().addScaledVector(side,d);legs.push(beam(foot,foot.clone().addScaledVector(up,.44),.075));}
+          legs.push(beam(center.clone().addScaledVector(side,-.25).addScaledVector(up,.4),center.clone().addScaledVector(side,.25).addScaledVector(up,.4),.06));
+        }
+      }
     }
-    merge(this.group,stone,new T.MeshStandardMaterial({color:'#4b504e',roughness:.93}));
-    merge(this.group,caps,new T.MeshStandardMaterial({color:'#969b93',roughness:.85}));merge(this.group,walk,this.surfaces.paving);
+    const bank=new T.MeshStandardMaterial({color:'#687572',side:T.DoubleSide,roughness:.93,normalScale:new T.Vector2(.55,.55)});
+    const coping=new T.MeshStandardMaterial({color:'#a7aaa1',roughness:.86,normalScale:new T.Vector2(.25,.25)});
+    // Reuse the bundled CC0 stone surfaces after their asynchronous load; UV
+    // scale has already been assigned and does not depend on map readiness.
+    this.bankReady=this.surfaces.ready.then(()=>{for(const material of [bank,coping]){
+      material.map=this.surfaces.paving.map;material.normalMap=this.surfaces.paving.normalMap;material.roughnessMap=this.surfaces.paving.roughnessMap;material.needsUpdate=true;
+    }});
+    merge(this.group,stone,bank);merge(this.group,caps,coping);merge(this.group,walk,this.surfaces.paving);
+    merge(this.group,seats,new T.MeshStandardMaterial({color:'#a99d7d',roughness:.91}),true);
+    merge(this.group,legs,new T.MeshStandardMaterial({color:'#333d3e',roughness:.7,metalness:.35}),true);
+    this.group.userData.northbankBenches=benches.length;
   }
   private buildTrees(){
     const trackSamples=Array.from({length:84},(_,i)=>positionAt(162+i*12));

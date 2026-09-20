@@ -34,3 +34,11 @@
 @media(max-width:800px){.dashboard{width:calc(100% - 28px);gap:10px}.instrument-display{width:120px}.speed-display{transform:scale(.86);transform-origin:top left;margin-left:0}.limit-block{padding-right:10px}.door-button{min-width:128px;padding:0 8px}.train-status{padding:9px 5px}.formation{display:none}.controller{min-width:130px}.traffic-label{display:none}}
 @media(max-width:650px){.dashboard{height:167px;padding:8px 13px;gap:8px;flex-wrap:wrap}.instrument-display{height:86px;width:118px}.speed-display{transform:scale(.72);transform-origin:top center;margin-left:-15px}.controller{flex-basis:40%}.train-status{margin-bottom:6px}.driver-message{bottom:210px}.drawer{bottom:216px}.emergency-button{flex-direction:row}.door-button{height:39px}.formation{display:flex}}
 @media(max-height:570px) and (min-width:651px){.dashboard{height:108px}.instrument-display{height:92px}.speed-display{transform:scale(.85);transform-origin:top center}.train-status{margin-bottom:6px;padding:6px}.driver-message{bottom:145px}}
+
+/* Compact stopping guidance belongs to the training overlay, not the cab DMI. */
+.next-stop .stop-guide{margin-top:11px;padding-top:10px;border-top:1px solid #46617f;display:grid;gap:5px;color:#dceaf5;font-variant-numeric:tabular-nums}
+.stop-guide>span{font-size:8px;color:#aac7df;letter-spacing:1px}.stop-guide strong{font-size:13px;color:#ecf6ff;font-weight:700}.stop-guide small{font-size:10px;color:#b9cee1;line-height:1.35}.stop-guide.warning strong{color:#ffcb76}.stop-guide.aligned strong{color:#8ee6c1}
+.stop-scale{position:relative;height:9px;margin:4px 0;background:linear-gradient(90deg,#56718d,#acc8d5 49.5%,#fff 49.5% 50.5%,#acc8d5 50.5%,#9e674b);border-radius:1px}.stop-scale i{position:absolute;left:42%;width:16%;inset-block:-2px;background:#20c99c55;border-inline:1px solid #7bebc9}.stop-scale b{position:absolute;top:-3px;width:4px;height:15px;background:#fff;box-shadow:0 0 0 1px #17364e;transform:translateX(-50%)}
+.show-stop-guide .announcement{top:305px}
+@media(max-width:650px){.show-stop-guide .announcement{top:288px;left:20px;max-width:250px}.next-stop .stop-guide{margin-top:8px;padding-top:8px}}
+@media(max-height:570px){.next-stop .stop-guide{margin-top:6px;padding-top:6px}.stop-guide small{display:none}.show-stop-guide .announcement{top:270px}}

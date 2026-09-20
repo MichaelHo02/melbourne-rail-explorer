@@ -37,8 +37,8 @@ export function stationDetails(group:T.Group,code:string,name:string){
     // A narrow stainless wall base and horizontal panel division provide
     // a consistent scale against the three stations' different wall finishes.
     for(const x of code==='MCE'?[-2.97,14.42]:[-2.97,7.96]){
-      box(.045,.16,198,x,1.17,0,materials.steel);
-      box(.025,.04,198,x,3.03,0,materials.dark);
+      const runs=x===7.96?[[-99,-53.2],[-46.8,41.8],[48.2,99]]:[[-99,99]];
+      for(const [a,b] of runs){box(.045,.16,b-a,x,1.17,(a+b)/2,materials.steel);box(.025,.04,b-a,x,3.03,(a+b)/2,materials.dark);}
     }
   }else if(heritage){
     for(const x of [3.9,7.1])for(let z=-94;z<=94;z+=8){
@@ -103,18 +103,75 @@ export function stationDetails(group:T.Group,code:string,name:string){
     for(const end of [-.86,.86]){box(.08,.48,.1,5.15,1.28,z+end,materials.iron);box(.08,.48,.1,5.6,1.28,z+end,materials.iron);box(.6,.055,.055,5.32,1.85,z+end,materials.iron);}
     box(.5,.84,.48,7.2,1.5,z+4,materials.steel);box(.45,.08,.38,7.17,1.82,z+4,materials.dark);
   }
+  // The three underground stations use suspended black displays, rather
+  // than repeating Southern Cross's purpose-designed equipment pylon.
   for(const z of [-55,35]){
     const number=heritage?'5':code==='SXS'?'11':'2';
-    const x=6.55,y=surface?3.7:3.5;
-    box(.18,2.7,.25,x,2.4,z,materials.iron);box(.21,1.18,2.85,x,y,z,materials.dark);
-    sign(number,.7,1.1,x-.12,y,z-.96,'#0067ae');
-    sign(name,2.2,.35,x-.13,y+.37,z+.23,'#005c99');
-    sign('CITY LOOP',1.55,.35,x-.13,y+.03,z+.23,'#0a1117','#ecf0ec');
-    sign('All stations · Training',1.65,.21,x-.13,y-.32,z+.23,'#0a1117','#bbd4df');
-    // Integrated speaker / CCTV heads, as in Grimshaw's Southern Cross kit.
-    for(const dz of [-.95,.95]){const g=new T.SphereGeometry(.15,12,8);g.translate(x,y+.84,z+dz);put(g,materials.dark);}
-    box(.26,.5,.3,x-.04,2.15,z,materials.steel);
-    sign('i',.22,.22,x-.2,2.2,z,'#183d65');
+    if(!surface){
+      const x=5.35,y=4.38;
+      box(2.25,.92,.18,x,y,z,materials.dark);
+      const spineY=code==='MCE'?6.01:5.52;
+      for(const dx of [-.82,.82])box(.04,spineY-(y+.46),.04,x+dx,(spineY+y+.46)/2,z,materials.steel);
+      for(const [dz,rotation] of [[-.10,Math.PI],[.10,0]]){
+        sign('City Loop',1.96,.27,x,y+.19,z+dz,'#101819','#f2f4ec',rotation);
+        sign('All stations · Training',1.96,.18,x,y-.16,z+dz,'#101819','#cbd7d5',rotation);
+      }
+      // A single shallow equipment spine recalls the photographs' ventilation
+      // and service panels. Slots are batched geometry, not separate objects.
+      box(1.18,.07,4.2,5.35,spineY,z,materials.steel);
+      for(let dz=-1.8;dz<=1.8;dz+=.16)box(.76,.014,.045,5.35,spineY-.045,z+dz,materials.dark);
+    }else{
+      const x=6.55,y=3.7;
+      box(.18,2.7,.25,x,2.4,z,materials.iron);box(.21,1.18,2.85,x,y,z,materials.dark);
+      sign(number,.7,1.1,x-.12,y,z-.96,'#0067ae');
+      sign(name,2.2,.35,x-.13,y+.37,z+.23,'#005c99');
+      sign('CITY LOOP',1.55,.35,x-.13,y+.03,z+.23,'#0a1117','#ecf0ec');
+      sign('All stations · Training',1.65,.21,x-.13,y-.32,z+.23,'#0a1117','#bbd4df');
+      if(code==='SXS')for(const dz of [-.95,.95]){const g=new T.SphereGeometry(.15,12,8);g.translate(x,y+.84,z+dz);put(g,materials.dark);}
+      box(.26,.5,.3,x-.04,2.15,z,materials.steel);sign('i',.22,.22,x-.2,2.2,z,'#183d65');
+    }
+  }
+  // Platform-end barriers delineate the passenger area from the trackside
+  // maintenance area. They stop short of the coping and never enter x<2.8.
+  const endWidth=code==='MCE'?7.8:4.8,endCentre=2.8+endWidth/2;
+  for(const side of [-1,1]){
+    const z=side*98.6;
+    for(const y of [1.25,2.12])box(endWidth,.045,.045,endCentre,y,z,materials.iron);
+    for(let x=2.8;x<=2.8+endWidth+.01;x+=.6)box(.035,1.08,.035,x,1.61,z,materials.iron);
+    box(.04,1.15,.065,endCentre,1.62,z,materials.iron);
+    sign('Staff only',.66,.18,endCentre,1.86,z-side*.04,'#e7e7dc','#303a3a',side<0?0:Math.PI);
+    if(!surface){
+      // Framed service door and modest vent in the new solid headwall.
+      box(1.12,2.25,.06,6.55,2.19,side*102.16,materials.steel);
+      box(1.04,2.17,.065,6.55,2.19,side*102.12,materials.dark);
+      box(.025,.24,.035,6.91,2.1,side*102.06,materials.steel);
+      for(let y=3.67;y<=4.15;y+=.08)box(1.05,.035,.05,6.55,y,side*102.13,materials.dark);
+    }else{
+      // Short outboard maintenance steps soften the slab's abrupt end. The
+      // gate remains the visible limit of the public platform.
+      for(let i=0;i<5;i++)box(1.25,1.0-i*.18,.42,7.35,(1.0-i*.18)/2,side*(100.2+i*.42),materials.coping);
+      for(const x of [6.68,8.02])pipe([new T.Vector3(x,2.06,side*99.8),new T.Vector3(x,2.06,side*100.2),new T.Vector3(x,1.3,side*102)],.025,materials.iron);
+    }
+  }
+  if(surface){
+    // Limited wayfinding gives the open platforms a circulation destination
+    // without inventing an entire concourse or branded retail interior.
+    const y=heritage?4.8:5.6,z=-35;
+    box(2.65,.46,.14,5.8,y,z,materials.dark);
+    for(const dx of [-1.05,1.05]){
+      const x=5.8+dx,top=heritage?6.1+(x<5?-(x-2.9):x-7.1)*Math.tan(.18)-.07:14.2+2.8*Math.sin(z/30)+1.8*Math.cos((x+20)/13)-.3;
+      box(.035,top-y-.23,.035,x,(top+y+.23)/2,z,materials.iron);
+    }
+    for(const [dz,r] of [[-.08,Math.PI],[.08,0]])sign(heritage?'Way out · Subway ↓':'Way out · Concourse ↑',2.4,.30,5.8,y,z+dz,'#142c34','#edf2e9',r);
+  }else if(code!=='MCE'){
+    // Recess lighting and side return rails reveal the lobby's real depth.
+    for(const z of [-50,45]){
+      box(2.4,.045,.22,9.3,3.65,z,diffuser);
+      for(const dz of [-3.04,3.04])pipe([new T.Vector3(8.05,1.96,z+dz),new T.Vector3(9.3,1.96,z+dz),new T.Vector3(10.55,1.96,z+dz)],.025,materials.steel);
+      box(.09,.72,.44,7.89,2.05,z-3.65,materials.steel);
+      sign('Help',.33,.14,7.83,2.21,z-3.65,'#194b73');
+      sign('i',.18,.18,7.83,1.96,z-3.65,'#194b73');
+    }
   }
   for(const [mat,parts] of batches){
     const m=new T.Mesh(mergeGeometries(parts),mat);m.castShadow=true;m.receiveShadow=true;group.add(m);parts.forEach(g=>g.dispose());

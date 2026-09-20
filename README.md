@@ -17,7 +17,7 @@ Open the local URL printed by Vite. A WebGPU-capable browser and GPU are require
 
 The renderer uses Three.js's native WebGPU backend, with TSL height-aware haze and animated Yarra water normals. Shadows, antialiasing and the current high-quality lighting are always enabled. The train simulation, controls and saves remain independent of the renderer. Start stays disabled until graphics, assets and initial material compilation finish. If WebGPU cannot initialize, the game shows an error and leaves the service unavailable.
 
-There is no WebGL rendering path or reduced-quality mode. The production build rejects inclusion of Three.js's WebGL fallback backend. Development builds expose the backend and frame statistics on the canvas dataset; `/?view=river&scene=departure` selects a water inspection camera. The Flinders Street–Southern Cross corridor combines official map geometry, selected City of Melbourne 2020 photographic mesh, mapped vegetation, PBR surfaces and an instanced Blender viaduct with distance-based detail. All five stations have reference-based fittings and Blender-built commuters. Platforms use metre-scaled surface textures; station lights follow the canopies and underground soffits. Nearby commuters have planted feet, subtle breathing and independent head glances driven by the simulation clock.
+There is no WebGL rendering path or reduced-quality mode. The production build rejects inclusion of Three.js's WebGL fallback backend. Development builds expose the backend and frame statistics on the canvas dataset; `/?view=river&scene=departure` selects a water inspection camera. The Flinders Street–Southern Cross corridor combines official map geometry, selected City of Melbourne 2020 photographic mesh, mapped vegetation, PBR surfaces and an instanced Blender viaduct with distance-based detail. All five stations have reference-based fittings and Blender-built commuters. Platforms use metre-scaled surface textures; station lights follow the canopies and underground soffits. Nearby commuters have varied coats, jackets, hair and bags, planted feet, subtle breathing and independent head glances driven by the simulation clock. Underground platforms have framed tunnel mouths, end gates and recessed circulation openings. The northbank uses mapped park lawns and a low stone edge; foreground viaduct buildings retain complete surveyed facades where coarse aerial fragments conflicted with the playable scene.
 
 ## Controls
 
@@ -32,7 +32,7 @@ There is no WebGL rendering path or reduced-quality mode. The production build r
 | H | Horn (enable sound first) |
 | Escape | Pause / resume |
 
-The controller has four brake notches, coast, and four power notches. Stop within eight metres of the station marker to open doors. Boarding takes eight seconds. Doors lock out traction. Pausing or leaving the tab saves progress locally; a new visit offers Continue saved service. No account or API key is needed for the included offline dataset.
+The controller has four brake notches, coast, and four power notches. Stop within eight metres of the station marker to open doors. Boarding takes eight seconds. Doors lock out traction. Within 650 metres of the next stop, a training guide estimates the stopping point using the same physics and gradients as the train; it shows when to begin braking and whether the current brake setting stops short or beyond the marker. Pausing or leaving the tab saves progress locally; a new visit offers Continue saved service. No account or API key is needed for the included offline dataset.
 
 ## What is geographically grounded
 
@@ -52,7 +52,7 @@ The seven-car HCMT exterior is recreated in Blender from photographic reference,
 
 Building outlines, heights and river boundaries use real data, but this is **not yet a photorealistic recreation**. Outside the photographic patches, building façades remain authored. Station interiors, ground elevations, road widths, bridge approaches, tree sizes, river level and bank structures, gradients and cab controls remain approximations. Roads and mapped vegetation use official horizontal locations. Water reflects the sky environment; it does not yet mirror nearby buildings. Surrounding trains replay the official **19 September 2026** timetable, starting at 06:42. The surface corridor shows a visual subset on authored adjacent tracks with illustrative HCMT models; these are not observed live positions or verified fleet assignments. No accurate signalling, switches, operational safety systems, or collisions with other trains are claimed. Train braking and acceleration are deliberately approachable and are not fleet-calibrated.
 
-Sound is opt-in. Southern Cross field ambience, Flinders/Swanston exterior traffic and a Parliament train departure are licensed historical recordings. Service captions and a short cue are authored; there is no clean, dynamic spoken announcement bank. People have varied resting poses and local head/breathing animation, which pauses with the service. Walking, facial animation and boarding movement remain future work.
+Sound is opt-in. Southern Cross field ambience, Flinders/Swanston exterior traffic and a Parliament train departure are licensed historical recordings. Door mechanisms, controller detents and brake pressure cues are original synthesized effects. Service captions and a short cue are authored; there is no clean, dynamic spoken announcement bank. People have varied resting poses and local head/breathing animation, which pauses with the service. Walking, facial animation and boarding movement remain future work.
 
 See [architecture](docs/architecture.md) for the Void Explorer-inspired boundaries and the realistic-asset integration path, and [sources](docs/sources.md) for provenance and attribution.
 
@@ -66,7 +66,7 @@ npm run build        # Strict TypeScript + production bundle
 
 The automated browser harness is optional and uses installed Chrome. Final interactive visual verification is performed in the Codex in-app browser. Browser screenshots are written to ignored `artifacts/`; frame timings are environment-specific, not a hardware performance guarantee.
 
-Development builds expose `window.__RAIL_EXPLORER__` with `state()`, `metrics()`, `scenario(name)`, and validated `restore(state)`. Named scenarios: `departure`, `viaduct`, `approach`, `tunnel`, `platform` (Melbourne Central), `flagstaff`, `parliament`, `southern-cross`. `&view=platform` selects a platform inspection camera. Scenario runs do not overwrite saved services. `/?scene=viaduct&view=viaduct` reviews the railway from the river bank; `/?scene=viaduct` reviews the cab. Alternatively open `/?scene=tunnel` in the development server. Debug hooks and query-driven scenarios are not exposed in production.
+Development builds expose `window.__RAIL_EXPLORER__` with `state()`, `metrics()`, `scenario(name)`, and validated `restore(state)`. Named scenarios: `departure`, `viaduct`, `approach`, `tunnel`, `platform` (Melbourne Central), `flagstaff`, `parliament`, `southern-cross`. `&view=platform` selects a platform inspection camera; `&view=entrance` checks underground circulation recesses and `&view=northbank` checks the mapped Batman Park edge. Scenario runs do not overwrite saved services. `/?scene=viaduct&view=viaduct` reviews the railway from the river bank; `/?scene=viaduct` reviews the cab. Alternatively open `/?scene=tunnel` in the development server. Debug hooks and query-driven scenarios are not exposed in production.
 
 ## Refreshing building data
 
@@ -78,6 +78,8 @@ The runtime ships the compact, attributed `public/data/buildings.json` snapshot 
 - [Blender HCMT source and export pipeline](docs/train-assets.md)
 - [Blender viaduct kit, references and rebuild](docs/viaduct-assets.md)
 - [Corridor geography and data refresh](docs/corridor-data.md)
+- [Northbank references and authored elevation boundaries](docs/corridor-riverbank.md)
+- [Cab reference controls and game simplifications](docs/cab-reference.md)
 - [Environment fidelity review](docs/corridor-review.md)
 - [Photographic city conversion and limitations](docs/photomesh.md)
 - [Station photo references](docs/station-visual-references.md)
