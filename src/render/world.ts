@@ -342,6 +342,7 @@ export class World {
     }catch(error){console.warn('Swann House unavailable; retaining surveyed source sections.',error);}
     const surveyObjectIds=new Set<string>();
     const surveyAssets=[
+      {name:'forum',structure:'806370',ids:['20100','20101','20102','20103']},
       {name:'stadium',structure:'808392',ids:Array.from({length:16},(_,i)=>String(920+i))},
       {name:'federation-east',structure:'816359',ids:['16221','16222','16223']},
       {name:'federation-806667',structure:'806667',ids:['4607']},

@@ -326,3 +326,38 @@ preventing regression of the recorded opening. Complete rendered service passed:
 six stops served,57 visited100m cells,1,241 frames, cab/door-check views, errors
 `[]` and no browser warnings. Final frame928 draws/3,264,082 triangles on WebGPU;
 8,200 procedural sections plus validated authored landmark replacements.
+
+### Forum Theatre on the eastern return
+
+Cab rays at5200m hit the coarse Forum foreground in I3S90514, including
+[228.6599,29.1737,-184.7726]. Structure806370 contains source sections20100–20103.
+The official2014 address-bearing record identifies150–162 Flinders Street;
+`docs/forum-reference.json` preserves that cross-check. The City's photograph
+was inspected for the copper dome, clock, minarets and cream masonry:
+https://whatson.melbourne.vic.gov.au/things-to-do/forum-melbourne
+
+`build_forum.py` preserves the footprint and replaces the upper rectangular
+clock-tower extrusion with an authored dome/finial within the original34.5m
+prepared tower height. Arched recesses, cornices, clocks and minarets are visual
+interpretations, not conservation drawings. An explicit footprint plinth joins
+the main section's2m survey base to the flat game ground. No other source
+building is suppressed by the runtime replacement loader.
+
+`forum-landmark/05200.png` was compared against the matching eastern view:
+the clock/dome silhouette replaces the coarse front tower. A separate adjoining
+scan remains behind it; ray(.4,.18) now hits[187.0249,35.2238,-174.3443], outside
+the Forum footprint. That adjoining source block still needs coherent repair;
+its connected scan component spans multiple buildings and is not blindly cut.
+The production build and138 tests passed after integration.
+
+`forum-final/05300.png` inspects the final plinth and arches at a closer viewpoint.
+It also exposes unfinished side-track bridge ends and ground joins beside the
+Federation opening, between the usual200m samples. These are the next terrain
+priority; a clear centre track does not prove that surrounding joins are finished.
+The5200m and5300m44-frame captures measured33.33ms mean, maxima33.90/34.10ms.
+This continues the recent~30fps observation; no frame-time improvement is claimed.
+
+Post-Forum service validation: all six stops served,1,241 rendered frames,
+57 visited100m cells, both cab and door-check views, errors`[]`, no browser
+warnings. Final928 draws/3,263,958 triangles, WebGPU. The four source sections
+are represented by the authored replacement; remaining procedural count8196.

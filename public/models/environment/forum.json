@@ -1,0 +1,14 @@
+{
+  "structureId": "806370",
+  "objectIds": [
+    "20100",
+    "20101",
+    "20102",
+    "20103"
+  ],
+  "geometrySource": "https://data.melbourne.vic.gov.au/explore/dataset/2023-building-footprints/",
+  "license": "CC BY 4.0",
+  "reference": "https://whatson.melbourne.vic.gov.au/things-to-do/forum-melbourne",
+  "triangles": 10724,
+  "limitations": "Survey footprint and total tower height preserved. Upper rectangular tower extrusion replaced by photo-informed copper dome, finial and minarets. Arches, cornices, clock and material palette are authored approximations, not measured conservation drawings. An authored footprint plinth connects the main section to flat game ground."
+}
