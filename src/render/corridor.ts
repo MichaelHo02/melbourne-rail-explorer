@@ -77,11 +77,11 @@ function streetWidth(feature:LineFeature){
 export class CorridorScenery {
   readonly group=new T.Group();readonly ready:Promise<void>;
   private bankReady:Promise<void>=Promise.resolve();
-  private treeChunks:{group:T.Group;center:T.Vector3;detail?:T.Group}[]=[];
+  private treeChunks:{group:T.Group;center:T.Vector3;detail?:T.Group;impostor?:T.Group}[]=[];
   private treeReady:Promise<void>=Promise.resolve();
   private lawnReady:Promise<void>=Promise.resolve();
   constructor(private surfaces:SurfaceLibrary){
-    this.buildStreets();this.buildBanks();this.buildTrees();this.buildRailDetails();this.buildRailYard();this.buildApproachGround();
+    this.buildStreets();this.buildBanks();this.buildTrees();this.buildRailDetails();this.buildRailYard();this.buildApproachGround();this.buildYardGround();this.buildYardFrames();
     this.ready=Promise.all([this.loadViaduct(),this.bankReady,this.treeReady,this.lawnReady]).then(()=>{});
   }
   private buildStreets(){
@@ -335,11 +335,37 @@ export class CorridorScenery {
         }
       });
       gltf.scene.updateMatrixWorld(true);
+      const kinds=['plane','gum','elm','palm'];
+      // Baked from these exact prototypes; retain existing coarse trees if an
+      // optional texture is unavailable rather than leaving empty scenery.
+      const impostorMaterials=await Promise.all(kinds.map(async kind=>{
+        const map=await new T.TextureLoader().loadAsync(`/textures/trees/${kind}-impostor.png`);
+        map.colorSpace=T.SRGBColorSpace;map.anisotropy=4;map.userData.preloadForLod=true;
+        return new T.MeshBasicMaterial({map,alphaTest:.25,alphaToCoverage:true,side:T.DoubleSide});
+      })).catch(error=>{console.warn('Tree impostors unavailable; retaining coarse canopy cards.',error);return null;});
+      const impostorGeometries=kinds.map(kind=>{
+        const template=gltf.scene.getObjectByName(kind);if(!template)throw new Error('Missing urban tree prototype '+kind);
+        const bounds=new T.Box3().setFromObject(template),size=bounds.getSize(new T.Vector3()),center=bounds.getCenter(new T.Vector3());
+        // The bake covers X [-8,8], height [-1,15]. Crop geometry and UVs to
+        // the measured prototype bounds rather than shading empty margins.
+        const card=new T.PlaneGeometry(size.x,size.y),uv=card.attributes.uv;
+        for(let i=0;i<uv.count;i++)uv.setXY(i,(bounds.min.x+uv.getX(i)*size.x+8)/16,(bounds.min.y+uv.getY(i)*size.y+1)/16);
+        card.translate(center.x,center.y,0);
+        const cross=card.clone();cross.rotateY(Math.PI/2);
+        const geometry=mergeGeometries([card,cross])!;card.dispose();cross.dispose();return geometry;
+      });
       for(const chunk of this.treeChunks){
         const detail=new T.Group();detail.visible=false;this.group.add(detail);chunk.detail=detail;
         const placements=detailedPlacements.get(chunk.group)!;
-        for(const kind of ['plane','gum','elm','palm']){
+        const distant=new T.Group();distant.visible=false;
+        if(impostorMaterials){this.group.add(distant);chunk.impostor=distant;}
+        for(const [kindIndex,kind] of kinds.entries()){
           const selected=placements.filter(p=>p.kind===kind);if(!selected.length)continue;
+          if(impostorMaterials){
+            const mesh=new T.InstancedMesh(impostorGeometries[kindIndex],impostorMaterials[kindIndex],selected.length);
+            selected.forEach((p,i)=>mesh.setMatrixAt(i,p.matrix));
+            mesh.computeBoundingSphere();distant.add(mesh);
+          }
           const template=gltf.scene.getObjectByName(kind);if(!template)throw new Error('Missing urban tree prototype '+kind);
           template.traverse(node=>{
             if(!(node instanceof T.Mesh))return;
@@ -414,6 +440,111 @@ export class CorridorScenery {
       }
     }
     merge(this.group,ballast,this.surfaces.ballast);merge(this.group,paths,this.surfaces.paving);
+  }
+  private buildYardFrames(){
+    // Authored electrification context along the DTP training alignment.
+    // These are visual railway frames, not surveyed gantry positions.
+    const posts:T.BufferGeometry[]=[],braces:T.BufferGeometry[]=[],concrete:T.BufferGeometry[]=[],walks:T.BufferGeometry[]=[];
+    const roads=data.layers.roads.features.filter(f=>!['trail','tunnel','foot_bridge'].includes(String(f.properties.feature_type_code)))
+      .flatMap(f=>lines(f).flatMap(line=>line.slice(1).map((b,i)=>({a:line[i],b,width:streetWidth(f)}))));
+    const rails=data.layers.rails.features.filter(f=>f.properties.feature_type_code==='railway')
+      .flatMap(f=>lines(f).flatMap(line=>line.slice(1).map((b,i)=>({a:line[i],b,clearance:Math.min(4,Math.max(1,Number(f.properties.tracks_number_of)||1))*2.1+1.5}))));
+    const distance=(p:T.Vector3,a:T.Vector3,b:T.Vector3)=>{
+      const dx=b.x-a.x,dz=b.z-a.z,t=T.MathUtils.clamp(((p.x-a.x)*dx+(p.z-a.z)*dz)/(dx*dx+dz*dz||1),0,1);
+      return Math.hypot(p.x-a.x-dx*t,p.z-a.z-dz*t);
+    };
+    const ranges=[[STATIONS[1].distance+155,STATIONS[1].distance+560],[STATIONS[4].distance+120,ROUTE_LENGTH-235]];
+    for(const [start,end] of ranges)for(let s=start;s<end;s+=44){
+      const p=vec(positionAt(s));if(p.y< -4.5)continue;
+      const tangent=vec(tangentAt(s)),side=new T.Vector3(-tangent.z,0,tangent.x).normalize();
+      const anchors:T.Vector3[]=[];
+      for(const sign of [-1,1]){
+        let anchor:T.Vector3|undefined;
+        for(let offset=22;offset<=40;offset+=3){
+          const candidate=p.clone().addScaledVector(side,sign*offset).setY(-.94);
+          if(waterAt(candidate)||insideFootprint(candidate.x,candidate.z,SOUTHERN_CROSS_CLEARANCE))continue;
+          if(roads.some(r=>distance(candidate,r.a,r.b)<r.width/2+2))continue;
+          if(rails.some(r=>distance(candidate,r.a,r.b)<r.clearance))continue;
+          anchor=candidate;break;
+        }
+        if(anchor)anchors.push(anchor);
+      }
+      if(anchors.length!==2)continue;
+      const height=p.y+7.1,top=anchors.map(a=>a.clone().setY(height));
+      for(let i=0;i<2;i++){
+        posts.push(beam(anchors[i],top[i],.24,.32));
+        concrete.push(beam(anchors[i].clone().addScaledVector(up,.12),anchors[i].clone().addScaledVector(up,.55),.8,.8));
+        braces.push(beam(top[i].clone().addScaledVector(up,-1.7),top[i].clone().lerp(top[1-i],.055),.12));
+      }
+      posts.push(beam(top[0],top[1],.20,.28),beam(top[0].clone().addScaledVector(up,.7),top[1].clone().addScaledVector(up,.7),.14,.17));
+      const bays=Math.ceil(top[0].distanceTo(top[1])/2.5);
+      for(let i=0;i<bays;i++){
+        const a=top[0].clone().lerp(top[1],i/bays),b=top[0].clone().lerp(top[1],(i+1)/bays);
+        braces.push(beam(a.clone().addScaledVector(up,i%2?.7:0),b.clone().addScaledVector(up,i%2?0:.7),.065));
+      }
+    }
+    // Continuous maintenance ledges just outside the ballast, below rail top.
+    // Their width never enters the six-metre running-line clearance envelope.
+    for(const [start,end] of ranges)for(let s=start;s<end;s+=4){
+      const a=vec(positionAt(s)),b=vec(positionAt(s+4));if(Math.min(a.y,b.y)< -8)continue;
+      const side=new T.Vector3(-(b.z-a.z),0,b.x-a.x).normalize();
+      for(const sign of [-1,1]){
+        const x=a.clone().addScaledVector(side,sign*3.9).addScaledVector(up,-.08),y=b.clone().addScaledVector(side,sign*3.9).addScaledVector(up,-.08);
+        if(waterAt(x)||waterAt(y)||roads.some(r=>distance(x,r.a,r.b)<r.width/2+2))continue;
+        // Support the flat ledge down into the sloping shoulder instead of
+        // leaving a thin paving sheet suspended above the embankment.
+        const depth=Math.max(.12,(Math.max(a.y,b.y)+.94)*(4.5-2.15)/(18-2.15));
+        walks.push(beam(x.clone().addScaledVector(up,-depth/2),y.clone().addScaledVector(up,-depth/2),1.2,depth,3.1));
+      }
+    }
+    merge(this.group,posts,new T.MeshStandardMaterial({color:'#76776f',roughness:.73,metalness:.5}),true);
+    merge(this.group,braces,new T.MeshStandardMaterial({color:'#61665f',roughness:.8,metalness:.4}),true);
+    merge(this.group,concrete,new T.MeshStandardMaterial({color:'#939183',roughness:1}));
+    merge(this.group,walks,this.surfaces.paving);
+  }
+  private buildYardGround(){
+    // Ground the spaces between mapped sidings rather than leaving the city's
+    // plain base visible. These are authored gravel margins around Vicmap
+    // railway centrelines, not a claim of surveyed railway property boundaries.
+    const rails=data.layers.rails.features.filter(f=>f.properties.feature_type_code==='railway')
+      .flatMap(f=>lines(f).flatMap(line=>line.slice(1).map((b,i)=>({a:line[i],b}))));
+    const roads=data.layers.roads.features.filter(f=>!['trail','tunnel','foot_bridge'].includes(String(f.properties.feature_type_code)))
+      .flatMap(f=>lines(f).flatMap(line=>line.slice(1).map((b,i)=>({a:line[i],b,width:streetWidth(f)}))));
+    const route=Array.from({length:Math.ceil(ROUTE_LENGTH/4)},(_,i)=>vec(positionAt(i*4)));
+    const parks=data.layers.openSpaces.features.flatMap(f=>{
+      const polygons=f.geometry.type==='MultiPolygon'?f.geometry.coordinates:[f.geometry.coordinates];
+      return (polygons as number[][][][]).map(rings=>rings.map(ring=>ring.map(([lon,lat])=>project(lon,lat))));
+    });
+    const distance=(x:number,z:number,a:T.Vector3,b:T.Vector3)=>{
+      const dx=b.x-a.x,dz=b.z-a.z,t=T.MathUtils.clamp(((x-a.x)*dx+(z-a.z)*dz)/(dx*dx+dz*dz||1),0,1);
+      return Math.hypot(x-a.x-dx*t,z-a.z-dz*t);
+    };
+    const positions:number[]=[],uvs:number[]=[],colors:number[]=[];
+    // Surface yard extents only: Southern Cross–Flagstaff, eastern return,
+    // and the Flinders station throat. The viaduct keeps its mapped streets.
+    for(const [x0,x1,z0,z1] of [[-1800,-1050,-850,340],[100,1120,-400,160],[-350,100,-160,150]]){
+      for(let x=x0;x<x1;x+=8)for(let z=z0;z<z1;z+=8){
+        const center=new T.Vector3(x+4,-.97,z+4);
+        if(!rails.some(r=>distance(center.x,center.z,r.a,r.b)<34))continue;
+        if(insideFootprint(center.x,center.z,SOUTHERN_CROSS_CLEARANCE))continue;
+        // Entire cells avoid the trench, even through the portal's shallow
+        // transition. An 8m cell's diagonal is less than the 6m safety margin.
+        if(route.some(p=>p.y<2&&p.y>-9&&Math.hypot(p.x-center.x,p.z-center.z)<12))continue;
+        if(roads.some(r=>distance(center.x,center.z,r.a,r.b)<r.width/2+7))continue;
+        const corners=[new T.Vector3(x,-.97,z),new T.Vector3(x+8,-.97,z),new T.Vector3(x+8,-.97,z+8),new T.Vector3(x,-.97,z+8)];
+        if(corners.some(p=>waterAt(p)||parks.some(rings=>insideRing(p,rings[0])&&!rings.slice(1).some(hole=>insideRing(p,hole)))))continue;
+        for(const index of [0,3,1,1,3,2]){
+          const p=corners[index];positions.push(p.x,p.y,p.z);uvs.push(p.x/2,p.z/2);
+          const tone=.77+.04*Math.sin(p.x/37)+.03*Math.cos(p.z/23);colors.push(tone,tone,tone*.96);
+        }
+      }
+    }
+    const geometry=new T.BufferGeometry();geometry.setAttribute('position',new T.Float32BufferAttribute(positions,3));geometry.setAttribute('uv',new T.Float32BufferAttribute(uvs,2));geometry.setAttribute('color',new T.Float32BufferAttribute(colors,3));geometry.computeVertexNormals();
+    // Share the source PBR maps after they load; only one extra merged draw.
+    this.bankReady=Promise.all([this.bankReady,this.surfaces.ready]).then(()=>{
+      const material=this.surfaces.ballast.clone();material.vertexColors=true;
+      const mesh=new T.Mesh(geometry,material);mesh.name='Mapped rail-yard gravel ground';mesh.receiveShadow=true;this.group.add(mesh);
+    });
   }
   private buildRailYard(){
     // Vicmap supplies network centrelines and occasional track counts, not
@@ -577,8 +708,10 @@ export class CorridorScenery {
 
   update(camera:T.Camera){
     for(const chunk of this.treeChunks){
-      const distance=chunk.center.distanceTo(camera.position),near=!!chunk.detail&&distanceDetailVisible(distance,chunk.detail.visible,330,370);
-      chunk.group.visible=!near&&distance<1000;
+      const distance=chunk.center.distanceTo(camera.position),near=!!chunk.detail&&distanceDetailVisible(distance,chunk.detail.visible,220,260);
+      const visible=distance<1000;
+      chunk.group.visible=!near&&!chunk.impostor&&visible;
+      if(chunk.impostor)chunk.impostor.visible=!near&&visible;
       if(chunk.detail)chunk.detail.visible=near;
     }
   }

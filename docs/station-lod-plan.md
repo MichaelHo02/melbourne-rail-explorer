@@ -7,7 +7,7 @@ Apply its coarse-to-fine continuity, stable refinement and measured frame-time
 principles to the railway. This is implementation direction, not a claim that
 station LOD is complete or that current performance meets 60 fps.
 
-## Current implementation inspection
+## Initial inspection (before the LOD changes below)
 
 - Trees switch between coarse and detailed cells at 330 m; disappear at 1000 m.
   The detailed switch currently lacks hysteresis.
@@ -118,3 +118,46 @@ Matched 2600 m cab captures (`baseline-1280` and `pooled-station-lighting`)
 were inspected at full resolution. The Flagstaff ceiling, tiled walls,
 platform, passengers and light falloff retain their appearance. The repaired
 track-bed floor is also visible; the baseline predates that separate repair.
+
+## Baked tree silhouettes and tighter detail range
+
+The existing editable Blender prototypes now also produce four transparent
+256px distant-tree images. Each far tree uses two crossed quads (four triangles)
+with geometry/UVs cropped to its actual prototype bounds. Positions, species
+classes and authored dimensions remain shared with the detailed trees. Detail
+enters at a cell-centre distance of 220m and leaves at 260m; the existing 1000m
+outer range remains. This is cell LOD with hysteresis, not a continuous crossfade.
+The former coarse leaf cards remain as a fallback if optional images fail.
+The four small maps are explicitly uploaded during loading.
+
+Bake command: Blender `--background assets/source/environment/urban-trees.blend
+--python scripts/blender/bake_tree_impostors.py`. Baked assets and metadata are
+in `public/textures/trees`. Lighting is baked and approximate; the crossed
+images cannot reproduce every near-tree viewing angle. The nearby models,
+track clearance and mapped tree locations are unchanged.
+
+Fresh before/after profiles use the existing 780-frame station ranges,
+1280x720 WebGPU, separate first and warm passes, without builds, test execution
+or screenshot capture inside the timed interval. The first untrimmed LOD run
+reduced peak Southern Cross triangles from 3,578,858 to 3,231,314 and Flinders
+from 4,346,721 to 3,609,759. It did not establish an FPS improvement: warm
+means changed 18.14→20.30ms and 21.45→22.91ms respectively, and one first-use
+Flinders frame was 116.7ms at 5322m. Transparent margins were subsequently
+trimmed and the four image uploads made explicit. A follow-up profile records
+the final implementation below; that does not by itself establish the cause
+of the earlier outlier.
+
+Final cropped/preloaded run (mean / p99 / max milliseconds):
+
+| Station | Before first | Final first | Before warm | Final warm |
+| --- | --- | --- | --- | --- |
+| Southern Cross | 24.17 / 34.3 / 49.9 | 19.42 / 33.8 / 34.2 | 18.14 / 33.4 / 33.9 | 17.65 / 33.4 / 33.7 |
+| Flagstaff | 16.67 / 17.6 / 17.7 | 18.63 / 33.9 / 34.2 | 16.67 / 17.5 / 17.6 | 16.67 / 17.5 / 17.7 |
+| Flinders Street | 20.79 / 34.3 / 50.1 | 21.88 / 33.8 / 100.1 | 21.45 / 34.1 / 34.3 | 21.28 / 33.9 / 37.5 |
+
+Final peaks: Southern Cross 675 draws / 3,231,314 triangles; Flagstaff
+467 / 1,082,189; Flinders 957 / 3,609,699. Geometry reduction is verified;
+steady 60fps and removal of first-use stalls are not. The user subsequently
+prioritized continuous landscape coverage over further fine-grained LOD work.
+Keep this bounded improvement and resume the route's visible gaps before
+spending more time tuning small frame-time differences.

@@ -71,6 +71,16 @@ export class GameRenderer {
         this.scene.environmentIntensity=.45;
       }),
     ]);
+    // Upload the small distant-canopy maps while the loading screen is up.
+    // Pipeline compilation alone does not promise image upload on first use.
+    const lodTextures=new Set<T.Texture>();
+    this.scene.traverse(object=>{
+      if(!(object instanceof T.Mesh))return;
+      for(const material of Array.isArray(object.material)?object.material:[object.material]){
+        if(material instanceof T.MeshBasicMaterial&&material.map?.userData.preloadForLod)lodTextures.add(material.map);
+      }
+    });
+    for(const texture of lodTextures)this.renderer.initTexture(texture);
     onProgress('Preparing lighting and materials…');
     // Compile nearby station assets before the first moving approach. Keeping
     // station light identities stable lets these pipelines remain reusable.

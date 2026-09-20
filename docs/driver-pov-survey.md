@@ -106,3 +106,42 @@ The cladding uses an authored sandstone/zinc/glass triangular palette based on [
 Build with `node scripts/export-blender-route.mjs`, then Blender `--background --factory-startup --python scripts/blender/build_federation_east.py`. Source: `assets/source/environment/federation-east.blend`; provenance: `public/models/environment/federation-east.json`. Final GLB is 289,760 bytes and 8,337 triangles. Cladding tessellation was reduced from the initial 881,672-byte / 27,590-triangle version.
 
 Matched 5200m comparison: `eastern-yard-shoulders/05200.png` versus `federation-east/05200.png`. The first replacement adds supporting mass and a visible opening instead of a floating windowed bar. `federation-east-final/05320.png` checks the closer approach; `federation-east-lean/05320.png` checks the optimized cladding. The first, denser version measured 800 draw calls / 4,805,714 triangles versus 788 / 4,753,859 in the prior 5200m scene, including shadow passes. These are scene complexity counts, not a claimed timing improvement. Final approach timings and full-service performance remain part of the wider goal. Build and 16 photographic clipping tests pass.
+
+## Coverage-first landscape pass
+
+Following the user's priority correction, detailed scenery coverage takes
+precedence over small LOD timing improvements. The broad urban base now uses
+the existing metre-scaled paving PBR material. Mapped open spaces, streets,
+water and the existing approach trenches retain their separate geometry.
+
+Rail-yard spaces near Southern Cross, the eastern return and Flinders throat
+receive merged gravel ground within 34m of official Vicmap railway centrelines.
+This uses 8m cells with deterministic colour variation. Cells avoid roads,
+mapped open-space polygons, water and the shallow running trench; no claim is
+made that the 34m buffer is a surveyed railway property boundary.
+
+Authored lattice electrification frames follow the training alignment through
+the sparse surface approaches where both anchors can be kept clear of mapped
+roads, rail widths and the Southern Cross hall. Maintenance ledges sit outside
+the six-metre running corridor and have solid support into the graded shoulders.
+These are visual context, not a reconstruction of surveyed operating equipment.
+
+`continuous-yard-ground` and `yard-context-final` each completed all 24 matched
+views. The contact sheet and full-size 1800m/5200m views confirm the former bare
+base patches now connect into gravel shoulders; the 1800m view also shows the
+new yard frame and maintenance edges. The 2000m/5000m portal views remain clear.
+`yard-supported-ledges/05200.png` checks the final solid ledge support adjustment.
+The final contact sheet still shows conspicuous aerial facade remnants and
+incomplete building fidelity; these remain open work, not accepted completion.
+
+The tree LOD pass uses baked images from the same Blender prototypes, retains
+the detailed near trees and their source positions, and cuts approach geometry.
+See station-lod-plan.md for measured tradeoffs and the unresolved first-use
+stall. Production build and the existing 138-test suite pass; screenshot timing
+is not used as a performance benchmark.
+
+Post-change rendered full service: all six stops served, 37,224 simulation
+steps / 1,241 rendered frames, 57 visited 100m cells, maximum rendered travel
+gap 6.172m, cab and door-check views exercised, errors `[]`. Final frame:
+895 draws / 3,092,431 triangles, WebGPU. This accelerated audit proves service
+and rendering continuity; it does not prove a wall-clock frame-rate target.

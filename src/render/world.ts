@@ -82,7 +82,7 @@ export class World {
     for(let s=0;s<=ROUTE_LENGTH;s+=4){const y=positionAt(s).y;if(y<2&&y>-9)approach.push(s);else finishApproach();}finishApproach();
     const groundGeometry=new T.ShapeGeometry(groundShape),uv=groundGeometry.attributes.uv;
     for(let i=0;i<uv.count;i++)uv.setXY(i,uv.getX(i)/3.1,uv.getY(i)/3.1);
-    const ground=new T.Mesh(groundGeometry,this.concrete);
+    const ground=new T.Mesh(groundGeometry,this.surfaces.paving);
     ground.rotation.x=-Math.PI/2;ground.position.y=-1;ground.receiveShadow=true;this.surface.add(ground);
     // Preserve both surveyed banks and variable width; no smoothing across city blocks.
     const waterShape=new T.Shape(waterRings[0]);

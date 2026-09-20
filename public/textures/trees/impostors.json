@@ -1,0 +1,11 @@
+{
+  "generator": "scripts/blender/bake_tree_impostors.py",
+  "source": "assets/source/environment/urban-trees.blend",
+  "bounds": {
+    "width": 16,
+    "height": 16,
+    "centerHeight": 7
+  },
+  "resolution": 256,
+  "purpose": "Distant canopy silhouettes baked from the same authored botanical prototypes; no new geographic placements."
+}
