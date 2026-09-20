@@ -36,3 +36,30 @@ The subsequent bounded pass compared all five `*-refined.png` browser views with
 - Underground display boards are suspended, with a small service panel above; Southern Cross retains the integrated equipment pylons. The displays continue to label the fictional training service, not invented real departures. Small help points sit beside the underground thresholds.
 
 All new geometry is authored; reference photographs remain external research and are not included in game assets. Opening positions, maintenance access details, fixture spacing and dimensions are visual approximations. This is an operating-game environment, not a current public wayfinding or emergency-egress model. Browser review targets are each station's platform view, both underground headwalls from the track, and the side vestibules from oblique platform views. Existing route warping still applies to direct child meshes, and no additional point/shadow lights are introduced.
+
+## Southern Cross raised concourse and platform stairs
+
+The user's additional cab photograph shows the missing vertical layer of the station: a dark transverse bridge girder, glazed balustrades, supporting steelwork and long stair flights descending to the islands beneath the dune roof. The [Transport Victoria station access description](https://transport.vic.gov.au/plan-a-journey/network-maps/southern-cross-station-map-and-travel-information) confirms upper-level Collins Street access, Bourke Street Bridge access, and stairs, escalators and lifts serving metropolitan platforms 9–14. [Grimshaw's project description](https://grimshaw.global/projects/rail-and-mass-transit/southern-cross-station/) provides the architectural context. The user photograph remains a private research reference and is not redistributed.
+
+The authored hall now contains a transverse concourse deck with dark edge girders, visible flange/stiffener detail, a lighter soffit, cross-beams and platform-based supports. Transparent balustrade panels have metal posts and real openings at the stairs. Three pairs of stair flights have individual treads/risers, light nosings, intermediate landings, stringers, handrails and restricted understair areas. A glazed scenic lift enclosure connects to the deck by a small spur. The stairs and lift are architectural scenery, not interactive traversal or a representation of current accessible routes.
+
+The concourse is at local z=52 with a deck top 8 m above the route datum; its lowest over-track girder surface is 6.9 m, above the existing 5.9 m authored contact wire. The playable stair occupies the platform-back band at x=5.675–7.925, leaving x=2.8–5.5 and the tactile edge unobstructed. These dimensions, location, simplified supports and the number of stairways are chosen to fit the training route's existing compressed platform hall. They must not be interpreted as surveyed station dimensions or a true engineering/egress model. The platform arrangement still needs survey data for a literal digital twin. No new point lights, textures from the private image or additional image assets are introduced; the structures are batched by six shared materials and warped with their station.
+
+## Boarding edge and moving-train clearance
+
+The platform slab, coping, tactile strip and underground end return now share a station-specific inboard adjustment. This reduces the previously oversized gap exposed by walking boarders while retaining extra clearance on the Southern Cross and Parliament curves. The adjustment is authored from the game's train/track geometry; it is not a measured real-station platform offset.
+
+The shipped HCMT GLB was checked using the full horizontal hull of every visible carriage mesh, including geometry below platform height for a conservative bound. Front, intermediate and reversed rear bodies were swept through the complete 198 m coping span; open platform-side doors were also checked for every car throughout the permitted ±8 m stopping range. The audit uses the actual carriage transforms and route warp, including the mirrored Flinders Street platforms, and compares against the rendered coping's straight 3 m segments. Coarse sweeps were refined around the largest corner excursions with 5 mm carriage increments and 5 cm hull-edge samples.
+
+| Station visit | Coping inner edge from route centre | Smallest refined sampled clearance |
+| --- | ---: | ---: |
+| Flinders Street departure | 1.79 m | 15.1 cm |
+| Southern Cross | 1.91 m | 11.9 cm |
+| Flagstaff | 1.77 m | 16.4 cm |
+| Melbourne Central | 1.77 m | 17.0 cm |
+| Parliament | 1.96 m | 12.6 cm |
+| Flinders Street arrival | 1.79 m | 18.2 cm |
+
+A uniform 1.76 m edge was rejected: the moving rear-car envelope crossed that line at Southern Cross and Parliament. `tests/platform-clearance.test.ts` reads the shipped GLB and independently sweeps its three carriage hulls through all six station visits, including open doors at allowed stopping offsets. It requires at least 8 cm sampled clearance, rather than asserting particular offset values. The refined local reports are retained under ignored `artifacts/train-platform-clearance*.json`; the sampled asset SHA-256 is `62c9c519c1274c72748e7dd64dc423e5cabb231e11d0ec8cde1fcfcec3dffeb7`.
+
+These are deterministic game-geometry checks, not a continuous collision solver, surveyed platform gap, engineering loading gauge or railway safety certification. The actual gap at a specific doorway varies with its position on the curve. No invented deployable boarding ramps are used.

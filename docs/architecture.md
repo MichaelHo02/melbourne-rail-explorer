@@ -36,6 +36,9 @@ src/game/traffic.ts    Official fixed-date GTFS timetable interpolation
 src/render/traffic.ts Instanced adjacent-track visual traffic subset
 src/render/photographic-city.ts City of Melbourne photographic context and clearance masks
 src/render/passengers.ts Instanced Blender commuters with near/far detail
+src/render/passenger-motion.ts Service-clock platform walking and door-aligned boarding
+src/render/train-layout.ts Shared carriage/door layout for train and passenger presentation
+src/render/platform-layout.ts Per-station coping margins checked against the moving train
 src/render/station-details.ts Reference-based platform fittings
 src/render/renderer.ts Renderer lifecycle, cameras, metrics
 src/render/native-renderer.ts Native WebGPU backend and standard node materials

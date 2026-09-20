@@ -26,7 +26,11 @@ catch(error){hud.startupError(`The 3D scene could not start. WebGPU is required.
 
 window.addEventListener('keydown',e=>{
   const element=e.target as HTMLElement;
-  if(element.matches('input,textarea,select')&&e.code!=='Escape')return;
+  if(element.matches('input,textarea,select')&&e.code!=='Escape'){
+    // The physical lever keeps native arrow-key adjustment, but must not swallow
+    // driving shortcuts (especially emergency braking) after a pointer drag.
+    if(element.id!=='controller'||!['KeyW','KeyS','KeyD','KeyH','KeyC','KeyM','Space'].includes(e.code))return;
+  }
   if(['Space','ArrowUp','ArrowDown'].includes(e.code))e.preventDefault();
   if(e.code==='Escape'){hud.closePanel();pause();return;}
   if(e.code==='KeyM'){hud.togglePanel('map');return;}

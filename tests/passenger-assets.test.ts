@@ -30,17 +30,18 @@ describe('shipped commuter geometry',()=>{
   it('exports six near and six distant roots within the material and payload budget',()=>{
     for(let i=1;i<=6;i++)for(const suffix of ['', '_low'])expect(gltf.nodes.some((n:{name?:string})=>n.name===`commuter_${String(i).padStart(2,'0')}${suffix}`)).toBe(true);
     expect(gltf.materials.length).toBeLessThanOrEqual(5);
-    expect(bytes.length).toBeLessThan(12_000_000);
+    for(const mesh of gltf.meshes)expect((mesh.weights||[]).every((weight:number)=>weight===0)).toBe(true);
+    expect(bytes.length).toBeLessThan(16_000_000);
   });
   it('ships actual local morph deltas and keeps lower legs and soles planted',()=>{
     let animatedMeshes=0,movingVertices=0,footVertices=0,maxFootDelta=0,allFinite=true;
     for(const mesh of gltf.meshes){
-      if(!mesh.extras?.targetNames)continue;
-      expect(mesh.extras.targetNames).toEqual(['look_left','look_right','breathe']);animatedMeshes++;
+      if(!mesh.extras?.targetNames?.includes('look_left'))continue;
+      expect(mesh.extras.targetNames).toEqual(['look_left','look_right','breathe',...Array.from({length:8},(_,i)=>`walk_${i}`)]);animatedMeshes++;
       for(const primitive of mesh.primitives){
         const positions=vectors(primitive.attributes.POSITION);
-        expect(primitive.targets).toHaveLength(3);
-        for(const target of primitive.targets){
+        expect(primitive.targets).toHaveLength(11);
+        for(const target of primitive.targets.slice(0,3)){
           const deltas=vectors(target.POSITION);
           for(let i=0;i<positions.length;i++){
             allFinite=allFinite&&deltas[i].every(Number.isFinite);
@@ -55,5 +56,35 @@ describe('shipped commuter geometry',()=>{
     expect(animatedMeshes).toBe(30);
     expect(movingVertices).toBeGreaterThan(1000);
     expect(footVertices).toBeGreaterThan(1000);
+  });
+  it('exports a complete alternating walking cycle in both detail levels',()=>{
+    let near=0,far=0,movingFeet=0;
+    for(const mesh of gltf.meshes){
+      const names:string[]=mesh.extras?.targetNames||[];
+      const offset=names.includes('look_left')?3:0;
+      expect(names.slice(offset)).toEqual(Array.from({length:8},(_,i)=>`walk_${i}`));
+      if(offset)near++;else far++;
+      for(const primitive of mesh.primitives){
+        const positions=vectors(primitive.attributes.POSITION);
+        const feet=positions.flatMap((position,index)=>position[1]<.12?[index]:[]);
+        for(let frame=0;frame<8;frame++){
+          const deltas=vectors(primitive.targets[offset+frame].POSITION);
+          expect(deltas.every((v)=>v.every(Number.isFinite))).toBe(true);
+          for(const index of feet)if(Math.hypot(...deltas[index])>.1)movingFeet++;
+        }
+        // Shoe surfaces in each material preserve contact while the opposite
+        // sole swings through the air. Test both half-cycles, including low LOD.
+        if(!feet.some((i)=>positions[i][0]>.04)||!feet.some((i)=>positions[i][0]<-.04))continue;
+        for(const [frame,liftSide] of [[2,-1],[6,1]]){
+          const deltas=vectors(primitive.targets[offset+frame].POSITION);
+          const left=feet.filter((i)=>positions[i][0]*liftSide>.04);
+          const right=feet.filter((i)=>positions[i][0]*liftSide<-.04);
+          const raised=Math.min(...left.map((i)=>positions[i][1]+deltas[i][1]));
+          const planted=Math.min(...right.map((i)=>positions[i][1]+deltas[i][1]));
+          expect(raised-planted).toBeGreaterThan(.035);
+        }
+      }
+    }
+    expect(near).toBe(30);expect(far).toBe(30);expect(movingFeet).toBeGreaterThan(1000);
   });
 });

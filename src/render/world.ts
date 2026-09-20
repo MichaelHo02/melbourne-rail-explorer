@@ -3,7 +3,9 @@ import { EnvironmentEffects } from './environment';
 import riverSource from '../data/river-source.json';
 import { stationArchitecture } from './stations';
 import { stationDetails } from './station-details';
-import { Passengers, type PassengerPlacement } from './passengers';
+import { Passengers } from './passengers';
+import { createPassengerPlacements } from './passenger-motion';
+import type { TrainState } from '../game/simulation';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { SkyMesh } from 'three/addons/objects/SkyMesh.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
@@ -14,6 +16,7 @@ import { SurfaceLibrary } from './surface-library';
 import { CorridorScenery } from './corridor';
 import { applyBoxSurfaceUV } from './surface-uv';
 import { PhotographicCity } from './photographic-city';
+import {platformInboardShift} from './platform-layout';
 
 const vector=(v:{x:number;y:number;z:number})=>new T.Vector3(v.x,v.y,v.z);
 export class World {
@@ -44,16 +47,7 @@ export class World {
     this.ambient=new T.HemisphereLight('#c4ddeb','#787766',1.1);scene.add(this.ambient);
     this.corridor=new CorridorScenery(this.surfaces);this.surface.add(this.corridor.group,this.photographic.group);
     this.buildGround();this.buildTrack();this.buildStations();this.buildLandmarks();
-    const placements:PassengerPlacement[]=[];
-    // Deterministic small groups, with space around furniture and platform edges.
-    // FSS's duplicate final stop shares its platform, so populate it only once.
-    for(const [index,st] of STATIONS.slice(0,-1).entries())for(let j=0;j<24;j++){
-      const s=st.distance-145+(j*31+index*17)%172,p=positionAt(s),t=tangentAt(Math.max(0,s)),n=Math.hypot(t.x,t.z)||1;
-      if(s<0){p.x+=t.x*s;p.z+=t.z*s;}
-      const x=(st.code==='FSS'?-1:1)*(3.25+(j%3)*.47);
-      placements.push({position:{x:p.x+t.z/n*x,y:p.y+1.065,z:p.z-t.x/n*x},heading:Math.atan2(t.x,t.z)+(j%4===0?.5:j%4===1?Math.PI:1.5),variant:(j+index)%6});
-    }
-    this.passengers=new Passengers(placements);this.scene.add(this.passengers.group);
+    this.passengers=new Passengers(createPassengerPlacements());this.scene.add(this.passengers.group);
   }
   private box(parent:T.Object3D,w:number,h:number,d:number,x:number,y:number,z:number,material:T.Material){
     const geometry=new T.BoxGeometry(w,h,d,1,1,Math.max(1,Math.ceil(d/4)));
@@ -186,9 +180,10 @@ export class World {
       const p=vector(positionAt(station.distance-65)),group=new T.Group();
       group.userData.center=p;group.userData.underground=station.underground;this.stations.add(group);
       const platformMaterial=station.code==='SXS'?this.surfaces.asphalt:station.code==='FSS'?this.surfaces.paving:new T.MeshStandardMaterial({map:stationTileTexture(station.code),color:'#dddcd4',roughness:.76});
-      this.box(group,station.code==='MCE'?9:6,1.1,200,station.code==='MCE'?6.75:5.25,.5,0,platformMaterial);
-      this.box(group,.45,.03,198,2.48,1.065,0,yellow);
-      this.box(group,.1,.09,198,2.21,.96,0,this.concrete);
+      const edgeShift=platformInboardShift(station.code);
+      this.box(group,(station.code==='MCE'?9:6)+edgeShift,1.1,200,(station.code==='MCE'?6.75:5.25)-edgeShift/2,.5,0,platformMaterial);
+      this.box(group,.45,.03,198,2.48-edgeShift,1.065,0,yellow);
+      this.box(group,.1,.09,198,2.21-edgeShift,.96,0,this.concrete);
       const backMaterial=new T.MeshStandardMaterial({color:station.color,roughness:station.code==='PAR'?.36:.7,metalness:station.underground?.18:0});
       if(station.underground){
         if(station.code!=='MCE'){
@@ -284,14 +279,15 @@ export class World {
     });
   }
   passengerMetrics(){return this.passengers.metrics();}
-  update(distance:number,camera:T.Camera,seconds=0){
+  update(state:TrainState,camera:T.Camera){
+    const {distance,time:seconds}=state;
     const p=vector(positionAt(distance)),underground=isUnderground(distance);
     const darkness=T.MathUtils.smoothstep(-p.y,0,15);
     this.scene.environmentIntensity=.55*(1-darkness)+.025*darkness;
     this.surface.visible=!underground;this.sun.intensity=3.2*(1-darkness);this.ambient.intensity=1.1-.55*darkness;
     this.scene.background=underground?new T.Color('#141d21'):(this.exteriorBackground??null);
     this.sky.visible=!this.exteriorBackground;
-    this.effects.update(darkness,seconds);this.corridor.update(camera);this.passengers.update(camera,seconds);this.photographic.update(camera);
+    this.effects.update(darkness,seconds);this.corridor.update(camera);this.passengers.update(camera,state);this.photographic.update(camera);
     this.sun.position.copy(p).add(new T.Vector3(350,280,150));this.sun.target.position.copy(p);this.sun.target.updateMatrixWorld();
     for(const chunk of this.cityChunks)chunk.visible=chunk.userData.center.distanceTo(camera.position)<2300;
     // Only nearby platform lamps contribute to the lighting shader.

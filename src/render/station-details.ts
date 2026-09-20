@@ -1,10 +1,12 @@
 import * as T from 'three/webgpu';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { labelTexture } from './materials';
+import {platformInboardShift} from './platform-layout';
 
 /** Fittings referenced to photographs; dimensions are authored, not surveyed. */
 export function stationDetails(group:T.Group,code:string,name:string){
   const heritage=code==='FSS',surface=heritage||code==='SXS';
+  const edgeShift=platformInboardShift(code);
   const materials={
     cream:new T.MeshStandardMaterial({color:'#d1c39b',roughness:.85}),
     iron:new T.MeshStandardMaterial({color:heritage?'#693c31':'#858e89',metalness:.45,roughness:.6}),
@@ -59,15 +61,15 @@ export function stationDetails(group:T.Group,code:string,name:string){
     }
   }
   // White coping and a narrow shadow joint give the platform edge a scale cue.
-  box(.24,.06,198,2.25,1.06,0,materials.coping);
-  box(.025,.07,198,2.1,.96,0,materials.dark);
+  box(.24,.06,198,2.25-edgeShift,1.06,0,materials.coping);
+  box(.025,.07,198,2.1-edgeShift,.96,0,materials.dark);
   // Recessed tactile studs are encoded in a repeatable bump map, not thousands of draw calls.
   const c=document.createElement('canvas');c.width=c.height=128;const ctx=c.getContext('2d')!;
   ctx.fillStyle='#555';ctx.fillRect(0,0,128,128);ctx.fillStyle='#ccc';
   for(let y=8;y<128;y+=16)for(let x=8;x<128;x+=16){ctx.beginPath();ctx.arc(x,y,3.4,0,Math.PI*2);ctx.fill();}
   const bump=new T.CanvasTexture(c);bump.wrapS=bump.wrapT=T.RepeatWrapping;bump.repeat.set(1,198/.4);bump.anisotropy=8;
   const tactile=new T.Mesh(new T.PlaneGeometry(.4,198,1,100),new T.MeshStandardMaterial({color:heritage?'#c8b886':'#c8a253',bumpMap:bump,bumpScale:.008,roughness:.92}));
-  tactile.rotation.x=-Math.PI/2;tactile.position.set(2.56,1.085,0);group.add(tactile);
+  tactile.rotation.x=-Math.PI/2;tactile.position.set(2.56-edgeShift,1.085,0);group.add(tactile);
   if(heritage){
     for(let z=-90;z<=90;z+=20){
       box(.22,2.1,.22,6,2.1,z,materials.iron);box(.19,2.6,.19,6,4.4,z,materials.cream);

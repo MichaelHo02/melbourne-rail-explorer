@@ -1,3 +1,37 @@
+# Walking passengers, cab desk and Southern Cross concourse — 20 September 2026
+
+## Changes and evidence
+
+The header now uses an original generated train, Flinders dome and loop emblem, with accessible live HTML naming alongside it. The built-in image generation prompt and original asset are recorded in `docs/brand-assets.md`. The supplied cab photograph informs a curved silver desk, charcoal fascia, physical left-hand controller, analogue speed/demand dials, illuminated blue door button and red emergency mushroom. These are simplified gameplay instruments rather than an HCMT equipment specification. The driving footer (view name, timetable date, formation and clock) is removed.
+
+Six near and six distant Blender commuters now carry eight articulated stride poses. Distance-driven pose blending moves knees, ankles and arms, and individual sole contacts follow the stance foot. The shipped GLB is 13,833,876 bytes with 148,960 triangles and five shared materials. Four commuters per station walk short clear circuits; six potential boarders align with real door centres before entering, including the reversed rear carriage. Only the platform-side doors open. Behaviour derives from service time, preserving pause and saved-service determinism without adding save fields. Boarding is illustrative; there is no full station navigation or alighting simulation.
+
+Southern Cross gains a raised concourse, glazed balustrades, three twin-flight stairways and a scenic lift. The geometry is authored using the user's photograph and official station/architect references, not surveyed dimensions. A stair-approach inspection confirms the tread, landing and concourse connections. The playable route remains an authored training alignment.
+
+Platform coping now follows station-specific offsets, reducing the previous gap while allowing the long carriages to swing on curves. A refined geometry audit against the shipped front, trailer and reversed-rear train bodies finds minimum sampled clearance of 11.9–18.2 cm across the six visits. Regression tests sweep carriage bodies and open doors against the actual segmented coping, requiring at least 8 cm. These are rendered-geometry checks, not operational loading-gauge measurements.
+
+## Browser checks
+
+The Codex in-app browser shows the generated emblem and complete desk at 1280×720 and 600×850; the compact document has no horizontal overflow. Pointer dragging selects brake at the top and power at the bottom. Testing caught and fixed the focused native slider swallowing driving shortcuts: W/S, doors and emergency now remain available after a pointer interaction, while the range retains its native arrow-key behaviour. An actual Space input with the lever focused applied the emergency latch and showed 100% brake demand. Door interlock suppresses positive power demand; emergency and service-brake demand remain visible.
+
+A real door-button action at Melbourne Central started six boarders. The captured frame shows a passenger entering the open doorway rather than the carriage wall. Pausing retained identical passenger service time (58.29999999999797 seconds), idle sum (7.576303) and gait phase sum (4.762636) across separate observations; resuming advances animation. Screenshots and geometry audit artifacts remain local under ignored `artifacts/`.
+
+The Southern Cross stair-approach sample reported WebGPU, 1,080 draw calls, 2,290,383 triangles, three timetable trains and a 17.22 ms recent average frame interval. The Melbourne Central boarding view reported 611 draw calls, approximately 1.07 million triangles and 16.67 ms. These are local observations with other tabs present, not controlled performance guarantees.
+
+Platform review covered all five stations. Final integration review found boarders crossing the previous waiting positions when stopping away from the exact marker. Waiting groups now occupy gaps between walking circuits. A sweep of all six visits, every 0.25 m stopping offset over ±8 m and every 50 ms of boarding found a minimum 1.05 m root separation from waiting passengers; the 180-second walking sweep found 3.62 m. This checks these authored paths, not general-purpose crowd avoidance.
+
+The production check on port 5181 preserved the user's separate port-5180 service. With the lever focused, W selected power while open doors held speed and displayed demand at zero; D closed the doors and subsequent power accelerated to 26 km/h. A door action while moving kept them closed, then Space latched emergency braking and the train stopped. Pause/reload/Continue retained zero speed, emergency state and 1.38 km to Southern Cross. Sound startup switched to Mute, and camera switching showed the exterior. This is an audio-startup check, not a new audible mix review. Final development and production error/warning logs were empty.
+
+## Automated validation
+
+- `npm test`: **86 tests pass across 14 files**, including exported walk morphs, pause/save determinism, boarding paths through all station visits, waiting-person separation and actual train/platform clearance.
+- `npm run build`: strict TypeScript, production Vite build and the native-WebGPU-only guard pass. Main application chunk: 2,354.40 KB before gzip, 334.34 KB gzip; separate Three.js chunk: 457.17 KB before gzip. The existing large-chunk warning remains.
+- `git diff --check` passes. No real passenger photographs are published; the generated emblem and authored Blender source/export are included.
+
+Remaining boundaries: station geometry and train handling are authored; commuters are stylised and follow limited paths; nearby trains use the fixed-date timetable rather than live positions; clean voiced station announcements remain an asset need; distant photographic building surfaces can be coarse. This pass does not claim photorealism or railway operational accuracy.
+
+---
+
 # Station circulation, riverbank and driving feedback — 20 September 2026
 
 ## Changes and evidence

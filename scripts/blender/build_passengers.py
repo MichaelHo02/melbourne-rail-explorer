@@ -40,7 +40,26 @@ def material(name,rough,metal=0,cloth=False):
   t=nt.nodes.new('ShaderNodeTexImage');t.image=im;normal=nt.nodes.new('ShaderNodeNormalMap');normal.inputs['Strength'].default_value=.18;nt.links.new(t.outputs['Color'],normal.inputs['Color']);nt.links.new(normal.outputs['Normal'],p.inputs['Normal'])
  M[name]=m;return m
 M={};material('skin',.63);material('cloth',.83,cloth=True);material('leather',.58);material('hair',.72);material('eyes',.34)
-ROOTS={}
+ROOTS={};GAIT_RIGS={}
+GAIT_GROUPS=['body','thigh_L','shin_L','foot_L','arm_L','thigh_R','shin_R','foot_R','arm_R']
+def gait_region(bone):
+ side=bone[-1] if bone.endswith(('.L','.R')) else None
+ if side:
+  if bone.startswith('upperleg'):return 'thigh_'+side
+  if bone.startswith('lowerleg'):return 'shin_'+side
+  if bone.startswith(('foot','toe')):return 'foot_'+side
+  if bone.startswith(('upperarm','lowerarm','wrist','finger','hand','metacarpal')):return 'arm_'+side
+ return 'body'
+GAIT_WEIGHTS=[collections.defaultdict(float) for _ in V]
+for bone,entries in WEIGHTS.items():
+ for i,w in entries:GAIT_WEIGHTS[i][gait_region(bone)]+=w
+def gait_weights(obj,weights):
+ groups={name:obj.vertex_groups.new(name='gait_'+name) for name in GAIT_GROUPS}
+ for i,row in enumerate(weights):
+  total=sum(row.values()) or 1
+  for name,w in row.items():
+   if w>0:groups[name].add([i],w/total,'REPLACE')
+
 def linear(color):return tuple(c/12.92 if c<=.04045 else ((c+.055)/1.055)**2.4 for c in color)+(1,)
 def mesh(name,verts,faces,mat,color,parent,uvs=None):
  me=bpy.data.meshes.new(name);me.from_pydata([xyz(v)for v in verts],[],faces);me.update();o=bpy.data.objects.new(name,me);bpy.context.collection.objects.link(o);o.parent=parent;o['kind']=mat;me.materials.append(M[mat])
@@ -74,7 +93,7 @@ def cube(name,pos,dim,mat,color,parent,bevel=.007):
  for p in o.data.polygons:p.use_smooth=True
  return o
 def line(name,a,b,r,mat,color,parent):
- va,vb=Vector(xyz(a)),Vector(xyz(b));bpy.ops.mesh.primitive_cylinder_add(vertices=8,radius=r,depth=(vb-va).length,location=(va+vb)/2);o=bpy.context.object;o.rotation_euler=(vb-va).to_track_quat('Z','Y').to_euler();o.parent=parent;o['kind']=mat;o.data.materials.append(M[mat]);at=o.data.color_attributes.new(name='Tint',type='FLOAT_COLOR',domain='CORNER')
+ va,vb=Vector(xyz(a)),Vector(xyz(b));bpy.ops.mesh.primitive_cylinder_add(vertices=8,radius=r,depth=(vb-va).length,location=(va+vb)/2);o=bpy.context.object;o.name=name;o.rotation_euler=(vb-va).to_track_quat('Z','Y').to_euler();o.parent=parent;o['kind']=mat;o.data.materials.append(M[mat]);at=o.data.color_attributes.new(name='Tint',type='FLOAT_COLOR',domain='CORNER')
  for d in at.data:d.color=linear(color)
  return o
 CONFIGS=[
@@ -152,6 +171,7 @@ for index,cfg in enumerate(CONFIGS,1):
    positions.append(v)
   color=cfg['skin']if label=='skin'else cfg['pants']if label=='trousers'else cfg['top'];mat='skin'if label=='skin'else'cloth'
   o=mesh(label,positions,[[lookup[i]for i,uv in f]for f in faces],mat,color,root,[[UV[uv]for i,uv in f]for f in faces])
+  gait_weights(o,[GAIT_WEIGHTS[i] for i in ids])
   if label!='skin':
    smooth=o.modifiers.new('tailored_cloth_relax','SMOOTH');smooth.factor=.6;smooth.iterations=12;bpy.context.view_layer.objects.active=o;bpy.ops.object.modifier_apply(modifier=smooth.name)
    seam=o.modifiers.new('closed_garment_seams','SOLIDIFY');seam.thickness=.016;seam.offset=-1;bpy.ops.object.modifier_apply(modifier=seam.name)
@@ -214,7 +234,7 @@ for index,cfg in enumerate(CONFIGS,1):
  for side,suffix in [(1,'L'),(-1,'R')]:
   footbone='foot.'+suffix;head=joints[SKEL['bones'][footbone]['head']];cx=head.x
   z0=head.z;yy=.035
-  line('sock',pose_point((cx,.08,z0),footbone),pose_point((cx,.19,z0),footbone),.042,'cloth',cfg['pants'],root)
+  line('sock',pose_point((cx,.08,z0),footbone),pose_point((cx,.25,z0),footbone),.045,'cloth',cfg['pants'],root)
   verts=[];faces=[]
   rings=[(-.062,.035,.050),(-.045,.049,.072),(.035,.053,.073),(.11,.045,.051),(.158,.024,.039)]
   for z,half,high in rings:
@@ -244,7 +264,7 @@ for index,cfg in enumerate(CONFIGS,1):
   for y in[.56,.62,.68,.74,.80]:sphere('shirt_button',pose_point((0,cfg['h']*y,.178 if y<.78 else .151)),(.0028,.0028,.002),'leather',(.31,.33,.32),root,8,4)
  if cfg['style']in['jacket','coat']:
   bottom=cfg['h']*(.43 if cfg['style']=='coat'else .515)
-  levels=[(bottom,.220,.164,.035),(cfg['h']*.60,.214,.169,.030),(cfg['h']*.74,.233,.179,.045),(cfg['h']*.82,.228,.162,.080)]
+  levels=[(bottom,.220,.164,.035),(cfg['h']*.60,.214,.169,.030),(cfg['h']*.74,.233,.179,.045),(cfg['h']*.82,.228,.162,.080),(cfg['h']*.843,.174,.116,.053),(cfg['h']*.858,.087,.075,.044)]
   verts=[];faces=[]
   for y,rx,rz,opening in levels:
    start=math.asin(opening/rx)
@@ -284,6 +304,27 @@ for index,cfg in enumerate(CONFIGS,1):
  # One root origin at ground, not centre of mesh. Shoe soles define ground contact.
  bpy.context.view_layer.update();allmesh=[o for o in root.children if o.type=='MESH'];lowest=min((o.matrix_world@v.co).z for o in allmesh for v in o.data.vertices)
  for o in allmesh:o.location.z-=lowest
+ rig={}
+ for side in ['L','R']:
+  for label,bone in [('hip','upperleg01.'+side),('knee','lowerleg01.'+side),('ankle','foot.'+side),('shoulder','upperarm01.'+side)]:
+   point=Vector(xyz(pose_point(joints[SKEL['bones'][bone]['head']],bone)));point.z-=lowest;rig[label+'_'+side]=point
+ GAIT_RIGS[root.name]=rig
+ # Authored props inherit the same deformation as their anatomical attachment.
+ # Groups survive garment solidify/decimate and the material joins below.
+ for o in allmesh:
+  if o.vertex_groups:continue
+  region='body'
+  if o.name.startswith(('shoe_','sock','tailored_cuff','phone')):
+   centre=sum((o.matrix_world@v.co for v in o.data.vertices),Vector())/max(1,len(o.data.vertices))
+   side='L' if centre.x>0 else 'R'
+   region=('arm_' if o.name.startswith(('tailored_cuff','phone')) else 'foot_')+side
+  if o.name.startswith('sock'):
+   heights=[(o.matrix_world@v.co).z for v in o.data.vertices];lo,hi=min(heights),max(heights);rows=[]
+   for height in heights:
+    blend=max(0,min(1,(height-lo)/(hi-lo)));blend=blend*blend*(3-2*blend)
+    rows.append({'foot_'+side:1-blend,'shin_'+side:blend})
+   gait_weights(o,rows)
+  else:gait_weights(o,[{region:1} for _ in o.data.vertices])
  # Join per material; all variants share GPU materials and the cloth texture.
  for mat in M:
   objs=[o for o in root.children if o.type=='MESH'and o.get('kind')==mat]
@@ -301,7 +342,7 @@ for index,cfg in enumerate(CONFIGS,1):
 for root in ROOTS.values():
  for obj in root.children:
   if obj.type=='MESH':obj.data.validate(clean_customdata=False)
-# Three local-space shape keys per near mesh; distant LODs remain static.
+# Three local-space idle shape keys per near mesh. Eight walking keys on both LODs.
 # Head motion rotates around the base of the skull with a soft neck blend.
 # Breathing changes the upper rib cage by only 2 mm; pelvis/feet never move.
 for name,root in ROOTS.items():
@@ -325,8 +366,64 @@ for name,root in ROOTS.items():
       world.y-=.0020*vertical*lateral;world.x+=.0012*vertical*(1 if world.x>0 else -1)
     key.data[i].co=o.matrix_local.inverted()@world
 
+
+# A one-metre-per-second commuter stride: 1.1 metres per complete left/right
+# cycle. During the 60% stance interval each sole moves backwards by exactly
+# 0.66 m relative to its root, cancelling forward root travel. During swing
+# the foot lifts 9 cm, returning smoothly to the next contact. Two-bone IK
+# preserves limb lengths instead of translating a rigid person up and down.
+WALK_SAMPLES=8;WALK_STRIDE=1.1
+
+def gait_matrices(rig,phase,phone=False):
+ bob=-.060+.010*math.cos(phase*4*math.pi)
+ body=Matrix.Translation((.006*math.sin(phase*2*math.pi),0,bob));result={'body':body}
+ for side,offset in [('L',0),('R',.5)]:
+  p=(phase+offset)%1
+  if p<.6:forward=.33-WALK_STRIDE*p;lift=0
+  else:
+   swing=(p-.6)/.4;ease=swing*swing*(3-2*swing)
+   forward=-.33+.66*ease;lift=.09*math.sin(math.pi*swing)
+  hip=rig['hip_'+side];knee=rig['knee_'+side];ankle=rig['ankle_'+side]
+  target_hip=body@hip;target_ankle=ankle+Vector((0,-forward,lift))
+  upper=(knee-hip).length;lower=(ankle-knee).length
+  direction=(target_ankle-target_hip).normalized();distance=min((target_ankle-target_hip).length,upper+lower-.0001)
+  along=(upper*upper-lower*lower+distance*distance)/(2*distance)
+  outward=Vector((0,-1,0));outward=(outward-direction*outward.dot(direction)).normalized()
+  target_knee=target_hip+direction*along+outward*math.sqrt(max(0,upper*upper-along*along))
+  result['thigh_'+side]=Matrix.Translation(target_hip)@(knee-hip).rotation_difference(target_knee-target_hip).to_matrix().to_4x4()@Matrix.Translation(-hip)
+  result['shin_'+side]=Matrix.Translation(target_knee)@(ankle-knee).rotation_difference(target_ankle-target_knee).to_matrix().to_4x4()@Matrix.Translation(-knee)
+  result['foot_'+side]=Matrix.Translation(target_ankle-ankle)
+  shoulder=rig['shoulder_'+side]
+  swing=math.radians(2 if phone and side=='L' else 9)*math.cos(p*2*math.pi)
+  result['arm_'+side]=body@Matrix.Translation(shoulder)@Matrix.Rotation(swing,4,'X')@Matrix.Translation(-shoulder)
+ return result
+
+for name,root in ROOTS.items():
+ base_name=name.removesuffix('_low');cfg=CONFIGS[int(base_name[-2:])-1];rig=GAIT_RIGS[base_name]
+ root['walk_stride_metres']=WALK_STRIDE;root['walk_forward_axis']='+Z glTF / -Y Blender';root['walk_samples']=WALK_SAMPLES
+ for o in root.children:
+  if o.type!='MESH':continue
+  basis=o.data.shape_keys.key_blocks['Basis'] if o.data.shape_keys else o.shape_key_add(name='Basis')
+  group_names={g.index:g.name.removeprefix('gait_') for g in o.vertex_groups}
+  weights=[[(group_names[g.group],g.weight) for g in v.groups if g.group in group_names] for v in o.data.vertices]
+  world_basis=[o.matrix_local@v.co for v in basis.data];inverse=o.matrix_local.inverted()
+  for sample in range(WALK_SAMPLES):
+   key=o.shape_key_add(name=f'walk_{sample}');transforms=gait_matrices(rig,sample/WALK_SAMPLES,cfg['pose']=='phone')
+   for i,world in enumerate(world_basis):
+    row=weights[i];total=sum(w for _,w in row)
+    posed=sum((transforms[region]@world*w for region,w in row),Vector())/total if total else transforms['body']@world
+    key.data[i].co=inverse@posed
+
+
+# Blender may initialise new shape-key values to one. Ship the neutral pose;
+# the runtime supplies either idle or walking weights for each instance.
+for root in ROOTS.values():
+ for o in root.children:
+  if o.type=='MESH' and o.data.shape_keys:
+   for key in o.data.shape_keys.key_blocks:key.value=0
+
 # Shipping roots overlap intentionally. Source review spacing is applied AFTER export.
-bpy.ops.object.select_all(action='SELECT');bpy.ops.export_scene.gltf(filepath=os.path.join(ROOT,'public/models/passengers/commuters.glb'),export_format='GLB',use_selection=True,export_yup=True,export_animations=False,export_cameras=False,export_lights=False,export_extras=True)
+bpy.ops.object.select_all(action='SELECT');bpy.ops.export_scene.gltf(filepath=os.path.join(ROOT,'public/models/passengers/commuters.glb'),export_format='GLB',use_selection=True,export_yup=True,export_animations=False,export_morph_normal=False,export_cameras=False,export_lights=False,export_extras=True)
 for name,root in ROOTS.items():
  if name.endswith('_low'):
   for o in root.children:o.hide_render=True
@@ -338,4 +435,6 @@ bpy.ops.mesh.primitive_plane_add(size=200);bpy.context.object.data.materials.app
 for pos,energy,size in [((-4,-5,7),1800,5),((4,2,5),1300,4)]:
  bpy.ops.object.light_add(type='AREA',location=pos);o=bpy.context.object;o.data.energy=energy;o.data.shape='DISK';o.data.size=size;o.rotation_euler=(Vector((0,0,1))-o.location).to_track_quat('-Z','Y').to_euler()
 bpy.ops.object.camera_add(location=(2.3,-10,2.5));cam=bpy.context.object;cam.rotation_euler=(Vector((0,0,.92))-cam.location).to_track_quat('-Z','Y').to_euler();cam.data.type='ORTHO';cam.data.ortho_scale=5.3;scene=bpy.context.scene;scene.camera=cam;scene.render.engine='CYCLES';scene.cycles.samples=32;scene.cycles.use_denoising=False;scene.render.threads_mode='FIXED';scene.render.threads=4;scene.render.resolution_x=1600;scene.render.resolution_y=880;scene.render.resolution_percentage=100;scene.view_settings.view_transform='AgX';scene.render.image_settings.file_format='PNG';scene.render.filepath='/tmp/passengers-lineup.png'
-bpy.ops.wm.save_as_mainfile(filepath=os.path.join(SRC,'commuters.blend'));bpy.ops.render.render(write_still=True);print('PASSENGERS_READY')
+bpy.ops.wm.save_as_mainfile(filepath=os.path.join(SRC,'commuters.blend'))
+if not os.environ.get('PASSENGERS_SKIP_RENDER'):bpy.ops.render.render(write_still=True)
+print('PASSENGERS_READY',flush=True)

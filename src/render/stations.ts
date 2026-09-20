@@ -2,6 +2,8 @@ import * as T from 'three/webgpu';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { labelTexture, surfaceTexture } from './materials';
 import { applyBoxSurfaceUV } from './surface-uv';
+import {platformInboardShift} from './platform-layout';
+import { southernCrossConcourse } from './station-concourse';
 
 type Station={name:string;code:string;underground:boolean;color:string};
 // Authored architectural cues, not a survey of any operational platform.
@@ -64,7 +66,8 @@ export function stationArchitecture(group:T.Group,station:Station,index:number,b
         group.add(new T.Mesh(bg,new T.MeshStandardMaterial({color:'#343d3c',roughness:1,side:T.DoubleSide})));
       }
       // Complete the short floor between the platform slab and headwall.
-      box(central?9:6,1.1,2.6,central?6.75:5.25,.5,side*101.2);
+      const edgeShift=platformInboardShift(station.code);
+      box((central?9:6)+edgeShift,1.1,2.6,(central?6.75:5.25)-edgeShift/2,.5,side*101.2);
     }
     const entryAt=(z:number)=>!central&&(Math.abs(z+50)<3.2||Math.abs(z-45)<3.2);
     const slices=Array.from(new Set([...Array.from({length:69},(_,i)=>-102+i*3),-53.2,-46.8,41.8,48.2])).sort((a,b)=>a-b);
@@ -151,6 +154,7 @@ export function stationArchitecture(group:T.Group,station:Station,index:number,b
       const start=new T.Vector3(x,9.6,z),end=new T.Vector3(x,roofHeight(x+20,z+side*5)-.35,z+side*5);
       parts.push(new T.TubeGeometry(new T.LineCurve3(start,end),4,.16,6,false));
     }
+    southernCrossConcourse(group);
     // Adjacent platform roads establish the station's broad rail hall.
     const running:T.BufferGeometry[]=[],sleepers:T.BufferGeometry[]=[];
     for(const x of [-14,-28,-42,-56]){

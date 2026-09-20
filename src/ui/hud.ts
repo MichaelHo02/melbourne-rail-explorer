@@ -1,7 +1,6 @@
 import { STATIONS, ROUTE_LENGTH, ROUTE_MAP, positionAt, speedLimitAt } from '../data/route';
 import type { Simulation } from '../game/simulation';
 import type { View } from '../render/renderer';
-import { TRAFFIC_METADATA } from '../game/traffic';
 import { stoppingDistance } from '../game/motion';
 
 const icon=(name:string)=>{
@@ -17,13 +16,20 @@ const icon=(name:string)=>{
   };
   return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${shapes[name]??shapes.train}</svg>`;
 };
+
+// Printed instrument faces use game speed and controller demand, not pressure telemetry.
+const dialTicks=(maximum:number)=>Array.from({length:13},(_,i)=>{
+  const a=(135+i*22.5)*Math.PI/180,major=i%3===0;
+  return `<line x1="${64+Math.cos(a)*(major?47:51)}" y1="${64+Math.sin(a)*(major?47:51)}" x2="${64+Math.cos(a)*56}" y2="${64+Math.sin(a)*56}"/>${major?`<text x="${64+Math.cos(a)*39}" y="${67+Math.sin(a)*39}">${i/12*maximum}</text>`:''}`;
+}).join('');
+
 export interface Actions{start:()=>void;resume:()=>void;restart:()=>void;pause:()=>void;view:()=>void;sound:()=>void;doors:()=>void;controller:(n:number)=>void;emergency:()=>void}
 export class HUD {
   private root:HTMLElement;private dialog:'map'|'help'|null=null;private lastPhase='';private lastDistance:number=STATIONS[0].distance;
   private byId=(id:string)=>this.root.querySelector<HTMLElement>(`#${id}`)!;
   constructor(root:HTMLElement,private actions:Actions,hasSave:boolean){
     this.root=root;root.innerHTML=`
-    <header class="topbar"><a class="brand" href="/" aria-label="Melbourne Rail Explorer home"><span class="brand-icon">${icon('train')}</span><span>Melbourne<span class="brand-sub">Rail Explorer</span></span></a>
+    <header class="topbar"><a class="brand" href="/" aria-label="Melbourne Rail Explorer home"><span class="brand-icon"><img src="/brand/melbourne-rail-explorer.png" alt="" width="62" height="62"/></span><span>Melbourne<span class="brand-sub">Rail Explorer</span></span></a>
       <div class="session-tag"><span class="live-dot"></span>City Loop <span class="separator">|</span><span id="mode-label">Driver simulator</span></div>
       <nav aria-label="Game controls"><button id="map-btn" class="icon-button" aria-label="Route map" title="Route map · M">${icon('map')}</button><button id="view-btn" class="icon-button" aria-label="Change camera" title="Change camera · C">${icon('camera')}</button><button id="sound-btn" class="icon-button muted" aria-label="Enable sound" aria-pressed="false" title="Sound">${icon('sound')}</button><button id="help-btn" class="icon-button" aria-label="Controls and information" title="Controls and information">${icon('help')}</button><button id="pause-btn" class="icon-button" aria-label="Pause" title="Pause · Esc">${icon('pause')}</button></nav>
     </header>
@@ -39,12 +45,31 @@ export class HUD {
       <div class="next-stop"><span class="eyebrow">NEXT STATION</span><h2 id="station-name">Southern Cross</h2><div><span id="station-distance">—</span><span class="next-dot">•</span><span id="station-instruction">Departure</span></div><div id="stop-guide" class="stop-guide" hidden><span>TRAINING ASSIST</span><strong id="stop-guidance"></strong><div id="stop-scale" class="stop-scale" aria-hidden="true"><i></i><b id="stop-prediction"></b></div><small id="stop-guide-detail"></small></div></div>
       <div class="journey-strip" id="journey-strip">${STATIONS.slice(0,-1).map((s,i)=>`<span class="journey-stop" data-index="${i}"><i></i>${s.short}</span>`).join('')}</div>
       <div id="message" class="driver-message" role="status"></div><div id="announcement" class="announcement" role="status" hidden><span>SERVICE INFORMATION</span><p id="announcement-text"></p></div>
-      <div class="dashboard"><div class="instrument-display"><span class="instrument-title">DRIVING DISPLAY</span><div class="speed-display"><svg class="speed-dial" viewBox="0 0 160 110" aria-hidden="true"><path d="M25 88 A61 61 0 1 1 135 88" fill="none" stroke="#71858e" stroke-width="2"/>${Array.from({length:9},(_,i)=>{const a=(-210+i*30)*Math.PI/180;return `<line x1="${80+Math.cos(a)*55}" y1="${62+Math.sin(a)*55}" x2="${80+Math.cos(a)*61}" y2="${62+Math.sin(a)*61}" stroke="#b9ced3" stroke-width="2"/>`;}).join('')}<path id="speed-needle" d="M80 62L31 90" stroke="#edf4f2" stroke-width="2"/><text x="12" y="106">0</text><text x="75" y="15">40</text><text x="133" y="106">80</text></svg><div><span id="speed">0</span><small>km/h</small></div><div class="speed-scale"><span id="speed-fill"></span></div></div></div>
-        <div class="limit-block"><span class="limit" id="speed-limit">50</span><small>LIMIT</small></div>
-        <div class="controller"><div class="train-status"><span id="traction-status">DOOR INTERLOCK</span><span class="formation" id="formation" aria-label="Seven-car door status"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div><div class="controller-label"><span>MASTER CONTROLLER</span><strong id="controller-state">COAST</strong></div><input id="controller" type="range" min="-4" max="4" step="1" value="0" aria-label="Train controller: brake to power"/><div class="controller-ends"><span>BRAKE <kbd>S</kbd></span><span>COAST</span><span><kbd>W</kbd> POWER</span></div></div>
-        <button id="doors-btn" class="door-button">${icon('door')}<span id="doors-label">Close doors</span><kbd>D</kbd></button>
-        <button id="emergency-btn" class="emergency-button" aria-label="Emergency brake" title="Emergency brake · Space"><span>!</span><small>EMERGENCY</small></button>
-      </div><div class="drive-footer"><span id="view-label">CAB VIEW</span><span><span class="traffic-label">TIMETABLE · 19 SEP 2026</span><i></i> HCMT · 7 CARS <i></i> <span id="clock">06:42:00</span></span></div>
+      <section class="dashboard" aria-label="Driving desk">
+        <div class="desk-fascia" aria-hidden="true"></div>
+        <div class="master-controller">
+          <label class="desk-label" for="controller">POWER / BRAKE</label>
+          <div class="controller-plate" id="controller-plate">
+            <div class="lever-scale" aria-hidden="true"><span>BRAKE <kbd>S</kbd></span><span>COAST</span><span>POWER <kbd>W</kbd></span></div>
+            <div class="lever-slot" aria-hidden="true"></div><div class="controller-handle" aria-hidden="true"><i></i></div>
+            <input id="controller" type="range" min="-4" max="4" step="1" value="0" aria-label="Train controller: brake to power" aria-valuetext="Coast"/>
+          </div>
+          <strong id="controller-state" class="controller-readout">COAST</strong>
+        </div>
+        <div class="instrument-cluster">
+          <div class="speed-instrument">
+            <svg class="speed-dial" viewBox="0 0 128 128" aria-hidden="true"><circle class="dial-face" cx="64" cy="64" r="59"/><g class="dial-marks">${dialTicks(80)}</g><text class="dial-unit" x="64" y="47">km/h</text><path id="speed-needle" d="M69 59L30 98L59 69Z"/><circle class="needle-pivot" cx="64" cy="64" r="5"/></svg>
+            <span id="speed" class="speed-readout" aria-label="Speed in kilometres per hour">0</span>
+          </div>
+          <div class="effort-instrument">
+            <svg class="effort-dial" viewBox="0 0 128 128" aria-hidden="true"><circle class="dial-face" cx="64" cy="64" r="59"/><g class="dial-marks">${dialTicks(100)}</g><path id="effort-needle" d="M68 60L31 97L60 68Z"/><circle class="needle-pivot" cx="64" cy="64" r="5"/></svg>
+            <span id="effort-label" class="effort-label">EFFORT</span><span class="effort-readout"><b id="effort-value">0</b><small>% DEMAND</small></span>
+          </div>
+          <div class="cab-indicators"><div class="train-status" id="train-status"><i aria-hidden="true"></i><span id="traction-status">DOOR INTERLOCK</span></div><span class="cab-limit">LIMIT <strong id="speed-limit">50</strong><small>km/h</small></span></div>
+        </div>
+        <div class="door-control"><span class="desk-label">PASSENGER DOORS</span><button id="doors-btn" class="door-button"><span class="door-lens">${icon('door')}</span><span id="doors-label">Close doors</span><kbd>D</kbd></button></div>
+        <button id="emergency-btn" class="emergency-button" aria-label="Emergency brake" title="Emergency brake · Space" aria-pressed="false"><span class="emergency-mount"><span class="emergency-cap">STOP</span></span><span class="emergency-label">EMERGENCY<br>BRAKE</span><kbd>SPACE</kbd></button>
+      </section>
     </main>
     <aside id="drawer" class="drawer" hidden><div class="drawer-heading"><span id="drawer-title">The City Loop</span><button id="close-drawer" class="icon-button" aria-label="Close panel">${icon('close')}</button></div><div id="drawer-content"></div></aside>
     <section id="pause-overlay" class="modal-overlay" hidden><div class="modal"><span class="eyebrow">City Loop · Driver training</span><h2>Service paused</h2><p>Resume your service when ready.</p><button id="continue-btn" class="primary">Back to the cab ${icon('arrow')}</button><button id="restart-btn" class="secondary">Restart service</button></div></section>
@@ -75,7 +100,7 @@ export class HUD {
     const pt=(p:{x:number;z:number})=>`${(p.x+1500)/8+15},${(p.z+1150)/8+12}`;
     return `<p class="panel-intro">City Loop · All stations<br>Flinders Street to Flinders Street</p><svg class="route-map" viewBox="0 0 360 270" role="img" aria-label="City Loop route with five station stops"><path d="M0 232 Q120 230 210 248 T360 218" fill="none" stroke="#8fa8ab" stroke-width="14" opacity=".35"/><polyline points="${ROUTE_MAP.map(pt).join(' ')}" fill="none" stroke="#0072ce" stroke-width="3"/>${STATIONS.slice(0,-1).map(s=>{const [x,y]=pt(positionAt(s.distance)).split(',').map(Number);return `<circle cx="${x}" cy="${y}" r="5" fill="#ffffff" stroke="#0072ce" stroke-width="2"/><text x="${x+9}" y="${y-9}" font-size="8" fill="#071c39">${s.short}</text>`;}).join('')}<circle id="train-map-dot" r="5" fill="#071c39" stroke="white" stroke-width="2"/></svg><div class="station-list">${STATIONS.map((s,i)=>`<div><span>${String(i+1).padStart(2,'0')}</span><strong>${s.name}</strong><small>${s.underground?'Underground':'Surface'}</small></div>`).join('')}</div><p class="map-note">Approximate training alignment · ${(ROUTE_LENGTH/1000).toFixed(1)} km</p>`;
   }
-  update(sim:Simulation,view:View){
+  update(sim:Simulation,_view:View){
     const s=sim.state,station=STATIONS[s.nextStation],menu=s.phase==='ready';
     this.lastDistance=s.distance;
     if(this.lastPhase!==s.phase){
@@ -91,16 +116,21 @@ export class HUD {
       this.lastPhase=s.phase;
     }
     this.byId('speed').textContent=String(Math.round(s.speed*3.6));
-    this.byId('speed-needle').setAttribute('transform',`rotate(${Math.min(80,s.speed*3.6)*3} 80 62)`);
+    this.byId('speed-needle').setAttribute('transform',`rotate(${Math.min(80,s.speed*3.6)*3.375} 64 64)`);
     this.byId('traction-status').textContent=s.emergency?'EMERGENCY BRAKE':s.doors?'DOOR INTERLOCK':s.controller>0?'TRACTION ENABLED':s.controller<0?'SERVICE BRAKE':'DOORS SECURED';
-    this.byId('formation').classList.toggle('doors-open',s.doors);
-    this.byId('traction-status').classList.toggle('warning',s.doors||s.emergency);this.byId('speed-fill').style.width=`${Math.min(100,s.speed*3.6/80*100)}%`;
+    this.byId('train-status').classList.toggle('warning',s.doors||s.emergency);
+    // Door interlock inhibits traction, not the driver's brake demand or emergency latch.
+    const demand=s.emergency?100:s.doors&&s.controller>0?0:Math.abs(s.controller)*25;
+    this.byId('effort-value').textContent=String(demand);
+    this.byId('effort-label').textContent=s.emergency||s.controller<0?'BRAKE':s.controller>0?'POWER':'EFFORT';
+    this.byId('effort-needle').setAttribute('transform',`rotate(${demand*2.7} 64 64)`);
+    this.byId('controller-plate').style.setProperty('--handle-offset',`${(s.controller+4)*10.5}px`);
+    this.byId('emergency-btn').setAttribute('aria-pressed',String(s.emergency));
     this.byId('speed').classList.toggle('overspeed',s.speed*3.6>speedLimitAt(s.distance)+2);this.byId('speed-limit').textContent=String(speedLimitAt(s.distance));
     this.byId('controller-state').textContent=s.emergency?'EMERGENCY':s.controller===0?'COAST':s.controller>0?`POWER ${s.controller}`:`BRAKE ${-s.controller}`;
-    (this.byId('controller') as HTMLInputElement).value=String(s.controller);
+    const controller=this.byId('controller') as HTMLInputElement;
+    controller.value=String(s.controller);controller.setAttribute('aria-valuetext',this.byId('controller-state').textContent??'Coast');
     this.byId('doors-label').textContent=s.doors?(s.dwell>=8?'Close doors':`Boarding ${Math.ceil(8-s.dwell)}s`):'Open doors';this.byId('doors-btn').classList.toggle('open',s.doors);
-    this.byId('view-label').textContent=view==='cab'?'CAB VIEW':'EXTERIOR VIEW';
-    const seconds=TRAFFIC_METADATA.startSeconds+Math.floor(s.time);this.byId('clock').textContent=[Math.floor(seconds/3600)%24,Math.floor(seconds/60)%60,seconds%60].map(n=>String(n).padStart(2,'0')).join(':');
     this.byId('message').textContent=sim.message;
     if(station){
       const distance=station.distance-s.distance;
