@@ -2,6 +2,8 @@ import * as T from 'three/webgpu';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { labelTexture } from './materials';
 import {platformInboardShift} from './platform-layout';
+import {stationFinish} from './station-materials';
+import {applyBoxSurfaceUV} from './surface-uv';
 
 /** Fittings referenced to photographs; dimensions are authored, not surveyed. */
 export function stationDetails(group:T.Group,code:string,name:string){
@@ -17,7 +19,7 @@ export function stationDetails(group:T.Group,code:string,name:string){
   };
   const batches=new Map<T.Material,T.BufferGeometry[]>();
   function put(g:T.BufferGeometry,mat:T.Material){const batch=batches.get(mat)??[];batch.push(g);batches.set(mat,batch);}
-  function box(w:number,h:number,d:number,x:number,y:number,z:number,mat:T.Material){const g=new T.BoxGeometry(w,h,d,1,1,Math.max(1,Math.ceil(d/3)));g.translate(x,y,z);put(g,mat);}
+  function box(w:number,h:number,d:number,x:number,y:number,z:number,mat:T.Material){const g=new T.BoxGeometry(w,h,d,1,1,Math.max(1,Math.ceil(d/3)));applyBoxSurfaceUV(g,mat);g.translate(x,y,z);put(g,mat);}
   function pipe(points:T.Vector3[],r:number,mat:T.Material){put(new T.TubeGeometry(new T.CatmullRomCurve3(points),12,r,5,false),mat);}
   function sign(text:string,w:number,h:number,x:number,y:number,z:number,bg='#0067ae',fg='#fff',rotation=-Math.PI/2){
     const m=new T.Mesh(new T.PlaneGeometry(w,h),new T.MeshBasicMaterial({map:labelTexture(text,bg,fg,Math.round(w*160),Math.round(h*160)),side:T.DoubleSide}));
@@ -28,12 +30,37 @@ export function stationDetails(group:T.Group,code:string,name:string){
   // lights or per-fixture draw calls are introduced.
   const diffuser=new T.MeshStandardMaterial({color:'#ecf2e9',emissive:'#ddebdc',emissiveIntensity:1.6,roughness:.5});
   if(!surface){
-    for(const x of code==='MCE'?[3.8,9.5]:[3.8,6.5]){
+    if(code==='PAR'){
+      // Photo-derived service hierarchy, with authored dimensions: a broad
+      // perforated underside, deep side channels and discrete light modules.
+      // It sits above the platform only, clear of the train/pantograph envelope.
+      const perforated=stationFinish(code,'perforated');
+      box(1.72,.18,198,5.10,5.34,0,perforated);
+      for(const x of [4.22,5.98])box(.10,.26,198,x,5.36,0,materials.steel);
+      for(let z=-96;z<=96;z+=4){
+        box(1.72,.035,.07,5.10,5.23,z,materials.steel);
+        box(.34,.065,1.36,4.92,5.20,z+1.05,materials.dark);
+        box(.25,.025,1.24,4.92,5.153,z+1.05,diffuser);
+      }
+      // Wall-top illumination is visible as a fitting, using existing lights.
+      for(const [a,b] of [[-99,-53.2],[-46.8,41.8],[48.2,99]])box(.055,.025,b-a,7.89,3.28,(a+b)/2,diffuser);
+    }
+    for(const x of code==='PAR'?[]:code==='MCE'?[3.8,9.5]:[3.8,6.5]){
       const y=code==='MCE'?6.03:3+3.1*Math.sqrt(1-((x-2.5)/6.5)**2)-.12;
       box(.31,.10,198,x,y,0,materials.dark);
       for(let z=-96;z<=96;z+=6){
         box(.20,.035,5.84,x,y-.055,z,diffuser);
         box(.32,.025,.09,x,y-.075,z+2.96,materials.steel);
+      }
+    }
+    if(code==='MCE'){
+      // Perforated longitudinal soffit bays accompany the folded side panels;
+      // the holes are a shared texture, not thousands of tiny mesh instances.
+      const perforated=stationFinish(code,'perforated');
+      for(const x of [5.2,9.5]){
+        box(1.2,.06,198,x,6.09,0,perforated);
+        for(const edge of [-.63,.63])box(.045,.085,198,x+edge,6.065,0,materials.steel);
+        for(let z=-96;z<=96;z+=3)box(1.2,.025,.045,x,6.045,z,materials.steel);
       }
     }
     // A narrow stainless wall base and horizontal panel division provide
@@ -70,6 +97,28 @@ export function stationDetails(group:T.Group,code:string,name:string){
   const bump=new T.CanvasTexture(c);bump.wrapS=bump.wrapT=T.RepeatWrapping;bump.repeat.set(1,198/.4);bump.anisotropy=8;
   const tactile=new T.Mesh(new T.PlaneGeometry(.4,198,1,100),new T.MeshStandardMaterial({color:heritage?'#c8b886':'#c8a253',bumpMap:bump,bumpScale:.008,roughness:.92}));
   tactile.rotation.x=-Math.PI/2;tactile.position.set(2.56-edgeShift,1.085,0);group.add(tactile);
+  if(code==='PAR'){
+    // Photo-inspired triangular paving border stays wholly inland of the
+    // existing tactile strip: no coping, boarding edge or safety-strip move.
+    const canvas=document.createElement('canvas');canvas.width=128;canvas.height=256;
+    const ctx=canvas.getContext('2d')!;ctx.fillStyle='#c7c4b5';ctx.fillRect(0,0,128,256);
+    ctx.fillStyle='#4f5d58';ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(128,128);ctx.lineTo(0,256);ctx.closePath();ctx.fill();
+    const map=new T.CanvasTexture(canvas);map.colorSpace=T.SRGBColorSpace;map.wrapS=map.wrapT=T.RepeatWrapping;map.repeat.set(1,198/.6);map.anisotropy=8;
+    const strip=new T.Mesh(new T.PlaneGeometry(.28,198,1,66),new T.MeshStandardMaterial({map,roughness:.56}));
+    strip.rotation.x=-Math.PI/2;strip.position.set(2.96-edgeShift,1.079,0);strip.receiveShadow=true;group.add(strip);
+  }
+  if(code==='FGS'){
+    // Shallow framed service bays beside the already-authored passages. The
+    // 2023 works photo supports wall tiles/metal doors, not an exposed vault.
+    for(const z of [-43,52]){
+      box(.045,2.20,1.65,7.967,2.17,z,materials.dark);
+      for(const dz of [-.81,.81])box(.06,2.20,.045,7.93,2.17,z+dz,materials.steel);
+      for(const y of [1.09,3.25])box(.06,.045,1.66,7.93,y,z,materials.steel);
+      box(.045,2.08,1.50,7.925,2.16,z,materials.steel);
+      box(.02,2.02,.018,7.894,2.16,z,materials.dark);
+      for(const dz of [-.10,.10])box(.045,.18,.023,7.885,2.06,z+dz,materials.dark);
+    }
+  }
   if(heritage){
     for(let z=-90;z<=90;z+=20){
       box(.22,2.1,.22,6,2.1,z,materials.iron);box(.19,2.6,.19,6,4.4,z,materials.cream);
@@ -112,7 +161,8 @@ export function stationDetails(group:T.Group,code:string,name:string){
     if(!surface){
       const x=5.35,y=4.38;
       box(2.25,.92,.18,x,y,z,materials.dark);
-      const spineY=code==='MCE'?6.01:5.52;
+      const spineY=code==='MCE'?6.01:code==='PAR'?5.25:5.52;
+      if(code==='PAR')box(2.15,.055,.075,x,spineY,z,materials.steel);
       for(const dx of [-.82,.82])box(.04,spineY-(y+.46),.04,x+dx,(spineY+y+.46)/2,z,materials.steel);
       for(const [dz,rotation] of [[-.10,Math.PI],[.10,0]]){
         sign('City Loop',1.96,.27,x,y+.19,z+dz,'#101819','#f2f4ec',rotation);
@@ -120,8 +170,10 @@ export function stationDetails(group:T.Group,code:string,name:string){
       }
       // A single shallow equipment spine recalls the photographs' ventilation
       // and service panels. Slots are batched geometry, not separate objects.
-      box(1.18,.07,4.2,5.35,spineY,z,materials.steel);
-      for(let dz=-1.8;dz<=1.8;dz+=.16)box(.76,.014,.045,5.35,spineY-.045,z+dz,materials.dark);
+      if(code!=='PAR'){
+        box(1.18,.07,4.2,5.35,spineY,z,materials.steel);
+        for(let dz=-1.8;dz<=1.8;dz+=.16)box(.76,.014,.045,5.35,spineY-.045,z+dz,materials.dark);
+      }
     }else{
       const x=6.55,y=3.7;
       box(.18,2.7,.25,x,2.4,z,materials.iron);box(.21,1.18,2.85,x,y,z,materials.dark);

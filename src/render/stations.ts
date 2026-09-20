@@ -4,6 +4,7 @@ import { labelTexture, surfaceTexture } from './materials';
 import { applyBoxSurfaceUV } from './surface-uv';
 import {platformInboardShift} from './platform-layout';
 import { southernCrossConcourse } from './station-concourse';
+import {stationFinish} from './station-materials';
 
 type Station={name:string;code:string;underground:boolean;color:string};
 // Authored architectural cues, not a survey of any operational platform.
@@ -83,7 +84,9 @@ export function stationArchitecture(group:T.Group,station:Station,index:number,b
     const shell=new T.BufferGeometry();shell.setAttribute('position',new T.Float32BufferAttribute(points,3));shell.setAttribute('uv',new T.Float32BufferAttribute(uvs,2));shell.computeVertexNormals();group.add(new T.Mesh(shell,ceiling));
     const seams:T.BufferGeometry[]=[];
     for(let z=-102;z<=102;z+=3){const curve=new T.CatmullRomCurve3(Array.from({length:29},(_,k)=>{const p=cross(k/28);p.z=z;p.y-=.012;return p;}).filter(p=>!entryAt(z)||p.x<=7.8));seams.push(new T.TubeGeometry(curve,28,.012,3,false));}
-    for(let z=-99;z<=99;z+=1.6){const g=new T.BoxGeometry(.028,2.8,.026);g.translate(7.95,1.7,z);if(!central&&Math.abs(z+50)>3.3&&Math.abs(z-45)>3.3)seams.push(g);const left=g.clone();left.translate(-10.9,0,0);seams.push(left);}
+    // FGS tiles and PAR enamel panels carry their own fine joints. Heavy,
+    // identical vertical bars hid their different photographic wall finishes.
+    if(central)for(let z=-99;z<=99;z+=1.6){const g=new T.BoxGeometry(.028,2.8,.026);g.translate(-2.95,1.7,z);seams.push(g);}
     const seamsMesh=new T.Mesh(mergeGeometries(seams),joint);group.add(seamsMesh);seams.forEach(g=>g.dispose());
     // Longitudinal panel seams establish the scale of the metal soffit.
     for(const a of central?[.15,.29,.48,.68,.86]:[.13,.25,.38,.5,.62,.75,.87]){
@@ -95,7 +98,13 @@ export function stationArchitecture(group:T.Group,station:Station,index:number,b
     if(central)box(.15,.12,204,7.65,3.25,0);
     else for(const [a,b] of [[-102,-53.2],[-46.8,41.8],[48.2,102]])box(.15,.12,b-a,7.65,3.25,(a+b)/2);
     if(central){
-      for(let z=-88;z<=88;z+=22){box(.9,5.1,.9,7.8,3.5,z);box(3,.22,1.2,7.8,5.85,z);}
+      // The existing column/capital envelope is unchanged. Narrow vertical
+      // cream tiles distinguish the island hall from plain structural boxes.
+      const cladding=stationFinish(station.code,'column'),columns:T.BufferGeometry[]=[];
+      for(let z=-88;z<=88;z+=22)for(const [w,h,d,y] of [[.9,5.1,.9,3.5],[3,.22,1.2,5.85]]){
+        const g=new T.BoxGeometry(w,h,d);applyBoxSurfaceUV(g,cladding);g.translate(7.8,y,z);columns.push(g);
+      }
+      const tiled=new T.Mesh(mergeGeometries(columns),cladding);tiled.castShadow=true;tiled.receiveShadow=true;group.add(tiled);columns.forEach(g=>g.dispose());
       const wall=new T.Mesh(new T.BoxGeometry(.5,6,204,1,1,68),new T.MeshStandardMaterial({color:'#494b47',roughness:.6,metalness:.3}));wall.position.set(14.7,3,0);group.add(wall);
       const railMat=new T.MeshStandardMaterial({color:'#8f9894',metalness:.8,roughness:.32});
       for(const x of [12.2,13.8]){const rail=new T.Mesh(new T.BoxGeometry(.08,.15,204,1,1,68),railMat);rail.position.set(x,.22,0);group.add(rail);}

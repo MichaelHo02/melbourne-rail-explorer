@@ -1,46 +1,84 @@
 import {describe,it,expect,vi} from 'vitest';
-import {CameraLook,CAB_YAW_LIMIT,DEFAULT_ORBIT,cameraConfined,drivingCameraPose,inspectionLookTarget} from '../src/render/camera-look';
+import {PerspectiveCamera,Vector3} from 'three/webgpu';
+import {CameraLook,CAB_YAW_LIMIT,cabCameraPose,doorCheckCameraPose,gameplayCameraView,developmentInspectionView,inspectionLookTarget} from '../src/render/camera-look';
 import {CameraDragInput} from '../src/render/camera-input';
-import {positionAt,tangentAt,ROUTE_LENGTH} from '../src/data/route';
+import {positionAt,STATIONS} from '../src/data/route';
+import {Simulation,type TrainState} from '../src/game/simulation';
+import {platformPosition} from '../src/render/passenger-motion';
+import {CAB_TO_CAR_CENTRE} from '../src/render/train-layout';
 
-describe('train camera look',()=>{
-  it('keeps cab head turns within seated limits and restores each view independently',()=>{
-    const look=new CameraLook();look.drag('cab',5,-5,false);
+describe('cab head look',()=>{
+  it('keeps head turns within seated limits and recentres without changing simulation state',()=>{
+    const sim=new Simulation(),before=sim.snapshot(),look=new CameraLook();look.drag(5,-5);
     expect(look.cab).toEqual({yaw:CAB_YAW_LIMIT,pitch:.55});
-    look.drag('chase',.4,-.2,false);const exterior={...look.chase};
-    look.reset('cab');expect(look.cab).toEqual({yaw:0,pitch:0});expect(look.chase).toEqual(exterior);
-    look.reset('chase');expect(look.chase).toEqual(DEFAULT_ORBIT);
-    look.drag('cab',NaN,1,false);expect(look.cab).toEqual({yaw:0,pitch:0});
+    look.reset();expect(look.cab).toEqual({yaw:0,pitch:0});
+    look.drag(NaN,1);expect(look.cab).toEqual({yaw:0,pitch:0});expect(sim.snapshot()).toEqual(before);
   });
-  it('turns from the same seated eye while preserving the route grade and follow position',()=>{
-    const distance=3300,straight=drivingCameraPose(distance,'cab',{yaw:0,pitch:0}),turned=drivingCameraPose(distance,'cab',{yaw:.7,pitch:.2});
+  it('turns from the same seated eye while preserving route grade and follow position',()=>{
+    const distance=3300,straight=cabCameraPose(distance,{yaw:0,pitch:0}),turned=cabCameraPose(distance,{yaw:.7,pitch:.2});
     expect(turned.position).toEqual(straight.position);expect(turned.target).not.toEqual(straight.target);
     const p=positionAt(distance);expect(straight.position).toEqual({x:p.x,y:p.y+2.85,z:p.z});
-    const next=drivingCameraPose(distance+30,'cab',{yaw:.7,pitch:.2});expect(next.position).not.toEqual(turned.position);
+    const next=cabCameraPose(distance+30,{yaw:.7,pitch:.2});expect(next.position).not.toEqual(turned.position);
     expect(Math.hypot(turned.target.x-turned.position.x,turned.target.y-turned.position.y,turned.target.z-turned.position.z)).toBeCloseTo(35);
   });
-  it('allows a complete surface orbit while keeping the camera above the train',()=>{
-    expect(cameraConfined(60)).toBe(false);
-    const a=drivingCameraPose(60,'chase',{yaw:0,pitch:-1}),b=drivingCameraPose(60,'chase',{yaw:Math.PI,pitch:-1}),p=positionAt(60),t=tangentAt(60);
-    expect((a.position.x-p.x)*t.x+(a.position.z-p.z)*t.z).toBeGreaterThan(35);
-    expect((b.position.x-p.x)*t.x+(b.position.z-p.z)*t.z).toBeLessThan(-35);
-    expect(a.position.y-p.y).toBeGreaterThan(8);
+});
+
+describe('automatic platform door check',()=>{
+  it('follows accepted door, dwell and pause transitions and returns to cab before departure',()=>{
+    const sim=new Simulation();sim.loadScenario('platform');
+    expect(gameplayCameraView(sim.state)).toBe('cab');
+    expect(sim.toggleDoors()).toBe(true);expect(gameplayCameraView(sim.state)).toBe('door-check');
+    expect(sim.toggleDoors()).toBe(false);expect(gameplayCameraView(sim.state)).toBe('door-check');
+    sim.pause();expect(gameplayCameraView(sim.state)).toBe('door-check');
+    sim.step(20);expect(sim.state.dwell).toBe(0);expect(sim.toggleDoors()).toBe(false);
+    sim.pause();sim.step(8);expect(gameplayCameraView(sim.state)).toBe('door-check');
+    expect(sim.toggleDoors()).toBe(true);expect(sim.state.speed).toBe(0);expect(gameplayCameraView(sim.state)).toBe('cab');
+    sim.setController(2);sim.step(.1);expect(sim.state.speed).toBeGreaterThan(0);expect(gameplayCameraView(sim.state)).toBe('cab');
   });
-  it('constrains underground orbit poses inside the authored bore and ahead of the nose',()=>{
-    let poses=0;
-    for(let distance=0;distance<ROUTE_LENGTH;distance+=150){
-      if(!cameraConfined(distance))continue;
-      for(const yaw of [-Math.PI,-1.25,0,1.25,Math.PI])for(const pitch of [-10,-.12,.24,.48,10]){
-        const pose=drivingCameraPose(distance,'chase',{yaw,pitch}),bounded=Math.max(-1.25,Math.min(1.25,yaw));
-        const cameraDistance=distance+3.3+6*Math.cos(bounded),anchor=positionAt(cameraDistance),t=tangentAt(cameraDistance),length=Math.hypot(t.x,t.z);
-        const across=(pose.position.x-anchor.x)*(-t.z/length)+(pose.position.z-anchor.z)*(t.x/length),height=pose.position.y-anchor.y;
-        expect((across/3.4)**2+((height-.9)/3.9)**2).toBeLessThan(.93);
-        expect(cameraDistance-distance).toBeGreaterThan(5);expect(height).toBeGreaterThan(2.2);expect(height).toBeLessThan(3.5);poses++;
+  it('shows the same fixed feed for an open-door paused save and resumed service',()=>{
+    const sim=new Simulation();sim.loadScenario('parliament');sim.state.dwell=3;
+    const pose=doorCheckCameraPose(sim.state),look=new CameraLook();look.drag(.2,-.1);const head={...look.cab};
+    expect(sim.restore(sim.snapshot())).toBe(true);expect(gameplayCameraView(sim.state)).toBe('door-check');
+    expect(doorCheckCameraPose(sim.state)).toEqual(pose);
+    sim.pause();sim.step(5);expect(doorCheckCameraPose(sim.state)).toEqual(pose);sim.toggleDoors();
+    expect(gameplayCameraView(sim.state)).toBe('cab');expect(look.cab).toEqual(head);
+  });
+  it.each([
+    {phase:'ready'},{phase:'complete'},{doors:false},{speed:.001},{speed:.05},{speed:5},
+    {distance:STATIONS[0].distance+8.01},{distance:STATIONS[0].distance-8.01},
+    {nextStation:STATIONS.length},{nextStation:-1},{dwell:-1},{dwell:9},{dwell:NaN},
+  ] as Partial<TrainState>[])('never offers a feed for an ineligible state: %j',change=>{
+    const sim=new Simulation();sim.start();Object.assign(sim.state,change);expect(gameplayCameraView(sim.state)).toBe('cab');
+  });
+  it('opens at the simulation stop threshold after door release normalizes the speed to zero',()=>{
+    const sim=new Simulation();sim.loadScenario('platform');sim.state.speed=.05;
+    expect(sim.toggleDoors()).toBe(true);expect(sim.state.speed).toBe(0);expect(gameplayCameraView(sim.state)).toBe('door-check');
+  });
+  it('frames the nearest boarding doorway above the desk on the correct platform side at every stop',()=>{
+    for(const [index,station] of STATIONS.entries())for(const offset of [-8,0,8]){
+      const sim=new Simulation();Object.assign(sim.state,{phase:'driving',distance:station.distance+offset,nextStation:index,doors:true,dwell:0});
+      expect(gameplayCameraView(sim.state)).toBe('door-check');
+      const pose=doorCheckCameraPose(sim.state),anchor=platformPosition(index,68+offset,0),edge=platformPosition(index,68+offset,1);
+      expect((pose.position.x-anchor.x)*(edge.x-anchor.x)+(pose.position.z-anchor.z)*(edge.z-anchor.z)).toBeCloseTo(4.8);
+      const camera=new PerspectiveCamera(60,1280/720,.08,12000);camera.position.copy(pose.position);camera.lookAt(new Vector3().copy(pose.target));camera.updateMatrixWorld();
+      // A first-car boarder starts in the platform lane and reaches a real door.
+      const doorAlong=65-CAB_TO_CAR_CENTRE-.57+offset;
+      for(const lateral of [1.5,3.3])for(const height of [0,1.7]){
+        const p=platformPosition(index,doorAlong,lateral),screen=new Vector3(p.x,p.y+height,p.z).project(camera);
+        expect(Math.abs(screen.x)).toBeLessThan(.85);expect(screen.y).toBeGreaterThan(-1/3);expect(screen.y).toBeLessThan(.6);expect(screen.z).toBeLessThan(1);
       }
     }
-    expect(poses).toBeGreaterThan(300);
   });
-  it('rotates fixed inspection views in place and resets their original sightline',()=>{
+});
+
+describe('development inspection cameras',()=>{
+  it('requires a development build, explicit scenario and known fixture',()=>{
+    expect(developmentInspectionView('?scene=platform&view=boarding',true)).toBe('boarding');
+    expect(developmentInspectionView('?scene=platform&view=boarding',false)).toBeNull();
+    expect(developmentInspectionView('?view=boarding',true)).toBeNull();
+    expect(developmentInspectionView('?scene=platform&view=outside',true)).toBeNull();
+  });
+  it('rotates authoring views in place and resets their original sightline',()=>{
     const origin={x:12,y:3,z:5},target={x:12,y:3,z:-15};
     expect(inspectionLookTarget(origin,target,{yaw:0,pitch:0})).toEqual(target);
     const right=inspectionLookTarget(origin,target,{yaw:Math.PI/2,pitch:0});

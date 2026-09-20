@@ -7,9 +7,9 @@ The generated file is retained without post-processing; the header controls its 
 
 ## Illustrated toolbar buttons
 
-Five original PNGs were generated individually using the built-in image-generation tool on 20 September 2026 and copied unchanged into `public/brand/buttons/`: `route.png`, `cab.png`, `outside.png`, `sound.png` and `guide.png`. Each is 1254 × 1254 with alpha. They share the game's navy/cyan/ivory/yellow palette and are displayed at 31–42 logical pixels alongside live HTML labels. Their empty alt text avoids duplicating each button's accessible name. The muted sound image is desaturated in CSS; the source image is unchanged.
+Five original PNGs were generated individually using the built-in image-generation tool on 20 September 2026 and copied unchanged into `public/brand/buttons/`: `route.png`, `cab.png`, `outside.png`, `sound.png` and `guide.png`. Each is 1254 × 1254 with alpha. They share the game's navy/cyan/ivory/yellow palette. Route, sound and guide are displayed at 31–42 logical pixels alongside live HTML labels; cab and outside are retained source assets from the removed camera selector. Their empty alt text avoids duplicating each button's accessible name. The muted sound image is desaturated in CSS; the source image is unchanged.
 
-These are game illustrations, not operator artwork or equipment specifications. The cab illustration is symbolic; the train pictogram does not replace the reference-modelled exterior asset. No user photographs are included. The Centre and Pause controls retain simple directional/pause glyphs where an illustration would obscure their familiar action.
+These are game illustrations, not operator artwork or equipment specifications. The cab illustration is symbolic; the train pictogram does not replace the reference-modelled exterior asset. No user photographs are included. The Pause control retains a simple pause glyph. Cab centring is available by double-clicking the scene; no camera-selector or Centre button is shown.
 
 ### Exact shared prompt
 

@@ -10,7 +10,8 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { SkyMesh } from 'three/addons/objects/SkyMesh.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { positionAt, tangentAt, ROUTE_LENGTH, STATIONS, project, isUnderground } from '../data/route';
-import { labelTexture, surfaceTexture, stationTileTexture } from './materials';
+import { labelTexture, surfaceTexture } from './materials';
+import {stationFinish} from './station-materials';
 import { createBuildingMaterial } from './building-materials';
 import { SurfaceLibrary } from './surface-library';
 import { CorridorScenery } from './corridor';
@@ -182,12 +183,12 @@ export class World {
     for(const [index,station] of STATIONS.entries()){
       const p=vector(positionAt(station.distance-65)),group=new T.Group();
       group.userData.center=p;group.userData.underground=station.underground;this.stations.add(group);
-      const platformMaterial=station.code==='SXS'?this.surfaces.asphalt:station.code==='FSS'?this.surfaces.paving:new T.MeshStandardMaterial({map:stationTileTexture(station.code),color:'#dddcd4',roughness:.76});
+      const platformMaterial=station.code==='SXS'?this.surfaces.asphalt:station.code==='FSS'?this.surfaces.paving:stationFinish(station.code,'floor');
       const edgeShift=platformInboardShift(station.code);
       this.box(group,(station.code==='MCE'?9:6)+edgeShift,1.1,200,(station.code==='MCE'?6.75:5.25)-edgeShift/2,.5,0,platformMaterial);
       this.box(group,.45,.03,198,2.48-edgeShift,1.065,0,yellow);
       this.box(group,.1,.09,198,2.21-edgeShift,.96,0,this.concrete);
-      const backMaterial=new T.MeshStandardMaterial({color:station.color,roughness:station.code==='PAR'?.36:.7,metalness:station.underground?.18:0});
+      const backMaterial=station.code==='PAR'||station.code==='FGS'?stationFinish(station.code,'wall'):new T.MeshStandardMaterial({color:station.color,roughness:.7,metalness:station.underground?.18:0});
       if(station.underground){
         if(station.code!=='MCE'){
           // Circulation openings meet the reference-based side vestibules.

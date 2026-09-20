@@ -125,7 +125,7 @@ describe('audio lifecycle',()=>{
       cameraInputAllowed=true;closePanel(){}ready(){}loading(){}update(){}setAnnouncement(){}setSound(){}
     }}));
     vi.doMock('../src/render/renderer',()=>({GameRenderer:class{
-      view='cab';render=render;setCameraInputEnabled(){}async loadCity(){}async startLoop(callback:(now:number)=>void){frame=callback;}
+      view='cab';render=render;clearInspection(){}setCameraInputEnabled(){}async loadCity(){}async startLoop(callback:(now:number)=>void){frame=callback;}
     }}));
     vi.stubGlobal('document',{querySelector:()=>({innerHTML:'',dataset:{},style:{setProperty:vi.fn()}}),addEventListener:vi.fn()});
     vi.stubGlobal('window',{addEventListener:vi.fn(),innerWidth:1280,innerHeight:720});vi.stubGlobal('location',{search:''});
@@ -162,7 +162,7 @@ describe('audio lifecycle',()=>{
       cameraInputAllowed=true;closePanel(){}ready(){}loading(){}update(){}setAnnouncement(){}setSound(){}
     }}));
     vi.doMock('../src/render/renderer',()=>({GameRenderer:class{
-      view='cab';render=render;setCameraInputEnabled(){}async loadCity(){}async startLoop(callback:(now:number)=>void){frame=callback;}
+      view='cab';render=render;clearInspection(){}setCameraInputEnabled(){}async loadCity(){}async startLoop(callback:(now:number)=>void){frame=callback;}
     }}));
     const documentStub={hidden:false,querySelector:()=>({innerHTML:'',dataset:{},style:{setProperty:vi.fn()}}),addEventListener:(name:string,callback:()=>void)=>documentEvents.set(name,callback)};
     vi.stubGlobal('document',documentStub);

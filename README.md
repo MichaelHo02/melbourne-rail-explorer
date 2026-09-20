@@ -29,16 +29,15 @@ There is no WebGL rendering path or reduced-quality mode. The production build r
 | S / Down | Move controller toward braking |
 | D | Open / close doors |
 | Space | Emergency brake |
-| C | Cab / exterior camera |
-| Drag the scene | Look around the cab / orbit outside |
-| Double-click scene / Centre | Reset the current view |
+| Drag the scene | Look around from the cab seat |
+| Double-click scene | Face forward in the cab |
 | M | Route map |
 | H | Horn (enable sound first) |
 | Escape | Pause / resume |
 
 The controller has four brake notches, coast, and four power notches. Stop within eight metres of the station marker to open doors. Boarding takes eight seconds. Doors lock out traction. Within 650 metres of the next stop, a training guide estimates the stopping point using the same physics and gradients as the train; it shows when to begin braking and whether the current brake setting stops short or beyond the marker. Pausing or leaving the tab saves progress locally; a new visit offers Continue saved service. No account or API key is needed for the included offline dataset.
 
-The wraparound desk includes state-driven annunciators, horn and sound controls, and a radio-style service display. The header and station progress line both open the route map. Camera dragging is disabled while map/help or pause surfaces are open. Cab turning is limited to the seated view; the outside camera uses a tighter envelope inside tunnels.
+Driving uses the seated cab view. Opening the doors while stopped at a station replaces the scene with a fixed platform camera for the door check; closing the doors returns immediately to the cab, retaining the last head position. The driving desk and its door buttons stay available throughout. The platform camera does not respond to dragging. Cab dragging is also disabled while map/help or pause surfaces are open. The desk includes state-driven annunciators, horn and door controls, and a service display; route map, sound, guide and pause actions are in the header.
 
 ## What is geographically grounded
 
@@ -72,7 +71,7 @@ npm run build        # Strict TypeScript + production bundle
 
 The automated browser harness is optional and uses installed Chrome. Final interactive visual verification is performed in the Codex in-app browser. Browser screenshots are written to ignored `artifacts/`; frame timings are environment-specific, not a hardware performance guarantee.
 
-Development builds expose `window.__RAIL_EXPLORER__` with `state()`, `metrics()`, `scenario(name)`, and validated `restore(state)`. Named scenarios: `departure`, `viaduct`, `approach`, `tunnel`, `platform` (Melbourne Central), `flagstaff`, `parliament`, `southern-cross`. `&view=platform` selects a platform inspection camera; `&view=entrance` checks underground circulation recesses and `&view=northbank` checks the mapped Batman Park edge. Scenario runs do not overwrite saved services. `/?scene=viaduct&view=viaduct` reviews the railway from the river bank; `/?scene=viaduct` reviews the cab. Alternatively open `/?scene=tunnel` in the development server. Debug hooks and query-driven scenarios are not exposed in production.
+Development builds expose `window.__RAIL_EXPLORER__` with `state()`, `metrics()`, `scenario(name)`, and validated `restore(state)`. Named scenarios: `departure`, `viaduct`, `approach`, `tunnel`, `platform` (Melbourne Central), `flagstaff`, `parliament`, `southern-cross`. `&view=platform` selects a development-only platform inspection camera; `&view=entrance` checks underground circulation recesses and `&view=northbank` checks the mapped Batman Park edge. Scenario runs do not overwrite saved services. `/?scene=viaduct&view=viaduct` reviews the railway from the river bank; `/?scene=viaduct` reviews the cab. Alternatively open `/?scene=tunnel` in the development server. Omit `view` when checking normal cab/automatic door-check behaviour: `/?scene=platform` starts stopped with doors closed; opening them selects the automatic feed. A named inspection `view` requires an explicit development `scene` and overrides normal camera mode until a new or saved service is started. Debug hooks and query-driven scenarios are not exposed in production.
 
 ## Refreshing building data
 

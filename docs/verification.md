@@ -1,3 +1,33 @@
+# Photo-inspired desk, automatic door check and underground finishes — 20 September 2026
+
+## Integrated scope
+
+The full driving desk now follows the supplied VLocity-style photographs: one charcoal fascia above a curved silver worktop, a tall annunciator grid, grouped instruments and switches, a low left-hand controller, and a pale radio-style terminal with handset. It remains an authored VLocity-photo interpretation beneath the HCMT-inspired exterior. Working controls are power/brake, separate door release and close, horn and emergency brake. Speed, power demand, brake demand, route speed limit, annunciators and service display follow accepted simulation state. The demand dials do not invent pneumatic-pressure readings. Auxiliary switches and radio hardware are noninteractive reference details.
+
+Normal driving uses the seated cab. Opening doors at a stopped station selects a fixed platform door-check camera; closing them restores the cab with its previous head angle. The desk remains available throughout. Door-check dragging is disabled, and the audio listener remains in the cab. The former camera selector and C shortcut are removed; route, sound, guide and pause remain in the header. Named inspection cameras require an explicit development scenario and are cleared when starting or restoring a player service. The interface retains one uniformly scaled 1280 × 720 composition, with a 240-pixel desk and letterboxing at other aspect ratios.
+
+The bounded underground identity pass adds Parliament's pale diagonal paving, inland triangular border, cobalt wall panels and broad perforated light/service spine; Melbourne Central's rectangular warm floor courses, tiled columns/capitals and soffit grilles; and Flagstaff's fine wall tiles and framed service bays. These are original procedural finishes based on documented photographs. No reference photograph pixels are shipped. Platform edges, track alignment, column envelopes and passenger paths are unchanged. Flagstaff's temporary exposed vault from the works photograph was not copied. The [fidelity plan](environment-fidelity-plan.md) records the source comparisons, accepted slice and remaining backlog.
+
+## Automated validation and review
+
+- The integrated implementation passed **124 tests across 16 files** before the final CSS-only removal of the redundant visible controller nameplate. Coverage includes accepted door/dwell/pause/save camera transitions, invalid feed states, development-only inspection gating, and boarding-door framing at all six station visits with ±8 m stopping offsets. Existing asset-based platform-clearance and audio lifecycle suites also passed.
+- A final `npm run build` after that CSS change passes strict TypeScript and Vite production bundling, including the native-WebGPU-only guard. Main application chunk: **2,373.31 KB**, **339.91 KB gzip**; stylesheet: **30.74 KB**, **8.23 KB gzip**. The existing large-chunk warning remains.
+- `git diff --check` passes. Bounded independent review and final integration inspection found no actionable defects in this scope. The optional automated Chrome harness was updated for automatic door checks but was not run; interactive evidence comes from the Codex in-app browser.
+
+## Visual evidence and limits
+
+Codex in-app browser checks exercised normal player mode at Melbourne Central: closed doors showed the cab; D opened them and selected the fixed door-check feed; dragging left that feed unchanged; closing after the dwell restored the cab and advanced the next stop to Parliament. Cab dragging changed yaw to 0.319 and pitch to -0.085, and double-click restored both to zero. All five station door-check views were visually reviewed with no blocking camera/geometry issue; surface-station detail remains in the backlog. Final captures include `artifacts/melbourne-central-door-check-final.png`, `southern-cross-door-check.png` and `flinders-street-door-check.png`. The final Melbourne Central capture includes the hidden redundant controller heading and has no warning/error logs.
+
+In the moving tunnel sample at 33 km/h, pressing C retained the cab and both door buttons were disabled; warning/error logs were empty. The capture is `artifacts/tunnel-cab-only.png`. A separate viaduct capture sampled zero speed and does not establish a moving corridor run.
+
+The three actual automatic door-check views were compared with the original station photographs. Parliament's panel rhythm, pale paving/border and service spine, Melbourne Central's tile courses/column cladding/grilles, and Flagstaff's fine tiles/service bays remain legible without obvious added intersections or texture seams. Parliament reflections remain restrained relative to the reference. Earlier inspection captures used different camera poses, so this is a feature comparison, not a matched-camera image-difference score. Captures remain local under ignored `artifacts/`, including `parliament-door-check-after.png`, `melbourne-central-door-check.png` and `flagstaff-door-check-after.png`.
+
+An actual-helper check verified deterministic texture output, all 16 wrapping tile-colour checks and 15,529 unique pixels for 16,000 grain writes, with a maximum of three writes to one pixel. Short browser samples reported Parliament at 868 draw calls / 1,115,985 triangles and Flagstaff at 865 / 1,116,019, both around a 16.67 ms recent average frame interval. These observations are not controlled performance benchmarks.
+
+This pass does not establish a full UI-driven service or genuine audible listening quality. The cab is not an authentic HCMT cockpit; station scale, circulation, access placement, opposite-track context and surface dimensions remain authored approximations. Clean voiced station announcements remain an unfilled asset requirement. Acceptance closes the bounded desk/camera/surface scope, not the full environment fidelity backlog or railway operational accuracy.
+
+---
+
 # Parliament recording mix and release — 20 September 2026
 
 The Parliament field recording previously kept the Cab/Outside volume selected when playback began and stopped abruptly when the train left its 230 m audible range. Its active gain now follows camera and distance changes, with a 150 ms fade before the range-exit stop. The release uses the AudioContext clock, preserving pause/mute position; reset/completion cleanup is idempotent and the consumed recording cannot replay on reentry or saved-service restore.

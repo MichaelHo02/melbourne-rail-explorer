@@ -19,23 +19,21 @@ function pause(){
   sim.pause();
   // A hidden tab may receive no more animation frames. Freeze its audio clock
   // from the lifecycle event itself, preserving partially played recordings.
-  audio.update(sim.state,renderer?.view==='cab');save();
+  audio.update(sim.state,true);save();
 }
-function changeView(){if(renderer){renderer.setView(renderer.view==='cab'?'chase':'cab');renderer.render(sim.state,0);}}
 const hud=new HUD(document.querySelector('#ui')!,{
-  start:()=>{inspectionScenario=false;sim.start();hud.closePanel();renderer?.render(sim.state,0);},
+  start:()=>{inspectionScenario=false;renderer?.clearInspection();sim.start();hud.closePanel();renderer?.render(sim.state,0);},
   resume:()=>{
     if(sim.restore(saved)){
-      inspectionScenario=false;
+      inspectionScenario=false;renderer?.clearInspection();
       // Observe the restored paused state before resuming in the same click.
       // This clears old tones and baselines consumed platform/approach cues.
-      audio.update(sim.state,renderer?.view==='cab');
+      audio.update(sim.state,true);
       sim.pause();renderer?.render(sim.state,0);
     }else hud.error('This saved service could not be restored. Start a new service instead.');
   },
-  restart:()=>{inspectionScenario=false;sim.reset();audio.announcements.reset();sim.start();hud.closePanel();renderer?.render(sim.state,0);save();},
-  pause,view:changeView,sound:()=>{void audio.toggle().then(on=>hud.setSound(on)).catch(()=>hud.error('Audio could not start in this browser. Driving is still available.'));},
-  setView:view=>{renderer?.setView(view);renderer?.render(sim.state,0);},resetLook:()=>{renderer?.resetLook();renderer?.render(sim.state,0);},
+  restart:()=>{inspectionScenario=false;renderer?.clearInspection();sim.reset();audio.announcements.reset();sim.start();hud.closePanel();renderer?.render(sim.state,0);save();},
+  pause,sound:()=>{void audio.toggle().then(on=>hud.setSound(on)).catch(()=>hud.error('Audio could not start in this browser. Driving is still available.'));},
   doors:()=>sim.toggleDoors(),controller:n=>sim.setController(n),emergency:()=>sim.emergencyBrake(),horn:()=>audio.horn(),
 },hasSave);
 try{renderer=new GameRenderer(document.querySelector('#viewport')!,message=>{if(sim.state.phase==='driving')sim.pause();save();hud.error(message);});}
@@ -46,12 +44,11 @@ window.addEventListener('keydown',e=>{
   if(element.matches('input,textarea,select')&&e.code!=='Escape'){
     // The physical lever keeps native arrow-key adjustment, but must not swallow
     // driving shortcuts (especially emergency braking) after a pointer drag.
-    if(element.id!=='controller'||!['KeyW','KeyS','KeyD','KeyH','KeyC','KeyM','Space'].includes(e.code))return;
+    if(element.id!=='controller'||!['KeyW','KeyS','KeyD','KeyH','KeyM','Space'].includes(e.code))return;
   }
   if(['Space','ArrowUp','ArrowDown'].includes(e.code))e.preventDefault();
   if(e.code==='Escape'){hud.closePanel();pause();return;}
   if(e.code==='KeyM'){hud.togglePanel('map');return;}
-  if(e.code==='KeyC'){changeView();return;}
   if(e.code==='KeyH'){audio.horn();return;}
   if(sim.state.phase!=='driving')return;
   if(e.code==='KeyW'||e.code==='ArrowUp')sim.setController(sim.state.controller+1);
@@ -69,7 +66,9 @@ function frame(now:number){
   const rawFrameMs=now-previous,elapsed=Math.min(.1,rawFrameMs/1000);previous=now;accumulator+=elapsed;
   while(accumulator>=FIXED_STEP){sim.step(FIXED_STEP);accumulator-=FIXED_STEP;}
   renderer?.setCameraInputEnabled(sim.state.phase==='driving'&&hud.cameraInputAllowed);
-  renderer?.render(sim.state,elapsed);audio.update(sim.state,renderer?.view==='cab');
+  renderer?.render(sim.state,elapsed);
+  // The door-check feed is viewed from the desk; the listener stays in the cab.
+  audio.update(sim.state,true);
   if(now-lastUi>80){hud.update(sim,renderer?.displayedView??'cab');hud.setAnnouncement(audio.announcements.text);lastUi=now;}
   if(now-lastSave>5000){save();lastSave=now;}
   frameTimes.push(rawFrameMs);if(frameTimes.length>180)frameTimes.shift();
