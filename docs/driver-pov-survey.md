@@ -96,3 +96,13 @@ both sides of the eastern running line, with the former exposed olive ground
 strips reduced. The elevated foreground building/bridge representation and
 coarse nearby photographic facades are still conspicuous and are the next
 visual priority.
+
+### Eastern survey structure 816359 — supported rail opening
+
+The 5200m cab ray identified the generic upper storeys of City of Melbourne structure 816359 (sections 16221/16222/16223). Whole-section railway rejection removed its lower envelope, leaving the upper storeys unsupported. A Blender union now retains the three measured footprints and prepared heights, cuts a 24m-wide opening with 7m clearance above the authored rail alignment, and retains walls beside the opening. Eight nearby Vicmap railway segments are also used as clearance cutters. The generated mesh is validated with upward rays at 2m intervals and lateral offsets -3/0/+3m; no intersection occurs in the train clearance volume sampled by those rays. This is not a general collision proof for every object in the world.
+
+The cladding uses an authored sandstone/zinc/glass triangular palette based on [Fed Square's architecture description](https://fedsquare.com/history-design). Exact tenancy and facade dimensions are not established. This asset is an interpretation of a surveyed envelope, not an architectural reconstruction. The runtime checks source IDs and geometry before suppressing procedural fallback sections. The photographic exclusion uses the complete source hull.
+
+Build with `node scripts/export-blender-route.mjs`, then Blender `--background --factory-startup --python scripts/blender/build_federation_east.py`. Source: `assets/source/environment/federation-east.blend`; provenance: `public/models/environment/federation-east.json`. Final GLB is 289,760 bytes and 8,337 triangles. Cladding tessellation was reduced from the initial 881,672-byte / 27,590-triangle version.
+
+Matched 5200m comparison: `eastern-yard-shoulders/05200.png` versus `federation-east/05200.png`. The first replacement adds supporting mass and a visible opening instead of a floating windowed bar. `federation-east-final/05320.png` checks the closer approach; `federation-east-lean/05320.png` checks the optimized cladding. The first, denser version measured 800 draw calls / 4,805,714 triangles versus 788 / 4,753,859 in the prior 5200m scene, including shadow passes. These are scene complexity counts, not a claimed timing improvement. Final approach timings and full-service performance remain part of the wider goal. Build and 16 photographic clipping tests pass.

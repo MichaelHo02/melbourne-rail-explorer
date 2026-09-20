@@ -340,6 +340,16 @@ export class World {
       asset.scene.traverse(node=>{if(node instanceof T.Mesh){node.castShadow=true;node.receiveShadow=true;}});
       this.surface.add(asset.scene);swannLoaded=true;
     }catch(error){console.warn('Swann House unavailable; retaining surveyed source sections.',error);}
+    const federationObjectIds=new Set(['16221','16222','16223']);let federationLoaded=false;
+    try{
+      const asset=await new GLTFLoader().loadAsync('/models/environment/federation-east.glb');
+      const envelope=asset.scene.getObjectByName('structure_816359_clean_envelope');
+      const ids=new Set(String(envelope?.userData.source_object_ids??'').split(','));
+      let hasGeometry=false;envelope?.traverse(node=>{if(node instanceof T.Mesh&&node.geometry.attributes.position?.count)hasGeometry=true;});
+      if(!hasGeometry||ids.size!==federationObjectIds.size||![...federationObjectIds].every(id=>ids.has(id)))throw new Error('Incomplete Federation east survey envelope');
+      asset.scene.traverse(node=>{if(node instanceof T.Mesh){node.castShadow=true;node.receiveShadow=true;}});
+      this.surface.add(asset.scene);federationLoaded=true;
+    }catch(error){console.warn('Federation east asset unavailable; retaining surveyed source sections.',error);}
     const materials=[createBuildingMaterial()];
     this.worker=new Worker(new URL('./city.worker.ts',import.meta.url),{type:'module'});
     return new Promise<void>((resolve,reject)=>{
@@ -351,7 +361,7 @@ export class World {
         const [x,z]=key.split(',').map(Number);const mesh=new T.Mesh(geometry,materials[Math.abs(x+z)%materials.length]);mesh.castShadow=true;mesh.receiveShadow=true;mesh.userData.center=new T.Vector3(x*250+125,0,z*250+125);
         this.cityChunks.push(mesh);this.surface.add(mesh);onProgress(`Preparing city blocks · ${this.cityChunks.length}`);
       };
-      this.worker!.postMessage({buildings:data.buildings.filter((b:{id:string;ring:[number,number][];base:number;height:number;kind?:string})=>!this.photographic.conflictsWithClearance(b)&&!this.photographic.replacesBuilding(b)&&!(frontageLoaded&&frontageObjectIds.has(String(b.id)))&&!(swannLoaded&&swannObjectIds.has(String(b.id))))});
+      this.worker!.postMessage({buildings:data.buildings.filter((b:{id:string;ring:[number,number][];base:number;height:number;kind?:string})=>!this.photographic.conflictsWithClearance(b)&&!this.photographic.replacesBuilding(b)&&!(frontageLoaded&&frontageObjectIds.has(String(b.id)))&&!(swannLoaded&&swannObjectIds.has(String(b.id)))&&!(federationLoaded&&federationObjectIds.has(String(b.id))))});
     });
   }
   passengerMetrics(){return this.passengers.metrics();}
