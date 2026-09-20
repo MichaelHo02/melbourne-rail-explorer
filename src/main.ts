@@ -15,7 +15,12 @@ let saved:unknown=null;try{saved=JSON.parse(localStorage.getItem(SAVE_KEY)||'nul
 const validator=new Simulation();const hasSave=validator.restore(saved)&&validator.state.phase!=='complete';
 let renderer:GameRenderer|undefined;
 function save(){if(inspectionScenario)return;try{if(sim.state.phase!=='ready')localStorage.setItem(SAVE_KEY,JSON.stringify(sim.snapshot()));}catch{/* Private browsing can reject persistence. */}}
-function pause(){sim.pause();save();}
+function pause(){
+  sim.pause();
+  // A hidden tab may receive no more animation frames. Freeze its audio clock
+  // from the lifecycle event itself, preserving partially played recordings.
+  audio.update(sim.state,renderer?.view==='cab');save();
+}
 function changeView(){if(renderer){renderer.setView(renderer.view==='cab'?'chase':'cab');renderer.render(sim.state,0);}}
 const hud=new HUD(document.querySelector('#ui')!,{
   start:()=>{inspectionScenario=false;sim.start();hud.closePanel();renderer?.render(sim.state,0);},

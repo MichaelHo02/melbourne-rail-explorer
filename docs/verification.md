@@ -1,3 +1,13 @@
+# Background pause audio — 20 September 2026
+
+Window blur and document visibility loss paused and saved the service but deferred audio suspension until the next animation frame. A hidden tab may receive no further frame, allowing its audio clock and Parliament recording to continue while the train remained paused. The shared pause helper now synchronizes audio immediately, preserving the active recording's playback position through pause and resume.
+
+The regression invokes the real application blur and visibility callbacks without delivering another frame. Before the fix it failed with `expected 'running' to be 'suspended'`; afterward it verifies a frozen audio clock and resume without stopping or replaying the recording. The focused audio suite passes all 11 tests; `npm test` passes **105 tests across 16 files**. `npm run build` passes strict TypeScript, production bundling and the native-WebGPU-only guard; the existing large-chunk warning remains. `git diff --check` passes. Independent review found no actionable issues in the bounded change.
+
+This regression uses a mocked AudioContext with the real application lifecycle and audio implementation. It does not establish audible continuity or actual browser background-tab behavior; no new listening check was performed.
+
+---
+
 # Wraparound cab, free camera and station feedback — 20 September 2026
 
 ## Changes and evidence

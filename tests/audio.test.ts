@@ -107,6 +107,47 @@ describe('audio lifecycle',()=>{
       now.mockRestore();update.mockRestore();vi.doUnmock('../src/ui/hud');vi.doUnmock('../src/render/renderer');
     }
   });
+  it('suspends audio on blur and visibility loss even when no further animation frame runs',async()=>{
+    setup();vi.resetModules();
+    const {TrainAudio:AppAudio}=await import('../src/game/audio');
+    let actions:Record<string,()=>void>,frame:(now:number)=>void;
+    const windowEvents=new Map<string,()=>void>(),documentEvents=new Map<string,()=>void>();
+    const now=vi.spyOn(performance,'now').mockReturnValue(1000),render=vi.fn();
+    const update=vi.spyOn(AppAudio.prototype,'update');
+    vi.doMock('../src/ui/hud',()=>({HUD:class{
+      constructor(_root:unknown,registered:Record<string,()=>void>){actions=registered;}
+      cameraInputAllowed=true;closePanel(){}ready(){}loading(){}update(){}setAnnouncement(){}setSound(){}
+    }}));
+    vi.doMock('../src/render/renderer',()=>({GameRenderer:class{
+      view='cab';render=render;setCameraInputEnabled(){}async loadCity(){}async startLoop(callback:(now:number)=>void){frame=callback;}
+    }}));
+    const documentStub={hidden:false,querySelector:()=>({innerHTML:'',dataset:{},style:{setProperty:vi.fn()}}),addEventListener:(name:string,callback:()=>void)=>documentEvents.set(name,callback)};
+    vi.stubGlobal('document',documentStub);
+    vi.stubGlobal('window',{addEventListener:(name:string,callback:()=>void)=>windowEvents.set(name,callback),innerWidth:1280,innerHeight:720});
+    vi.stubGlobal('location',{search:''});vi.stubGlobal('localStorage',{getItem:()=>null,setItem:vi.fn()});
+    try{
+      await import('../src/main');await vi.waitFor(()=>expect(frame).toBeTypeOf('function'));
+      actions!.start();frame!(1000);
+      const audio=update.mock.contexts.at(-1)!;await audio.toggle();
+      const state=render.mock.calls.at(-1)![0];state.distance=STATIONS[4].distance;frame!(1000);
+      const ctx=Context.instances.at(-1)!,departure=ctx.sources.at(-1)!,count=ctx.sources.length;
+      await vi.waitFor(()=>expect(ctx.state).toBe('running'));ctx.advance(2);
+      for(const event of ['blur','visibilitychange']){
+        if(event==='blur')windowEvents.get(event)!();
+        else{documentStub.hidden=true;documentEvents.get(event)!();}
+        expect(state.phase).toBe('paused');
+        // The browser may stop rendering as soon as it becomes hidden. Its
+        // lifecycle callback must freeze sound without another frame callback.
+        await vi.waitFor(()=>expect(ctx.state).toBe('suspended'));ctx.advance(40);expect(ctx.currentTime).toBe(2);
+        expect(departure.stop).not.toHaveBeenCalled();
+        actions!.pause();await vi.waitFor(()=>expect(ctx.state).toBe('running'));
+        expect(ctx.sources).toHaveLength(count);expect(departure.start).toHaveBeenCalledOnce();
+        documentStub.hidden=false;
+      }
+    }finally{
+      now.mockRestore();update.mockRestore();vi.doUnmock('../src/ui/hud');vi.doUnmock('../src/render/renderer');vi.resetModules();
+    }
+  });
 });
 
 const mechanical=(ctx:Context)=>ctx.sources.filter(source=>!source.loop&&source.buffer instanceof Buffer);
