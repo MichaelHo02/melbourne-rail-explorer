@@ -7,7 +7,7 @@ export class TrainAudio{
   private master?:GainNode;private loops:{station:number;gain:GainNode;exterior:boolean}[]=[];
   private loading?:Promise<void>;
   private ready=false;private running=false;private clockChange?:Promise<void>;private clockFailed=false;
-  private parliament?:AudioBuffer;private parliamentSource?:AudioBufferSourceNode;private parliamentPlayed=false;private previousTime=0;
+  private parliament?:AudioBuffer;private parliamentPlayback?:{source:AudioBufferSourceNode;gain:GainNode;releasing:boolean;cleanup:()=>void};private parliamentPlayed=false;private previousTime=0;
   private audioState?:TrainState;private previousPhase?:TrainState['phase'];
   private tones=new Map<OscillatorNode,()=>void>();
   private effectNoise?:AudioBuffer;
@@ -48,7 +48,7 @@ export class TrainAudio{
     this.clockFailed=false;
     if(!this.loading)this.loading=this.initialise().catch(async error=>{
       const ctx=this.context;this.context=undefined;this.ready=false;this.enabled=false;
-      this.parliamentSource?.stop();this.parliamentSource=undefined;this.parliament=undefined;this.parliamentPlayed=false;
+      this.clearParliament();this.parliament=undefined;this.parliamentPlayed=false;
       this.clearMechanical();this.clearTones();this.effectNoise=undefined;
       this.loops=[];this.oscillator=undefined;this.master=undefined;this.gain=undefined;this.noiseGain=undefined;
       this.clockChange=undefined;
@@ -76,10 +76,7 @@ export class TrainAudio{
       // A restored platform scene must not replay a consumed neighbouring train.
       this.parliamentPlayed=state.phase==='paused'&&Math.abs(state.distance-STATIONS[4].distance)<130;
     }
-    if(reset||completed)this.clearTones();
-    if(this.parliamentSource&&(reset||completed||Math.abs(state.distance-STATIONS[4].distance)>230)){
-      this.parliamentSource.stop();this.parliamentSource=undefined;
-    }
+    if(reset||completed){this.clearTones();this.clearParliament();}
     this.audioState=state;this.previousTime=state.time;this.previousPhase=state.phase;
     this.updateMechanical(state,cabView);
     this.running=state.phase==='driving';this.syncClock();
@@ -96,12 +93,34 @@ export class TrainAudio{
     }
     // An actual neighbouring Xtrapolis departure at Parliament, played once.
     // It is historic station ambience, never the player's HCMT traction sound.
-    if(this.enabled&&running&&this.parliament&&!this.parliamentPlayed&&Math.abs(state.distance-STATIONS[4].distance)<130){
+    const parliamentDistance=Math.abs(state.distance-STATIONS[4].distance),proximity=Math.max(0,1-parliamentDistance/230);
+    const parliamentLevel=proximity*proximity*(cabView?.13:.4);
+    if(this.enabled&&running&&this.parliament&&!this.parliamentPlayed&&parliamentDistance<130){
       const source=this.context.createBufferSource(),gain=this.context.createGain();source.buffer=this.parliament;
-      gain.gain.value=cabView?.13:.4;source.connect(gain);gain.connect(this.master!);source.start();this.parliamentSource=source;
-      source.onended=()=>{source.disconnect();gain.disconnect();if(this.parliamentSource===source)this.parliamentSource=undefined;};this.parliamentPlayed=true;
+      gain.gain.value=parliamentLevel;source.connect(gain);gain.connect(this.master!);
+      let cleaned=false;
+      const playback={source,gain,releasing:false,cleanup:()=>{
+        if(cleaned)return;cleaned=true;source.disconnect();gain.disconnect();
+        if(this.parliamentPlayback===playback)this.parliamentPlayback=undefined;
+      }};
+      this.parliamentPlayback=playback;source.onended=playback.cleanup;source.start();this.parliamentPlayed=true;
+    }
+    const playback=this.parliamentPlayback;
+    if(playback&&!playback.releasing){
+      const gain=playback.gain.gain;
+      if(parliamentDistance>230){
+        // Hold the current smoothed level before a finite release. Both the
+        // fade and stop freeze with the AudioContext on pause or mute.
+        playback.releasing=true;const level=gain.value;
+        gain.cancelScheduledValues(time);gain.setValueAtTime(level,time);gain.linearRampToValueAtTime(0,time+.15);
+        playback.source.stop(time+.15);
+      }else gain.setTargetAtTime(parliamentLevel,time,.15);
     }
     if(cue&&this.enabled&&this.ready&&running&&!reset)this.chime();
+  }
+  private clearParliament(){
+    const playback=this.parliamentPlayback;if(!playback)return;
+    playback.source.stop();playback.cleanup();
   }
   private updateMechanical(state:TrainState,cabView:boolean){
     const previous=this.previousMechanical;

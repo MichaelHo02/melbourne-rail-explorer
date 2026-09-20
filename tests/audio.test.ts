@@ -4,7 +4,7 @@ import {Simulation} from '../src/game/simulation';
 import {STATIONS} from '../src/data/route';
 
 class Node {
-  gain={value:0,setTargetAtTime:vi.fn(),setValueAtTime:vi.fn(),exponentialRampToValueAtTime:vi.fn()};
+  gain={value:0,setTargetAtTime:vi.fn(),setValueAtTime:vi.fn(),exponentialRampToValueAtTime:vi.fn(),cancelScheduledValues:vi.fn(),linearRampToValueAtTime:vi.fn()};
   frequency={...this.gain};Q={...this.gain};connect=vi.fn();disconnect=vi.fn();start=vi.fn();stop=vi.fn();
   buffer:unknown;loop=false;onended?:()=>void;
 }
@@ -42,6 +42,49 @@ describe('audio lifecycle',()=>{
     await audio.toggle();audio.update(sim.state);await vi.waitFor(()=>expect(ctx.state).toBe('running'));
     expect(ctx.sources.at(-1)).toBe(departure);
     sim.state.distance=0;audio.update(sim.state);expect(departure.stop).toHaveBeenCalledOnce();
+  });
+  it('updates the playing Parliament recording for camera and distance changes without restarting it',async()=>{
+    setup();const sim=new Simulation();sim.loadScenario('parliament');const {audio,ctx}=await audible(sim);
+    const departure=ctx.sources.at(-1)!,gain=departure.connect.mock.calls[0][0] as Node,count=ctx.sources.length;
+    expect(gain.gain.value).toBe(.13);
+    ctx.advance(2);audio.update(sim.state,false);expect(gain.gain.setTargetAtTime).toHaveBeenLastCalledWith(.4,2,.15);
+    ctx.advance(1);audio.update(sim.state,true);expect(gain.gain.setTargetAtTime).toHaveBeenLastCalledWith(.13,3,.15);
+    sim.state.distance=STATIONS[4].distance+115;audio.update(sim.state,false);
+    expect(gain.gain.setTargetAtTime).toHaveBeenLastCalledWith(.1,3,.15);
+    expect(ctx.sources).toHaveLength(count);expect(departure.start).toHaveBeenCalledOnce();expect(departure.stop).not.toHaveBeenCalled();
+  });
+  it('fades a Parliament range exit on the audio clock, cleans it once and never replays it on reentry',async()=>{
+    setup();const sim=new Simulation();sim.loadScenario('parliament');const {audio,ctx}=await audible(sim);
+    const departure=ctx.sources.at(-1)!,gain=departure.connect.mock.calls[0][0] as Node,count=ctx.sources.length;
+    ctx.advance(5);gain.gain.value=.08;sim.state.distance=STATIONS[4].distance+231;audio.update(sim.state);
+    expect(gain.gain.cancelScheduledValues).toHaveBeenCalledWith(5);
+    expect(gain.gain.setValueAtTime).toHaveBeenCalledWith(.08,5);
+    expect(gain.gain.linearRampToValueAtTime).toHaveBeenCalledWith(0,5.15);
+    expect(departure.stop).toHaveBeenCalledExactlyOnceWith(5.15);expect(departure.disconnect).not.toHaveBeenCalled();
+    sim.pause();audio.update(sim.state);await vi.waitFor(()=>expect(ctx.state).toBe('suspended'));
+    ctx.advance(40);expect(ctx.currentTime).toBe(5);
+    sim.pause();audio.update(sim.state);await vi.waitFor(()=>expect(ctx.state).toBe('running'));
+    await audio.toggle();await vi.waitFor(()=>expect(ctx.state).toBe('suspended'));ctx.advance(40);expect(ctx.currentTime).toBe(5);
+    await audio.toggle();audio.update(sim.state);await vi.waitFor(()=>expect(ctx.state).toBe('running'));
+    sim.state.distance=STATIONS[4].distance;audio.update(sim.state,false);
+    expect(departure.stop).toHaveBeenCalledOnce();expect(gain.gain.linearRampToValueAtTime).toHaveBeenCalledOnce();
+    // Reentering the area cannot cancel the release or replay the consumed cue.
+    expect(gain.gain.setTargetAtTime).toHaveBeenCalledTimes(1);expect(ctx.sources).toHaveLength(count);
+    ctx.advance(.15);departure.onended?.();departure.onended?.();
+    expect(departure.disconnect).toHaveBeenCalledOnce();expect(gain.disconnect).toHaveBeenCalledOnce();
+    audio.update(sim.state);expect(ctx.sources).toHaveLength(count);
+  });
+  it('cancels a pending Parliament release on restart without stale cleanup affecting the next recording',async()=>{
+    setup();const sim=new Simulation();sim.loadScenario('parliament');const {audio,ctx}=await audible(sim);
+    const old=ctx.sources.at(-1)!,oldGain=old.connect.mock.calls[0][0] as Node;
+    sim.state.distance=STATIONS[4].distance+231;audio.update(sim.state);expect(old.stop).toHaveBeenCalledWith(.15);
+    sim.reset();sim.start();audio.update(sim.state);
+    expect(old.stop).toHaveBeenLastCalledWith();expect(old.disconnect).toHaveBeenCalledOnce();expect(oldGain.disconnect).toHaveBeenCalledOnce();
+    sim.state.distance=STATIONS[4].distance;audio.update(sim.state);
+    const current=ctx.sources.at(-1)!,currentGain=current.connect.mock.calls[0][0] as Node;expect(current).not.toBe(old);
+    old.onended?.();audio.update(sim.state,false);
+    expect(old.disconnect).toHaveBeenCalledOnce();expect(currentGain.gain.setTargetAtTime).toHaveBeenLastCalledWith(.4,0,.15);
+    expect(current.stop).not.toHaveBeenCalled();expect(current.disconnect).not.toHaveBeenCalled();
   });
   it('cancels old chime and horn nodes on an equal-time restore without replay',async()=>{
     setup();const sim=new Simulation();sim.start();const {audio,ctx}=await audible(sim);

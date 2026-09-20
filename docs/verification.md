@@ -1,3 +1,13 @@
+# Parliament recording mix and release — 20 September 2026
+
+The Parliament field recording previously kept the Cab/Outside volume selected when playback began and stopped abruptly when the train left its 230 m audible range. Its active gain now follows camera and distance changes, with a 150 ms fade before the range-exit stop. The release uses the AudioContext clock, preserving pause/mute position; reset/completion cleanup is idempotent and the consumed recording cannot replay on reentry or saved-service restore.
+
+The focused audio suite passes **14 tests**; `npm test` passes **108 tests across 16 files**. Regressions cover mid-recording camera/distance changes, paused/muted release, range reentry without replay and restart cleanup. `npm run build` passes strict TypeScript and production bundling with the existing large-chunk warning. `git diff --check` passes. Independent review found no actionable issues in this bounded change.
+
+All three bundled recordings match their manifest hashes, decode fully, retain their documented durations and have zero clipped samples. Sample checks found no anomalous loop-boundary discontinuity. These checks and mocked AudioContext tests do not establish audible mix quality or PA intelligibility; listening remains unverified, and clean voiced station announcements remain an unfilled asset requirement.
+
+---
+
 # Background pause audio — 20 September 2026
 
 Window blur and document visibility loss paused and saved the service but deferred audio suspension until the next animation frame. A hidden tab may receive no further frame, allowing its audio clock and Parliament recording to continue while the train remained paused. The shared pause helper now synchronizes audio immediately, preserving the active recording's playback position through pause and resume.
