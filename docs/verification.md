@@ -1,3 +1,27 @@
+# Fidelity pass verification — 20 September 2026
+
+## Automated and asset checks
+
+- `npm test`: 42 tests pass across seven files, including official timetable selection/dwell/calendar rules, actual overlapping traffic services, announcement timing/interlocks, audio initialization retry and pause/mute lifecycle, existing driving/save/route/geography behaviour, and the native WebGPU guard.
+- `npm run build`: strict TypeScript and production Vite build pass; no WebGL fallback module is bundled. The application chunk is about 2.32 MB before gzip (320 KB gzip), mainly including bundled geographic manifests and the fixed-date timetable. Vite reports a large-chunk warning. No streaming or payload-size improvement is claimed.
+- All five photographic GLB SHA-256 hashes match the retained manifest. Preparation Python scripts parse successfully. Blender imports/renders checked source atlas orientation and the commuter lineup; the photographic source totals 267,736 triangles and 36,096,220 bytes. Review renders are excluded from shipped assets.
+
+## Codex in-app browser
+
+All browser work used the Codex in-app browser. Named development views were inspected for Flinders Street, Southern Cross, Flagstaff, Melbourne Central, Parliament and the viaduct. The review corrected aerial riverbank/viaduct overlap, retained authored playable station roofs where scan undersides were incomplete, adjusted Melbourne Central's ceiling profile, and fixed a zero endpoint bearing that collapsed passengers and rear carriages behind Flinders Street. A regression test verifies the 22.85 m rear-car spacing. Southern Cross still shows coarse or partial aerial context beyond the playable hall; this pass does not establish street-level scan quality.
+
+The Sound control successfully loaded/decoded all three recordings and changed to Mute; toggling back and pausing produced the expected visible states without browser errors. This verifies browser startup/control integration, not listening quality, intelligibility of PA speech or an accurate dynamic announcement bank. Audio clock suspension and retry are additionally covered with mocked AudioContext tests.
+
+The rebuilt production preview at `http://127.0.0.1:5180/` initialized with the canvas reporting WebGPU. Real UI/keyboard input verified power blocked with open doors, door closure advancing the next stop, acceleration to 22 km/h, emergency braking to zero, camera switching and pause. The final browser error/warning log was empty. The service was left paused for inspection.
+
+A final Flinders development sample reported native WebGPU, 658 draw calls, about 2.05 million triangles, 7,558 procedural building sections after duplicate suppression, and two visible timetable trains. Its recent average browser frame interval was 16.67 ms. This is a single local observation, not a controlled benchmark or a GPU-time/performance guarantee.
+
+## Remaining accuracy limits
+
+The aerial capture is May 2020 and includes occluded facades, baked shadows and coarse close detail. Authored platform layouts, railway elevation, clearances and cab instruments are not operational surveys. Passengers have static varied poses with anatomical proportions; they do not walk or board. Traffic is a visual subset of the 19 September 2026 timetable on authored surface tracks with illustrative HCMT models, not live positions, actual fleet assignments or neighbouring underground circuits. Live access still needs a provisioned server-side Transport Victoria key. The included sound comprises historic field recordings plus original cues; clean voiced service announcements and appropriate Flagstaff/Melbourne Central recordings remain unfilled asset needs.
+
+---
+
 # Verification — 19 September 2026
 
 ## Automated checks

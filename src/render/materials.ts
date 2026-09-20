@@ -27,3 +27,15 @@ export function labelTexture(text:string,bg='#16303b',fg='#ffffff',width=1024,he
   ctx.fillStyle=fg;ctx.font=`600 ${Math.floor(height*.48)}px Arial`;ctx.textBaseline='middle';ctx.textAlign='center';ctx.fillText(text,width/2,height/2,width-32);
   const t=new THREE.CanvasTexture(canvas);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;return t;
 }
+
+export function stationTileTexture(code:string){
+  return canvasTexture(512,ctx=>{
+    ctx.fillStyle=code==='MCE'?'#706f60':'#898c82';ctx.fillRect(0,0,512,512);
+    const palette=code==='MCE'?['#977853','#a08460','#8c8267','#766d51','#a48a67']:['#b6b7ab','#a7ab9e','#bec0b5','#afb2a5'];
+    const count=code==='MCE'?8:4,size=512/count;
+    for(let y=0;y<count;y++)for(let x=0;x<count;x++){
+      ctx.fillStyle=palette[(x*13+y*7)%palette.length];ctx.fillRect(x*size+1,y*size+1,size-2,size-2);
+      for(let i=0;i<110;i++){ctx.fillStyle=i%2?'#ffffff09':'#00000009';ctx.fillRect(x*size+2+random()*(size-4),y*size+2+random()*(size-4),1+random()*3,1);}
+    }
+  });
+}

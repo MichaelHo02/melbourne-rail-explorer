@@ -17,7 +17,7 @@ function changeView(){if(renderer){renderer.view=renderer.view==='cab'?'chase':'
 const hud=new HUD(document.querySelector('#ui')!,{
   start:()=>{inspectionScenario=false;sim.start();hud.closePanel();renderer?.render(sim.state,0);},
   resume:()=>{if(sim.restore(saved)){inspectionScenario=false;sim.pause();renderer?.render(sim.state,0);}else hud.error('This saved service could not be restored. Start a new service instead.');},
-  restart:()=>{inspectionScenario=false;sim.reset();sim.start();hud.closePanel();renderer?.render(sim.state,0);save();},
+  restart:()=>{inspectionScenario=false;sim.reset();audio.announcements.reset();sim.start();hud.closePanel();renderer?.render(sim.state,0);save();},
   pause,view:changeView,sound:()=>{void audio.toggle().then(on=>hud.setSound(on)).catch(()=>hud.error('Audio could not start in this browser. Driving is still available.'));},
   doors:()=>sim.toggleDoors(),controller:n=>sim.setController(n),emergency:()=>sim.emergencyBrake(),
 },hasSave);
@@ -47,8 +47,8 @@ const frameTimes:number[]=[];
 function frame(now:number){
   const rawFrameMs=now-previous,elapsed=Math.min(.1,rawFrameMs/1000);previous=now;accumulator+=elapsed;
   while(accumulator>=FIXED_STEP){sim.step(FIXED_STEP);accumulator-=FIXED_STEP;}
-  renderer?.render(sim.state,elapsed);audio.update(sim.state.speed,sim.state.phase==='driving');
-  if(now-lastUi>80){hud.update(sim,renderer?.view??'cab');lastUi=now;}
+  renderer?.render(sim.state,elapsed);audio.update(sim.state,renderer?.view==='cab');
+  if(now-lastUi>80){hud.update(sim,renderer?.view??'cab');hud.setAnnouncement(audio.announcements.text);lastUi=now;}
   if(now-lastSave>5000){save();lastSave=now;}
   frameTimes.push(rawFrameMs);if(frameTimes.length>180)frameTimes.shift();
   if(import.meta.env.DEV&&now-lastDiagnostics>1000){
@@ -62,7 +62,7 @@ if(renderer){
   void renderer.loadCity(message=>hud.loading(message),sim.state).then(async()=>{
     if(import.meta.env.DEV){
       const scene=new URLSearchParams(location.search).get('scene');
-      if(scene==='tunnel'||scene==='approach'||scene==='departure'||scene==='platform'||scene==='viaduct'){sim.loadScenario(scene);renderer?.render(sim.state,0);}
+      if(scene==='tunnel'||scene==='approach'||scene==='departure'||scene==='platform'||scene==='viaduct'||scene==='flagstaff'||scene==='parliament'||scene==='southern-cross'){sim.loadScenario(scene);renderer?.render(sim.state,0);}
     }
     previous=performance.now();
     await renderer!.startLoop(frame);
@@ -79,7 +79,7 @@ if(import.meta.env.DEV){
   Object.assign(window,{__RAIL_EXPLORER__:{
     state:()=>sim.snapshot(),
     metrics:()=>({...renderer?.metrics(),averageFrameMs:frameTimes.reduce((a,b)=>a+b,0)/(frameTimes.length||1)}),
-    scenario:(name:'departure'|'tunnel'|'approach'|'platform'|'viaduct')=>{inspectionScenario=true;sim.loadScenario(name);renderer?.render(sim.state,0);},
+    scenario:(name:'departure'|'tunnel'|'approach'|'platform'|'viaduct'|'flagstaff'|'parliament'|'southern-cross')=>{inspectionScenario=true;sim.loadScenario(name);renderer?.render(sim.state,0);},
     restore:(state:unknown)=>sim.restore(state),
   }});
 }

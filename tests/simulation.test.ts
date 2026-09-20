@@ -4,6 +4,18 @@ import routeSource from '../src/data/route-source.json';
 import { STATIONS, ROUTE_LENGTH, positionAt, tangentAt, project } from '../src/data/route';
 const advance=(sim:Simulation,seconds:number)=>{for(let i=0;i<Math.round(seconds/FIXED_STEP);i++)sim.step(FIXED_STEP);};
 
+describe('platform extension beyond route endpoints',()=>{
+  it('preserves the endpoint bearing and carriage spacing behind Flinders Street',()=>{
+    const bearing=tangentAt(-100),endpoint=tangentAt(0);
+    expect(bearing).toEqual(endpoint);
+    expect(Math.hypot(bearing.x,bearing.y,bearing.z)).toBeCloseTo(1,8);
+    expect(tangentAt(ROUTE_LENGTH+100)).toEqual(tangentAt(ROUTE_LENGTH));
+    const car=(distance:number)=>{const p=positionAt(distance),t=tangentAt(distance);return{x:p.x+t.x*distance,y:p.y+t.y*distance,z:p.z+t.z*distance};};
+    const a=car(-50),b=car(-72.85);
+    expect(Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z)).toBeCloseTo(22.85,6);
+  });
+});
+
 describe('driver controls',()=>{
   it('interlocks traction while doors are open, then accelerates after closing',()=>{
     const sim=new Simulation();sim.start();sim.setController(4);advance(sim,3);expect(sim.state.speed).toBe(0);

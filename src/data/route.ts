@@ -63,7 +63,11 @@ export function positionAt(distance:number):Vec3 {
   return {x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t,z:a.z+(b.z-a.z)*t};
 }
 export function tangentAt(s:number):Vec3 {
-  const a=positionAt(s-1),b=positionAt(s+1),length=Math.hypot(b.x-a.x,b.y-a.y,b.z-a.z)||1;
+  // Carriages and platform furniture can extend behind the initial marker.
+  // Sample the endpoint bearing there, rather than subtracting two identical
+  // clamped points and collapsing their lateral/longitudinal offsets to zero.
+  const center=clamp(s,0,ROUTE_LENGTH);
+  const a=positionAt(center-1),b=positionAt(center+1),length=Math.hypot(b.x-a.x,b.y-a.y,b.z-a.z)||1;
   return {x:(b.x-a.x)/length,y:(b.y-a.y)/length,z:(b.z-a.z)/length};
 }
 function nearest(lon:number,lat:number,min=0){
@@ -74,9 +78,9 @@ function nearest(lon:number,lat:number,min=0){
 export const STATIONS=[
   {name:'Flinders Street',short:'Flinders St',distance:60,underground:false,code:'FSS',color:'#d3ad64'},
   {name:'Southern Cross',short:'Southern Cross',distance:nearest(...stationCoordinates[1]),underground:false,code:'SXS',color:'#8babb9'},
-  {name:'Flagstaff',short:'Flagstaff',distance:nearest(...stationCoordinates[2]),underground:true,code:'FGS',color:'#d1b46b'},
-  {name:'Melbourne Central',short:'Melbourne Central',distance:nearest(...stationCoordinates[3]),underground:true,code:'MCE',color:'#bf744c'},
-  {name:'Parliament',short:'Parliament',distance:nearest(...stationCoordinates[4]),underground:true,code:'PAR',color:'#ba6945'},
+  {name:'Flagstaff',short:'Flagstaff',distance:nearest(...stationCoordinates[2]),underground:true,code:'FGS',color:'#b9bbb2'},
+  {name:'Melbourne Central',short:'Melbourne Central',distance:nearest(...stationCoordinates[3]),underground:true,code:'MCE',color:'#c2beac'},
+  {name:'Parliament',short:'Parliament',distance:nearest(...stationCoordinates[4]),underground:true,code:'PAR',color:'#174998'},
   {name:'Flinders Street',short:'Flinders St',distance:ROUTE_LENGTH-60,underground:false,code:'FSS',color:'#d3ad64'},
 ] as const;
 export function isUnderground(s:number){return positionAt(s).y < -8;}

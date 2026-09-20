@@ -34,21 +34,27 @@ Changes: reverse the Frankston western leg from Flinders Street through Southern
 ## Network references
 
 - [Transport Victoria: City Loop and Metro Tunnel stations](https://transport.vic.gov.au/help-and-support/other-public-transport-help/city-loop-and-metro-tunnel-stations): confirms the City Loop's five stations and distinguishes them from the Metro Tunnel.
-- [GTFS Schedule](https://opendata.transport.vic.gov.au/dataset/gtfs-schedule): future geographic route/timetable source; not currently imported into the training alignment.
-- [GTFS Realtime](https://opendata.transport.vic.gov.au/dataset/gtfs-realtime): trip updates, vehicle positions and service alerts; API key in `KeyID`; published Metro endpoint limit 24 calls per 60 seconds.
+- [GTFS Schedule](https://opendata.transport.vic.gov.au/dataset/gtfs-schedule): included fixed-date surrounding-traffic replay; see [traffic provenance](traffic-data.md).
+- [GTFS Realtime](https://opendata.transport.vic.gov.au/dataset/gtfs-realtime): trip updates, vehicle positions and service alerts; authenticated access required; see the conflicting official header specifications and server-side integration requirements in [traffic data](traffic-data.md).
 - [PTV Timetable API](https://www.vic.gov.au/public-transport-timetable-api): an alternative departures/routes API with separate credentials/signature flow.
 
 OpenStreetMap geometry was investigated but the attempted Overpass requests failed. **No OpenStreetMap data is included** and the authored railway is not labelled as OSM-derived.
 
-## Candidate detailed city assets (not included)
+## Included photographic city, passengers and traffic
 
-[City of Melbourne 3D Textured Mesh / Photomesh 2018](https://discover.data.vic.gov.au/dataset/city-of-melbourne-3d-textured-mesh-photomesh-2018): tiled OBJ meshes with MTL/JPG, L13–L20 levels of detail, MGA Zone 55 coordinates and AHD elevation. The catalogue lists a 9.7 GB archive and CC BY 4.0. It is promising for real exterior scenery but requires corridor extraction, format conversion and optimization. No photomesh imagery or geometry is currently bundled.
+Five cropped patches from **City of Melbourne 3D Textured Mesh (Photomesh) 2020**, CC BY 4.0, are bundled as GLB: 106 I3S tiles, 267,736 source triangles and 36,096,220 bytes. [Photomesh provenance](photomesh.md) records source URLs, served coordinates, cropping and railway/riverbank clipping. This replaces the earlier unimplemented 2018 export proposal. The 2020 aerial scan is not a current or street-level survey.
+
+[Passenger provenance](passenger-assets.md) records CC0 MakeHuman anatomical assets with original Blender-authored clothes, hair and accessories. No reference photographs are redistributed.
+
+[Traffic provenance](traffic-data.md) records Transport Victoria GTFS Schedule, CC BY 4.0, published 18 September and selected for service date 19 September 2026. The game derives timetable positions and uses authored track/fleet presentation; no live API call has been authenticated.
+
+[Audio sources](audio-sources.md) record eaglechopper and melbourne.atmospheres CC0 field recordings and Tanoseki's Parliament departure recording under CC BY 3.0. Exact asset URLs, creator credits, transformations and hashes are bundled in `public/audio/sources.json`. No cloned announcement voice or generated speech is included.
 
 ## Visuals and audio
 
 The bundled daylight HDRI `public/environment/morning-sky.hdr` is **Kloppenheim 06 (Pure Sky)** by Greg Zaal (original) and Jarod Guest (sky edits), from [Poly Haven](https://polyhaven.com/a/kloppenheim_06_puresky), licensed [CC0](https://polyhaven.com/license). It provides natural lighting and sky, not Melbourne geography. The 1K HDR asset is 1,173,154 bytes; downloaded from the asset URL in Poly Haven's public metadata. No preview-page image is repackaged.
 
-Train, landmark, viaduct, station furniture, tunnel and audio are authored locally in source. Generated materials coexist with the CC0 photographed surface maps below. The exterior recreates the HCMT from user-supplied photographic reference; the cab is gameplay-adapted. The user reference photograph is not redistributed. See `train-assets.md` and `world-review.md` for fidelity boundaries. UI typography uses local Arial/Helvetica; the proprietary PTV Network Sans font is not bundled. See `ui-brand-references.md`.
+Train, landmark, viaduct, station furniture and tunnel geometry are authored locally in source. Traction/horn/cue synthesis is original; the location recordings above are third-party licensed assets. Generated materials coexist with the CC0 photographed surface maps below. The exterior recreates the HCMT from user-supplied photographic reference; the cab is gameplay-adapted. The user reference photograph is not redistributed. See `train-assets.md` and `world-review.md` for fidelity boundaries. UI typography uses local Arial/Helvetica; the proprietary PTV Network Sans font is not bundled. See `ui-brand-references.md`.
 
 
 ## Included western corridor geography and surface assets

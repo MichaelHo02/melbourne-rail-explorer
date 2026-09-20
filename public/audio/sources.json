@@ -1,0 +1,57 @@
+{
+  "assets": [
+    {
+      "file": "southern-cross-ambience.mp3",
+      "start": 20,
+      "title": "Train Station ambience",
+      "creator": "eaglechopper",
+      "source": "https://freesound.org/people/eaglechopper/sounds/237999/",
+      "preview": "https://cdn.freesound.org/previews/237/237999_3948615-hq.mp3",
+      "location": "Southern Cross station, Melbourne",
+      "description": "Historic station field recording; source author describes trains arriving/departing and muffled announcements. Not a dynamic service announcement.",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceSha256": "30d2894d8b7bcfb1b92d093cbd8443b623e652bbbd83265d07225108e06a1793",
+      "sha256": "6785a60ab5a2ca8cb2794f043552decd44965054df1be8d4ec4a2471a378f5e3",
+      "durationSeconds": 60,
+      "processing": "62-second excerpt; 65 Hz high pass; -24 LUFS target; 2-second equal-power wrap crossfade; stereo MP3 128 kbit/s",
+      "verification": "Decoder, duration, loudness and clipping checked. No human listening review or PA transcript verification yet."
+    },
+    {
+      "file": "flinders-exterior-ambience.mp3",
+      "start": 30,
+      "title": "Melbourne City Intersection Trams & Cars Traffic Afternoon",
+      "creator": "melbourne.atmospheres",
+      "source": "https://freesound.org/people/melbourne.atmospheres/sounds/582919/",
+      "preview": "https://cdn.freesound.org/previews/582/582919_13141607-hq.mp3",
+      "location": "Flinders Street / Swanston Street intersection, Melbourne",
+      "description": "Outdoor intersection beside Flinders Street station: traffic, trams and pedestrian activity. Not station-platform or onboard audio.",
+      "license": "CC0 1.0 Universal",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sourceSha256": "7105eb191f60eae774841bb6e57a7d4e51193cf69cf69d7b66fdaf1b4d0809a7",
+      "sha256": "69f8037d46eda8412c907b266688a7de0507f00aacbf5c62285112e7ac7424b8",
+      "durationSeconds": 60,
+      "processing": "62-second excerpt; 65 Hz high pass; -24 LUFS target; 2-second equal-power wrap crossfade; stereo MP3 128 kbit/s",
+      "verification": "Decoder, duration, loudness and clipping checked. No human listening review or PA transcript verification yet."
+    },
+    {
+      "file": "parliament-departure.mp3",
+      "title": "Xtrap depart.mp3",
+      "creator": "Tanoseki",
+      "source": "https://freesound.org/people/Tanoseki/sounds/69560/",
+      "preview": "https://cdn.freesound.org/previews/69/69560_911819-hq.mp3",
+      "location": "Parliament station, Melbourne",
+      "description": "Historic field recording of an Xtrapolis departure, published 23 March 2009. Not HCMT traction audio or a current service announcement.",
+      "license": "CC BY 3.0 Unported",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "derivativeLicense": "CC BY 3.0 Unported",
+      "attribution": "Xtrap depart.mp3 by Tanoseki, via Freesound, CC BY 3.0. Modified: high-pass filter, loudness normalization, edge fades and MP3 re-encoding.",
+      "sourceSha256": "5eb19458eedcd2745ea6488fa863186fd9ec2c1097114ccd9a90414b8f86576d",
+      "sha256": "4cff36de66002bc8fea2fd7591a1246a875713e2a8354c6814a6c83c3074e696",
+      "durationSeconds": 45.741474,
+      "loop": false,
+      "processing": "Full departure recording; 65 Hz high pass; -24 LUFS target; brief edge fades; stereo MP3 128 kbit/s",
+      "verification": "Decoder, duration and true peak checked. Human listening and transcript verification not performed."
+    }
+  ]
+}

@@ -66,9 +66,10 @@ export class Simulation {
     }
     if(s.distance>=ROUTE_LENGTH||s.nextStation>=STATIONS.length){s.speed=0;s.acceleration=0;s.controller=0;s.phase='complete';}
   }
-  loadScenario(name:'departure'|'tunnel'|'approach'|'platform'|'viaduct'){
+  loadScenario(name:'departure'|'tunnel'|'approach'|'platform'|'viaduct'|'flagstaff'|'parliament'|'southern-cross'){
     this.reset();const s=this.state;s.phase='driving';
     if(name==='departure')return;
+    if(name==='flagstaff'||name==='parliament'||name==='southern-cross'){s.nextStation=name==='flagstaff'?2:name==='parliament'?4:1;s.distance=STATIONS[s.nextStation].distance;s.doors=true;s.dwell=8;this.message=`${STATIONS[s.nextStation].name}. Platform inspection.`;return;}
     if(name==='viaduct'){s.doors=false;s.dwell=0;s.nextStation=1;s.distance=640;s.speed=0;this.message='Flinders Street viaduct. Continue to Southern Cross.';return;}
     s.doors=false;s.dwell=0;s.nextStation=name==='tunnel'||name==='platform'?3:1;
     s.distance=STATIONS[s.nextStation].distance-(name==='platform'?0:name==='tunnel'?320:150);

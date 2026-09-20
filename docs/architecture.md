@@ -22,14 +22,20 @@ Following the article’s progression, rendering targets **native WebGPU only**.
 
 Vite resolves core classes, node materials and TSL to one shared Three.js source graph. `three-native.ts` excludes the dual-backend renderer wrapper, and a build guard rejects rendered modules from `webgl-fallback`. This avoids bundling a second backend or mixing prebuilt and source TSL singletons. These source imports target the locked Three r180 version and should be reviewed during upgrades.
 
-Initialization awaits GPU setup, city/train/viaduct/PBR texture/HDRI assets, explicit PMREM environment generation, and shader compilation for the initial menu and cab views. Generating the environment before `compileAsync` prevents Three r180's nested PMREM render from caching a black texture during compilation. Three.js owns the animation loop; the existing fixed-step simulation runs inside it. The legacy ShaderMaterial sky has been replaced with SkyMesh. Standard GLB materials are handled by the node material library. TSL uniforms control height-aware distance haze and travelling water normals; water animation follows simulation time and pauses with the service. Water geometry preserves the official Vicmap Hydro banks, without spline smoothing. Its reflections currently sample the sky environment, not the surrounding buildings.
+Initialization awaits GPU setup, city/photomesh/train/traffic/passenger/viaduct/PBR texture/HDRI assets, explicit PMREM environment generation, and shader compilation for the initial menu and cab views. Generating the environment before `compileAsync` prevents Three r180's nested PMREM render from caching a black texture during compilation. Three.js owns the animation loop; the existing fixed-step simulation runs inside it. The legacy ShaderMaterial sky has been replaced with SkyMesh. Standard GLB materials are handled by the node material library. TSL uniforms control height-aware distance haze and travelling water normals; water animation follows simulation time and pauses with the service. Water geometry preserves the official Vicmap Hydro banks, without spline smoothing. Its reflections currently sample the sky environment, not the surrounding buildings.
 
 ## Module ownership
 
 ```text
 src/data/route.ts       Geographic projection, continuous path sampling, station markers
 src/game/simulation.ts Fixed-step train dynamics, controls, dwell, stop results, save validation
-src/game/audio.ts      Optional synthesized traction/rail ambience and horn
+src/game/audio.ts      Opt-in licensed location recordings, traction/horn/cue synthesis
+src/game/announcements.ts Simulation-time service captions
+src/game/traffic.ts    Official fixed-date GTFS timetable interpolation
+src/render/traffic.ts Instanced adjacent-track visual traffic subset
+src/render/photographic-city.ts City of Melbourne photographic context and clearance masks
+src/render/passengers.ts Instanced Blender commuters with near/far detail
+src/render/station-details.ts Reference-based platform fittings
 src/render/renderer.ts Renderer lifecycle, cameras, metrics
 src/render/native-renderer.ts Native WebGPU backend and standard node materials
 src/render/three-native.ts Shared Three.js source exports without renderer fallback
@@ -63,9 +69,9 @@ One route-distance value is authoritative for train position. Camera and each ca
 1. **Playable foundation (this build):** operator controls, one complete official-shape-derived training circuit, real building outlines/heights, surface/tunnel transitions, station service, local save, and reproducible tests.
 2. **Track accuracy:** two official DTP route shapes and platform points are integrated; next, use dedicated track/geographic data and validate a named service and direction. Resolve physical railway topology, gradients, broad-gauge alignment, platform markers and clearances against references. Keep source metadata and version the route.
 3. **Detailed stations and rolling stock:** a photo-based seven-car HCMT with animated doors, gameplay cab and Blender-authored Flinders Street landmark are integrated, with a characteristic Southern Cross roof. Next refine underground station interiors, verified cab proportions, platform fittings and recorded/licensed audio. Do not infer station interiors from building footprints.
-4. **City photogrammetry:** public 2020 CBD/Southbank I3S 1.8 photomesh metadata is reachable; conversion is not yet implemented (see corridor-data.md). The older 2018 OBJ export remains an alternative. Crop only corridor-visible tiles, transform MGA55/AHD coordinates into the local frame, convert OBJ/MTL/JPG to GLB, create LODs and KTX2 textures, and stream ahead of the train. Keep nearby authored railway assets detailed and distant city assets inexpensive. Validate licensing and retain attribution per asset.
+4. **City photogrammetry:** 106 public 2020 CBD/Southbank I3S tiles are converted to five GLBs with embedded photographic atlases. Runtime masks retain authored playable railway, water, banks and the complete Flinders landmark where scan coverage is partial. Source EGM96 heights are retained; they are not AHD. The geometry is loaded up front and distance-culled, not progressively streamed. Higher-detail close facades, texture compression and streaming remain future work.
 5. **Operational simulation:** choose a Melbourne fleet and route era, then calibrate traction/braking, signals, blocks, speed boards, traffic and timetables. Introduce optional live data only after simulated operation is coherent.
 
 ## Why live API data is not required yet
 
-Player-controlled movement immediately diverges from a real vehicle feed. The game owns the player train's state. GTFS Schedule is the eventual service/network input; GTFS Realtime can provide background traffic or seeded scenarios through a cached server adapter. Secrets must stay server-side. A stable bundled route allows play while paused, offline, or without an API key.
+Player-controlled movement immediately diverges from a real vehicle feed. The game owns the player train's state. GTFS Schedule supplies a bundled, fixed-date surrounding-traffic replay. GTFS Realtime could supply observed vehicle positions through a cached server adapter, but no key is configured and no live mode is claimed. Secrets must stay server-side. A stable bundled route allows play while paused, offline, or without an API key.

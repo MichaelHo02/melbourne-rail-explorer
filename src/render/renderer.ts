@@ -2,8 +2,9 @@ import * as T from 'three/webgpu';
 import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
 import { World } from './world';
 import { TrainVisual } from './train';
+import { TimetableTraffic } from './traffic';
 import { createNativeRenderer } from './native-renderer';
-import { positionAt, tangentAt, project } from '../data/route';
+import { positionAt, tangentAt, project, isUnderground, STATIONS } from '../data/route';
 import type { TrainState } from '../game/simulation';
 
 export type View='cab'|'chase';
@@ -12,6 +13,7 @@ export class GameRenderer {
   world:World;train:TrainVisual;view:View='cab';look=0;ready=false;
   private lastCamera=new T.Vector3();private target=new T.Vector3();private contextLost=false;
   private backend='initializing';
+  private traffic=new TimetableTraffic();
   private inspectionView=import.meta.env.DEV?new URLSearchParams(location.search).get('view'):null;
   constructor(container:HTMLElement,onFailure:(message:string)=>void){
     this.renderer=createNativeRenderer();
@@ -25,7 +27,7 @@ export class GameRenderer {
       this.renderer.domElement.dataset.rendererStatus='lost';
       onFailure('Graphics were interrupted. Reload to restore the scene; your driving progress has been saved.');
     };
-    this.world=new World(this.scene);this.train=new TrainVisual(this.scene,this.camera);
+    this.world=new World(this.scene);this.train=new TrainVisual(this.scene,this.camera);this.scene.add(this.traffic.group);
     const resize=()=>{this.camera.aspect=container.clientWidth/container.clientHeight;this.camera.updateProjectionMatrix();this.renderer.setSize(container.clientWidth,container.clientHeight);};
     window.addEventListener('resize',resize);resize();
   }
@@ -38,6 +40,7 @@ export class GameRenderer {
     await Promise.all([
       this.world.loadCity(onProgress),
       this.train.ready,
+      this.traffic.ready,
       new HDRLoader().loadAsync('/environment/morning-sky.hdr').then(async texture=>{
         texture.mapping=T.EquirectangularReflectionMapping;
         // Generate reflections before compileAsync: nested PMREM renders during
@@ -80,6 +83,12 @@ export class GameRenderer {
       const river=project(144.9667,-37.81965);
       this.camera.position.set(river.x+45,18,river.z+45);this.target.set(river.x-35,-.6,river.z-55);
     }
+    else if(this.inspectionView==='platform'){
+      const station=STATIONS[state.nextStation]??STATIONS[0],distance=station.distance-65,anchor=positionAt(distance),forward=tangentAt(Math.max(0,distance)),normal=new T.Vector3(-forward.z,0,forward.x),offset=station.code==='FSS'?5.4:-5.4;
+      if(distance<0){anchor.x+=forward.x*distance;anchor.y+=forward.y*distance;anchor.z+=forward.z*distance;}
+      this.camera.position.set(anchor.x+normal.x*offset,anchor.y+2.65,anchor.z+normal.z*offset);
+      this.target.set(anchor.x+forward.x*40+normal.x*offset,anchor.y+2.5,anchor.z+forward.z*40+normal.z*offset);
+    }
     else if(menu){this.camera.position.set(p.x+110,p.y+55,p.z+110);this.target.set(p.x-75,p.y+10,p.z-50);}
     else if(cab){
       this.camera.position.set(p.x,p.y+2.85,p.z);
@@ -90,6 +99,7 @@ export class GameRenderer {
       this.target.set(p.x+t.x*25,p.y+1,p.z+t.z*25);
     }
     this.camera.lookAt(this.target);this.train.update(state.distance,cab&&!this.inspectionView,state.doors);this.world.update(state.distance,this.camera,state.time);
+    this.traffic.update(state.time,this.camera,isUnderground(state.distance));
   }
-  metrics(){const i=this.renderer.info;return {drawCalls:i.render.drawCalls,triangles:i.render.triangles,geometries:i.memory.geometries,textures:i.memory.textures,cityReady:this.ready,buildingSections:this.world.buildingCount,backend:this.backend};}
+  metrics(){const i=this.renderer.info;return {drawCalls:i.render.drawCalls,triangles:i.render.triangles,geometries:i.memory.geometries,textures:i.memory.textures,cityReady:this.ready,buildingSections:this.world.buildingCount,trafficTrains:this.traffic.visibleTrains,backend:this.backend};}
 }

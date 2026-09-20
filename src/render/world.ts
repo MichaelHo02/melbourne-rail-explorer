@@ -1,15 +1,18 @@
 import * as T from 'three/webgpu';
 import { EnvironmentEffects } from './environment';
 import riverSource from '../data/river-source.json';
-import { stationArchitecture, platformPassengers } from './stations';
+import { stationArchitecture } from './stations';
+import { stationDetails } from './station-details';
+import { Passengers, type PassengerPlacement } from './passengers';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { SkyMesh } from 'three/addons/objects/SkyMesh.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { positionAt, tangentAt, ROUTE_LENGTH, STATIONS, project, isUnderground } from '../data/route';
-import { labelTexture, surfaceTexture } from './materials';
+import { labelTexture, surfaceTexture, stationTileTexture } from './materials';
 import { createBuildingMaterial } from './building-materials';
 import { SurfaceLibrary } from './surface-library';
 import { CorridorScenery } from './corridor';
+import { PhotographicCity } from './photographic-city';
 
 const vector=(v:{x:number;y:number;z:number})=>new T.Vector3(v.x,v.y,v.z);
 export class World {
@@ -20,6 +23,8 @@ export class World {
   private effects:EnvironmentEffects;
   private surfaces=new SurfaceLibrary();
   private corridor:CorridorScenery;
+  private passengers:Passengers;
+  private photographic=new PhotographicCity();
   private concrete=new T.MeshStandardMaterial({map:surfaceTexture('concrete'),color:'#95978b',roughness:.96});
   private metal=new T.MeshStandardMaterial({color:'#657579',metalness:.7,roughness:.35});
   private dark=new T.MeshStandardMaterial({color:'#243139',roughness:.8});
@@ -36,8 +41,18 @@ export class World {
     this.sun.shadow.camera.top=170;this.sun.shadow.camera.bottom=-170;this.sun.shadow.camera.near=.5;this.sun.shadow.camera.far=900;
     this.sun.shadow.bias=-.0002;this.sun.shadow.normalBias=.08;scene.add(this.sun,this.sun.target);
     this.ambient=new T.HemisphereLight('#c4ddeb','#787766',1.1);scene.add(this.ambient);
-    this.corridor=new CorridorScenery(this.surfaces);this.surface.add(this.corridor.group);
+    this.corridor=new CorridorScenery(this.surfaces);this.surface.add(this.corridor.group,this.photographic.group);
     this.buildGround();this.buildTrack();this.buildStations();this.buildLandmarks();
+    const placements:PassengerPlacement[]=[];
+    // Deterministic small groups, with space around furniture and platform edges.
+    // FSS's duplicate final stop shares its platform, so populate it only once.
+    for(const [index,st] of STATIONS.slice(0,-1).entries())for(let j=0;j<24;j++){
+      const s=st.distance-145+(j*31+index*17)%172,p=positionAt(s),t=tangentAt(Math.max(0,s)),n=Math.hypot(t.x,t.z)||1;
+      if(s<0){p.x+=t.x*s;p.z+=t.z*s;}
+      const x=(st.code==='FSS'?-1:1)*(3.25+(j%3)*.47);
+      placements.push({position:{x:p.x+t.z/n*x,y:p.y+1.065,z:p.z-t.x/n*x},heading:Math.atan2(t.x,t.z)+(j%4===0?.5:j%4===1?Math.PI:1.5),variant:(j+index)%6});
+    }
+    this.passengers=new Passengers(placements);this.scene.add(this.passengers.group);
   }
   private box(parent:T.Object3D,w:number,h:number,d:number,x:number,y:number,z:number,material:T.Material){
     const geometry=new T.BoxGeometry(w,h,d,1,1,Math.max(1,Math.ceil(d/4)));
@@ -167,27 +182,24 @@ export class World {
     for(const [index,station] of STATIONS.entries()){
       const p=vector(positionAt(station.distance-65)),group=new T.Group();
       group.userData.center=p;group.userData.underground=station.underground;this.stations.add(group);
-      const platformMaterial=new T.MeshStandardMaterial({map:surfaceTexture('concrete'),color:'#bec0b5',roughness:1});
-      this.box(group,6,1.1,200,5.25,.5,0,platformMaterial);
+      const platformMaterial=station.code==='SXS'?this.surfaces.asphalt:station.code==='FSS'?this.surfaces.paving:new T.MeshStandardMaterial({map:stationTileTexture(station.code),color:'#dddcd4',roughness:.76});
+      this.box(group,station.code==='MCE'?9:6,1.1,200,station.code==='MCE'?6.75:5.25,.5,0,platformMaterial);
       this.box(group,.45,.03,198,2.48,1.065,0,yellow);
       this.box(group,.1,.09,198,2.21,.96,0,this.concrete);
-      const backMaterial=new T.MeshStandardMaterial({map:surfaceTexture(station.underground?'brick':'concrete'),color:station.color,roughness:.9});
+      const backMaterial=new T.MeshStandardMaterial({color:station.color,roughness:station.code==='PAR'?.36:.7,metalness:station.underground?.18:0});
       if(station.underground){
-        this.box(group,1,6,206,8.5,3,0,backMaterial);
-        this.box(group,1,6,206,-3.5,3,0,this.concrete);
-        this.box(group,13,.3,206,2.7,5.6,0,this.concrete);
-        this.box(group,.07,.45,198,7.94,2.7,0,new T.MeshStandardMaterial({color:station.color}));
+        if(station.code!=='MCE')this.box(group,1,3.3,206,8.5,1.65,0,backMaterial);
+        this.box(group,1,3.3,206,-3.5,1.65,0,backMaterial);
       }
       stationArchitecture(group,station,index,this.surfaces.ballast);
+      stationDetails(group,station.code,station.name);
       for(let z=-90;z<=90;z+=20){
-        this.box(group,.2,4.8,.2,6,3.4,z,this.metal);
+        if(!station.underground)this.box(group,.2,4.8,.2,6,3.4,z,this.metal);
         this.box(group,4,.07,.3,4.8,5.2,z,lampMaterial);
         const lamp=new T.PointLight('#fff1d3',station.underground?55:8,20,2);lamp.position.set(4,4.5,z);group.add(lamp);
-        const sign=new T.Mesh(new T.PlaneGeometry(5.5,.7),new T.MeshBasicMaterial({map:labelTexture(station.name),side:T.DoubleSide}));
-        sign.rotation.y=-Math.PI/2;sign.position.set(7.92,3.8,z);group.add(sign);
-        this.box(group,1,.15,3.0,5,1.65,z+6,this.dark);this.box(group,.1,.7,3,5.4,1.95,z+6,this.metal);
+        const sign=new T.Mesh(new T.PlaneGeometry(station.underground?3.4:5.5,station.underground?.45:.7),new T.MeshBasicMaterial({map:labelTexture(station.name,station.underground?'#e3e4d7':'#16303b',station.underground?'#172421':'#ffffff'),side:T.DoubleSide}));
+        sign.rotation.y=-Math.PI/2;sign.position.set(7.92,station.underground&&station.code!=='MCE'?2.7:3.8,z);group.add(sign);
       }
-      platformPassengers(group,index);
       const marker=new T.Mesh(new T.PlaneGeometry(.55,.75),new T.MeshBasicMaterial({map:labelTexture('7','#f2eee0','#1d343d',128,160),side:T.DoubleSide}));
       marker.position.set(2,2.0,65);marker.rotation.y=Math.PI;group.add(marker);
       // A paired clear signal is a training cue, not a real block/interlocking model.
@@ -248,7 +260,7 @@ export class World {
   }
   async loadCity(onProgress:(message:string)=>void){
     onProgress('Loading Melbourne building survey…');
-    await Promise.all([this.landmarkReady,this.surfaces.ready,this.corridor.ready]);
+    await Promise.all([this.landmarkReady,this.surfaces.ready,this.corridor.ready,this.passengers.ready,this.photographic.ready]);
     const response=await fetch('/data/buildings.json');if(!response.ok)throw new Error('Building dataset could not be loaded.');
     const data=await response.json();
     const materials=[createBuildingMaterial()];
@@ -262,7 +274,7 @@ export class World {
         const [x,z]=key.split(',').map(Number);const mesh=new T.Mesh(geometry,materials[Math.abs(x+z)%materials.length]);mesh.castShadow=true;mesh.receiveShadow=true;mesh.userData.center=new T.Vector3(x*250+125,0,z*250+125);
         this.cityChunks.push(mesh);this.surface.add(mesh);onProgress(`Preparing city blocks · ${this.cityChunks.length}`);
       };
-      this.worker!.postMessage({buildings:data.buildings});
+      this.worker!.postMessage({buildings:data.buildings.filter((b:{ring:[number,number][];base:number;height:number;kind?:string})=>!this.photographic.replacesBuilding(b))});
     });
   }
   update(distance:number,camera:T.Camera,seconds=0){
@@ -272,7 +284,7 @@ export class World {
     this.surface.visible=!underground;this.sun.intensity=3.2*(1-darkness);this.ambient.intensity=1.1-.55*darkness;
     this.scene.background=underground?new T.Color('#141d21'):(this.exteriorBackground??null);
     this.sky.visible=!this.exteriorBackground;
-    this.effects.update(darkness,seconds);this.corridor.update(camera);
+    this.effects.update(darkness,seconds);this.corridor.update(camera);this.passengers.update(camera,seconds);this.photographic.update(camera);
     this.sun.position.copy(p).add(new T.Vector3(350,280,150));this.sun.target.position.copy(p);this.sun.target.updateMatrixWorld();
     for(const chunk of this.cityChunks)chunk.visible=chunk.userData.center.distanceTo(camera.position)<2300;
     // Only nearby platform lamps contribute to the lighting shader.
