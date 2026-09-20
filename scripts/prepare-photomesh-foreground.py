@@ -1,10 +1,10 @@
-"""Retain coherent survey facades for seven foreground viaduct structures.
+"""Retain coherent survey facades for foreground viaduct and Flinders arrival structures.
 Uses the locally cached official 2023 footprint export. No network/download.
 """
-import hashlib, json, math, pathlib
+import argparse, hashlib, json, math, pathlib
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 SOURCE=ROOT/'public/data/buildings-raw.json'
-STRUCTURES=['813984','801838','809141','817607','806929','807118','814208']
+STRUCTURES=['813984','801838','809141','817607','806929','807118','814208','814434','815722']
 ORIGIN=[144.9671,-37.8183]
 MARGIN=3
 # I3S tile 141755 retains a facade patch 2.48m outside this structure's 3m
@@ -45,7 +45,8 @@ def expand(ring,margin):
  return out
 
 def main():
- payload=SOURCE.read_bytes();records=json.loads(payload);items=[]
+ parser=argparse.ArgumentParser();parser.add_argument('--source',type=pathlib.Path,default=SOURCE);args=parser.parse_args()
+ payload=args.source.read_bytes();records=json.loads(payload);items=[]
  for structure_id in STRUCTURES:
   records_for_id=[r for r in records if str(r['structure_id'])==structure_id]
   if not records_for_id:raise RuntimeError('Missing surveyed structure '+structure_id)
@@ -57,7 +58,7 @@ def main():
   footprint=hull(points)
   margin=LOCAL_MARGINS.get(structure_id,MARGIN)
   items.append({'structureId':structure_id,'objectIds':sorted(str(r['objectid']) for r in records_for_id),'footprintHullXZ':footprint,'photographicExclusionXZ':expand(footprint,margin),'photographicMarginMetres':margin,'measuredStructureHeight':max(r['structure_extrusion'] for r in records_for_id)})
- document={'source':'City of Melbourne 2023 Building Footprints','url':'https://data.melbourne.vic.gov.au/explore/dataset/2023-building-footprints/','license':'CC BY 4.0','sourceSha256':hashlib.sha256(payload).hexdigest(),'origin':ORIGIN,'purpose':'Keep one coherent surveyed procedural facade for seven foreground viaduct structures instead of overlapping different photographic and procedural storeys. Distant photographic city remains.','selection':'Structure anchors 58–118 m on the city side of route distances 540–920 m, identified in the riverbank/viaduct inspection view.','modifications':'Convex envelope of all source footprint sections; photographic exclusion expands each envelope edge by 3 m, except a verified residual facade patch on structure 817607 requiring 6 m. Two remaining disconnected scan fragments use individually measured bounds with 10cm padding and finite height limits. Complete source object IDs are retained.','structures':items,'residualFragments':RESIDUAL_FRAGMENTS}
+ document={'source':'City of Melbourne 2023 Building Footprints','url':'https://data.melbourne.vic.gov.au/explore/dataset/2023-building-footprints/','license':'CC BY 4.0','sourceSha256':hashlib.sha256(payload).hexdigest(),'origin':ORIGIN,'purpose':'Keep one coherent surveyed procedural facade for foreground viaduct and Flinders arrival structures instead of overlapping different photographic and procedural storeys. Distant photographic city remains.','selection':'Seven viaduct structures at route distances 540–920m, plus structure 814434: arrival inspection ray at route 5500m hits tile I3S_91824 at game XYZ [82.0064,14.0600,-76.4462], inside source section 85. The same ray meets I3S_199208 at [8.7767,19.6572,-103.7863], inside sections 40507/40508 of structure 815722.','modifications':'Convex envelope of all source footprint sections; photographic exclusion expands each envelope edge by 3 m, except a verified residual facade patch on structure 817607 requiring 6 m. Two remaining disconnected scan fragments use individually measured bounds with 10cm padding and finite height limits. Complete source object IDs are retained.','structures':items,'residualFragments':RESIDUAL_FRAGMENTS}
  (ROOT/'src/data/photomesh-foreground.json').write_text(json.dumps(document,separators=(',',':'))+'\n')
  print('Prepared',len(items),'foreground structures with',sum(len(i['objectIds']) for i in items),'source sections')
 if __name__=='__main__':main()

@@ -38,6 +38,14 @@ export class GameRenderer {
     const resize=()=>{this.camera.aspect=container.clientWidth/container.clientHeight;this.camera.updateProjectionMatrix();this.renderer.setSize(container.clientWidth,container.clientHeight);};
     window.addEventListener('resize',resize);resize();
   }
+  inspectSurface(x:number,y:number){
+    if(!import.meta.env.DEV||!Number.isFinite(x)||!Number.isFinite(y)||Math.abs(x)>1||Math.abs(y)>1)return [];
+    const ray=new T.Raycaster();ray.setFromCamera(new T.Vector2(x,y),this.camera);
+    return ray.intersectObject(this.world.surface,true).slice(0,8).map(hit=>({
+      point:hit.point.toArray(),distance:hit.distance,face:hit.faceIndex,
+      object:hit.object.name,parent:hit.object.parent?.name,
+    }));
+  }
   async loadCity(onProgress:(s:string)=>void,initialState:TrainState){
     onProgress('Starting graphics…');
     try{await this.renderer.init();}

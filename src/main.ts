@@ -110,6 +110,7 @@ if(renderer){
 if(import.meta.env.DEV){
   Object.assign(window,{__RAIL_EXPLORER__:{
     state:()=>sim.snapshot(),
+    inspectSurface:(x:number,y:number)=>renderer?.inspectSurface(x,y),
     metrics:()=>({...renderer?.metrics(),averageFrameMs:frameTimes.reduce((a,b)=>a+b,0)/(frameTimes.length||1)}),
     scenario:(name:'departure'|'tunnel'|'approach'|'platform'|'viaduct'|'flagstaff'|'parliament'|'southern-cross')=>{inspectionScenario=true;sim.loadScenario(name);renderer?.render(sim.state,0);},
     restore:(state:unknown)=>sim.restore(state),
