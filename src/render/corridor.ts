@@ -432,9 +432,9 @@ export class CorridorScenery {
       return Math.max(0,height);
     };
     const roads=data.layers.roads.features.filter(f=>!['trail','tunnel'].includes(String(f.properties.feature_type_code))).flatMap(f=>lines(f).flatMap(line=>line.slice(1).map((b,i)=>({a:line[i],b,width:streetWidth(f)}))));
-    const roadAt=(p:T.Vector3)=>roads.some(({a,b,width})=>{
+    const roadAt=(p:T.Vector3,margin=0)=>roads.some(({a,b,width})=>{
       const dx=b.x-a.x,dz=b.z-a.z,t=T.MathUtils.clamp(((p.x-a.x)*dx+(p.z-a.z)*dz)/(dx*dx+dz*dz||1),0,1);
-      return Math.hypot(p.x-a.x-dx*t,p.z-a.z-dz*t)<width/2+3;
+      return Math.hypot(p.x-a.x-dx*t,p.z-a.z-dz*t)<width/2+3+margin;
     });
     let segments=0;
     for(const feature of data.layers.rails.features){
@@ -458,16 +458,33 @@ export class CorridorScenery {
           if(samples.some(p=>Math.hypot(p.x-mid.x,p.z-mid.z)<26))continue;
           const direction=b.clone().sub(a).normalize(),side=new T.Vector3(-direction.z,0,direction.x);
           const halfWidth=count*2.1;
-          const footprint=[a.clone().addScaledVector(side,halfWidth+4),b.clone().addScaledVector(side,halfWidth+4),b.clone().addScaledVector(side,-halfWidth-4),a.clone().addScaledVector(side,-halfWidth-4)].map(p=>[p.x,p.z]);
+          // Broad earthwork shoulders meet the existing terrain instead of
+          // leaving near-vertical 4m-wide ballast walls beside the approach.
+          // The 14m cap retains the 26m running-line exclusion at four tracks.
+          const shoulder=Math.min(14,Math.max(4,(Math.max(heightA,heightB)+.96)*3));
+          const footprint=[a.clone().addScaledVector(side,halfWidth+shoulder),b.clone().addScaledVector(side,halfWidth+shoulder),b.clone().addScaledVector(side,-halfWidth-shoulder),a.clone().addScaledVector(side,-halfWidth-shoulder)].map(p=>[p.x,p.z]);
           if(ringsIntersect(footprint,SOUTHERN_CROSS_CLEARANCE))continue;
           a.y=heightA;b.y=heightB;
-          const overRoad=roadAt(mid);
+          const overRoad=roadAt(mid,halfWidth+shoulder);
           if(!overRoad){
             for(const sign of [-1,1]){
               const topA=a.clone().addScaledVector(side,sign*halfWidth),topB=b.clone().addScaledVector(side,sign*halfWidth);
-              const footA=a.clone().addScaledVector(side,sign*(halfWidth+4)).setY(-.96),footB=b.clone().addScaledVector(side,sign*(halfWidth+4)).setY(-.96);
+              const footA=a.clone().addScaledVector(side,sign*(halfWidth+shoulder)).setY(-.96),footB=b.clone().addScaledVector(side,sign*(halfWidth+shoulder)).setY(-.96);
               const points=sign>0?[topA,footA,topB,topB,footA,footB]:[topA,topB,footA,footA,topB,footB];
               const slope=new T.BufferGeometry();slope.setAttribute('position',new T.Float32BufferAttribute(points.flatMap(p=>p.toArray()),3));slope.setAttribute('uv',new T.Float32BufferAttribute(points.flatMap(p=>[p.x/2,p.z/2+p.y/2]),2));slope.computeVertexNormals();beds.push(slope);
+            }
+          }
+          if(!overRoad){
+            // Close segment ends below rail level. Internal caps are hidden;
+            // boundary caps prevent an open underside at clipped yard ends.
+            for(const end of [a,b]){
+              const topLeft=end.clone().addScaledVector(side,-halfWidth),topRight=end.clone().addScaledVector(side,halfWidth);
+              const bottomLeft=end.clone().addScaledVector(side,-halfWidth-shoulder).setY(-.96),bottomRight=end.clone().addScaledVector(side,halfWidth+shoulder).setY(-.96);
+              const points=[topLeft,bottomLeft,topRight,topRight,bottomLeft,bottomRight];
+              const cap=new T.BufferGeometry();cap.setAttribute('position',new T.Float32BufferAttribute(points.flatMap(p=>p.toArray()),3));cap.setAttribute('uv',new T.Float32BufferAttribute(points.flatMap(p=>[p.dot(side)/2,p.y/2]),2));cap.computeVertexNormals();
+              // End-facing winding; both ends must have their outer face visible.
+              if(end===b){const pos=cap.attributes.position,uv=cap.attributes.uv;for(const attr of [pos,uv])for(let i=0;i<6;i+=3)for(let k=0;k<attr.itemSize;k++){const array=attr.array,t=array[(i+1)*attr.itemSize+k];array[(i+1)*attr.itemSize+k]=array[(i+2)*attr.itemSize+k];array[(i+2)*attr.itemSize+k]=t;}cap.computeVertexNormals();}
+              beds.push(cap);
             }
           }
           for(let track=0;track<count;track++){

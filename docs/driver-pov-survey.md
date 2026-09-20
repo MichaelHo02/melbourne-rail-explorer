@@ -73,3 +73,26 @@ and 2,793,569 triangles, with 44 static timing samples (mean 16.675 ms, p99
 17.2 ms). The earlier zero counters were captured after an asynchronous frame
 reset; this verification supersedes that pending check. Moving approach
 measurements are recorded separately in station-lod-plan.md.
+
+## 21 September: mapped yard earthworks
+
+Scenery rail shoulders now grade at roughly 1:3 to the existing terrain,
+limited to 14 m outside the track bed. The playable alignment retains its
+26 m centreline exclusion; at the maximum four-track context width this leaves
+at least 3.6 m between the shoulder footprint and the sampled running line.
+Full-width road proximity suppresses earthwork fill around crossings and nearby
+streets. Segment ends are capped below the rails to close exposed undersides.
+These are authored terrain connections along Vicmap centrelines, not surveyed
+vertical earthwork profiles or operational pointwork.
+
+`yard-shoulders/01800.png` was compared with the original 1800 m capture:
+steep/open end silhouettes on the left yard are replaced by continuous grounded
+slopes. The track ahead is clear. Bare areas outside these shoulders and aerial
+facade fragments remain outstanding. Production build and 11 corridor tests
+pass; this local change is not a full environment completion claim.
+
+`eastern-yard-shoulders/05200.png` also confirms connected broad shoulders on
+both sides of the eastern running line, with the former exposed olive ground
+strips reduced. The elevated foreground building/bridge representation and
+coarse nearby photographic facades are still conspicuous and are the next
+visual priority.
