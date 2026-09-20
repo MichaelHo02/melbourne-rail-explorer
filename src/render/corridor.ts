@@ -2,9 +2,10 @@ import * as T from 'three/webgpu';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import source from '../data/corridor-source.json';
+import extension from '../data/loop-landscape-source.json';
 import riverSource from '../data/river-source.json';
 import bridgeDecks from '../data/bridge-decks.json';
-import { project,positionAt,tangentAt } from '../data/route';
+import { project,positionAt,tangentAt,ROUTE_LENGTH } from '../data/route';
 import type { SurfaceLibrary } from './surface-library';
 import { insideRing,riverCrossings,streetElevations } from './corridor-geography';
 import { detailLawn,lawnMaterial } from './corridor-surfaces';
@@ -12,7 +13,16 @@ import { detailLawn,lawnMaterial } from './corridor-surfaces';
 type LineFeature={geometry:{type:string;coordinates:number[][]|number[][][]};properties:Record<string,string|number|null>};
 type TreeFeature={geometry:{coordinates:number[]};properties:{com_id:string;species:number;diameter_breast_height?:number}};
 type AreaFeature={geometry:{type:string;coordinates:number[][][]|number[][][][]};properties:Record<string,string|number|null>};
-const data=source as unknown as {layers:{roads:{features:LineFeature[]};rails:{features:LineFeature[]};trees:{features:TreeFeature[]};openSpaces?:{features:AreaFeature[]}};treeSpecies:{common_name:string;scientific_name:string}[]};
+type SceneryData={layers:{roads:{features:LineFeature[]};rails:{features:LineFeature[]};trees:{features:TreeFeature[]};openSpaces:{features:AreaFeature[]}};treeSpecies:{common_name:string;scientific_name:string}[]};
+const original=source as unknown as SceneryData,expanded=extension as unknown as SceneryData;
+const seenTrees=new Set(original.layers.trees.features.map(f=>f.properties.com_id));
+const data:SceneryData={layers:{
+  roads:{features:[...original.layers.roads.features,...expanded.layers.roads.features]},
+  rails:{features:[...original.layers.rails.features,...expanded.layers.rails.features]},
+  openSpaces:{features:[...original.layers.openSpaces.features,...expanded.layers.openSpaces.features]},
+  trees:{features:[...original.layers.trees.features,...expanded.layers.trees.features.filter(f=>!seenTrees.has(f.properties.com_id)).map(f=>({...f,properties:{...f.properties,species:f.properties.species+original.treeSpecies.length}}))]},
+},treeSpecies:[...original.treeSpecies,...expanded.treeSpecies]};
+
 const vec=(p:{x:number;y:number;z:number})=>new T.Vector3(p.x,p.y,p.z);
 const up=new T.Vector3(0,1,0);
 const river=riverSource.geometry.coordinates[0].map(([lon,lat])=>project(lon,lat));
@@ -65,10 +75,12 @@ function streetWidth(feature:LineFeature){
 export class CorridorScenery {
   readonly group=new T.Group();readonly ready:Promise<void>;
   private bankReady:Promise<void>=Promise.resolve();
-  private treeChunks:{group:T.Group;center:T.Vector3}[]=[];
+  private treeChunks:{group:T.Group;center:T.Vector3;detail?:T.Group}[]=[];
+  private treeReady:Promise<void>=Promise.resolve();
+  private lawnReady:Promise<void>=Promise.resolve();
   constructor(private surfaces:SurfaceLibrary){
     this.buildStreets();this.buildBanks();this.buildTrees();this.buildRailDetails();
-    this.ready=Promise.all([this.loadViaduct(),this.bankReady]).then(()=>{});
+    this.ready=Promise.all([this.loadViaduct(),this.bankReady,this.treeReady,this.lawnReady]).then(()=>{});
   }
   private buildStreets(){
     const asphalt:T.BufferGeometry[]=[],paving:T.BufferGeometry[]=[],paint:T.BufferGeometry[]=[],structure:T.BufferGeometry[]=[],rails:T.BufferGeometry[]=[];
@@ -152,19 +164,28 @@ export class CorridorScenery {
       }
     }
     merge(this.group,tramRails,new T.MeshStandardMaterial({color:'#aaa99c',metalness:.8,roughness:.38}));
-    const green:T.BufferGeometry[]=[];
+    const green:T.BufferGeometry[]=[],plazas:T.BufferGeometry[]=[];
     for(const feature of data.layers.openSpaces?.features??[]){
       const name=String(feature.properties.name??'');
       // Open-space datasets also include paved promenades. Only these park areas get grass.
-      if(!/Batman|Enterprise|Alexandra|Gardens/i.test(name))continue;
+      const lawn=/Batman|Enterprise|Alexandra Gardens|Gardens|Birrarung|Kings Domain|The Domain|Yarra Park|Jolimont|Yarra Bank Road Public Park|Gordon Reserve|Burston Reserve|Gillott Reserve|Plantation/i.test(name)&&!/former/i.test(name);
+      const paved=/Promenade|Square|Princes Walk/i.test(name)||feature.properties.os_group==='Civic square and promenade';
+      if(!lawn&&!paved)continue;
       const polygons=feature.geometry.type==='MultiPolygon'?feature.geometry.coordinates:[feature.geometry.coordinates];
       for(const rings of polygons as number[][][][]){
         const paths=rings.map(r=>r.map(([lon,lat])=>{const p=project(lon,lat);return new T.Vector2(p.x,-p.z);}));
         const shape=new T.Shape(paths[0]);shape.holes.push(...paths.slice(1).map(p=>new T.Path(p)));
-        const g=new T.ShapeGeometry(shape);g.rotateX(-Math.PI/2);g.translate(0,-.91,0);green.push(detailLawn(g));
+        const g=new T.ShapeGeometry(shape);g.rotateX(-Math.PI/2);g.translate(0,-.91,0);
+        if(lawn)green.push(detailLawn(g));
+        else {const uv=g.attributes.uv;for(let i=0;i<uv.count;i++)uv.setXY(i,uv.getX(i)/3.1,uv.getY(i)/3.1);plazas.push(g);}
       }
     }
-    merge(this.group,green,lawnMaterial());
+    const lawn=lawnMaterial();
+    this.lawnReady=new T.TextureLoader().loadAsync('/textures/surfaces/riverbank-turf.png').then(map=>{
+      map.colorSpace=T.SRGBColorSpace;map.wrapS=map.wrapT=T.RepeatWrapping;map.anisotropy=8;
+      lawn.map?.dispose();lawn.map=map;lawn.needsUpdate=true;
+    });
+    merge(this.group,green,lawn);merge(this.group,plazas,this.surfaces.paving);
   }
   private buildBanks(){
     const stone:T.BufferGeometry[]=[],caps:T.BufferGeometry[]=[],walk:T.BufferGeometry[]=[],seats:T.BufferGeometry[]=[],legs:T.BufferGeometry[]=[];
@@ -234,8 +255,9 @@ export class CorridorScenery {
     this.group.userData.northbankBenches=benches.length;
   }
   private buildTrees(){
-    const trackSamples=Array.from({length:84},(_,i)=>positionAt(162+i*12));
+    const trackSamples=Array.from({length:Math.ceil(ROUTE_LENGTH/8)},(_,i)=>positionAt(i*8)).filter(p=>p.y>-.5);
     const groups=new Map<string,TreeFeature[]>();
+    const detailedPlacements=new Map<T.Group,{kind:string;matrix:T.Matrix4}[]>();
     for(const feature of data.layers.trees.features){
       const [lon,lat]=feature.geometry.coordinates,p=project(lon,lat),key=`${Math.floor(p.x/200)},${Math.floor(p.z/200)}`;
       const list=groups.get(key)??[];list.push(feature);groups.set(key,list);
@@ -246,16 +268,25 @@ export class CorridorScenery {
     const matrix=new T.Matrix4(),q=new T.Quaternion(),scale=new T.Vector3(),euler=new T.Euler();
     for(const [key,features] of groups){
       const group=new T.Group(),trunks=new T.InstancedMesh(trunkGeometry,bark,features.length),leaves=new T.InstancedMesh(leafGeometry,foliage,features.length*18);
-      let leafCount=0;
+      let leafCount=0;const placements:{kind:string;matrix:T.Matrix4}[]=[];
       for(const [index,feature] of features.entries()){
         const [lon,lat]=feature.geometry.coordinates,p=project(lon,lat),id=Number(feature.properties.com_id)||index;
-        const diameter=T.MathUtils.clamp((Number(feature.properties.diameter_breast_height)||35)/100,.12,1.3);
-        let height=T.MathUtils.clamp(5+diameter*11,6,19),crown=T.MathUtils.clamp(2+diameter*5,2.2,7);
+        const species=data.treeSpecies[feature.properties.species];
+        const name=(species?.common_name??'')+' '+(species?.scientific_name??'');
+        const kind=/palm/i.test(name)?'palm':/gum|eucalyptus|corymbia|angophora/i.test(name)?'gum':/plane|platanus/i.test(name)?'plane':'elm';
+        // Inventory does not declare DBH units. All sizes are explicit artistic
+        // proportions; mapped coordinates and botanical identity stay authoritative.
+        const variation=.82+(id%37)/100,diameter=(kind==='palm'?.56:.68)*variation;
+        let height=(kind==='gum'?14:kind==='palm'?10:12)*variation,crown=(kind==='palm'?3.5:5)*variation;
         // Positions are mapped; sizes are authored. Keep inferred crowns below
         // the viaduct where coarse route geometry overlays a mapped tree.
         const nearest=trackSamples.reduce((a,b)=>Math.hypot(a.x-p.x,a.z-p.z)<Math.hypot(b.x-p.x,b.z-p.z)?a:b);
         if(Math.hypot(nearest.x-p.x,nearest.z-p.z)<17){height=Math.min(height,Math.max(2,nearest.y-1.5));crown=Math.min(crown,height*.32);}
-        const palm=/palm/i.test(data.treeSpecies[feature.properties.species]?.common_name??'');
+        const palm=kind==='palm';
+        const prototypeHeight=palm?7.4:kind==='gum'?10.7:9.2;
+        const prototypeCrown=palm?3.4:5.4;
+        const transform=new T.Matrix4().compose(new T.Vector3(p.x,-.9,p.z),new T.Quaternion().setFromAxisAngle(up,(id%101)*.062),new T.Vector3(crown/prototypeCrown,height/prototypeHeight,crown/prototypeCrown));
+        placements.push({kind,matrix:transform});
         const trunkHeight=palm?height:height*.62;
         q.identity();matrix.compose(new T.Vector3(p.x,trunkHeight/2-.9,p.z),q,scale.set(diameter/2,trunkHeight,diameter/2));trunks.setMatrixAt(index,matrix);
         for(let j=0;j<18;j++){
@@ -269,9 +300,28 @@ export class CorridorScenery {
         }
       }
       trunks.castShadow=true;trunks.receiveShadow=true;leaves.castShadow=true;leaves.receiveShadow=true;
-      group.add(trunks,leaves);this.group.add(group);
+      group.add(trunks,leaves);this.group.add(group);detailedPlacements.set(group,placements);
       const [x,z]=key.split(',').map(Number);this.treeChunks.push({group,center:new T.Vector3(x*200+100,0,z*200+100)});
     }
+    this.treeReady=new GLTFLoader().loadAsync('/models/environment/urban-trees.glb').then(gltf=>{
+      gltf.scene.updateMatrixWorld(true);
+      for(const chunk of this.treeChunks){
+        const detail=new T.Group();detail.visible=false;this.group.add(detail);chunk.detail=detail;
+        const placements=detailedPlacements.get(chunk.group)!;
+        for(const kind of ['plane','gum','elm','palm']){
+          const selected=placements.filter(p=>p.kind===kind);if(!selected.length)continue;
+          const template=gltf.scene.getObjectByName(kind);if(!template)throw new Error('Missing urban tree prototype '+kind);
+          template.traverse(node=>{
+            if(!(node instanceof T.Mesh))return;
+            const materials=Array.isArray(node.material)?node.material:[node.material];
+            for(const material of materials)material.side=T.DoubleSide;
+            const mesh=new T.InstancedMesh(node.geometry,node.material,selected.length);
+            selected.forEach((p,i)=>mesh.setMatrixAt(i,p.matrix.clone().multiply(node.matrixWorld)));
+            mesh.castShadow=true;mesh.receiveShadow=true;mesh.computeBoundingSphere();detail.add(mesh);
+          });
+        }
+      }
+    });
   }
   private buildRailDetails(){
     const fasteners:T.BufferGeometry[]=[],rails:T.BufferGeometry[]=[],gantries:T.BufferGeometry[]=[],wires:number[]=[];
@@ -378,7 +428,11 @@ export class CorridorScenery {
   }
 
   update(camera:T.Camera){
-    for(const chunk of this.treeChunks)chunk.group.visible=chunk.center.distanceTo(camera.position)<1000;
+    for(const chunk of this.treeChunks){
+      const distance=chunk.center.distanceTo(camera.position),near=!!chunk.detail&&distance<330;
+      chunk.group.visible=!near&&distance<1000;
+      if(chunk.detail)chunk.detail.visible=near;
+    }
   }
 }
 
