@@ -13,7 +13,7 @@ def material(name,color):
  p=m.node_tree.nodes.get('Principled BSDF'); p.inputs['Base Color'].default_value=(*color,1); p.inputs['Roughness'].default_value=.92
  return m
 bark=material('mottled warm grey bark',(.29,.27,.22))
-foliage=[material('foliage '+str(i),c) for i,c in enumerate([(.14,.23,.065),(.22,.31,.10),(.30,.37,.14),(.17,.28,.18)])]
+foliage=[material('foliage '+str(i),c) for i,c in enumerate([(.045,.11,.018),(.075,.16,.032),(.12,.21,.055),(.055,.135,.075)])]
 
 # Shared materials per prototype: vertex colours preserve bark/foliage variation
 # without multiplying every city's tree draw calls by the palette size.
@@ -25,7 +25,11 @@ cluster=material('urban leaf clusters',(1,1,1))
 image=bpy.data.images.load(str(ROOT/'public/textures/surfaces/plane-leaf-cluster.png'));image.pack()
 texture=cluster.node_tree.nodes.new('ShaderNodeTexImage');texture.image=image
 shader=cluster.node_tree.nodes.get('Principled BSDF')
-cluster.node_tree.links.new(texture.outputs['Color'],shader.inputs['Base Color'])
+cluster_color=cluster.node_tree.nodes.new('ShaderNodeVertexColor');cluster_color.layer_name='UrbanColor'
+multiply=cluster.node_tree.nodes.new('ShaderNodeMixRGB');multiply.blend_type='MULTIPLY';multiply.inputs[0].default_value=1
+cluster.node_tree.links.new(texture.outputs['Color'],multiply.inputs[1])
+cluster.node_tree.links.new(cluster_color.outputs['Color'],multiply.inputs[2])
+cluster.node_tree.links.new(multiply.outputs['Color'],shader.inputs['Base Color'])
 cluster.node_tree.links.new(texture.outputs['Alpha'],shader.inputs['Alpha'])
 
 def mesh(name,verts,faces,mats,indices,textured=False):
@@ -36,7 +40,7 @@ def mesh(name,verts,faces,mats,indices,textured=False):
  colors=data.color_attributes.new(name='UrbanColor',type='FLOAT_COLOR',domain='CORNER')
  for polygon,i in zip(data.polygons,indices):
   polygon.material_index=1 if textured and i>0 else 0
-  for loop in polygon.loop_indices:colors.data[loop].color=(.83+i*.04,.83+i*.04,.83+i*.04,1) if textured and i>0 else mats[i].diffuse_color
+  for loop in polygon.loop_indices:colors.data[loop].color=(.48+i*.035,.62+i*.035,.39+i*.03,1) if textured and i>0 else mats[i].diffuse_color
  uv=data.uv_layers.new(name='UVMap')
  for polygon in data.polygons:
   for loop in polygon.loop_indices:uv.data[loop].uv=[(0,0),(1,0),(1,1),(0,1)][data.loops[loop].vertex_index%4]
@@ -77,7 +81,7 @@ def tree(kind,seed):
    for j in range(72 if kind in ['plane','elm'] else 150):
     a=rng.random()*math.tau; r=math.sqrt(rng.random())*(1.65 if gum else 1.9); zoff=rng.uniform(-1.7,1.7)*math.sqrt(max(0,1-(r/2.0)**2))
     center=(end[0]+math.cos(a)*r,end[1]+math.sin(a)*r,end[2]+zoff)
-    leaf(center,rng.uniform(.23,.48) if gum else rng.uniform(.55,.85),rng.random()*math.tau,4 if gum else 1+rng.randrange(3),gum)
+    leaf(center,rng.uniform(.23,.48) if gum else rng.uniform(.72,1.0),rng.random()*math.tau,4 if gum else 1+rng.randrange(3),gum)
   for k in range(6):
    a=k*math.tau/6;branch((math.cos(a)*.6,math.sin(a)*.6,.02),(0,0,.6),.075,.11)
  obj=mesh(kind,verts,faces,[bark,*foliage],ids,kind in ['plane','elm'])
@@ -95,5 +99,5 @@ for input in [shader.inputs['Base Color'],shader.inputs['Alpha']]:
 attribute=cluster.node_tree.nodes.new('ShaderNodeVertexColor');attribute.layer_name='UrbanColor'
 cluster.node_tree.links.new(attribute.outputs['Color'],shader.inputs['Base Color'])
 bpy.ops.export_scene.gltf(filepath=str(out),export_format='GLB',export_yup=True,export_extras=True)
-(ROOT/'public/models/environment/urban-trees.json').write_text(json.dumps({'generator':'scripts/blender/build_urban_trees.py','prototypes':['plane','gum','elm','palm'],'placementSource':'City of Melbourne Urban Forest inventory, CC BY 4.0','sourceUrl':'https://data.melbourne.vic.gov.au/explore/dataset/trees-with-species-and-dimensions-urban-forest/','dimensions':'Authored species-class proportions; raw diameter field units are not assumed.','triangles':sum(sum(len(p.vertices)-2 for p in o.data.polygons) for o in bpy.context.scene.objects if o.type=='MESH')},indent=2)+'\n')
+(ROOT/'public/models/environment/urban-trees.json').write_text(json.dumps({'generator':'scripts/blender/build_urban_trees.py','prototypes':['plane','gum','elm','palm'],'placementSource':'City of Melbourne Urban Forest inventory, CC BY 4.0','sourceUrl':'https://data.melbourne.vic.gov.au/explore/dataset/trees-with-species-and-dimensions-urban-forest/','dimensions':'Authored species-class proportions; raw diameter field units are not assumed. Fuller plane/elm leaf clusters retain the original leaf count. Linear-space foliage colours adjusted for the game daylight; identical vertex tint used by the Blender impostor bake.','triangles':sum(sum(len(p.vertices)-2 for p in o.data.polygons) for o in bpy.context.scene.objects if o.type=='MESH')},indent=2)+'\n')
 print('Exported',out, out.stat().st_size)

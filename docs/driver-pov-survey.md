@@ -226,3 +226,34 @@ After the join adjustment, production build and 138 tests passed again. The
 rendered service served all six stops, exercised both cab and door-check views,
 visited 57 100m cells across 1,241 frames, and reported errors `[]`. Final frame:
 913 draws / 3,139,832 triangles, WebGPU. No gameplay logic was changed.
+
+### Vegetation colour and silhouette consistency
+
+The matched 600m and 5200m views showed pale sparse canopies beside the darker
+city. `build_urban_trees.py` now gives plane/elm leaf cards fuller silhouettes
+using the same number of leaves, and adjusts linear-space foliage tints for the
+existing daylight. The Blender source previously used the leaf texture alone,
+whereas the exported live model also multiplied vertex colours. The source
+shader now multiplies the same vertex tint before baking distant impostors.
+All four impostor PNGs were regenerated from the editable source. Prototype
+triangles remain 8,252 in total. Inventory positions, species selection, runtime
+scales and running-line exclusions are unchanged; crown proportions and colour
+remain artistic approximations, not measured seasonal canopy observations.
+
+Placement provenance remains the City of Melbourne Urban Forest inventory:
+https://data.melbourne.vic.gov.au/explore/dataset/trees-with-species-and-dimensions-urban-forest/
+The separate 2021 canopy polygon dataset exists, but was not imported or used
+to claim measured crown dimensions in this pass.
+
+`canopy-materials/00600.png` and `canopy-materials-east/05200.png` were compared
+against the previous yard survey at matching camera positions. The near plane
+canopy is fuller, gum colour is less pale, and the eastern tree line is darker.
+Short 44-frame captures: 600m mean 18.94ms/max26.10ms, 605 draws/3,076,293
+triangles; 5200m mean17.99ms/max25.60ms, 814 draws/3,427,201 triangles. These
+are smoke measurements rather than a controlled LOD performance comparison.
+Production build passes. Runtime TypeScript/gameplay code did not change.
+
+Post-asset-change rendered service: six stops served, 1,241 frames, 57 visited
+100m cells, cab and door-check views exercised, errors `[]`, no browser warnings.
+Final frame remains 913 draws / 3,139,832 triangles on WebGPU. Coarse photographic
+building remnants and generic facade fidelity are still open goal requirements.

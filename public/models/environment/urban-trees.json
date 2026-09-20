@@ -8,6 +8,6 @@
   ],
   "placementSource": "City of Melbourne Urban Forest inventory, CC BY 4.0",
   "sourceUrl": "https://data.melbourne.vic.gov.au/explore/dataset/trees-with-species-and-dimensions-urban-forest/",
-  "dimensions": "Authored species-class proportions; raw diameter field units are not assumed.",
+  "dimensions": "Authored species-class proportions; raw diameter field units are not assumed. Fuller plane/elm leaf clusters retain the original leaf count. Linear-space foliage colours adjusted for the game daylight; identical vertex tint used by the Blender impostor bake.",
   "triangles": 8252
 }
