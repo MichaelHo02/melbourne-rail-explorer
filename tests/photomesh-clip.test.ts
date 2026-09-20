@@ -16,6 +16,12 @@ function area(geometry:PhotomeshGeometry){
 const square=prism([[0,0],[2,0],[2,2],[0,2]],-Infinity,10);
 
 describe('photographic clearance clipping',()=>{
+  it('removes the measured duplicate La Trobe aerial deck without cutting the skyline above it',()=>{
+    const mask=createPhotomeshClearance(),triangle=(y:number)=>mesh([[-1615,y,-470.5],[-1614.5,y,-470.5],[-1615,y,-471]]);
+    expect(clipPhotomesh(triangle(12.73),mask).index.length).toBe(0);
+    expect(clipPhotomesh(triangle(30),mask).index.length).toBe(3);
+  });
+
   it('clears suspended aerial sheets over the eastern return while retaining the skyline',()=>{
     const p=positionAt(5200),mask=createPhotomeshClearance();
     const triangle=(y:number)=>mesh([[p.x,y,p.z],[p.x+1,y,p.z],[p.x,y,p.z+1]]);

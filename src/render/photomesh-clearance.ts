@@ -3,6 +3,7 @@ import riverSource from '../data/river-source.json';
 import stationClearance from '../data/station-clearance.json';
 import foreground from '../data/photomesh-foreground.json';
 import northbank from '../data/photomesh-northbank.json';
+import bridgeDecks from '../data/bridge-decks.json';
 import { positionAt, project, ROUTE_LENGTH, STATIONS, tangentAt } from '../data/route';
 import { ClearanceIndex, prism, type ClearanceVolume } from './photomesh-clip';
 
@@ -89,6 +90,15 @@ export function createPhotomeshClearance():ClearanceIndex {
     prism([[-1800,-450],[-1050,-450],[-1050,260],[-1800,260]],-Infinity,40,'Southern Cross low aerial context'),
   ];
   volumes.push(...FLINDERS_PLATFORM_CLEARANCE.map(ring=>prism(ring,-Infinity,Infinity,'Flinders authored platform precinct')));
+  // Surveyed La Trobe deck 6901 replaces its elevated photographic duplicate.
+  // Limit the removal to its footprint and a 3m scan-edge allowance.
+  const latrobe=bridgeDecks.find(deck=>deck.id==='6901')!;
+  volumes.push(...polygonVolumes([latrobe.ring],-Infinity,18,'La Trobe surveyed deck'));
+  const deckRing=cleanRing(latrobe.ring);
+  for(let i=0;i<deckRing.length;i++){
+    const a=deckRing[i],b=deckRing[(i+1)%deckRing.length],dx=b[0]-a[0],dz=b[1]-a[1],length=Math.hypot(dx,dz);
+    if(length>1e-5)volumes.push(prism(rectangle({x:(a[0]+b[0])/2,z:(a[1]+b[1])/2},{x:dx/length,z:dz/length},-3,3,length/2),-Infinity,18,'La Trobe scan edge'));
+  }
   volumes.push(...northbankVegetationVolumes());
   for(const structure of foreground.structures)volumes.push(prism(structure.photographicExclusionXZ,-Infinity,Infinity,`complete foreground facade ${structure.structureId}`));
   for(const fragment of foreground.residualFragments){

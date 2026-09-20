@@ -98,10 +98,10 @@ export class CorridorScenery {
           for(let k=1;k<=steps;k++)points.push(a.clone().lerp(b,k/steps));
         }
         const crossings=bridge?riverCrossings(original,river):[];
-        const measured=crossings.flatMap(({a,b})=>{
+        const measured=(bridge?original.slice(1).map((b,i)=>({a:original[i],b})):[]).flatMap(({a,b})=>{
           const mid={x:(a.x+b.x)/2,z:(a.z+b.z)/2};return decks.filter(d=>insideRing(mid,d.ring)).map(d=>d.top);
         });
-        const deck=crossings.length?(measured.length?Math.max(...measured)+.03:3.3):undefined;
+        const deck=measured.length?Math.max(...measured)+.03:crossings.length?3.3:undefined;
         return {feature,points,walking,bridge,deck};
       });
     });
@@ -110,6 +110,17 @@ export class CorridorScenery {
     for(const {feature,points,walking,deck} of streets){
       const width=streetWidth(feature),p=feature.properties,crossing=deck!==undefined;
         if(crossing){
+          // La Trobe Street crosses the northern rail yard. The mapped deck
+          // fixes its height; pier dimensions are an authored interpretation.
+          if(String(p.pfi)==='11633659')for(let j=0;j<points.length;j+=6){
+            const at=points[j],next=points[Math.min(j+1,points.length-1)],previous=points[Math.max(0,j-1)];
+            const side=new T.Vector3(-(next.z-previous.z),0,next.x-previous.x).normalize();
+            for(const sign of [-1,1]){
+              const top=at.clone().addScaledVector(side,sign*(width/2-1));top.y-=.45;
+              const nearTrack=Array.from({length:260},(_,k)=>positionAt(1200+k*4)).some(t=>Math.hypot(t.x-top.x,t.z-top.z)<8);
+              if(!nearTrack)structure.push(beam(top.clone().setY(-.95),top,1.1,1.1));
+            }
+          }
           for(let i=1;i<points.length;i++){
             const a=points[i-1],b=points[i],side=new T.Vector3(-(b.z-a.z),0,b.x-a.x).normalize();
             structure.push(beam(a.clone().addScaledVector(up,-.22),b.clone().addScaledVector(up,-.22),width+.5,.45));
