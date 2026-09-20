@@ -27,13 +27,22 @@ function rectangle(center:{x:number;z:number},along:{x:number;z:number},minAcros
 }
 const crossCenter=positionAt(STATIONS[1].distance-65),crossTangent=tangentAt(STATIONS[1].distance-65);
 export const SOUTHERN_CROSS_CLEARANCE=rectangle(crossCenter,crossTangent,-95,65,165);
+// Match the broad FSS precinct authored in stations.ts: 112m across and
+// 395m along, including its extension behind the route start. FSS reflects X.
+export const FLINDERS_PLATFORM_CLEARANCE=Array.from({length:20},(_,i)=>{
+  const distance=STATIONS[0].distance-65-222.5+(i+.5)*19.75;
+  const clamped=Math.max(0,distance),p=positionAt(clamped),t=tangentAt(clamped);
+  const extension=distance-clamped;
+  return rectangle({x:p.x+t.x*extension,z:p.z+t.z*extension},t,-33,79,9.925);
+});
+
 const landmark=project(144.96714,-37.81793),co=Math.cos(.22),si=Math.sin(.22);
 const flinders=[[-303,-18],[20,-18],[20,18],[-303,18]].map(([x,z])=>[landmark.x+co*x+si*z,landmark.z-si*x+co*z]);
 
 /** Existing station approximation intersects these footprints. Keep this
  * explicit omission separate from photographic replacement evidence. */
 export function conflictsWithStationClearance(ring:Ring){
-  return [SOUTHERN_CROSS_CLEARANCE,...stationClearance.features.map(f=>f.ring)].some(mask=>ringsIntersect(ring,mask));
+  return [SOUTHERN_CROSS_CLEARANCE,...FLINDERS_PLATFORM_CLEARANCE,...stationClearance.features.map(f=>f.ring)].some(mask=>ringsIntersect(ring,mask));
 }
 export function ringsIntersect(a:Ring,b:Ring){
   let ax0=Infinity,ax1=-Infinity,az0=Infinity,az1=-Infinity,bx0=Infinity,bx1=-Infinity,bz0=Infinity,bz1=-Infinity;
@@ -79,6 +88,7 @@ export function createPhotomeshClearance():ClearanceIndex {
     // complete surveyed procedural facades provide the station-scale detail.
     prism([[-1800,-450],[-1050,-450],[-1050,260],[-1800,260]],-Infinity,40,'Southern Cross low aerial context'),
   ];
+  volumes.push(...FLINDERS_PLATFORM_CLEARANCE.map(ring=>prism(ring,-Infinity,Infinity,'Flinders authored platform precinct')));
   volumes.push(...northbankVegetationVolumes());
   for(const structure of foreground.structures)volumes.push(prism(structure.photographicExclusionXZ,-Infinity,Infinity,`complete foreground facade ${structure.structureId}`));
   for(const fragment of foreground.residualFragments){
