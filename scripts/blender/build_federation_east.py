@@ -54,15 +54,19 @@ bpy.context.view_layer.objects.active=envelope
 mod=envelope.modifiers.new('training_railway_opening','BOOLEAN');mod.operation='DIFFERENCE';mod.solver='EXACT';mod.object=cutter
 bpy.ops.object.modifier_apply(modifier=mod.name)
 bpy.data.objects.remove(cutter,do_unlink=True)
-# Also preserve the mapped scenery railway, not just the playable centreline.
+# Preserve mapped surface and covered railway through the Federation deck.
+# The source changes feature type at the entrance; excluding covered sections
+# leaves false solid walls across the scenery tracks. Unknown covered counts
+# reserve two tracks, while explicit single-track branches keep their width.
 context_cuts=0
 for filename in ['corridor-source.json','loop-landscape-source.json']:
  data=json.loads((ROOT/'src/data'/filename).read_text())
  for feature in data['layers']['rails']['features']:
-  if feature['properties'].get('feature_type_code')!='railway':continue
+  kind=feature['properties'].get('feature_type_code')
+  if kind not in ('railway','rail_uground_o'):continue
   lines=feature['geometry']['coordinates']
   if feature['geometry']['type']=='LineString':lines=[lines]
-  count=min(4,max(1,float(feature['properties'].get('tracks_number_of') or 1)))
+  count=min(4,max(1,float(feature['properties'].get('tracks_number_of') or (2 if kind=='rail_uground_o' else 1))))
   half=count*2.1+3
   for line in lines:
    points=[((lon-144.9671)*87939,-(lat+37.8183)*111320) for lon,lat,*_ in line]
@@ -125,6 +129,6 @@ if not mesh.polygons:raise RuntimeError('Empty replacement envelope: '+structure
 output=ROOT/('public/models/environment/'+asset_name+'.glb')
 bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/('assets/source/environment/'+asset_name+'.blend')))
 bpy.ops.export_scene.gltf(filepath=str(output),export_format='GLB',export_yup=True,export_extras=True,export_animations=False)
-manifest={'structureId':structure_id,'objectIds':ids,'geometrySource':f.SOURCE_URL,'license':'CC BY 4.0','reference':'https://fedsquare.com/history-design','sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'clearance':{'halfWidthMetres':12,'heightAboveTrainingRailMetres':7,'sampleSpacingMetres':2},'limitations':'Federation Square area survey structure; exact tenancy not established. Prepared relative survey heights preserved. Triangular cladding palette and railway opening are authored interpretations, not measured facade or engineering drawings. The training track elevation is approximate.','triangles':sum(len(o.data.loop_triangles) for o in bpy.data.objects if o.type=='MESH')}
+manifest={'structureId':structure_id,'objectIds':ids,'geometrySource':f.SOURCE_URL,'license':'CC BY 4.0','reference':'https://fedsquare.com/history-design','sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'clearance':{'halfWidthMetres':12,'heightAboveTrainingRailMetres':7,'sampleSpacingMetres':2,'mappedRailTypes':['railway','rail_uground_o'],'unknownCoveredTrackCount':2},'limitations':'Federation Square area survey structure; exact tenancy not established. Prepared relative survey heights preserved. Triangular cladding palette and railway opening are authored interpretations, not measured facade or engineering drawings. The training track elevation is approximate.','triangles':sum(len(o.data.loop_triangles) for o in bpy.data.objects if o.type=='MESH')}
 (ROOT/('public/models/environment/'+asset_name+'.json')).write_text(json.dumps(manifest,indent=2)+'\n')
 print('Exported',output,output.stat().st_size)

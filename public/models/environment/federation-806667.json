@@ -10,8 +10,13 @@
   "clearance": {
     "halfWidthMetres": 12,
     "heightAboveTrainingRailMetres": 7,
-    "sampleSpacingMetres": 2
+    "sampleSpacingMetres": 2,
+    "mappedRailTypes": [
+      "railway",
+      "rail_uground_o"
+    ],
+    "unknownCoveredTrackCount": 2
   },
   "limitations": "Federation Square area survey structure; exact tenancy not established. Prepared relative survey heights preserved. Triangular cladding palette and railway opening are authored interpretations, not measured facade or engineering drawings. The training track elevation is approximate.",
-  "triangles": 292
+  "triangles": 298
 }

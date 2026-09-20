@@ -448,7 +448,7 @@ export class CorridorScenery {
     const posts:T.BufferGeometry[]=[],braces:T.BufferGeometry[]=[],concrete:T.BufferGeometry[]=[],walks:T.BufferGeometry[]=[];
     const roads=data.layers.roads.features.filter(f=>!['trail','tunnel','foot_bridge'].includes(String(f.properties.feature_type_code)))
       .flatMap(f=>lines(f).flatMap(line=>line.slice(1).map((b,i)=>({a:line[i],b,width:streetWidth(f)}))));
-    const rails=data.layers.rails.features.filter(f=>f.properties.feature_type_code==='railway')
+    const rails=data.layers.rails.features.filter(f=>['railway','rail_uground_o'].includes(String(f.properties.feature_type_code)))
       .flatMap(f=>lines(f).flatMap(line=>line.slice(1).map((b,i)=>({a:line[i],b,clearance:Math.min(4,Math.max(1,Number(f.properties.tracks_number_of)||1))*2.1+1.5}))));
     const distance=(p:T.Vector3,a:T.Vector3,b:T.Vector3)=>{
       const dx=b.x-a.x,dz=b.z-a.z,t=T.MathUtils.clamp(((p.x-a.x)*dx+(p.z-a.z)*dz)/(dx*dx+dz*dz||1),0,1);
@@ -579,10 +579,31 @@ export class CorridorScenery {
       return Math.hypot(p.x-a.x-dx*t,p.z-a.z-dz*t)<width/2+3+margin;
     });
     let segments=0;
+    const surfaceLines=data.layers.rails.features.filter(f=>f.properties.feature_type_code==='railway')
+      .flatMap(feature=>lines(feature).map(points=>({points,count:Math.min(4,Math.max(1,Number(feature.properties.tracks_number_of)||1))})));
+    const yardLines=surfaceLines.map(line=>({...line,covered:false}));
+    // Vicmap changes type at the Federation deck, not at a buffer stop.
+    // Continue only connected portal approaches, rather than drawing the whole
+    // underground network at surface level. Missing track counts inherit the
+    // adjoining surface width; explicit single-track branches stay single.
     for(const feature of data.layers.rails.features){
-      if(feature.properties.feature_type_code!=='railway')continue;
-      const count=Math.min(4,Math.max(1,Number(feature.properties.tracks_number_of)||1));
-      for(const original of lines(feature))for(let j=1;j<original.length;j++){
+      if(feature.properties.feature_type_code!=='rail_uground_o')continue;
+      for(const points of lines(feature))for(const reverse of [false,true]){
+        const ordered=reverse?[...points].reverse():points,portal=ordered[0];
+        if(portal.x<240||portal.x>330||portal.z< -170||portal.z> -50)continue;
+        const neighbour=surfaceLines.find(line=>[line.points[0],line.points.at(-1)!].some(p=>p.distanceTo(portal)<1));
+        if(!neighbour)continue;
+        const approach=[portal];let remaining=240;
+        for(let i=1;i<ordered.length&&remaining>0;i++){
+          const length=ordered[i-1].distanceTo(ordered[i]);
+          approach.push(ordered[i-1].clone().lerp(ordered[i],Math.min(1,remaining/(length||1))));remaining-=length;
+        }
+        const count=Math.min(4,Math.max(1,Number(feature.properties.tracks_number_of)||neighbour.count));
+        yardLines.push({points:approach,count,covered:true});
+      }
+    }
+    for(const {points:original,count,covered} of yardLines){
+      for(let j=1;j<original.length;j++){
         const start=original[j-1],end=original[j],steps=Math.ceil(start.distanceTo(end)/4);
         for(let k=0;k<steps;k++){
           const a=start.clone().lerp(end,k/steps),b=start.clone().lerp(end,(k+1)/steps),mid=a.clone().add(b).multiplyScalar(.5);
@@ -614,7 +635,8 @@ export class CorridorScenery {
           if(ringsIntersect(footprint,SOUTHERN_CROSS_CLEARANCE))continue;
           a.y=heightA;b.y=heightB;
           const overRoad=roadAt(mid,halfWidth+shoulder);
-          if(!overRoad){
+          const onDeck=overRoad||covered;
+          if(!onDeck){
             for(const sign of [-1,1]){
               const topA=a.clone().addScaledVector(side,sign*halfWidth),topB=b.clone().addScaledVector(side,sign*halfWidth);
               const footA=a.clone().addScaledVector(side,sign*(halfWidth+shoulder)).setY(-.96),footB=b.clone().addScaledVector(side,sign*(halfWidth+shoulder)).setY(-.96);
@@ -622,7 +644,7 @@ export class CorridorScenery {
               const slope=new T.BufferGeometry();slope.setAttribute('position',new T.Float32BufferAttribute(points.flatMap(p=>p.toArray()),3));slope.setAttribute('uv',new T.Float32BufferAttribute(points.flatMap(p=>[p.x/2,p.z/2+p.y/2]),2));slope.computeVertexNormals();beds.push(slope);
             }
           }
-          if(!overRoad){
+          if(!onDeck){
             // Close segment ends below rail level. Internal caps are hidden;
             // boundary caps prevent an open underside at clipped yard ends.
             for(const end of [a,b]){
@@ -640,7 +662,7 @@ export class CorridorScenery {
             beds.push(ribbon([x,y],4.15,2));
             // At road crossings keep a thin bridge deck and an open underpass.
             // Elsewhere sloped ballast shoulders meet the authored ground.
-            if(overRoad)supports.push(beam(x.clone().setY(heightA-.28),y.clone().setY(heightB-.28),4.2,.45));
+            if(onDeck)supports.push(beam(x.clone().setY(heightA-.28),y.clone().setY(heightB-.28),4.2,.45));
             for(const gauge of [-.8,.8])steel.push(beam(x.clone().addScaledVector(side,gauge).addScaledVector(up,.2),y.clone().addScaledVector(side,gauge).addScaledVector(up,.2),.07,.14));
             const n=Math.max(1,Math.ceil(x.distanceTo(y)/.7));
             for(let q=0;q<n;q++){

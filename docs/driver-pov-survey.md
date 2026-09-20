@@ -361,3 +361,37 @@ Post-Forum service validation: all six stops served,1,241 rendered frames,
 57 visited100m cells, both cab and door-check views, errors`[]`, no browser
 warnings. Final928 draws/3,263,958 triangles, WebGPU. The four source sections
 are represented by the authored replacement; remaining procedural count8196.
+
+### Federation covered railway continuity
+
+The5300m gap was a source-type boundary: Vicmap surface features end where
+`rail_uground_o` begins, for example Glen Waverley at(281,-125), Lilydale
+at(279,-135), and Hurstbridge at(273,-149). Both scenery rails and the Blender
+opening generator previously ignored that continuation. This was not evidence
+of real buffer stops.
+
+Connected Federation portal approaches now follow the original covered geometry
+for up to240m, within the existing eastern-yard region and protected running-line
+margin. Missing track counts inherit the connected surface feature; explicitly
+single-track branches remain single. Covered segments use a thin deck without
+surface earthwork. Gantry footing checks include the covered centrelines.
+All four Federation envelopes now cut both mapped railway types; where a covered
+source has no count, the opening reserves two tracks. These heights and openings
+remain authored adaptations to the training alignment, not engineering surveys.
+The source IDs, footprints and prepared building heights are unchanged.
+
+`portal-continuity/05300.png` isolates the rail repair; `portal-openings/05300.png`
+shows the repaired entrance bays. The final `covered-yard-route` survey completed
+all24 standard captures and its contact sheet was inspected. The5400m view now
+shows neighbouring tracks continuing beneath the deck. The remaining flat ground
+joins and coarse neighbouring scans still need repair; this is not a whole-route
+visual sign-off. Four rebuilt assets contain8720/298/1586/1093 triangles for
+816359/806667/805928/805929 respectively. Blender's running-line clearance guard
+passed for each.
+
+Production build and138 tests passed. Full rendered service served all six stops,
+1,241 frames/57 visited100m cells, cab and door-check views, errors[] and no browser
+warnings. Final928 draws/3,294,919 triangles,8196 procedural sections, WebGPU.
+Survey44-frame means ranged16.65–26.52ms, maximum individual frame34.20ms.
+These uncontrolled static samples do not establish an optimization gain; no LOD
+threshold or scenery-density reduction was made for this repair.
