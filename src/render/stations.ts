@@ -138,31 +138,86 @@ export function stationArchitecture(group:T.Group,station:Station,index:number,b
     }
   }else if(station.code==='SXS'){
     // Wide-span Southern Cross waveform roof and branching steel columns.
-    const roofHeight=(x:number,z:number)=>14.2+2.8*Math.sin(z/30)+1.8*Math.cos(x/13);
-    const roof=new T.PlaneGeometry(98,226,54,84);roof.rotateX(-Math.PI/2);
-    const p=roof.attributes.position;for(let i=0;i<p.count;i++){const x=p.getX(i),z=p.getZ(i);p.setY(i,roofHeight(x,z));p.setX(i,x-20);}
-    roof.computeVertexNormals();const roofMesh=new T.Mesh(roof,new T.MeshStandardMaterial({color:'#acb1ac',metalness:.45,roughness:.62,side:T.DoubleSide}));
-    roofMesh.name='Southern Cross authored ceiling underside';group.add(roofMesh);
-    for(let z=-108;z<=108;z+=6){const points=[];for(let x=-69;x<=29;x+=2)points.push(new T.Vector3(x,roofHeight(x+20,z)-.18,z));parts.push(new T.TubeGeometry(new T.CatmullRomCurve3(points),49,.115,6,false));}
-    const skylight=new T.MeshStandardMaterial({color:'#c4d3d3',emissive:'#44545a',emissiveIntensity:.25,metalness:.22,roughness:.25,side:T.DoubleSide});
-    for(const x of [-59,-31,-3,24]){
-      const g=new T.PlaneGeometry(1.6,224,1,70);g.rotateX(-Math.PI/2);const v=g.attributes.position;
-      for(let i=0;i<v.count;i++){v.setX(i,v.getX(i)+x);v.setY(i,roofHeight(v.getX(i)+20,v.getZ(i))-.055);}g.computeVertexNormals();group.add(new T.Mesh(g,skylight));
+    // The hall is a sequence of broad longitudinal dunes. Open rooflight
+    // bands interrupt the pale inner skin, rather than sitting invisibly
+    // beneath one opaque plane. Profiles and spacings are photographic
+    // interpretations for this authored route, not measured dimensions.
+    // The previous profile kept its two eaves almost level with the crown.
+    // It therefore read as a floating, flat field from the driver's eye. This
+    // is a true transverse vault: the skin starts just above the outer roads,
+    // rises over the central tracks, then undulates gently down the hall.
+    // `x` is passed with the historic +20 local offset used by this station.
+    const roofHeight=(x:number,z:number)=>{
+      const span=T.MathUtils.clamp((x+55)/110,0,1);
+      return 7.6+11.3*Math.sin(span*Math.PI)+1.65*Math.sin(z/26+span*1.3);
+    };
+    const roofLights=[-51,-19,13],roofLightHalfWidth=2.8;
+    const nx=110,nz=113,x0=-75,z0=-113,positions:number[]=[],indices:number[]=[];
+    for(let iz=0;iz<=nz;iz++)for(let ix=0;ix<=nx;ix++){
+      const x=x0+ix,z=z0+iz*2;positions.push(x,roofHeight(x+20,z),z);
     }
-    // Longitudinal purlins follow the dune surface. Their depth produces
-    // legible underside shadows, with each curve sampled for route warping.
-    for(let x=-66;x<=27;x+=3){
-      const points=[];for(let z=-111;z<=111;z+=3)points.push(new T.Vector3(x,roofHeight(x+20,z)-.28,z));
-      parts.push(new T.TubeGeometry(new T.CatmullRomCurve3(points),74,.052,4,false));
+    for(let iz=0;iz<nz;iz++)for(let ix=0;ix<nx;ix++){
+      const x=x0+ix+.5;
+      if(roofLights.some(light=>Math.abs(x-light)<roofLightHalfWidth))continue;
+      const a=iz*(nx+1)+ix,b=a+1,c=a+nx+1,d=c+1;
+      // Counter-clockwise from below gives the underside an upward normal.
+      indices.push(a,c,b,b,c,d);
     }
-    for(let z=-90;z<=90;z+=36)for(const x of [-57,-29,7.5]){
-      box(.5,9.5,.5,x,5.8,z);box(.82,.25,.82,x,1.18,z);
-      for(const side of [-1,1]){const start=new T.Vector3(x,9.6,z),end=new T.Vector3(x+side*4,roofHeight(x+20+side*4,z)-.4,z);parts.push(new T.TubeGeometry(new T.LineCurve3(start,end),1,.2,8,false));}
+    const roof=new T.BufferGeometry();roof.setAttribute('position',new T.Float32BufferAttribute(positions,3));roof.setIndex(indices);roof.computeVertexNormals();
+    const roofMesh=new T.Mesh(roof,new T.MeshStandardMaterial({color:'#9ba09a',metalness:.18,roughness:.78,side:T.DoubleSide}));
+    roofMesh.name='Southern Cross authored dune roof underside';roofMesh.receiveShadow=true;group.add(roofMesh);
+    const skylight=new T.MeshStandardMaterial({color:'#a7bec0',emissive:'#506970',emissiveIntensity:.32,metalness:.08,roughness:.3,transparent:true,opacity:.72,depthWrite:false,side:T.DoubleSide});
+    for(const x of roofLights){
+      const g=new T.PlaneGeometry(roofLightHalfWidth*2,226,2,nz);g.rotateX(-Math.PI/2);const v=g.attributes.position;
+      for(let i=0;i<v.count;i++){v.setX(i,v.getX(i)+x);v.setY(i,roofHeight(v.getX(i)+20,v.getZ(i))-.06);}g.computeVertexNormals();
+      const mesh=new T.Mesh(g,skylight);mesh.name='Southern Cross rooflight band';group.add(mesh);
     }
-    for(let z=-90;z<=90;z+=36)for(const x of [-57,-29,7.5])for(const side of [-1,1]){
-      const start=new T.Vector3(x,9.6,z),end=new T.Vector3(x,roofHeight(x+20,z+side*5)-.35,z+side*5);
-      parts.push(new T.TubeGeometry(new T.LineCurve3(start,end),4,.16,6,false));
+
+    const steel=new T.MeshStandardMaterial({color:'#35403f',roughness:.69,metalness:.48});
+    const concrete=new T.MeshStandardMaterial({color:'#b4b4aa',roughness:.92,metalness:.02});
+    const frame:T.BufferGeometry[]=[];
+    const member=(a:T.Vector3,b:T.Vector3,r:number,into:T.BufferGeometry[]=frame)=>into.push(new T.TubeGeometry(new T.LineCurve3(a,b),1,r,6,false));
+    // Deep curved Pratt arches now run from low eaves to the crown. Their two
+    // chords and alternating webs make the roof a visible load-bearing vault
+    // from both the cab and the platform, rather than a ceiling with a thin
+    // triangular beam laid beneath it.
+    for(let z=-108;z<=108;z+=27){
+      const upper:T.Vector3[]=[],lower:T.Vector3[]=[];
+      for(let x=-75;x<=35;x+=2){const y=roofHeight(x+20,z)-.38;upper.push(new T.Vector3(x,y,z));lower.push(new T.Vector3(x,y-3.35,z));}
+      frame.push(new T.TubeGeometry(new T.CatmullRomCurve3(upper),60,.42,8,false));
+      frame.push(new T.TubeGeometry(new T.CatmullRomCurve3(lower),60,.30,8,false));
+      for(let i=0;i<upper.length-1;i+=4){
+        const next=Math.min(i+4,upper.length-1);
+        member(upper[i],lower[i],.17);
+        member(Math.floor(i/4)%2===0?lower[i]:upper[i],Math.floor(i/4)%2===0?upper[next]:lower[next],.16);
+      }
+      member(upper[upper.length-1],lower[lower.length-1],.17);
     }
+    // Secondary cross ribs and longitudinal purlins are lighter and farther
+    // apart than the primary arches, leaving the rooflight apertures legible.
+    for(let z=-108;z<=108;z+=6){const points=[];for(let x=-75;x<=35;x+=2)points.push(new T.Vector3(x,roofHeight(x+20,z)-.3,z));frame.push(new T.TubeGeometry(new T.CatmullRomCurve3(points),60,.07,5,false));}
+    for(let x=-73;x<=33;x+=10){const points=[];for(let z=-111;z<=111;z+=3)points.push(new T.Vector3(x,roofHeight(x+20,z)-.42,z));frame.push(new T.TubeGeometry(new T.CatmullRomCurve3(points),74,.06,4,false));}
+    const frameMesh=new T.Mesh(mergeGeometries(frame),steel);frameMesh.name='Southern Cross curved triangulated roof arches';frameMesh.castShadow=true;frameMesh.receiveShadow=true;group.add(frameMesh);frame.forEach(g=>g.dispose());
+
+    // Concrete tree columns stay beyond the outermost track and platform
+    // bands. Their flared arms meet the underside chord without posts in the
+    // boarding/walking space; repeated geometry shares one material batch.
+    const supports:T.BufferGeometry[]=[];
+    const tapered=(a:T.Vector3,b:T.Vector3,base:number,tip:number)=>{
+      const delta=b.clone().sub(a),g=new T.CylinderGeometry(tip,base,delta.length(),10,1);
+      g.applyQuaternion(new T.Quaternion().setFromUnitVectors(new T.Vector3(0,1,0),delta.clone().normalize()));
+      g.translate((a.x+b.x)/2,(a.y+b.y)/2,(a.z+b.z)/2);supports.push(g);
+    };
+    for(const z of [-96,-48,0,48,96])for(const x of [-67,27]){
+      const top=Math.max(6.25,roofHeight(x+20,z)-3.1);
+      const shaft=new T.CylinderGeometry(.72,1.18,top,10,1);shaft.translate(x,top/2,z);supports.push(shaft);
+      const foot=new T.BoxGeometry(2.35,.55,2.35);foot.translate(x,.28,z);supports.push(foot);
+      for(const side of [-1,1]){
+        const start=new T.Vector3(x,top-.35,z),end=new T.Vector3(x+side*8.5,roofHeight(x+side*8.5+20,z)-2.7,z);
+        tapered(start,end,.74,.40);
+      }
+    }
+    const supportMesh=new T.Mesh(mergeGeometries(supports),concrete);supportMesh.name='Southern Cross outer branching concrete supports';supportMesh.castShadow=true;supportMesh.receiveShadow=true;group.add(supportMesh);supports.forEach(g=>g.dispose());
     southernCrossConcourse(group);
     // Adjacent platform roads establish the station's broad rail hall.
     const running:T.BufferGeometry[]=[],sleepers:T.BufferGeometry[]=[];

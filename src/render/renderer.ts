@@ -7,7 +7,7 @@ import { createNativeRenderer } from './native-renderer';
 import { positionAt, tangentAt, project, isUnderground, STATIONS } from '../data/route';
 import type { TrainState } from '../game/simulation';
 import {platformPosition} from './passenger-motion';
-import {CameraLook,cabCameraPose,doorCheckCameraPose,gameplayCameraView,developmentInspectionView,inspectionLookTarget,type CameraView} from './camera-look';
+import {CameraLook,cabCameraPose,doorCheckCameraPose,gameplayCameraView,developmentInspectionView,inspectionLookTarget,cameraDragAllowed,safeLookAngles,type CameraView} from './camera-look';
 import {CameraDragInput} from './camera-input';
 
 export type View=CameraView;
@@ -75,13 +75,10 @@ export class GameRenderer {
   /** Starting or restoring a player service leaves authoring viewpoints. */
   get displayedView():View|'inspection'{return this.inspectionView?'inspection':this.view;}
   clearInspection(){this.inspectionView=null;this.cameraInput.cancel();this.refreshCameraInput();}
-  resetLook(){if(this.inspectionView)this.inspectionLook={yaw:0,pitch:0};else if(this.view==='cab')this.lookState.reset();this.cameraInput.cancel();this.refreshCameraInput();}
-  private dragLook(x:number,y:number){
-    if(this.inspectionView){const yaw=this.inspectionLook.yaw+x*Math.PI;this.inspectionLook.yaw=Math.atan2(Math.sin(yaw),Math.cos(yaw));this.inspectionLook.pitch=Math.max(-.8,Math.min(.8,this.inspectionLook.pitch-y*Math.PI*.65));}
-    else if(this.view==='cab')this.lookState.drag(x,y);
-  }
+  resetLook(){if(!this.inspectionView&&this.view==='door-check')this.lookState.reset();this.cameraInput.cancel();this.refreshCameraInput();}
+  private dragLook(x:number,y:number){if(!this.inspectionView&&this.view==='door-check')this.lookState.drag(this.view,x,y);}
   setCameraInputEnabled(enabled:boolean){this.cameraInputRequested=enabled;this.refreshCameraInput();}
-  private refreshCameraInput(){this.cameraInput.setEnabled(this.cameraInputRequested&&this.ready&&!this.contextLost&&this.inputPhase==='driving'&&this.displayedView!=='door-check');}
+  private refreshCameraInput(){this.cameraInput.setEnabled(this.cameraInputRequested&&this.ready&&!this.contextLost&&!this.inspectionView&&cameraDragAllowed(this.view,this.inputPhase));}
   async startLoop(frame:(now:number)=>void){await this.renderer.setAnimationLoop(frame);}
   render(state:TrainState,dt:number){
     if(this.contextLost||!this.ready)return;
@@ -90,7 +87,9 @@ export class GameRenderer {
   }
   private updateScene(state:TrainState,_dt:number){
     const p=positionAt(state.distance),t=tangentAt(state.distance);
-    this.view=gameplayCameraView(state);
+    const nextView=gameplayCameraView(state);
+    if(this.lookState.setView(nextView))this.cameraInput.cancel();
+    this.view=nextView;
     const menu=state.phase==='ready',cab=this.view==='cab'&&!menu&&!this.inspectionView;
     this.inputPhase=state.phase;this.lookState.constrain();this.refreshCameraInput();
     if(this.inspectionView==='viaduct'){
@@ -126,7 +125,7 @@ export class GameRenderer {
     }
     else if(menu){this.camera.position.set(p.x+110,p.y+55,p.z+110);this.target.set(p.x-75,p.y+10,p.z-50);}
     else{
-      const pose=this.view==='door-check'?doorCheckCameraPose(state):cabCameraPose(state.distance,this.lookState.cab);
+      const pose=this.view==='door-check'?doorCheckCameraPose(state,safeLookAngles(this.lookState.doorCheck)):cabCameraPose(state.distance);
       this.camera.position.copy(pose.position);this.target.copy(pose.target);
     }
     if(this.inspectionView)this.target.copy(inspectionLookTarget(this.camera.position,this.target,this.inspectionLook));
@@ -136,7 +135,7 @@ export class GameRenderer {
     this.cabTarget.set(p.x+t.x*35,p.y+2.85+t.y*35,p.z+t.z*35);
     this.cabHeading.lookAt(this.camera.position,this.cabTarget,this.up);
     this.train.cab.quaternion.copy(this.camera.quaternion).invert().multiply(this.cabRotation.setFromRotationMatrix(this.cabHeading));
-    const angles=this.inspectionView?this.inspectionLook:this.view==='cab'?this.lookState.cab:{yaw:0,pitch:0};
+    const angles=this.inspectionView?safeLookAngles(this.inspectionLook):this.view==='door-check'?safeLookAngles(this.lookState.doorCheck):{yaw:0,pitch:0};
     this.renderer.domElement.dataset.cameraView=this.displayedView;
     this.renderer.domElement.dataset.cameraLook=JSON.stringify({view:this.displayedView,yaw:Number(angles.yaw.toFixed(3)),pitch:Number(angles.pitch.toFixed(3)),dragging:this.cameraInput.dragging,inspection:this.inspectionView,position:this.camera.position.toArray(),target:this.target.toArray()});
     this.train.update(state.distance,cab,state.doors,state.time,state.phase==='complete',STATIONS[state.nextStation]?.code);this.world.update(state,this.camera);

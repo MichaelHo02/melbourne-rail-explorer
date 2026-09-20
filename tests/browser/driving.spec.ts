@@ -1,6 +1,6 @@
 import { test,expect } from '@playwright/test';
 
-test('loads Melbourne and drives with real input through braking, pause, cab look, and automatic door checks',async({page})=>{
+test('loads Melbourne and drives forward through braking, pause, and automatic platform-camera checks',async({page})=>{
   const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
   page.on('console',message=>{if(message.type()==='error')errors.push(message.text());});
   await page.goto('/');
@@ -22,7 +22,7 @@ test('loads Melbourne and drives with real input through braking, pause, cab loo
   await expect(canvas).toHaveAttribute('data-camera-view','cab');
   await page.keyboard.press('c');await expect(canvas).toHaveAttribute('data-camera-view','cab');
   await page.mouse.move(630,300);await page.mouse.down();await page.mouse.move(710,320);await page.mouse.up();
-  await expect.poll(()=>canvas.evaluate(el=>JSON.parse((el as HTMLCanvasElement).dataset.cameraLook!).yaw)).not.toBe(0);
+  await expect.poll(()=>canvas.evaluate(el=>JSON.parse((el as HTMLCanvasElement).dataset.cameraLook!).yaw)).toBe(0);
   await page.mouse.dblclick(630,300);
   await expect.poll(()=>canvas.evaluate(el=>JSON.parse((el as HTMLCanvasElement).dataset.cameraLook!).yaw)).toBe(0);
   await page.keyboard.press('Escape');const paused=await page.evaluate(()=>(window as any).__RAIL_EXPLORER__.state());
@@ -39,14 +39,20 @@ test('loads Melbourne and drives with real input through braking, pause, cab loo
   await expect(page.locator('#station-instruction')).toHaveText('Open doors');
   await page.keyboard.press('d');await expect(page.locator('#doors-label')).toContainText('Boarding');
   await expect(canvas).toHaveAttribute('data-camera-view','door-check');
-  await expect(canvas).toHaveAttribute('data-camera-input','disabled');
-  const doorCamera=await canvas.getAttribute('data-camera-look');
+  await expect(canvas).toHaveAttribute('data-camera-input','enabled');
+  const doorCamera=JSON.parse((await canvas.getAttribute('data-camera-look'))!);
   await page.mouse.move(630,300);await page.mouse.down();await page.mouse.move(750,330);await page.mouse.up();
-  await expect(canvas).toHaveAttribute('data-camera-look',doorCamera!);
+  await expect.poll(()=>canvas.evaluate(el=>JSON.parse((el as HTMLCanvasElement).dataset.cameraLook!).yaw)).not.toBe(0);
+  const movedDoorCamera=JSON.parse((await canvas.getAttribute('data-camera-look'))!);
+  expect(movedDoorCamera.position).toEqual(doorCamera.position);
+  await page.mouse.dblclick(630,300);
+  await expect.poll(()=>canvas.evaluate(el=>JSON.parse((el as HTMLCanvasElement).dataset.cameraLook!).yaw)).toBe(0);
   await page.screenshot({path:'artifacts/08-underground-platform.png'});
   await expect(page.locator('#doors-label')).toHaveText('Close doors',{timeout:12000});
   await page.keyboard.press('d');await expect(page.locator('#station-name')).toHaveText('Parliament');
   await expect(canvas).toHaveAttribute('data-camera-view','cab');
+  await expect(canvas).toHaveAttribute('data-camera-input','disabled');
+  await expect.poll(()=>canvas.evaluate(el=>JSON.parse((el as HTMLCanvasElement).dataset.cameraLook!).yaw)).toBe(0);
   await page.keyboard.press('Escape');await page.reload();
   await expect(page.getByRole('button',{name:'Continue saved service'})).toBeVisible();
   await expect(page.getByRole('button',{name:'Take the driver’s seat'})).toBeEnabled({timeout:60000});

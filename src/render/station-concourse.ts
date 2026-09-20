@@ -10,8 +10,8 @@ import { surfaceTexture } from './materials';
  * Keep meshes directly in the station group so its route warp reaches them.
  */
 export function southernCrossConcourse(group:T.Group){
-  const deckY=8,platformY=1.05,bridgeZ=52,bridgeDepth=8;
-  const startX=-61,endX=14,stairCentres=[6.8,-8.5,-36.5];
+  const deckY=8,platformY=1.05,bridgeZ=38,bridgeDepth=10;
+  const startX=-69,endX=25,stairCentres=[6.8,-8.5,-36.5];
   const steel=new T.MeshStandardMaterial({color:'#66716f',roughness:.55,metalness:.52});
   const girder=new T.MeshStandardMaterial({color:'#434d4d',roughness:.65,metalness:.38});
   const concrete=new T.MeshStandardMaterial({map:surfaceTexture('concrete'),color:'#b7b9af',roughness:.9});
@@ -115,7 +115,7 @@ export function southernCrossConcourse(group:T.Group){
 
   // One glass lift enclosure supplies a second vertical circulation cue in
   // the playable island's rear band. It is scenic; no operable lift is implied.
-  const liftX=6.8,liftZ=44.25,liftWidth=2.15,liftDepth=2.8,liftTop=deckY+2.65;
+  const liftX=6.8,liftZ=30.25,liftWidth=2.15,liftDepth=2.8,liftTop=deckY+2.65;
   box(liftWidth,.16,liftDepth,liftX,liftTop,liftZ,steel);
   for(const dx of [-liftWidth/2,liftWidth/2])for(const dz of [-liftDepth/2,liftDepth/2])box(.085,liftTop-platformY,.085,liftX+dx,(liftTop+platformY)/2,liftZ+dz,steel);
   for(const dx of [-liftWidth/2,liftWidth/2]){

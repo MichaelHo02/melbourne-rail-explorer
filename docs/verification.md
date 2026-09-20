@@ -211,6 +211,10 @@ The aerial capture is May 2020 and includes occluded facades, baked shadows and 
 
 # Verification — 19 September 2026
 
+## Door-check sightline and Southern Cross roof observation — 20 September 2026
+
+The in-app browser verified the cab view remains locked forward; dragging in the outside door-check view rotates the sightline while leaving the camera position fixed, and double-click resets it. The final stopped-cab capture shows the curved Southern Cross truss/roof; the prior floating-light/sky artifact is no longer visible. The roof shape is readable but the surrounding scenery remains coarse and does not establish photographic fidelity. The latest browser tab reported no page errors. `npm run build` and the 126-test/16-suite `npm test` run passed. The driving browser spec was updated but not run in this pass. The companion roof study is a generated visual reference only, not survey geometry or a runtime asset. The geography research did not ingest new geometry.
+
 ## Automated checks
 
 - `npm test`: 19 tests pass, including all six station visits in a complete service, stopping/boarding interlocks, emergency braking, pause behaviour, save validation, route continuity, official station anchors, Yarra geography and WebGPU failure handling. The latter uses real Three.js renderer initialization with mocked browser API/adapter/device failures, asserting that no alternate graphics context is requested.
