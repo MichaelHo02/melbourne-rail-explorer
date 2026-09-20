@@ -402,10 +402,20 @@ export class CorridorScenery {
   }
   private buildRailYard(){
     // Vicmap supplies network centrelines and occasional track counts, not
-    // operational pointwork. Spacing, ballast width and the 3m station datum
+    // operational pointwork. Spacing, ballast width and game route elevations
     // are authored context; underground rail and tram routes stay excluded.
     const beds:T.BufferGeometry[]=[],steel:T.BufferGeometry[]=[],sleepers:T.BufferGeometry[]=[],supports:T.BufferGeometry[]=[];
     const samples=Array.from({length:Math.ceil(ROUTE_LENGTH/8)},(_,i)=>positionAt(i*8));
+    const contextHeight=(point:T.Vector3)=>{
+      let best=Infinity,height=0;
+      for(let i=1;i<samples.length;i++){
+        const a=samples[i-1],b=samples[i],dx=b.x-a.x,dz=b.z-a.z;
+        const t=T.MathUtils.clamp(((point.x-a.x)*dx+(point.z-a.z)*dz)/(dx*dx+dz*dz||1),0,1);
+        const d=(point.x-a.x-dx*t)**2+(point.z-a.z-dz*t)**2;
+        if(d<best){best=d;height=a.y+(b.y-a.y)*t;}
+      }
+      return Math.max(0,height);
+    };
     const roads=data.layers.roads.features.filter(f=>!['trail','tunnel'].includes(String(f.properties.feature_type_code))).flatMap(f=>lines(f).flatMap(line=>line.slice(1).map((b,i)=>({a:line[i],b,width:streetWidth(f)}))));
     const roadAt=(p:T.Vector3)=>roads.some(({a,b,width})=>{
       const dx=b.x-a.x,dz=b.z-a.z,t=T.MathUtils.clamp(((p.x-a.x)*dx+(p.z-a.z)*dz)/(dx*dx+dz*dz||1),0,1);
@@ -419,8 +429,14 @@ export class CorridorScenery {
         const start=original[j-1],end=original[j],steps=Math.ceil(start.distanceTo(end)/4);
         for(let k=0;k<steps;k++){
           const a=start.clone().lerp(end,k/steps),b=start.clone().lerp(end,(k+1)/steps),mid=a.clone().add(b).multiplyScalar(.5);
-          // Bound the pass to Southern Cross and its northern surface throat.
-          if(mid.x> -1120||mid.x< -1800||mid.z>330||mid.z< -850)continue;
+          // Source rail context at both visible surface approaches. The eastern
+          // yard occupies the Jolimont side of the loop, away from river water.
+          const southernCross=mid.x>=-1800&&mid.x<=-1120&&mid.z>=-850&&mid.z<=330;
+          const easternYard=mid.x>=120&&mid.x<=1100&&mid.z>=-380&&mid.z<=160;
+          if(!southernCross&&!easternYard)continue;
+          // The fictional training alignment rises gradually here. Match its
+          // local level so scenery tracks cannot become walls above the cab.
+          const heightA=easternYard?contextHeight(a):3,heightB=easternYard?contextHeight(b):3;
           if(insideFootprint(mid.x,mid.z,SOUTHERN_CROSS_CLEARANCE)||waterAt(mid))continue;
           // Retain a generous clear area around the playable alignment and
           // its existing multi-track viaduct. Never lay scenery over the cab line.
@@ -429,7 +445,7 @@ export class CorridorScenery {
           const halfWidth=count*2.1;
           const footprint=[a.clone().addScaledVector(side,halfWidth+4),b.clone().addScaledVector(side,halfWidth+4),b.clone().addScaledVector(side,-halfWidth-4),a.clone().addScaledVector(side,-halfWidth-4)].map(p=>[p.x,p.z]);
           if(ringsIntersect(footprint,SOUTHERN_CROSS_CLEARANCE))continue;
-          a.y=b.y=3;
+          a.y=heightA;b.y=heightB;
           const overRoad=roadAt(mid);
           if(!overRoad){
             for(const sign of [-1,1]){
@@ -444,7 +460,7 @@ export class CorridorScenery {
             beds.push(ribbon([x,y],4.15,2));
             // At road crossings keep a thin bridge deck and an open underpass.
             // Elsewhere sloped ballast shoulders meet the authored ground.
-            if(overRoad)supports.push(beam(x.clone().setY(2.72),y.clone().setY(2.72),4.2,.45));
+            if(overRoad)supports.push(beam(x.clone().setY(heightA-.28),y.clone().setY(heightB-.28),4.2,.45));
             for(const gauge of [-.8,.8])steel.push(beam(x.clone().addScaledVector(side,gauge).addScaledVector(up,.2),y.clone().addScaledVector(side,gauge).addScaledVector(up,.2),.07,.14));
             const n=Math.max(1,Math.ceil(x.distanceTo(y)/.7));
             for(let q=0;q<n;q++){
