@@ -72,6 +72,18 @@ export class GameRenderer {
       }),
     ]);
     onProgress('Preparing lighting and materials…');
+    // Compile nearby station assets before the first moving approach. Keeping
+    // station light identities stable lets these pipelines remain reusable.
+    // Include off-camera meshes in each local station footprint so a slight
+    // change of bearing does not trigger first-use compilation mid-approach.
+    for(const [index,station] of STATIONS.entries()){
+      onProgress(`Preparing ${station.name} materials…`);
+      this.updateScene({...initialState,phase:'driving',doors:false,distance:Math.max(0,station.distance-80),nextStation:index},0);
+      const culled:T.Object3D[]=[];
+      this.scene.traverseVisible(object=>{if(object instanceof T.Mesh&&object.frustumCulled){culled.push(object);object.frustumCulled=false;}});
+      try{await this.renderer.compileAsync(this.scene,this.camera);}
+      finally{for(const object of culled)object.frustumCulled=true;}
+    }
     // Compile both entry views before accepting input, including the cab GLB.
     this.updateScene({...initialState,phase:'driving',doors:false},0);
     await this.renderer.compileAsync(this.scene,this.camera);

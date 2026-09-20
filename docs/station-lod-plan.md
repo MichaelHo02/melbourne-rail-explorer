@@ -73,3 +73,48 @@ variants, but this is a hypothesis requiring an isolated comparison.
 A screenshot after the final pass confirms the Flinders platform, rails,
 station signs and nearby fittings remain present. Full service and visual
 transition validation remain outstanding for the overall environment goal.
+
+## Stable lighting and loading-time preparation
+
+The previous world changed active PointLight objects at station boundaries.
+The replacement keeps one ten-light pool registered for the entire service,
+moves it to the nearest underground station's original warped lamp positions,
+and changes intensity between 0 and the existing 55. Light count and identities
+stay stable, while colour, attenuation and authored positions remain unchanged.
+Platform lamp meshes remain in their existing geometry tiers.
+
+Loading now compiles each station's local visible assets with mesh frustum
+culling temporarily disabled, then restores culling and the initial game state
+before declaring ready. This deliberately moves preparation into the loading
+screen. It does not stream new network assets during driving.
+
+Controlled first-approach comparison (same 780-frame routes and resolution):
+
+| Station | Previous p99 / max ms | Stable pool + preparation p99 / max ms |
+| --- | --- | --- |
+| Southern Cross | 101.0 / 201.0 | 33.5 / 83.3 |
+| Flagstaff | 133.3 / 216.4 | 17.6 / 17.7 |
+| Flinders Street | 99.9 / 100.6 | 34.2 / 34.3 |
+
+Peak draw calls and triangle counts are unchanged. This supports pipeline
+preparation as a cause of the earlier stalls; these browser timings do not
+isolate individual shader or GPU commands. Flinders still averages 20.13 ms
+with 74 frames over 33.34 ms, so the 60 fps target is not achieved. Southern
+Cross still had one 83.3 ms frame. Future geometric/draw-call LOD should address
+sustained cost without undoing the scene's fidelity.
+
+Warm-pass p99 was 33.6 ms Southern Cross, 17.6 ms Flagstaff and 34.1 ms
+Flinders. Resource preparation increases the work done before the loading
+screen finishes; its startup time and memory cost have not yet been benchmarked.
+
+Post-change full rendered service audit passed: 37,224 simulation ticks,
+1,241 rendered frames, all six stops served, cab and door-check views exercised,
+57 visited 100 m cells, maximum rendered travel gap 6.172 m, and no runtime
+errors. This accelerated service audit verifies route/gameplay continuity,
+not wall-clock driving performance. All 138 unit tests and production build
+passed separately.
+
+Matched 2600 m cab captures (`baseline-1280` and `pooled-station-lighting`)
+were inspected at full resolution. The Flagstaff ceiling, tiled walls,
+platform, passengers and light falloff retain their appearance. The repaired
+track-bed floor is also visible; the baseline predates that separate repair.

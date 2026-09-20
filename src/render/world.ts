@@ -30,6 +30,10 @@ export class World {
   sun:T.DirectionalLight;ambient:T.HemisphereLight;sky:SkyMesh;
   private effects:EnvironmentEffects;
   private lighting:StationLighting;
+  // Keep shader light identities/count stable across station transitions.
+  // Inactive lights have zero intensity, rather than disappearing from the
+  // renderer's light set and invalidating material pipelines.
+  private stationLampPool=Array.from({length:10},()=>new T.PointLight('#fff1d3',0,20,2));
   private surfaces=new SurfaceLibrary();
   private corridor:CorridorScenery;
   private passengers:Passengers;
@@ -41,7 +45,7 @@ export class World {
   private landmarkReady:Promise<void>=Promise.resolve();
   constructor(public scene:T.Scene){
     this.effects=new EnvironmentEffects(scene);
-    scene.add(this.surface,this.railway,this.stations);
+    scene.add(this.surface,this.railway,this.stations,...this.stationLampPool);
     this.sky=new SkyMesh();this.sky.scale.setScalar(45000);this.surface.add(this.sky);
     this.sky.turbidity.value=3.5;this.sky.rayleigh.value=1.4;
     const sunPosition=new T.Vector3(.7,.55,.3).normalize();this.sky.sunPosition.value.copy(sunPosition);
@@ -269,6 +273,9 @@ export class World {
           child.position.set(0,0,0);child.rotation.set(0,0,0);child.scale.set(1,1,1);child.updateMatrix();
         }else if(child instanceof T.PointLight){child.position.copy(warp(child.position.x,child.position.y,child.position.z));}
       }
+      const lamps=group.children.filter((child):child is T.PointLight=>child instanceof T.PointLight);
+      group.userData.lampPositions=lamps.map(lamp=>lamp.position.clone());
+      group.remove(...lamps);
       // Geometry is already in world space; merge repeated fittings by material.
       const batches=new Map<string,T.Mesh[]>();
       for(const child of group.children){if(child instanceof T.Mesh&&!Array.isArray(child.material)){const key=child.material.uuid+':'+!!child.userData.stationDetail;const batch=batches.get(key)??[];batch.push(child);batches.set(key,batch);}}
@@ -365,10 +372,13 @@ export class World {
       st.visible=distanceDetailVisible(stationDistance,st.visible,620,660);
       st.userData.detailVisible=distanceDetailVisible(stationDistance,!!st.userData.detailVisible,360,400);
       for(const child of st.children)if(child.userData.stationDetail)child.visible=st.userData.detailVisible;
-      // Sunlit platforms retain their visible lamp fittings. The local point
-      // lights illuminate enclosed stations, where they affect the scene.
-      const near=st.userData.underground&&st.userData.center.distanceTo(p)<280;
-      st.children.forEach(c=>{if(c instanceof T.PointLight)c.visible=near;});
+
     });
+    const litStation=this.stations.children.find(st=>st.userData.underground&&st.userData.center.distanceTo(p)<280);
+    for(const [index,lamp] of this.stationLampPool.entries()){
+      const position=litStation?.userData.lampPositions[index] as T.Vector3|undefined;
+      lamp.intensity=position?55:0;
+      if(position)lamp.position.copy(position);
+    }
   }
 }
