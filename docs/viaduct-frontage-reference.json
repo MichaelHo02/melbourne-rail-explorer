@@ -1,0 +1,87 @@
+{
+  "checked": "2026-09-20",
+  "purpose": "Reference-only identification of two City of Melbourne survey structure IDs beside the Flinders Street viaduct. Runtime masks and geometry are untouched.",
+  "survey": {
+    "dataset": "City of Melbourne 2023 Building Footprints",
+    "datasetUrl": "https://data.melbourne.vic.gov.au/explore/dataset/2023-building-footprints/information/",
+    "license": "CC BY 4.0",
+    "capture": "May 2023; AHD elevations",
+    "bundledFile": "public/data/buildings-raw.json",
+    "localOriginLonLat": [144.9671, -37.8183],
+    "axes": "X east, Z south; source elevations are not the game rail datum",
+    "selectionManifest": "src/data/photomesh-foreground.json",
+    "maskContract": "Do not modify. Preserve all sections and the established photomesh exclusion hulls."
+  },
+  "structures": [
+    {
+      "structureId": "817607",
+      "objectIds": ["17612", "17613", "17614", "17615", "17616"],
+      "localXBounds": [-741.624, -651.992],
+      "localZBounds": [49.576, 167.390],
+      "surveyTopMetres": 93.0,
+      "identity": {
+        "address": "15-33 William Street, Melbourne VIC 3000",
+        "status": "confirmed spatially by intersecting 2014 API footprint bbox and 2023 section hull",
+        "evidence": "City 2014 Building Outlines row mccid_int=110091 has fmtaddress 15-33 William Street, bbox [144.9587176,-37.8197540,144.9596254,-37.8187883], model height 91.35 m, zmin 2.36, zmax 93.71 and 25 floors. The bbox intersects the five bundled 2023 sections' plan bounds. 2023 AHD elevations and 2014 model z fields/heights are kept as separate evidence; their numerical similarity is not treated as proof of a shared vertical datum.",
+        "references": [
+          "https://www.art.gov.au/help-and-resources/melbourne-registry-access-guide",
+          "https://15w.com.au/",
+          "https://www.commercialrealestate.com.au/property/15-william-street-melbourne-vic-3000-14849344"
+        ]
+      },
+      "appearanceReference": "Inspected Commercial Real Estate exterior photo: reflective blue-grey glass curtain wall, closely spaced vertical fins/mullions, distinctive sharp raised fins that step down toward the outer wings, and a dark glazed street podium partly screened by trees. Use the survey sections for exact height and setback levels; do not copy the photographed perspective as geometry.",
+      "referencePhotoPage": "https://www.commercialrealestate.com.au/property/15-william-street-melbourne-vic-3000-14849344",
+      "shapeRecommendation": "Separate low podium from the taller, clean rectangular office volume; preserve the surveyed level breaks as setbacks only where multiple distinct section footprints support them. The survey has five components: four flat roof sections plus one small gable section at the highest edge."
+    },
+    {
+      "structureId": "806929",
+      "objectIds": ["25125", "25126", "25127", "25128", "25129", "25130", "25131", "25132"],
+      "localXBounds": [-788.660, -715.105],
+      "localZBounds": [81.399, 181.908],
+      "surveyTopMetres": 91.0,
+      "identity": {
+        "address": "452-470 Flinders Street, Melbourne VIC 3000",
+        "status": "confirmed spatially by intersecting 2014 API footprint bbox and 2023 section hull",
+        "evidence": "City 2014 Building Outlines row mccid_int=103998 has fmtaddress 452-470 Flinders Street, bbox [144.9581761,-37.8199021,144.9589271,-37.8190640], model height 89.55 m, zmin 1.96, zmax 91.5 and 23 floors. The bbox intersects the eight bundled 2023 sections' plan bounds. 2023 AHD elevations and 2014 model z fields/heights are kept as separate evidence; their numerical similarity is not treated as proof of a shared vertical datum.",
+        "references": [
+          "https://www.commercialrealestate.com.au/property/452-flinders-street-melbourne-vic-3000-15934817",
+          "https://www.cushmanwakefield.com/en/australia/news/2020/09/deka-immobilien-acquires-melbourne-office-tower-for-%24454-million"
+        ]
+      },
+      "appearanceReference": "Inspected Cushman & Wakefield transaction photo of the confirmed address: reflective deep blue glass curtain wall in a regular broad rectangular grid, with prominent pale/white vertical and horizontal structural framing and a stepped outer profile. The image is a close low-angle crop; derive roof/podium massing from the survey, not the crop.",
+      "referencePhotoPage": "https://www.cushmanwakefield.com/en/australia/news/2020/09/deka-immobilien-acquires-melbourne-office-tower-for-%24454-million",
+      "shapeRecommendation": "The eight bundled survey sections encode a low footprint band from elevations 2-50.5 m, several narrow intermediate bands, and top fragments from 82.5-91 m. Preserve their plan outlines/vertical intervals as a primary shell; avoid adding a guessed roof crown."
+    }
+  ],
+  "verifiedBundledSectionData": {
+    "817607": [
+      {"objectId":"17612","roof":"Flat","min":4.0,"max":15.5,"extrusion":11.5},
+      {"objectId":"17614","roof":"Flat","min":15.5,"max":25.0,"extrusion":9.5},
+      {"objectId":"17615","roof":"Flat","min":15.5,"max":81.5,"extrusion":66.0},
+      {"objectId":"17616","roof":"Flat","min":81.5,"max":91.5,"extrusion":10.0},
+      {"objectId":"17613","roof":"Gable","min":91.5,"max":93.0,"extrusion":1.5}
+    ],
+    "806929": [
+      {"objectId":"25125","roof":"Flat","min":2.0,"max":50.5,"extrusion":48.5},
+      {"objectId":"25126","roof":"Flat","min":50.5,"max":63.5,"extrusion":13.0},
+      {"objectId":"25127","roof":"Flat","min":63.5,"max":67.0,"extrusion":3.5},
+      {"objectId":"25128","roof":"Flat","min":67.0,"max":74.5,"extrusion":7.5},
+      {"objectId":"25129","roof":"Flat","min":74.5,"max":82.5,"extrusion":8.0},
+      {"objectId":"25130","roof":"Flat","min":82.5,"max":86.5,"extrusion":4.0},
+      {"objectId":"25131","roof":"Flat","min":82.5,"max":90.5,"extrusion":8.0},
+      {"objectId":"25132","roof":"Flat","min":82.5,"max":91.0,"extrusion":8.5}
+    ]
+  },
+  "apiCrossCheck": {
+    "dataset": "City of Melbourne Building Outlines 2014 (dataset id building-outlines-20140)",
+    "queryPattern": "GET https://data.melbourne.vic.gov.au/api/explore/v2.1/catalog/datasets/building-outlines-20140/records?where=within_distance(geo_point_2d,GEOM'POINT(144.9588 -37.81935)',200m)&limit=100&select=geo_point_2d,geo_shape,fmtaddress,mccid_int,mccid_str,height,zmin,zmax,floors,build_year",
+    "result": "One bounded query returned 46 rows. The 15-33 William Street and 452-470 Flinders Street 2014 geometry bounds intersect their respective complete 2023 structure envelopes. 2014 model height/z fields and the 2023 AHD levels are separate vertical evidence and are not compared as if they shared a datum. The adjacent 474 Flinders address is not the matching 2014 polygon.",
+    "responseFields": "geo_point_2d,geo_shape,fmtaddress,mccid_int,mccid_str,height,zmin,zmax,floors,build_year",
+    "datasetDefinition": "https://discover.data.vic.gov.au/dataset/building-outlines-2014"
+  },
+  "blenderWorkflow": {
+    "available": "/Applications/Blender.app/Contents/MacOS/Blender (present; v5.2.2 previously noted in docs/viaduct-assets.md)",
+    "existingDeterministicExample": "scripts/blender/build_viaduct.py",
+    "recommendation": "A separate small Blender generator should read the two groups directly from bundled public/data/buildings-raw.json, convert geographic rings with the existing origin and local-axis convention, retain all object IDs/elevation intervals as object custom properties, and create one named collection per structure. Create level bands from the official section rings, not an inferred box; keep the official polygons as a hidden reference collection. Export named GLB shells via glTF with unit scale, then manually author facade materials from verified actual photos. Do not embed downloaded third-party photos; use them as temporary modelling reference and document source URL/license/verification status. Do not edit src/data/photomesh-foreground.json."
+  }
+}

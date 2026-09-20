@@ -278,6 +278,33 @@ export class World {
     await Promise.all([this.landmarkReady,this.surfaces.ready,this.corridor.ready,this.passengers.ready,this.photographic.ready]);
     const response=await fetch('/data/buildings.json');if(!response.ok)throw new Error('Building dataset could not be loaded.');
     const data=await response.json();
+    const frontageObjectIds=new Set(['17612','17613','17614','17615','17616','25125','25126','25127','25128','25129','25130','25131','25132']);
+    let frontageLoaded=false;
+    try{
+      const frontage=await new GLTFLoader().loadAsync('/models/environment/viaduct-frontage.glb');
+      frontage.scene.updateMatrixWorld(true);
+      const expectedSections:Record<string,Set<string>>={
+        '817607':new Set(['17612','17613','17614','17615','17616']),
+        '806929':new Set(['25125','25126','25127','25128','25129','25130','25131','25132']),
+      };
+      const complete=new Set<string>();
+      frontage.scene.traverse(node=>{if(node instanceof T.Mesh){node.castShadow=true;node.receiveShadow=true;}});
+      frontage.scene.traverse(node=>{
+        const structureId=String(node.userData.source_structure_id??''),expected=expectedSections[structureId];
+        if(!expected)return;
+        const ids=new Set(String(node.userData.source_object_ids??'').split(',').filter(Boolean));
+        let hasGeometry=false;
+        node.traverse(child=>{if(child instanceof T.Mesh&&!!child.geometry.attributes.position?.count)hasGeometry=true;});
+        if(ids.size===expected.size&&[...expected].every(id=>ids.has(id))&&hasGeometry)complete.add(structureId);
+      });
+      if(complete.size!==Object.keys(expectedSections).length)throw new Error('Survey frontage GLB is missing a complete source envelope.');
+      this.surface.add(frontage.scene);
+      frontageLoaded=true;
+    }catch(error){
+      // Keep the measured procedural sections whenever the replacement asset
+      // is unavailable; a failed optional load must never erase city geometry.
+      console.warn('Surveyed viaduct frontage asset unavailable; retaining source buildings.',error);
+    }
     const materials=[createBuildingMaterial()];
     this.worker=new Worker(new URL('./city.worker.ts',import.meta.url),{type:'module'});
     return new Promise<void>((resolve,reject)=>{
@@ -289,7 +316,7 @@ export class World {
         const [x,z]=key.split(',').map(Number);const mesh=new T.Mesh(geometry,materials[Math.abs(x+z)%materials.length]);mesh.castShadow=true;mesh.receiveShadow=true;mesh.userData.center=new T.Vector3(x*250+125,0,z*250+125);
         this.cityChunks.push(mesh);this.surface.add(mesh);onProgress(`Preparing city blocks · ${this.cityChunks.length}`);
       };
-      this.worker!.postMessage({buildings:data.buildings.filter((b:{ring:[number,number][];base:number;height:number;kind?:string})=>!this.photographic.conflictsWithClearance(b)&&!this.photographic.replacesBuilding(b))});
+      this.worker!.postMessage({buildings:data.buildings.filter((b:{id:string;ring:[number,number][];base:number;height:number;kind?:string})=>!this.photographic.conflictsWithClearance(b)&&!this.photographic.replacesBuilding(b)&&!(frontageLoaded&&frontageObjectIds.has(String(b.id))))});
     });
   }
   passengerMetrics(){return this.passengers.metrics();}

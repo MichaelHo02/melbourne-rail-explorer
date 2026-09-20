@@ -1,0 +1,190 @@
+{
+  "asset": "Flinders viaduct frontage buildings",
+  "source": "public/data/buildings.json",
+  "license": "CC BY 4.0",
+  "structures": {
+    "817607": {
+      "objectIds": [
+        "17612",
+        "17613",
+        "17614",
+        "17615",
+        "17616"
+      ],
+      "sectionCount": 5,
+      "surveyRingBoundsXZMetres": [
+        -733.9,
+        57.3,
+        -658.1,
+        159.7
+      ],
+      "verticalRangeMetres": [
+        0,
+        89.0
+      ],
+      "verticalDatum": "base = max(0, footprint_min_elevation - structure_min_elevation) in scripts/prepare-city.mjs; relative game datum, not the 2014 model z or source AHD elevation.",
+      "sectionVerticalIntervalsMetres": [
+        {
+          "objectId": "17612",
+          "base": 0,
+          "top": 11.5
+        },
+        {
+          "objectId": "17613",
+          "base": 87.5,
+          "top": 89.0
+        },
+        {
+          "objectId": "17614",
+          "base": 11.5,
+          "top": 21.0
+        },
+        {
+          "objectId": "17615",
+          "base": 11.5,
+          "top": 77.5
+        },
+        {
+          "objectId": "17616",
+          "base": 77.5,
+          "top": 87.5
+        }
+      ],
+      "union": true,
+      "address": "15\u201333 William Street",
+      "identityCrossReference": {
+        "dataset": "City of Melbourne Building Outlines 2014",
+        "datasetUrl": "https://discover.data.vic.gov.au/dataset/building-outlines-2014",
+        "mccidInt": 110091,
+        "floorCount": 25,
+        "modelHeightMetres": 91.35,
+        "verticalValuesUsedForAsset": false
+      },
+      "facadeReference": "https://www.commercialrealestate.com.au/property/15-william-street-melbourne-vic-3000-14849344",
+      "appearanceNotes": "Reflective blue-grey curtain wall with slender projecting silver vertical fins and fine floor transoms; dark glazed podium.",
+      "facadeObjects": [
+        "structure_817607_vertical_fins_and_transoms"
+      ],
+      "attribution": "City of Melbourne, 2023 Building Footprints, CC BY 4.0",
+      "sourceUrl": "https://data.melbourne.vic.gov.au/explore/dataset/2023-building-footprints/",
+      "sourceTransform": {
+        "originLonLat": [
+          144.9671,
+          -37.8183
+        ],
+        "projectedMetresPerDegree": {
+          "longitude": 87939,
+          "latitude": -111320
+        },
+        "gameAxes": "X east, Y up, Z south",
+        "units": "metres"
+      },
+      "photomeshMask": {
+        "path": "src/data/photomesh-foreground.json",
+        "modified": false,
+        "purpose": "Existing broader photographic exclusion; does not define this asset geometry."
+      }
+    },
+    "806929": {
+      "objectIds": [
+        "25125",
+        "25126",
+        "25127",
+        "25128",
+        "25129",
+        "25130",
+        "25131",
+        "25132"
+      ],
+      "sectionCount": 8,
+      "surveyRingBoundsXZMetres": [
+        -784.8,
+        85.2,
+        -718.9,
+        178.1
+      ],
+      "verticalRangeMetres": [
+        0,
+        89.0
+      ],
+      "verticalDatum": "base = max(0, footprint_min_elevation - structure_min_elevation) in scripts/prepare-city.mjs; relative game datum, not the 2014 model z or source AHD elevation.",
+      "sectionVerticalIntervalsMetres": [
+        {
+          "objectId": "25125",
+          "base": 0,
+          "top": 48.5
+        },
+        {
+          "objectId": "25126",
+          "base": 48.5,
+          "top": 61.5
+        },
+        {
+          "objectId": "25127",
+          "base": 61.5,
+          "top": 65.0
+        },
+        {
+          "objectId": "25128",
+          "base": 65,
+          "top": 72.5
+        },
+        {
+          "objectId": "25129",
+          "base": 72.5,
+          "top": 80.5
+        },
+        {
+          "objectId": "25130",
+          "base": 80.5,
+          "top": 84.5
+        },
+        {
+          "objectId": "25131",
+          "base": 80.5,
+          "top": 88.5
+        },
+        {
+          "objectId": "25132",
+          "base": 80.5,
+          "top": 89.0
+        }
+      ],
+      "union": true,
+      "address": "452\u2013470 Flinders Street",
+      "identityCrossReference": {
+        "dataset": "City of Melbourne Building Outlines 2014",
+        "datasetUrl": "https://discover.data.vic.gov.au/dataset/building-outlines-2014",
+        "mccidInt": 103998,
+        "floorCount": 23,
+        "modelHeightMetres": 89.55,
+        "verticalValuesUsedForAsset": false
+      },
+      "facadeReference": "https://www.cushmanwakefield.com/en/australia/news/2020/09/deka-immobilien-acquires-melbourne-office-tower-for-%24454-million",
+      "appearanceNotes": "Deep blue reflective curtain wall with prominent pale structural framing and a regular rectangular grid.",
+      "facadeObjects": [
+        "structure_806929_structural_grid",
+        "structure_806929_fine_mullions_and_transoms"
+      ],
+      "attribution": "City of Melbourne, 2023 Building Footprints, CC BY 4.0",
+      "sourceUrl": "https://data.melbourne.vic.gov.au/explore/dataset/2023-building-footprints/",
+      "sourceTransform": {
+        "originLonLat": [
+          144.9671,
+          -37.8183
+        ],
+        "projectedMetresPerDegree": {
+          "longitude": 87939,
+          "latitude": -111320
+        },
+        "gameAxes": "X east, Y up, Z south",
+        "units": "metres"
+      },
+      "photomeshMask": {
+        "path": "src/data/photomesh-foreground.json",
+        "modified": false,
+        "purpose": "Existing broader photographic exclusion; does not define this asset geometry."
+      }
+    }
+  }
+}
