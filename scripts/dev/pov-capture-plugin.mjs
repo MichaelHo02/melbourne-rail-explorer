@@ -14,7 +14,7 @@ export function povCapturePlugin(){return {
    const png=Buffer.from(p.png,'base64');if(!png.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])))throw Error('Expected PNG');
    const folder=`${root}${p.run}/`,stem=String(p.distance).padStart(5,'0');await mkdir(folder,{recursive:true});
    await writeFile(`${folder}${stem}.png`,png,{flag:'wx'});
-   await writeFile(`${folder}${stem}.json`,JSON.stringify({distance:p.distance,camera:p.camera,metrics:p.metrics,frameMs:p.frameMs},null,2),{flag:'wx'});
+   await writeFile(`${folder}${stem}.json`,JSON.stringify({distance:p.distance,camera:p.camera,metrics:p.metrics,frameTiming:p.frameTiming,probes:p.probes,frameMs:p.frameMs},null,2),{flag:'wx'});
    res.setHeader('Content-Type','application/json');res.end(JSON.stringify({saved:`artifacts/pov-survey/${p.run}/${stem}.png`}));
   }catch(error){res.statusCode=400;res.end(String(error));}
  });},

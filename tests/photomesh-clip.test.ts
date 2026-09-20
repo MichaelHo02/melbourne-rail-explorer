@@ -118,7 +118,8 @@ describe('photographic clearance clipping',()=>{
   });
   it('removes only the measured detached seam fragments within finite vertical bounds',()=>{
     const all=createPhotomeshClearance(),mask=new ClearanceIndex(all.volumes.filter(v=>v.name.startsWith('measured residual ')));
-    expect(foreground.residualFragments.map(f=>f.retainedTrianglesBeforeRepair)).toEqual([31,7]);
+    expect(clipPhotomesh(mesh([[-1183.1,17.74,268.1],[-1183.05,17.74,268.1],[-1183.1,17.74,268.15]]),mask).index.length).toBe(0);
+    expect(foreground.residualFragments.map(f=>f.retainedTrianglesBeforeRepair)).toEqual([163,31,7]);
     expect(clipPhotomesh(mesh([[-734.43,46.37,110.42],[-734.38,46.37,110.42],[-734.43,46.37,110.47]]),mask).index.length).toBe(0);
     // Preserve roof/ground geometry directly above/below the same footprint;
     // this correction is not another full-height building or district mask.

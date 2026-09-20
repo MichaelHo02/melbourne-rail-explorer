@@ -51,3 +51,19 @@ Validation: 136 tests across 18 files passed for the clearance changes;
 TypeScript and production build passed after the floor repair. The full service
 was not rerun for this checkpoint. Floating aerial fragments and unfinished
 landscape remain open work under the environment goal.
+
+## Southern Cross fragment repair
+
+The 1200 m capture probe at normalized screen (-0.4, 0.7) identified retained
+face 1962 of I3S 158179 at [-1183.1035, 17.7384, 268.0956]. Replaying the runtime
+clipper and welding vertices at 1 cm found a detached 163-triangle component.
+Its measured bounds are recorded in the foreground preparation script, with
+only 10 cm removal padding. `sxs-fragment-repair/01200.png` verifies removal of
+the large floating wedge above the left-hand approach, preserving the towers.
+Other facade fragments remain visible and still require work.
+
+Use `&at=1200` for a single-position inspection. JSON now includes fixed surface
+probes and timing percentiles. The latest counter-timing correction passes the
+build but its fresh runtime sample remains unverified: the test tab entered a
+connection-error page during a Vite configuration reload. The server was
+subsequently confirmed listening on port 5174; no server restart was performed.
