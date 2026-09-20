@@ -145,3 +145,47 @@ steps / 1,241 rendered frames, 57 visited 100m cells, maximum rendered travel
 gap 6.172m, cab and door-check views exercised, errors `[]`. Final frame:
 895 draws / 3,092,431 triangles, WebGPU. This accelerated audit proves service
 and rendering continuity; it does not prove a wall-clock frame-rate target.
+
+
+### Connected Federation foreground repair
+
+The 5400m cab view exposed hanging photographic walls in the Federation Square
+precinct. Offline replay of the runtime clipper identified the visible patch in
+`flinders-street-context/I3S91823` at `[107.3533,18.4236,-96.9509]`.
+Its welded connected component spans multiple source features, so its whole
+bounding box is not used as a deletion mask.
+
+Three adjacent official survey structures (806667, 805928, 805929; five source
+sections) now have complete Blender envelopes using the existing Federation
+east pipeline. Footprint-based photographic masks replace mixed scan/procedural
+storeys with coherent geometry. Survey heights are retained as prepared relative
+heights; cladding and rail openings are interpretations. Exact tenancies are not
+claimed. The source shard contains a sub-decimetre duplicate spike; consecutive
+points within 20cm are collapsed before tessellation. Empty exports now fail.
+
+Reproduce with `node scripts/export-blender-route.mjs`, then Blender background
+`--python scripts/blender/build_federation_east.py -- STRUCTURE_ID` for each of
+the three IDs. Every export checks upward clearance at 2m intervals across the
+six-metre running corridor. The authored opening extends 12m to either side and
+7m above the training rails; nearby mapped railway lines receive separate cuts.
+Successful asset loads replace only their own verified source sections.
+
+`federation-group/05400.png` shows continuous building walls and clear track
+through the repaired group. The wider survey remains necessary: this local
+repair does not establish whole-route visual completion. Source height datums
+still differ between aerial mesh and the flat/relative-height training world;
+that needs a systematic terrain solution, not a global guessed vertical shift.
+
+`scripts/inspect-photomesh.mjs` accepts a saved capture JSON and NDC ray pairs.
+It reports clipped source faces and connected components without a browser.
+These rays inspect photographic geometry only and must be checked against the
+image because authored buildings can occlude their hits.
+
+Validation: `federation-corridor` completed all 24 cab captures; contact sheet
+inspected. The 5400m opening remains clear and the photographed floating patch
+is replaced by continuous walls. Broad Southern Cross–Flagstaff yard context
+remains visibly sparse and is the next coverage priority. Production build and
+138 tests pass. The rendered full-service audit served all six stops in 1,241
+frames, visited 57 100m cells, exercised cab/door-check views, and reported no
+errors or browser warnings. Final frame: 913 draws / 3,095,732 triangles on
+WebGPU. This is functional validation, not a new frame-time benchmark.

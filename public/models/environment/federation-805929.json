@@ -1,0 +1,18 @@
+{
+  "structureId": "805929",
+  "objectIds": [
+    "17198",
+    "17199"
+  ],
+  "geometrySource": "https://data.melbourne.vic.gov.au/explore/dataset/2023-building-footprints/",
+  "license": "CC BY 4.0",
+  "reference": "https://fedsquare.com/history-design",
+  "sourceSha256": "7668a1e25cfb5afd17c564ef1c2139801e6a0bf79f0ed500684247ef159807c9",
+  "clearance": {
+    "halfWidthMetres": 12,
+    "heightAboveTrainingRailMetres": 7,
+    "sampleSpacingMetres": 2
+  },
+  "limitations": "Federation Square area survey structure; exact tenancy not established. Prepared relative survey heights preserved. Triangular cladding palette and railway opening are authored interpretations, not measured facade or engineering drawings. The training track elevation is approximate.",
+  "triangles": 1277
+}

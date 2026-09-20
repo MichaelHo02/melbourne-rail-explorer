@@ -2,21 +2,38 @@
 Run after node scripts/export-blender-route.mjs.
 The footprint is measured; cladding and the rail opening are interpretations.
 """
-import bpy, bmesh, importlib.util, json, math, hashlib
+import bpy, bmesh, importlib.util, json, math, hashlib, sys
 from pathlib import Path
 from mathutils import Vector
 ROOT=Path(__file__).resolve().parents[2]
 spec=importlib.util.spec_from_file_location('frontage',Path(__file__).with_name('build_viaduct_frontage.py'))
 f=importlib.util.module_from_spec(spec);spec.loader.exec_module(f)
 f.reset_scene()
-ids=['16221','16222','16223'];f.STRUCTURES['816359']={'objectIds':ids}
+# Optional source structure lets the same surveyed-envelope treatment repair
+# adjacent sections without maintaining divergent cladding/clearance logic.
+structure_id=sys.argv[sys.argv.index('--')+1] if '--' in sys.argv else '816359'
+source_sections={'816359':['16221','16222','16223'],'806667':['4607'],'805928':['37331','37332'],'805929':['17198','17199']}
+ids=source_sections[structure_id];f.STRUCTURES[structure_id]={'objectIds':ids}
+asset_name='federation-east' if structure_id=='816359' else 'federation-'+structure_id
 source=ROOT/'public/data/buildings.json'
 buildings=json.loads(source.read_text())['buildings']
+# The shard footprint contains a sub-decimetre out-and-back survey spike.
+# Remove consecutive near-duplicates before tessellation, preserving metre-scale geometry.
+for section in buildings:
+ if section['id'] not in ids:continue
+ clean=[]
+ for point in section['ring']:
+  if not clean or math.dist(point,clean[-1])>.2:clean.append(point)
+ if len(clean)>1 and math.dist(clean[0],clean[-1])<.2:clean.pop()
+ section['ring']=clean
 stone=f.material('sandstone',(.48,.40,.30),.91)
 concrete=f.material('rail opening concrete',(.25,.26,.25),.96)
 roof=f.material('zinc roof',(.28,.30,.30),.78,.12)
-envelope,sections=f.union_sections(buildings,'816359',(stone,concrete,roof))
+envelope,sections=f.union_sections(buildings,structure_id,(stone,concrete,roof))
 route=json.loads(Path('/tmp/city-loop-clearance-route.json').read_text())
+bounds=[p for section in sections for p in section['ring']]
+x_min=min(p[0] for p in bounds)-20;x_max=max(p[0] for p in bounds)+20
+z_min=min(p[1] for p in bounds)-20;z_max=max(p[1] for p in bounds)+20
 # Keep a contiguous ribbon extending beyond the entire source building. Wide
 # shoulders preserve adjacent railway context as well as the playable track.
 route=[p for p in route if 5050<=p['distance']<=5520]
@@ -50,7 +67,7 @@ for filename in ['corridor-source.json','loop-landscape-source.json']:
   for line in lines:
    points=[((lon-144.9671)*87939,-(lat+37.8183)*111320) for lon,lat,*_ in line]
    for a,b in zip(points,points[1:]):
-    if max(a[0],b[0])<180 or min(a[0],b[0])>300 or max(a[1],b[1])<-160 or min(a[1],b[1])>20:continue
+    if max(a[0],b[0])<x_min or min(a[0],b[0])>x_max or max(a[1],b[1])<z_min or min(a[1],b[1])>z_max:continue
     dx=b[0]-a[0];dz=b[1]-a[1];length=math.hypot(dx,dz)
     if length<.01:continue
     nx=-dz/length*half;nz=dx/length*half
@@ -104,9 +121,10 @@ for poly in mesh.polygons:
 for i,(v,fs) in enumerate(batches):f.make_mesh_object('federation_east_panels_'+str(i),v,fs,materials[i],'Authored triangular sandstone zinc and glass reference palette')
 envelope['clearance_half_width']=12;envelope['clearance_above_rail']=7
 envelope['adaptation']='Survey envelope cut by training alignment; not an architectural reconstruction'
-output=ROOT/'public/models/environment/federation-east.glb'
-bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/'assets/source/environment/federation-east.blend'))
+if not mesh.polygons:raise RuntimeError('Empty replacement envelope: '+structure_id)
+output=ROOT/('public/models/environment/'+asset_name+'.glb')
+bpy.ops.wm.save_as_mainfile(filepath=str(ROOT/('assets/source/environment/'+asset_name+'.blend')))
 bpy.ops.export_scene.gltf(filepath=str(output),export_format='GLB',export_yup=True,export_extras=True,export_animations=False)
-manifest={'structureId':'816359','objectIds':ids,'geometrySource':f.SOURCE_URL,'license':'CC BY 4.0','reference':'https://fedsquare.com/history-design','sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'clearance':{'halfWidthMetres':12,'heightAboveTrainingRailMetres':7,'sampleSpacingMetres':2},'limitations':'Federation Square area survey structure; exact tenancy not established. Prepared relative survey heights preserved. Triangular cladding palette and railway opening are authored interpretations, not measured facade or engineering drawings. The training track elevation is approximate.','triangles':sum(len(o.data.loop_triangles) for o in bpy.data.objects if o.type=='MESH')}
-(ROOT/'public/models/environment/federation-east.json').write_text(json.dumps(manifest,indent=2)+'\n')
+manifest={'structureId':structure_id,'objectIds':ids,'geometrySource':f.SOURCE_URL,'license':'CC BY 4.0','reference':'https://fedsquare.com/history-design','sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'clearance':{'halfWidthMetres':12,'heightAboveTrainingRailMetres':7,'sampleSpacingMetres':2},'limitations':'Federation Square area survey structure; exact tenancy not established. Prepared relative survey heights preserved. Triangular cladding palette and railway opening are authored interpretations, not measured facade or engineering drawings. The training track elevation is approximate.','triangles':sum(len(o.data.loop_triangles) for o in bpy.data.objects if o.type=='MESH')}
+(ROOT/('public/models/environment/'+asset_name+'.json')).write_text(json.dumps(manifest,indent=2)+'\n')
 print('Exported',output,output.stat().st_size)
