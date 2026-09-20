@@ -288,3 +288,41 @@ Post-replacement rendered service: all six stops served, cab/door-check views,
 57 visited100m cells, 1,241 frames, errors `[]`, no browser warnings. Final
 frame922 draws/3,213,027 triangles, WebGPU; procedural sections8216, with the
 four replaced sections represented by the verified Blender envelope instead.
+
+### Stadium shell and source opening
+
+At1800m, a cab ray at NDC(-.85,.83) hit I3S292532 at
+[-1633.9088,53.5252,-260.1941]. The adjacent source structure808392 is the
+stadium, not an office tower. Its16 source sections920–935 include a common
+interior ring that was discarded by the generic prepared building extrusion.
+`src/data/stadium-source.json` retains the original City2023 records, including
+those rings, with CC BY4.0 attribution. The Blender generator unions the complete
+prepared sections, then restores the central opening from source section920.
+An overhead ray at its centre confirms the shell is open.
+
+Engineer reference inspected:
+https://www.aurecongroup.com/projects/property/marvel-stadium
+The model adds authored dark concourse bands, pale horizontal edges/structural
+bays and roof lattice silhouettes aligned to the source opening. These details
+are visual approximations, not structural drawings. The envelope represents the
+2023 survey with relative prepared heights; neither interior seating nor the
+2024 redevelopment is reconstructed. The roof is shown open without animation.
+
+The runtime validates all16 source IDs before suppressing procedural sections.
+The whole source hull replaces overlapping scan fragments. The1800m comparison
+shows a coherent stadium concourse instead of generic office windows and torn
+roof strips. The neighbouring tower's upper scan is still coarse and remains an
+open task. Production build and138 tests passed after integration.
+
+The final shell contains57,450 triangles. `stadium-final/01800.png` confirms
+structural bay detail, a continuous roofline and clear track. Its44-frame static
+sample measured33.32ms mean/34.10ms maximum,486 draws/1,897,870 triangles.
+This run was slower than earlier~16.7ms captures; no controlled attribution or
+performance improvement is claimed. Overall playable performance remains a
+separate goal gate, especially around station approaches.
+
+The generator now fails if an overhead centre ray intersects the stadium shell,
+preventing regression of the recorded opening. Complete rendered service passed:
+six stops served,57 visited100m cells,1,241 frames, cab/door-check views, errors
+`[]` and no browser warnings. Final frame928 draws/3,264,082 triangles on WebGPU;
+8,200 procedural sections plus validated authored landmark replacements.

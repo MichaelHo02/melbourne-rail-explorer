@@ -1,0 +1,26 @@
+{
+  "structureId": "808392",
+  "objectIds": [
+    "920",
+    "921",
+    "922",
+    "923",
+    "924",
+    "925",
+    "926",
+    "927",
+    "928",
+    "929",
+    "930",
+    "931",
+    "932",
+    "933",
+    "934",
+    "935"
+  ],
+  "geometrySource": "https://data.melbourne.vic.gov.au/explore/dataset/2023-building-footprints/",
+  "license": "CC BY 4.0",
+  "reference": "https://www.aurecongroup.com/projects/property/marvel-stadium",
+  "triangles": 57450,
+  "limitations": "2023 envelope and recorded central opening retained, relative heights follow prepared source. Concourse bands and roof trusses are visual interpretations of the engineer reference. No interior seating or 2024 redevelopment reconstruction. Roof is shown open; no moving mechanism."
+}

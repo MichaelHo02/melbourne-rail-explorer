@@ -340,22 +340,23 @@ export class World {
       asset.scene.traverse(node=>{if(node instanceof T.Mesh){node.castShadow=true;node.receiveShadow=true;}});
       this.surface.add(asset.scene);swannLoaded=true;
     }catch(error){console.warn('Swann House unavailable; retaining surveyed source sections.',error);}
-    const federationObjectIds=new Set<string>();
-    const federationAssets=[
+    const surveyObjectIds=new Set<string>();
+    const surveyAssets=[
+      {name:'stadium',structure:'808392',ids:Array.from({length:16},(_,i)=>String(920+i))},
       {name:'federation-east',structure:'816359',ids:['16221','16222','16223']},
       {name:'federation-806667',structure:'806667',ids:['4607']},
       {name:'federation-805928',structure:'805928',ids:['37331','37332']},
       {name:'federation-805929',structure:'805929',ids:['17198','17199']},
     ];
-    for(const source of federationAssets){
+    for(const source of surveyAssets){
       try{
         const asset=await new GLTFLoader().loadAsync(`/models/environment/${source.name}.glb`);
         const envelope=asset.scene.getObjectByName(`structure_${source.structure}_clean_envelope`);
         const ids=new Set(String(envelope?.userData.source_object_ids??'').split(','));
         let hasGeometry=false;envelope?.traverse(node=>{if(node instanceof T.Mesh&&node.geometry.attributes.position?.count)hasGeometry=true;});
-        if(!hasGeometry||ids.size!==source.ids.length||!source.ids.every(id=>ids.has(id)))throw new Error('Incomplete Federation survey envelope');
+        if(!hasGeometry||ids.size!==source.ids.length||!source.ids.every(id=>ids.has(id)))throw new Error('Incomplete surveyed landmark envelope');
         asset.scene.traverse(node=>{if(node instanceof T.Mesh){node.castShadow=true;node.receiveShadow=true;}});
-        this.surface.add(asset.scene);source.ids.forEach(id=>federationObjectIds.add(id));
+        this.surface.add(asset.scene);source.ids.forEach(id=>surveyObjectIds.add(id));
       }catch(error){console.warn(`${source.name} unavailable; retaining surveyed source sections.`,error);}
     }
     const bourkeIds=new Set(['3663','3664','3665','3666']);let bourkeLoaded=false;
@@ -379,7 +380,7 @@ export class World {
         const [x,z]=key.split(',').map(Number);const mesh=new T.Mesh(geometry,materials[Math.abs(x+z)%materials.length]);mesh.castShadow=true;mesh.receiveShadow=true;mesh.userData.center=new T.Vector3(x*250+125,0,z*250+125);
         this.cityChunks.push(mesh);this.surface.add(mesh);onProgress(`Preparing city blocks · ${this.cityChunks.length}`);
       };
-      this.worker!.postMessage({buildings:data.buildings.filter((b:{id:string;ring:[number,number][];base:number;height:number;kind?:string})=>!this.photographic.conflictsWithClearance(b)&&!this.photographic.replacesBuilding(b)&&!(frontageLoaded&&frontageObjectIds.has(String(b.id)))&&!(swannLoaded&&swannObjectIds.has(String(b.id)))&&!(federationObjectIds.has(String(b.id)))&&!(bourkeLoaded&&bourkeIds.has(String(b.id))))});
+      this.worker!.postMessage({buildings:data.buildings.filter((b:{id:string;ring:[number,number][];base:number;height:number;kind?:string})=>!this.photographic.conflictsWithClearance(b)&&!this.photographic.replacesBuilding(b)&&!(frontageLoaded&&frontageObjectIds.has(String(b.id)))&&!(swannLoaded&&swannObjectIds.has(String(b.id)))&&!(surveyObjectIds.has(String(b.id)))&&!(bourkeLoaded&&bourkeIds.has(String(b.id))))});
     });
   }
   passengerMetrics(){return this.passengers.metrics();}
