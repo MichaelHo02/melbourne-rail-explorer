@@ -78,11 +78,11 @@ def line(name,a,b,r,mat,color,parent):
  for d in at.data:d.color=linear(color)
  return o
 CONFIGS=[
- {'h':1.82,'width':1.02,'skin':(.49,.30,.21),'top':(.075,.095,.13),'pants':(.09,.10,.12),'hair':(.05,.035,.025),'style':'jacket','pose':'relaxed','bag':'briefcase'},
+ {'h':1.82,'width':1.02,'skin':(.49,.30,.21),'top':(.075,.095,.13),'pants':(.09,.10,.12),'hair':(.05,.035,.025),'style':'jacket','pose':'relaxed','bag':'shoulder'},
  {'h':1.68,'width':.96,'skin':(.68,.46,.34),'top':(.48,.35,.22),'pants':(.105,.13,.16),'hair':(.09,.052,.025),'style':'coat','pose':'phone','bag':'shoulder'},
  {'h':1.77,'width':1.08,'skin':(.22,.13,.085),'top':(.16,.22,.18),'pants':(.075,.12,.17),'hair':(.02,.018,.015),'style':'hoodie','pose':'relaxed','bag':'backpack'},
- {'h':1.72,'width':1.00,'skin':(.58,.37,.25),'top':(.35,.105,.11),'pants':(.13,.14,.15),'hair':(.035,.024,.019),'style':'knit','pose':'weightshift','bag':'tote'},
- {'h':1.85,'width':1.00,'skin':(.72,.50,.37),'top':(.23,.28,.33),'pants':(.09,.11,.14),'hair':(.30,.29,.27),'style':'jacket','pose':'step','bag':'backpack'},
+ {'h':1.72,'width':1.00,'skin':(.58,.37,.25),'top':(.35,.105,.11),'pants':(.13,.14,.15),'hair':(.035,.024,.019),'style':'knit','pose':'weightshift','bag':'shoulder'},
+ {'h':1.85,'width':1.00,'skin':(.72,.50,.37),'top':(.23,.28,.33),'pants':(.09,.11,.14),'hair':(.30,.29,.27),'style':'jacket','pose':'relaxed','bag':'backpack'},
  {'h':1.65,'width':.94,'skin':(.39,.24,.16),'top':(.22,.24,.32),'pants':(.18,.16,.14),'hair':(.045,.028,.019),'style':'coat','pose':'relaxed','bag':'shoulder'},
 ]
 for index,cfg in enumerate(CONFIGS,1):
@@ -93,8 +93,15 @@ for index,cfg in enumerate(CONFIGS,1):
  for i in range(len(rest)):
   if rest[i,1]<cfg['h']*.82:rest[i,0]*=cfg['width']
  joints={key:Vector(np.mean(rest[ids],axis=0))for key,ids in SKEL['joints'].items()}
- rotations={'upperarm01.L':('Z',-35),'upperarm01.R':('Z',35),'upperleg01.L':('Z',-6),'upperleg01.R':('Z',6),'head':('Y',[-4,8,-6,5,0,-9][index-1])}
- if cfg['pose']=='phone':rotations.update({'upperarm01.L':('Z',-34),'lowerarm01.L':('X',-35)})
+ rotations={'upperarm01.L':('Z',[-28,-29,-31,-29,-28,-28][index-1]),'upperarm01.R':('Z',[29,31,29,30,28,30][index-1]),'lowerarm01.L':('X',42),'lowerarm01.R':('X',40),'upperleg01.L':('Z',-6),'upperleg01.R':('Z',6),'head':('Y',[-4,8,-6,5,0,-9][index-1])}
+ if cfg['pose']=='phone':rotations.update({'upperarm01.L':('Z',-28),'lowerarm01.L':('X',-48),'head':('X',9)})
+ # Relax the fingers by bending around each knuckle's local flexion axis.
+ # MakeHuman's rest hands are splayed; a gentle curl preserves distinct digits.
+ for side in ['L','R']:
+  for finger in range(2,6):
+   for joint,angle in [(1,13),(2,27),(3,18)]:
+    rotations[f'finger{finger}-{joint}.{side}']=('X',-angle)
+  rotations[f'finger1-2.{side}']=('Y',12 if side=='L'else -12)
  if cfg['pose']=='weightshift':rotations.update({'upperleg01.L':('Z',-4),'upperleg01.R':('Z',8),'spine02':('Z',-2)})
  if cfg['pose']=='step':rotations.update({'upperleg01.L':('X',-9),'upperleg01.R':('X',9),'lowerleg01.R':('X',-8),'upperarm01.L':('Z',-33),'upperarm01.R':('Z',36)})
  matrices={}
@@ -133,7 +140,14 @@ for index,cfg in enumerate(CONFIGS,1):
     puff=.019 if label=='trousers' else (.044 if cfg['style']in ['coat','hoodie']else .032)
     n=NORMAL[i].copy();n[1]*=.3;v+=n*puff
     if label=='top' and V[i,1]<1.0:v[1]-=.022
-    if label=='top' and .8<V[i,1]<4.8 and abs(v[0])<.22 and v[2]>0:v[2]=max(v[2],.19*math.sqrt(max(0,1-(v[0]/.25)**2)))
+    if label=='top' and .6<V[i,1]<5.05 and abs(rest[i,0])<.20:
+     # A loose elliptical garment hangs over the anatomical chest. This
+     # removes the painted-on breast/nipple relief of an inflated basemesh.
+     rr=rest[i].copy();width=.205*cfg['width'];section=math.sqrt(max(.08,1-(rr[0]/width)**2))
+     target_z=(.155 if rr[2]>0 else -.115)*section
+     blend=min(1,(V[i,1]-.6)/.7,(5.05-V[i,1])/.35)
+     rr[2]=rr[2]*(1-blend)+target_z*blend
+     v=np.array(pose_point(rr,'spine02'));v[0]+=NORMAL[i,0]*puff*.4
    positions.append(v)
   color=cfg['skin']if label=='skin'else cfg['pants']if label=='trousers'else cfg['top'];mat='skin'if label=='skin'else'cloth'
   o=mesh(label,positions,[[lookup[i]for i,uv in f]for f in faces],mat,color,root,[[UV[uv]for i,uv in f]for f in faces])
@@ -158,6 +172,21 @@ for index,cfg in enumerate(CONFIGS,1):
  if index in [2,6]:sphere('hair_bun',fromsource((0,7.1,-.72)),(.055,.06,.05),'hair',cfg['hair'],root,20,12)
  if index==4:
   sphere('back_hair',fromsource((0,6.66,-.51)),(.078,.14,.044),'hair',cfg['hair'],root,20,12)
+ # A continuous ribbed collar covers the irregular cut edge of the basemesh.
+ collar=[];collarfaces=[]
+ for ring,(height,radius) in enumerate([(5.62,.080),(5.89,.074),(5.95,.064),(5.64,.067)]):
+  for j in range(40):
+   angle=j*2*math.pi/40;point=fromsource((0,height,.03),'spine01');collar.append((point[0]+radius*math.cos(angle),point[1],point[2]+radius*.84*math.sin(angle)))
+ for k in range(4):
+  for j in range(40):collarfaces.append((k*40+j,k*40+(j+1)%40,((k+1)%4)*40+(j+1)%40,((k+1)%4)*40+j))
+ mesh('ribbed_collar',collar,collarfaces,'cloth',tuple(x*.77 for x in cfg['top']),root)
+ # Thin eyebrow strips and swept scalp ridges read as hair, not plastic caps.
+ for side in [-1,1]:
+  a=fromsource((side*.23,7.64,1.04));b=fromsource((side*.57,7.61,.98));line('eyebrow',a,b,.0028,'hair',cfg['hair'],root)
+ for j in range(9):
+  x=(j-4)*.105
+  a=fromsource((x,8.17,.53));b=fromsource((x+.08,8.27,.02))
+  line('swept_hair',a,b,.004,'hair',tuple(min(1,x*1.18)for x in cfg['hair']),root)
  # Original shoes in local rest foot space, then posed with anatomical foot bone.
  for side,suffix in [(1,'L'),(-1,'R')]:
   footbone='foot.'+suffix;head=joints[SKEL['bones'][footbone]['head']];cx=head.x
@@ -196,6 +225,9 @@ for index,cfg in enumerate(CONFIGS,1):
   if cfg['bag']=='shoulder':line('shoulder_strap',(side*.14,cfg['h']*.82,.03),(side*.24,cfg['h']*.48,.03),.012,'leather',color,root)
   else:
    for z in [-.07,.07]:line('bag_handle',(side*.24,cfg['h']*.545,z),(side*.24,cfg['h']*.60,z*.65),.006,'leather',color,root)
+ if cfg['pose']=='phone':
+  wrist=joints[SKEL['bones']['wrist.L']['tail']];point=pose_point(wrist,'wrist.L')
+  cube('phone',point,(.066,.12,.010),'leather',(.018,.022,.027),root,.007)
  # One root origin at ground, not centre of mesh. Shoe soles define ground contact.
  bpy.context.view_layer.update();allmesh=[o for o in root.children if o.type=='MESH'];lowest=min((o.matrix_world@v.co).z for o in allmesh for v in o.data.vertices)
  for o in allmesh:o.location.z-=lowest
@@ -213,6 +245,33 @@ for index,cfg in enumerate(CONFIGS,1):
   if source.type!='MESH':continue
   o=source.copy();o.data=source.data.copy();bpy.context.collection.objects.link(o);o.parent=low;o.name=source.name+'_low'
   mod=o.modifiers.new('distant_silhouette','DECIMATE');mod.ratio=.035;bpy.context.view_layer.objects.active=o;bpy.ops.object.modifier_apply(modifier=mod.name)
+for root in ROOTS.values():
+ for obj in root.children:
+  if obj.type=='MESH':obj.data.validate(clean_customdata=False)
+# Three local-space shape keys per near mesh; distant LODs remain static.
+# Head motion rotates around the base of the skull with a soft neck blend.
+# Breathing changes the upper rib cage by only 2 mm; pelvis/feet never move.
+for name,root in ROOTS.items():
+ if name.endswith('_low'):continue
+ h=CONFIGS[int(name[-2:])-1]['h'];neck=Vector((0,0,h*.858))
+ for o in root.children:
+  if o.type!='MESH':continue
+  basis=o.shape_key_add(name='Basis')
+  for keyname,angle in [('look_left',8),('look_right',-8),('breathe',0)]:
+   key=o.shape_key_add(name=keyname)
+   for i,vertex in enumerate(basis.data):
+    v=vertex.co.copy();world=o.matrix_local@v
+    if angle:
+     weight=max(0,min(1,(world.z-h*.842)/(h*.055)));weight=weight*weight*(3-2*weight)
+     target=neck+Matrix.Rotation(math.radians(angle),3,'Z')@(world-neck)
+     world=world.lerp(target,weight)
+    else:
+     vertical=max(0,1-abs((world.z-h*.745)/(h*.13)))
+     lateral=max(0,1-abs(world.x)/.25)
+     if world.z<h*.86 and abs(world.x)<.25:
+      world.y-=.0020*vertical*lateral;world.x+=.0012*vertical*(1 if world.x>0 else -1)
+    key.data[i].co=o.matrix_local.inverted()@world
+
 # Shipping roots overlap intentionally. Source review spacing is applied AFTER export.
 bpy.ops.object.select_all(action='SELECT');bpy.ops.export_scene.gltf(filepath=os.path.join(ROOT,'public/models/passengers/commuters.glb'),export_format='GLB',use_selection=True,export_yup=True,export_animations=False,export_cameras=False,export_lights=False,export_extras=True)
 for name,root in ROOTS.items():
@@ -225,5 +284,5 @@ mat=bpy.data.materials.new('studio');mat.diffuse_color=(.12,.14,.16,1)
 bpy.ops.mesh.primitive_plane_add(size=200);bpy.context.object.data.materials.append(mat)
 for pos,energy,size in [((-4,-5,7),1800,5),((4,2,5),1300,4)]:
  bpy.ops.object.light_add(type='AREA',location=pos);o=bpy.context.object;o.data.energy=energy;o.data.shape='DISK';o.data.size=size;o.rotation_euler=(Vector((0,0,1))-o.location).to_track_quat('-Z','Y').to_euler()
-bpy.ops.object.camera_add(location=(3,-9,3));cam=bpy.context.object;cam.rotation_euler=(Vector((0,0,.92))-cam.location).to_track_quat('-Z','Y').to_euler();cam.data.type='ORTHO';cam.data.ortho_scale=5.3;scene=bpy.context.scene;scene.camera=cam;scene.render.engine='CYCLES';scene.cycles.samples=32;scene.render.resolution_x=2000;scene.render.resolution_y=1100;scene.render.resolution_percentage=100;scene.view_settings.view_transform='AgX';scene.render.image_settings.file_format='PNG';scene.render.filepath='/tmp/passengers-lineup.png'
+bpy.ops.object.camera_add(location=(3,-9,3));cam=bpy.context.object;cam.rotation_euler=(Vector((0,0,.92))-cam.location).to_track_quat('-Z','Y').to_euler();cam.data.type='ORTHO';cam.data.ortho_scale=5.3;scene=bpy.context.scene;scene.camera=cam;scene.render.engine='CYCLES';scene.cycles.samples=32;scene.cycles.use_denoising=False;scene.render.threads_mode='FIXED';scene.render.threads=4;scene.render.resolution_x=1600;scene.render.resolution_y=880;scene.render.resolution_percentage=100;scene.view_settings.view_transform='AgX';scene.render.image_settings.file_format='PNG';scene.render.filepath='/tmp/passengers-lineup.png'
 bpy.ops.wm.save_as_mainfile(filepath=os.path.join(SRC,'commuters.blend'));bpy.ops.render.render(write_still=True);print('PASSENGERS_READY')

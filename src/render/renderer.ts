@@ -101,5 +101,5 @@ export class GameRenderer {
     this.camera.lookAt(this.target);this.train.update(state.distance,cab&&!this.inspectionView,state.doors);this.world.update(state.distance,this.camera,state.time);
     this.traffic.update(state.time,this.camera,isUnderground(state.distance));
   }
-  metrics(){const i=this.renderer.info;return {drawCalls:i.render.drawCalls,triangles:i.render.triangles,geometries:i.memory.geometries,textures:i.memory.textures,cityReady:this.ready,buildingSections:this.world.buildingCount,trafficTrains:this.traffic.visibleTrains,backend:this.backend};}
+  metrics(){const i=this.renderer.info;return {drawCalls:i.render.drawCalls,triangles:i.render.triangles,geometries:i.memory.geometries,textures:i.memory.textures,cityReady:this.ready,buildingSections:this.world.buildingCount,passengers:this.world.passengerMetrics(),trafficTrains:this.traffic.visibleTrains,backend:this.backend};}
 }

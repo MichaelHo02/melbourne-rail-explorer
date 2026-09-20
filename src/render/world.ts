@@ -12,6 +12,7 @@ import { labelTexture, surfaceTexture, stationTileTexture } from './materials';
 import { createBuildingMaterial } from './building-materials';
 import { SurfaceLibrary } from './surface-library';
 import { CorridorScenery } from './corridor';
+import { applyBoxSurfaceUV } from './surface-uv';
 import { PhotographicCity } from './photographic-city';
 
 const vector=(v:{x:number;y:number;z:number})=>new T.Vector3(v.x,v.y,v.z);
@@ -56,13 +57,7 @@ export class World {
   }
   private box(parent:T.Object3D,w:number,h:number,d:number,x:number,y:number,z:number,material:T.Material){
     const geometry=new T.BoxGeometry(w,h,d,1,1,Math.max(1,Math.ceil(d/4)));
-    if((material as T.MeshStandardMaterial).map){
-      const p=geometry.attributes.position,n=geometry.attributes.normal,uv=geometry.attributes.uv;
-      for(let i=0;i<p.count;i++){
-        if(Math.abs(n.getY(i))>.5)uv.setXY(i,p.getX(i)/2,p.getZ(i)/2);
-        else uv.setXY(i,(Math.abs(n.getX(i))>.5?p.getZ(i):p.getX(i))/2,p.getY(i)/2);
-      }
-    }
+    applyBoxSurfaceUV(geometry,material);
     const m=new T.Mesh(geometry,material);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;parent.add(m);return m;
   }
   private buildGround(){
@@ -138,6 +133,9 @@ export class World {
     const poles:T.BufferGeometry[]=[],wires:T.Vector3[]=[];
     for(let s=10;s<ROUTE_LENGTH;s+=42){
       if(isUnderground(s)||(s>=145&&s<1160))continue;
+      // Heritage cross-spans carry the wire over Flinders Street. The generic
+      // near-track mast would stand inside its covered passenger platform.
+      if(STATIONS.some(st=>st.code==='FSS'&&Math.abs(s-st.distance+65)<104))continue;
       const p=vector(positionAt(s)),t=vector(tangentAt(s)),side=new T.Vector3(-t.z,0,t.x);
       const post=new T.BoxGeometry(.18,6.8,.18);post.translate(p.x+side.x*3.2,p.y+3.4,p.z+side.z*3.2);poles.push(post);
       const arm=new T.BoxGeometry(4.1,.13,.13);arm.rotateY(-Math.atan2(side.z,side.x));arm.translate(p.x+side.x*1.5,p.y+6.65,p.z+side.z*1.5);poles.push(arm);
@@ -178,7 +176,6 @@ export class World {
   }
   private buildStations(){
     const yellow=new T.MeshStandardMaterial({color:'#d3b349',roughness:.75});
-    const lampMaterial=new T.MeshBasicMaterial({color:'#f6edd1'});
     for(const [index,station] of STATIONS.entries()){
       const p=vector(positionAt(station.distance-65)),group=new T.Group();
       group.userData.center=p;group.userData.underground=station.underground;this.stations.add(group);
@@ -194,8 +191,6 @@ export class World {
       stationArchitecture(group,station,index,this.surfaces.ballast);
       stationDetails(group,station.code,station.name);
       for(let z=-90;z<=90;z+=20){
-        if(!station.underground)this.box(group,.2,4.8,.2,6,3.4,z,this.metal);
-        this.box(group,4,.07,.3,4.8,5.2,z,lampMaterial);
         const lamp=new T.PointLight('#fff1d3',station.underground?55:8,20,2);lamp.position.set(4,4.5,z);group.add(lamp);
         const sign=new T.Mesh(new T.PlaneGeometry(station.underground?3.4:5.5,station.underground?.45:.7),new T.MeshBasicMaterial({map:labelTexture(station.name,station.underground?'#e3e4d7':'#16303b',station.underground?'#172421':'#ffffff'),side:T.DoubleSide}));
         sign.rotation.y=-Math.PI/2;sign.position.set(7.92,station.underground&&station.code!=='MCE'?2.7:3.8,z);group.add(sign);
@@ -274,9 +269,10 @@ export class World {
         const [x,z]=key.split(',').map(Number);const mesh=new T.Mesh(geometry,materials[Math.abs(x+z)%materials.length]);mesh.castShadow=true;mesh.receiveShadow=true;mesh.userData.center=new T.Vector3(x*250+125,0,z*250+125);
         this.cityChunks.push(mesh);this.surface.add(mesh);onProgress(`Preparing city blocks · ${this.cityChunks.length}`);
       };
-      this.worker!.postMessage({buildings:data.buildings.filter((b:{ring:[number,number][];base:number;height:number;kind?:string})=>!this.photographic.replacesBuilding(b))});
+      this.worker!.postMessage({buildings:data.buildings.filter((b:{ring:[number,number][];base:number;height:number;kind?:string})=>!this.photographic.conflictsWithClearance(b)&&!this.photographic.replacesBuilding(b))});
     });
   }
+  passengerMetrics(){return this.passengers.metrics();}
   update(distance:number,camera:T.Camera,seconds=0){
     const p=vector(positionAt(distance)),underground=isUnderground(distance);
     const darkness=T.MathUtils.smoothstep(-p.y,0,15);

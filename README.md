@@ -17,7 +17,7 @@ Open the local URL printed by Vite. A WebGPU-capable browser and GPU are require
 
 The renderer uses Three.js's native WebGPU backend, with TSL height-aware haze and animated Yarra water normals. Shadows, antialiasing and the current high-quality lighting are always enabled. The train simulation, controls and saves remain independent of the renderer. Start stays disabled until graphics, assets and initial material compilation finish. If WebGPU cannot initialize, the game shows an error and leaves the service unavailable.
 
-There is no WebGL rendering path or reduced-quality mode. The production build rejects inclusion of Three.js's WebGL fallback backend. Development builds expose the backend and frame statistics on the canvas dataset; `/?view=river&scene=departure` selects a water inspection camera. The Flinders Street–Southern Cross corridor combines official map geometry, selected City of Melbourne 2020 photographic mesh, mapped vegetation, PBR surfaces and an instanced Blender viaduct with distance-based detail. All five stations have reference-based fittings and Blender-built commuters.
+There is no WebGL rendering path or reduced-quality mode. The production build rejects inclusion of Three.js's WebGL fallback backend. Development builds expose the backend and frame statistics on the canvas dataset; `/?view=river&scene=departure` selects a water inspection camera. The Flinders Street–Southern Cross corridor combines official map geometry, selected City of Melbourne 2020 photographic mesh, mapped vegetation, PBR surfaces and an instanced Blender viaduct with distance-based detail. All five stations have reference-based fittings and Blender-built commuters. Platforms use metre-scaled surface textures; station lights follow the canopies and underground soffits. Nearby commuters have planted feet, subtle breathing and independent head glances driven by the simulation clock.
 
 ## Controls
 
@@ -36,7 +36,7 @@ The controller has four brake notches, coast, and four power notches. Stop withi
 
 ## What is geographically grounded
 
-- Five cropped photographic city patches (36 MB) from City of Melbourne’s May 2020 aerial survey, with source hashes and runtime railway/riverbank cutouts.
+- Five cropped photographic city patches (36 MB) from City of Melbourne’s May 2020 aerial survey, with source hashes and worker-based triangle clipping around the playable railway, stations and riverbanks. The source files remain unchanged.
 - 8,533 measured building sections from City of Melbourne's **2023 Building Footprints** dataset, cropped to the CBD. The source contains capture dates including 2018; the dataset name is not a guarantee of contemporary scenery.
 - Projected local metre coordinates anchored near Flinders Street, with measured building footprints, vertical offsets, and extrusion heights.
 - Official Transport Victoria route shape legs and station coordinates, assembled into a continuous five-station training circuit.
@@ -52,7 +52,7 @@ The seven-car HCMT exterior is recreated in Blender from photographic reference,
 
 Building outlines, heights and river boundaries use real data, but this is **not yet a photorealistic recreation**. Outside the photographic patches, building façades remain authored. Station interiors, ground elevations, road widths, bridge approaches, tree sizes, river level and bank structures, gradients and cab controls remain approximations. Roads and mapped vegetation use official horizontal locations. Water reflects the sky environment; it does not yet mirror nearby buildings. Surrounding trains replay the official **19 September 2026** timetable, starting at 06:42. The surface corridor shows a visual subset on authored adjacent tracks with illustrative HCMT models; these are not observed live positions or verified fleet assignments. No accurate signalling, switches, operational safety systems, or collisions with other trains are claimed. Train braking and acceleration are deliberately approachable and are not fleet-calibrated.
 
-Sound is opt-in. Southern Cross field ambience, Flinders/Swanston exterior traffic and a Parliament train departure are licensed historical recordings. Service captions and a short cue are authored; there is no clean, dynamic spoken announcement bank. People have static varied poses; walking and boarding animations remain future work.
+Sound is opt-in. Southern Cross field ambience, Flinders/Swanston exterior traffic and a Parliament train departure are licensed historical recordings. Service captions and a short cue are authored; there is no clean, dynamic spoken announcement bank. People have varied resting poses and local head/breathing animation, which pauses with the service. Walking, facial animation and boarding movement remain future work.
 
 See [architecture](docs/architecture.md) for the Void Explorer-inspired boundaries and the realistic-asset integration path, and [sources](docs/sources.md) for provenance and attribution.
 

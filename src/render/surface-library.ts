@@ -7,6 +7,10 @@ export class SurfaceLibrary {
   readonly paving=new T.MeshStandardMaterial({color:'#b7b2a5',roughness:1,normalScale:new T.Vector2(.45,.45)});
   readonly ready:Promise<void>;
   constructor(){
+    // Physical source dimensions are available before asynchronous image loads.
+    this.ballast.userData.textureMetres=2;
+    this.asphalt.userData.textureMetres=3;
+    this.paving.userData.textureMetres=3.1;
     const loader=new T.TextureLoader();
     this.ready=Promise.all((['ballast','asphalt','paving'] as const).flatMap(name=>
       (['diff','nor_gl','rough'] as const).map(async channel=>{

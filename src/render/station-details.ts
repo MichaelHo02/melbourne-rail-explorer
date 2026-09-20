@@ -21,6 +21,43 @@ export function stationDetails(group:T.Group,code:string,name:string){
     const m=new T.Mesh(new T.PlaneGeometry(w,h),new T.MeshBasicMaterial({map:labelTexture(text,bg,fg,Math.round(w*160),Math.round(h*160)),side:T.DoubleSide}));
     m.position.set(x,y,z);m.rotation.y=rotation;group.add(m);
   }
+  // Fixtures sit within a shallow dark channel below the actual soffit.
+  // Emissive diffusers complement the existing station lights; no new shadow
+  // lights or per-fixture draw calls are introduced.
+  const diffuser=new T.MeshStandardMaterial({color:'#ecf2e9',emissive:'#ddebdc',emissiveIntensity:1.6,roughness:.5});
+  if(!surface){
+    for(const x of code==='MCE'?[3.8,9.5]:[3.8,6.5]){
+      const y=code==='MCE'?6.03:3+3.1*Math.sqrt(1-((x-2.5)/6.5)**2)-.12;
+      box(.31,.10,198,x,y,0,materials.dark);
+      for(let z=-96;z<=96;z+=6){
+        box(.20,.035,5.84,x,y-.055,z,diffuser);
+        box(.32,.025,.09,x,y-.075,z+2.96,materials.steel);
+      }
+    }
+    // A narrow stainless wall base and horizontal panel division provide
+    // a consistent scale against the three stations' different wall finishes.
+    for(const x of code==='MCE'?[-2.97,14.42]:[-2.97,7.96]){
+      box(.045,.16,198,x,1.17,0,materials.steel);
+      box(.025,.04,198,x,3.03,0,materials.dark);
+    }
+  }else if(heritage){
+    for(const x of [3.9,7.1])for(let z=-94;z<=94;z+=8){
+      box(.25,.11,2.5,x,5.77,z,materials.iron);
+      box(.18,.035,2.32,x,5.70,z,diffuser);
+      for(const dz of [-1,1])box(.04,.2,.04,x,5.91,z+dz,materials.steel);
+    }
+    // Narrow rainwater goods complete the canopy edge; downpipes follow
+    // existing columns, outside the edge and passenger circulation band.
+    for(const x of [.97,8.96])box(.14,.15,198,x,5.88,0,materials.iron);
+    for(const z of [-90,-10,70])box(.075,4.5,.075,6.15,3.3,z,materials.iron);
+  }else{
+    // Southern Cross light battens are roof-mounted, following the waveform.
+    for(const x of [3.7,6.1])for(let z=-96;z<=96;z+=6){
+      const y=14.2+2.8*Math.sin(z/30)+1.8*Math.cos((x+20)/13)-.43;
+      box(.28,.12,2.7,x,y,z,materials.dark);
+      box(.18,.035,2.5,x,y-.075,z,diffuser);
+    }
+  }
   // White coping and a narrow shadow joint give the platform edge a scale cue.
   box(.24,.06,198,2.25,1.06,0,materials.coping);
   box(.025,.07,198,2.1,.96,0,materials.dark);

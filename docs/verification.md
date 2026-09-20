@@ -1,3 +1,33 @@
+# Scenery and passenger refinement — 20 September 2026
+
+## Changes and evidence
+
+The second pass corrects stretched platform surfaces, duplicated Flinders Street poles, generic floating light bars and incomplete photographic surfaces near the authored railway. Platform UVs now use the physical material dimensions before asynchronous texture loading; the original map-readiness check had stretched one texture across a 200 m platform. Canopy lights, gutters, Southern Cross roof ribs/supports, underground panel joints and light channels are tied to the station geometry. Dimensions and circulation remain authored approximations.
+
+The photographic cleanup now runs triangle/volume subtraction in a dedicated worker, preserving interpolated atlas UVs and normals at each boundary. Building suppression also requires retained lower-facade evidence and rejects sections intersecting removed source faces. This preserves survey-derived support beneath incomplete photographic context. Source GLBs are unchanged; this is a local game presentation correction, not an update of the 2020 survey or a surveyed vertical alignment.
+
+The Blender commuters now have relaxed forearms, curled fingers, clearer clothing, shoulder bags and an actual phone. Three local morphs provide independently timed head glances and restrained chest breathing; the feet and placement remain fixed. A final Blender lineup was inspected, and asset tests read the exported morph deltas to verify that lower legs and soles remain stationary. The optimized GLB is 8,290,776 bytes, with six near and six distant variants sharing five materials.
+
+## Automated validation
+
+- `npm test`: **57 tests pass across 11 files**, including the shipped commuter morph data, deterministic idle timing, photographic clipping/interpolation, Southern Cross low-context clearance and asynchronous platform UV regression.
+- `npm run build`: strict TypeScript, production bundling and the native-WebGPU-only bundle guard pass. The new photographic worker is 45.86 KB; the main application chunk is 2,328.45 KB before gzip (323.83 KB gzip), excluding the separate Three.js chunk and external assets. The existing large-chunk warning remains.
+- Read-only integration review checked worker failure/cleanup, tile-local versus world coordinates, source attribute layout, per-instance morph allocation and pause-clock behavior. No concrete defects remained in those paths.
+
+## Interactive review
+
+All review uses the Codex in-app browser. The development platform views for all five stations and the Yarra viaduct were inspected. Checks caught remaining low scan fragments at Southern Cross and redundant poles in the Flinders canopy; these prompted further corrections rather than treating the first screenshot as acceptance.
+
+At Parliament, two separated paused observations reported identical commuter simulation time (9.766667 seconds) and total idle weight (12.933609). Unpaused samples changed their weights. This confirms simulation-clock integration; it does not establish walking, boarding, facial animation or realistic crowd behaviour. Screenshots and the Blender lineup are retained locally under ignored `artifacts/`.
+
+The final Southern Cross platform view removed the visible suspended dark sheets and distant triangular shards; surrounding building facades remain continuous. Its sample reported WebGPU, 739 draw calls, 1.83 million triangles and a 24.17 ms recent average browser frame interval. This is one local observation with another game tab present, not a controlled GPU benchmark or a guaranteed frame rate.
+
+The built game was tested at `127.0.0.1:5181` to avoid changing the existing saved service on port 5180. Native WebGPU initialized and Start became available. Actual controls verified power blocked with open doors, closing doors advancing the next stop, acceleration to 16 km/h, emergency braking to zero, camera switching and pause. The final browser warning/error log was empty.
+
+Remaining visual limits are explicit: close-up people are stylised, station layouts/elevations are authored, and coarse aerial trees/jagged background context remain along parts of the viaduct. The Southern Cross cleanup deliberately replaces the mismatched low photographic surfaces with the existing survey-footprint buildings; it does not recover missing street-level photography. No new live train feed, walking/boarding simulation or voiced announcement bank is claimed by this pass.
+
+---
+
 # Fidelity pass verification — 20 September 2026
 
 ## Automated and asset checks
