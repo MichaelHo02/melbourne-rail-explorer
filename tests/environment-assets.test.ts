@@ -1,4 +1,6 @@
 import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import photomesh from '../src/data/photomesh-source.json';
 import {describe,it,expect} from 'vitest';
 import extension from '../src/data/loop-landscape-source.json';
 
@@ -58,5 +60,21 @@ describe('Swann House survey replacement',()=>{
     bounds.forEach((v,i)=>expect(v).toBeCloseTo(actual[i],2));
     expect(Math.max(...positions.map((p:{max:number[]})=>p.max[1]))).toBeCloseTo(Math.max(...sections.map((b:{base:number;height:number})=>b.base+b.height)),2);
     expect(model.nodes.some((n:{name:string})=>n.name==='swann_stone_details')).toBe(true);
+  });
+});
+
+
+describe('refined photographic source assets',()=>{
+  it('retains all child coverage without rendering duplicate parents and stays within the source budget',()=>{
+    expect(photomesh.assets.reduce((total,a)=>total+a.bytes,0)).toBeLessThanOrEqual(40_000_000);
+    const asset=photomesh.assets.find(a=>a.name==='flinders-street-context')!;
+    const ids=new Set(asset.tiles.map(t=>'CBD:'+t.nodeId));
+    for(const [parent,children] of Object.entries(photomesh.refinement.parentsToChildren)){
+      expect(ids.has(parent)).toBe(false);
+      for(const child of children)expect(ids.has(child)).toBe(true);
+    }
+    const payload=readFileSync(new URL('../public'+asset.path,import.meta.url));
+    expect(payload.byteLength).toBe(asset.bytes);
+    expect(createHash('sha256').update(payload).digest('hex')).toBe(asset.sha256);
   });
 });

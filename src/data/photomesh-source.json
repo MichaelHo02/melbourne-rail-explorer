@@ -8386,8 +8386,8 @@
     {
       "name": "flinders-street-context",
       "path": "/models/photomesh/flinders-street-context.glb",
-      "bytes": 2738456,
-      "sha256": "a7a639cada1d27fa2cb068cefcad4b68f4aedef0303372ad81320e85a61b8935",
+      "bytes": 5196888,
+      "sha256": "f41a2e905995615e40b18093abfe7eb31ac715c98d97a7b8096f3314a5cb4688",
       "tiles": [
         {
           "nodeId": "90514",
@@ -8509,90 +8509,249 @@
           }
         },
         {
-          "nodeId": "91824",
+          "nodeId": "91663",
           "service": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0",
-          "nodeLevel": 9,
+          "nodeLevel": 10,
           "nodeCenterWGS84": [
-            144.96889225406863,
-            -37.81757681588642,
-            20.26208782568574
+            144.96935930057688,
+            -37.81757529676025,
+            26.67259000055492
           ],
           "sourceBoundingSphere": [
-            144.96889225406863,
-            -37.81757681588642,
-            20.26208782568574,
-            104.95529868575242
+            144.96935930057688,
+            -37.81757529676025,
+            26.67259000055492,
+            67.916453227965
           ],
           "worldBounds": {
             "min": [
-              72.94632164356992,
-              8.297306064516306,
-              -124.16165537190295
+              153.32948037919124,
+              10.071742756292224,
+              -123.70695305049452
             ],
             "max": [
-              236.12853927278886,
-              39.136488918215036,
-              -44.31031068077914
+              235.6655221424706,
+              40.07571957819164,
+              -44.3325093329608
             ]
           },
           "footprintHullXZ": [
             [
-              72.946,
-              -124.114
+              153.329,
+              -104.811
             ],
             [
-              82.429,
-              -124.117
+              153.331,
+              -109.09
             ],
             [
-              179.042,
-              -124.146
+              153.334,
+              -114.176
             ],
             [
-              236.098,
-              -124.162
+              153.563,
+              -123.316
             ],
             [
-              236.099,
-              -124.162
+              153.709,
+              -123.696
             ],
             [
-              236.127,
-              -50.552
+              176.554,
+              -123.705
             ],
             [
-              236.129,
+              191.523,
+              -123.707
+            ],
+            [
+              192.895,
+              -123.707
+            ],
+            [
+              235.282,
+              -123.695
+            ],
+            [
+              235.635,
+              -123.511
+            ],
+            [
+              235.664,
+              -50.827
+            ],
+            [
+              235.665,
+              -48.289
+            ],
+            [
+              235.666,
               -44.355
             ],
             [
-              117.139,
-              -44.322
+              233.05,
+              -44.354
             ],
             [
-              72.967,
-              -44.31
+              163.894,
+              -44.335
             ],
             [
-              72.951,
-              -81.802
+              155.183,
+              -44.333
             ],
             [
-              72.948,
-              -92.708
+              153.357,
+              -44.333
+            ],
+            [
+              153.348,
+              -56.707
+            ],
+            [
+              153.334,
+              -86.154
             ]
           ],
-          "vertexCount": 7011,
-          "triangleCount": 2337,
-          "geometrySha256": "8889d4f5825cd4d57dcbcd4611ed3e476d6f3fffb6bd8af686886e7ae14a766b",
-          "textureSha256": "a71d079b0d1150c41e329c3235cc4426e15d0a9d293703e24038e4ebc7e4bd25",
-          "geometryBytes": 252420,
-          "textureBytes": 48557,
+          "vertexCount": 10248,
+          "triangleCount": 3416,
+          "geometrySha256": "0c52cd22f7ff1a242960acc0d69a3a0c9082a6fdc4a23119df24ee891f90796b",
+          "textureSha256": "161dc0a35281df1ef3168d02024d0e02832575fb17b4618ea811f7fa65e83b67",
+          "geometryBytes": 368952,
+          "textureBytes": 77487,
           "license": "CC BY 4.0",
           "attribution": "City of Melbourne, 3D Textured Mesh (Photomesh) 2020. Converted from I3S to local game coordinates.",
           "resources": {
-            "geometry": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/91824/geometries/0",
-            "texture": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/91824/textures/0",
-            "metadata": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/91824"
+            "geometry": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/91663/geometries/0",
+            "texture": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/91663/textures/0",
+            "metadata": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/91663"
+          }
+        },
+        {
+          "nodeId": "91823",
+          "service": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0",
+          "nodeLevel": 10,
+          "nodeCenterWGS84": [
+            144.9683821510541,
+            -37.81753279640422,
+            16.273248175159097
+          ],
+          "sourceBoundingSphere": [
+            144.9683821510541,
+            -37.81753279640422,
+            16.273248175159097,
+            63.488939601552524
+          ],
+          "worldBounds": {
+            "min": [
+              73.35804586031162,
+              8.531175592914224,
+              -123.71385427489514
+            ],
+            "max": [
+              155.74078829738,
+              36.24339244700968,
+              -44.31046908087666
+            ]
+          },
+          "footprintHullXZ": [
+            [
+              73.358,
+              -117.664
+            ],
+            [
+              73.763,
+              -123.341
+            ],
+            [
+              76.577,
+              -123.704
+            ],
+            [
+              78.668,
+              -123.705
+            ],
+            [
+              89.6,
+              -123.708
+            ],
+            [
+              93.328,
+              -123.709
+            ],
+            [
+              112.106,
+              -123.714
+            ],
+            [
+              113.14,
+              -123.714
+            ],
+            [
+              155.516,
+              -123.708
+            ],
+            [
+              155.732,
+              -123.317
+            ],
+            [
+              155.734,
+              -118.071
+            ],
+            [
+              155.741,
+              -45.844
+            ],
+            [
+              155.741,
+              -44.333
+            ],
+            [
+              152.551,
+              -44.332
+            ],
+            [
+              142.116,
+              -44.329
+            ],
+            [
+              113.863,
+              -44.321
+            ],
+            [
+              73.552,
+              -44.31
+            ],
+            [
+              73.381,
+              -49.932
+            ],
+            [
+              73.38,
+              -51.411
+            ],
+            [
+              73.376,
+              -58.6
+            ],
+            [
+              73.359,
+              -90.56
+            ]
+          ],
+          "vertexCount": 10710,
+          "triangleCount": 3570,
+          "geometrySha256": "7d9ca3d028e0cf19158ae3f54af5f8b2a46c27908174ebcb948737cd65b17373",
+          "textureSha256": "365a1e03a18eef06b53f40a71d3ecec28585e7569ba3b80a63e202981cd0ef50",
+          "geometryBytes": 385584,
+          "textureBytes": 81083,
+          "license": "CC BY 4.0",
+          "attribution": "City of Melbourne, 3D Textured Mesh (Photomesh) 2020. Converted from I3S to local game coordinates.",
+          "resources": {
+            "geometry": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/91823/geometries/0",
+            "texture": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/91823/textures/0",
+            "metadata": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/91823"
           }
         },
         {
@@ -8993,30 +9152,30 @@
           }
         },
         {
-          "nodeId": "196149",
+          "nodeId": "194695",
           "service": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0",
-          "nodeLevel": 9,
+          "nodeLevel": 10,
           "nodeCenterWGS84": [
-            144.96713412987648,
-            -37.81656186920935,
-            36.85026413667947
+            144.9665442825772,
+            -37.81612885274121,
+            41.094523389823735
           ],
           "sourceBoundingSphere": [
-            144.96713412987648,
-            -37.81656186920935,
-            36.85026413667947,
-            154.9500771881316
+            144.9665442825772,
+            -37.81612885274121,
+            41.094523389823735,
+            83.04037191533635
           ],
           "worldBounds": {
             "min": [
-              -87.85336376887773,
-              1.5325532602146268,
-              -281.3554698814491
+              -87.85336346395377,
+              7.03111167717725,
+              -281.3554360395335
             ],
             "max": [
-              77.03685415933813,
-              98.22277695406228,
-              -120.34000445658734
+              -2.5835150931746966,
+              76.4641332225874,
+              -198.20331806121771
             ]
           },
           "footprintHullXZ": [
@@ -9025,120 +9184,898 @@
               -263.309
             ],
             [
-              -87.474,
-              -280.406
+              -87.708,
+              -276.083
             ],
             [
-              -87.003,
-              -281.089
+              -87.498,
+              -279.586
             ],
             [
-              -8.844,
+              -87.483,
+              -279.704
+            ],
+            [
+              -86.944,
+              -280.901
+            ],
+            [
+              -86.185,
+              -281.12
+            ],
+            [
+              -43.146,
+              -281.277
+            ],
+            [
+              -8.843,
               -281.355
             ],
             [
-              41.082,
-              -281.136
+              -4.596,
+              -280.994
+            ],
+            [
+              -3.178,
+              -280.384
+            ],
+            [
+              -2.792,
+              -263.153
+            ],
+            [
+              -2.584,
+              -252.476
+            ],
+            [
+              -2.683,
+              -241.896
+            ],
+            [
+              -3.281,
+              -199.798
+            ],
+            [
+              -3.292,
+              -199.483
+            ],
+            [
+              -4.569,
+              -198.634
+            ],
+            [
+              -6.253,
+              -198.556
+            ],
+            [
+              -10.573,
+              -198.493
+            ],
+            [
+              -64.326,
+              -198.203
+            ],
+            [
+              -73.807,
+              -198.302
+            ],
+            [
+              -78.375,
+              -198.377
+            ],
+            [
+              -82.724,
+              -198.459
+            ],
+            [
+              -83.201,
+              -198.502
+            ],
+            [
+              -83.903,
+              -198.585
+            ],
+            [
+              -86.154,
+              -199.02
+            ],
+            [
+              -87.056,
+              -203.472
+            ],
+            [
+              -87.526,
+              -209.748
+            ],
+            [
+              -87.69,
+              -214.826
+            ]
+          ],
+          "vertexCount": 9363,
+          "triangleCount": 3121,
+          "geometrySha256": "a4e9f1924a9930db74dbd8740f950bc04dd3101f318ee538d2d5f2e7fa9719ac",
+          "textureSha256": "acac04c9d021d529eb302588cd7f46d988231504657395244a985d05d90082e5",
+          "geometryBytes": 337092,
+          "textureBytes": 109156,
+          "license": "CC BY 4.0",
+          "attribution": "City of Melbourne, 3D Textured Mesh (Photomesh) 2020. Converted from I3S to local game coordinates.",
+          "resources": {
+            "geometry": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/194695/geometries/0",
+            "texture": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/194695/textures/0",
+            "metadata": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/194695"
+          }
+        },
+        {
+          "nodeId": "195376",
+          "service": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0",
+          "nodeLevel": 10,
+          "nodeCenterWGS84": [
+            144.96763006878254,
+            -37.816823134072315,
+            37.628633895888925
+          ],
+          "sourceBoundingSphere": [
+            144.96763006878254,
+            -37.816823134072315,
+            37.628633895888925,
+            92.06658239484669
+          ],
+          "worldBounds": {
+            "min": [
+              -7.8054680378901935,
+              6.794094482436776,
+              -203.20021514514679
+            ],
+            "max": [
+              76.90373422677823,
+              98.22281114198267,
+              -120.2951316054839
+            ]
+          },
+          "footprintHullXZ": [
+            [
+              -7.805,
+              -128.874
+            ],
+            [
+              -7.789,
+              -160.534
+            ],
+            [
+              -7.682,
+              -182.338
+            ],
+            [
+              -7.52,
+              -202.535
+            ],
+            [
+              -2.452,
+              -203.016
+            ],
+            [
+              28.457,
+              -203.141
+            ],
+            [
+              53.425,
+              -203.2
+            ],
+            [
+              59.342,
+              -203.192
+            ],
+            [
+              73.371,
+              -203.115
+            ],
+            [
+              75.367,
+              -202.329
+            ],
+            [
+              76.709,
+              -201.462
+            ],
+            [
+              76.827,
+              -198.926
+            ],
+            [
+              76.904,
+              -176.584
+            ],
+            [
+              76.712,
+              -129.565
+            ],
+            [
+              76.518,
+              -123.779
+            ],
+            [
+              75.398,
+              -120.458
+            ],
+            [
+              69.197,
+              -120.315
+            ],
+            [
+              13.128,
+              -120.295
+            ],
+            [
+              -0.914,
+              -120.331
+            ],
+            [
+              -2.558,
+              -120.374
+            ],
+            [
+              -7.122,
+              -120.505
+            ],
+            [
+              -7.443,
+              -121.633
+            ]
+          ],
+          "vertexCount": 7116,
+          "triangleCount": 2372,
+          "geometrySha256": "33b88fce2aaf680c68cc53ae31160c46277d6b64bbdb37a932c9a2d845418ad7",
+          "textureSha256": "35e4e7e3a69e6e0a2e04cc4aee72a52d515e8d3d9aea05165f70a4698d526d1f",
+          "geometryBytes": 256200,
+          "textureBytes": 100363,
+          "license": "CC BY 4.0",
+          "attribution": "City of Melbourne, 3D Textured Mesh (Photomesh) 2020. Converted from I3S to local game coordinates.",
+          "resources": {
+            "geometry": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/195376/geometries/0",
+            "texture": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/195376/textures/0",
+            "metadata": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/195376"
+          }
+        },
+        {
+          "nodeId": "195863",
+          "service": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0",
+          "nodeLevel": 10,
+          "nodeCenterWGS84": [
+            144.96748605530996,
+            -37.81614451156861,
+            39.929935176856816
+          ],
+          "sourceBoundingSphere": [
+            144.96748605530996,
+            -37.81614451156861,
+            39.929935176856816,
+            79.96669611748099
+          ],
+          "worldBounds": {
+            "min": [
+              -7.646399198966861,
+              8.515281398780644,
+              -281.24531324315825
+            ],
+            "max": [
+              77.03709427695762,
+              69.38621111679822,
+              -198.08881176347853
+            ]
+          },
+          "footprintHullXZ": [
+            [
+              -7.646,
+              -260.507
+            ],
+            [
+              -7.601,
+              -275.464
+            ],
+            [
+              -7.487,
+              -277.106
+            ],
+            [
+              -6.775,
+              -280.38
+            ],
+            [
+              2.938,
+              -280.887
+            ],
+            [
+              5.69,
+              -280.984
+            ],
+            [
+              31.716,
+              -281.245
+            ],
+            [
+              68.315,
+              -281.017
             ],
             [
               72.44,
               -280.963
             ],
             [
-              76.161,
-              -280.446
+              75.344,
+              -280.864
             ],
             [
-              76.923,
-              -268.288
+              75.864,
+              -280.81
+            ],
+            [
+              76.573,
+              -279.836
+            ],
+            [
+              76.703,
+              -279.626
+            ],
+            [
+              76.958,
+              -274.44
             ],
             [
               77.037,
               -233.689
             ],
             [
-              76.687,
-              -132.729
+              76.13,
+              -199.821
             ],
             [
-              76.519,
-              -120.834
+              75.375,
+              -198.977
             ],
             [
-              67.909,
-              -120.483
+              61.205,
+              -198.089
             ],
             [
-              41.932,
-              -120.378
+              -6.202,
+              -198.575
             ],
             [
-              33.224,
-              -120.355
+              -7.45,
+              -209.126
             ],
             [
-              24.199,
-              -120.34
-            ],
-            [
-              -33.031,
-              -120.353
-            ],
-            [
-              -87.233,
-              -120.795
-            ],
-            [
-              -87.678,
-              -216.855
+              -7.637,
+              -256.417
             ]
           ],
-          "vertexCount": 11070,
-          "triangleCount": 3690,
-          "geometrySha256": "dd9c36e72c7df218e7eed5f9de5c5ecf1f9f7a31cd37fa8b7f6a3d7d7ee17372",
-          "textureSha256": "e69defae765ddb9bb78fb99d199ba71c983a21279fc7ad34a2bf403d0538207b",
-          "geometryBytes": 398544,
-          "textureBytes": 109772,
+          "vertexCount": 8691,
+          "triangleCount": 2897,
+          "geometrySha256": "5666252289a6fd867ac607f2563f6d9e7bd4dc702af996969bdacd1cb0702de6",
+          "textureSha256": "595108a3a6705a6510791b3680c2dfc7ca37d9255e7d4df97f76d5d8bb92c531",
+          "geometryBytes": 312900,
+          "textureBytes": 109442,
           "license": "CC BY 4.0",
           "attribution": "City of Melbourne, 3D Textured Mesh (Photomesh) 2020. Converted from I3S to local game coordinates.",
           "resources": {
-            "geometry": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/196149/geometries/0",
-            "texture": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/196149/textures/0",
-            "metadata": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/196149"
+            "geometry": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/195863/geometries/0",
+            "texture": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/195863/textures/0",
+            "metadata": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/195863"
           }
         },
         {
-          "nodeId": "198529",
+          "nodeId": "196148",
           "service": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0",
-          "nodeLevel": 9,
+          "nodeLevel": 10,
           "nodeCenterWGS84": [
-            144.96519966898782,
-            -37.8163934259955,
-            33.33418575208634
+            144.96656601543245,
+            -37.8168405327225,
+            27.160774665884674
           ],
           "sourceBoundingSphere": [
-            144.96519966898782,
-            -37.8163934259955,
-            33.33418575208634,
-            156.329326063243
+            144.96656601543245,
+            -37.8168405327225,
+            27.160774665884674,
+            79.83447364062528
           ],
           "worldBounds": {
             "min": [
-              -248.09110229710268,
-              4.37923541944474,
-              -281.22057842474845
+              -87.53235495203552,
+              0.8698944626376033,
+              -202.90962733732272
             ],
             "max": [
-              -82.90818040338263,
-              80.73419872205704,
-              -120.0214465606254
+              -2.439000167297479,
+              57.9884247360751,
+              -120.29347258674647
             ]
           },
           "footprintHullXZ": [
             [
-              -248.091,
-              -130.66
+              -87.532,
+              -147.322
             ],
+            [
+              -87.51,
+              -187.095
+            ],
+            [
+              -87.442,
+              -188.432
+            ],
+            [
+              -87.059,
+              -194.699
+            ],
+            [
+              -86.893,
+              -196.643
+            ],
+            [
+              -86.155,
+              -202.221
+            ],
+            [
+              -84.284,
+              -202.81
+            ],
+            [
+              -18.326,
+              -202.91
+            ],
+            [
+              -8.367,
+              -201.954
+            ],
+            [
+              -4.569,
+              -201.562
+            ],
+            [
+              -3.98,
+              -201.438
+            ],
+            [
+              -3.313,
+              -192.585
+            ],
+            [
+              -2.439,
+              -155.181
+            ],
+            [
+              -3.283,
+              -121.243
+            ],
+            [
+              -3.484,
+              -120.45
+            ],
+            [
+              -4.449,
+              -120.325
+            ],
+            [
+              -6.795,
+              -120.293
+            ],
+            [
+              -43.131,
+              -120.315
+            ],
+            [
+              -59.428,
+              -120.486
+            ],
+            [
+              -81.047,
+              -120.971
+            ],
+            [
+              -87.348,
+              -121.614
+            ]
+          ],
+          "vertexCount": 7890,
+          "triangleCount": 2630,
+          "geometrySha256": "6167aa98ce9fd13ba125bfc852ad97a657067218580962d3dcf3790938d8cbc1",
+          "textureSha256": "f9f3534b1736585befa455f716080f4752bab582503eb060b27800f608508958",
+          "geometryBytes": 284064,
+          "textureBytes": 106677,
+          "license": "CC BY 4.0",
+          "attribution": "City of Melbourne, 3D Textured Mesh (Photomesh) 2020. Converted from I3S to local game coordinates.",
+          "resources": {
+            "geometry": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/196148/geometries/0",
+            "texture": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/196148/textures/0",
+            "metadata": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/196148"
+          }
+        },
+        {
+          "nodeId": "196740",
+          "service": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0",
+          "nodeLevel": 10,
+          "nodeCenterWGS84": [
+            144.96566238481174,
+            -37.81689039185795,
+            25.45703354664147
+          ],
+          "sourceBoundingSphere": [
+            144.96566238481174,
+            -37.81689039185795,
+            25.45703354664147,
+            74.99799481138265
+          ],
+          "worldBounds": {
+            "min": [
+              -170.0686301961025,
+              4.485254677012563,
+              -202.9849961862041
+            ],
+            "max": [
+              -82.82108366356192,
+              46.86728516407311,
+              -119.75213819496133
+            ]
+          },
+          "footprintHullXZ": [
+            [
+              -170.069,
+              -139.806
+            ],
+            [
+              -167.192,
+              -201.4
+            ],
+            [
+              -163.337,
+              -202.403
+            ],
+            [
+              -153.955,
+              -202.676
+            ],
+            [
+              -146.7,
+              -202.776
+            ],
+            [
+              -92.902,
+              -202.985
+            ],
+            [
+              -84.522,
+              -202.16
+            ],
+            [
+              -83.838,
+              -199.093
+            ],
+            [
+              -83.254,
+              -185.904
+            ],
+            [
+              -82.999,
+              -159.39
+            ],
+            [
+              -82.821,
+              -130.848
+            ],
+            [
+              -83.171,
+              -121.615
+            ],
+            [
+              -84.499,
+              -120.375
+            ],
+            [
+              -88.619,
+              -120.287
+            ],
+            [
+              -94.572,
+              -120.203
+            ],
+            [
+              -131.987,
+              -119.752
+            ],
+            [
+              -166.498,
+              -120.304
+            ],
+            [
+              -167.215,
+              -121.254
+            ]
+          ],
+          "vertexCount": 8409,
+          "triangleCount": 2803,
+          "geometrySha256": "3a5fe4888694570e1fe46f3ae37ecad1e52283c8fa05e95ed9b9168090fea263",
+          "textureSha256": "ca98ec2222567c43e68c56b6c13462f466c75d26b32f2b1e2b6bf50ea6e1c3ce",
+          "geometryBytes": 302748,
+          "textureBytes": 97524,
+          "license": "CC BY 4.0",
+          "attribution": "City of Melbourne, 3D Textured Mesh (Photomesh) 2020. Converted from I3S to local game coordinates.",
+          "resources": {
+            "geometry": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/196740/geometries/0",
+            "texture": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/196740/textures/0",
+            "metadata": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/196740"
+          }
+        },
+        {
+          "nodeId": "197245",
+          "service": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0",
+          "nodeLevel": 10,
+          "nodeCenterWGS84": [
+            144.96472817925286,
+            -37.816829415833304,
+            26.053171267732978
+          ],
+          "sourceBoundingSphere": [
+            144.96472817925286,
+            -37.816829415833304,
+            26.053171267732978,
+            75.1681628723674
+          ],
+          "worldBounds": {
+            "min": [
+              -248.48271007548047,
+              4.226551165804267,
+              -202.92062789856914
+            ],
+            "max": [
+              -162.82867847229082,
+              55.495483508333564,
+              -120.07196290491606
+            ]
+          },
+          "footprintHullXZ": [
+            [
+              -248.483,
+              -130.681
+            ],
+            [
+              -247.323,
+              -201.49
+            ],
+            [
+              -247.104,
+              -202.336
+            ],
+            [
+              -246.042,
+              -202.915
+            ],
+            [
+              -239.786,
+              -202.921
+            ],
+            [
+              -168.176,
+              -202.766
+            ],
+            [
+              -168.107,
+              -202.762
+            ],
+            [
+              -164.027,
+              -202.174
+            ],
+            [
+              -163.703,
+              -201.401
+            ],
+            [
+              -163.183,
+              -196.296
+            ],
+            [
+              -162.829,
+              -153.672
+            ],
+            [
+              -162.867,
+              -142.368
+            ],
+            [
+              -163.164,
+              -125.052
+            ],
+            [
+              -163.42,
+              -121.049
+            ],
+            [
+              -164.449,
+              -120.722
+            ],
+            [
+              -167.866,
+              -120.364
+            ],
+            [
+              -169.885,
+              -120.176
+            ],
+            [
+              -181.951,
+              -120.072
+            ],
+            [
+              -208.356,
+              -120.097
+            ],
+            [
+              -234.228,
+              -120.184
+            ],
+            [
+              -246.022,
+              -120.239
+            ],
+            [
+              -246.439,
+              -120.343
+            ],
+            [
+              -247.481,
+              -121.576
+            ]
+          ],
+          "vertexCount": 7731,
+          "triangleCount": 2577,
+          "geometrySha256": "4488c47d50eb4108ada48a04d7f6cbc2054827a985bc7bd763121147667af494",
+          "textureSha256": "7d352e262b14e495b78524eb32a8fb71c7dcedd8058362da07d0f52ed3d8e012",
+          "geometryBytes": 278340,
+          "textureBytes": 100409,
+          "license": "CC BY 4.0",
+          "attribution": "City of Melbourne, 3D Textured Mesh (Photomesh) 2020. Converted from I3S to local game coordinates.",
+          "resources": {
+            "geometry": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/197245/geometries/0",
+            "texture": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/197245/textures/0",
+            "metadata": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/197245"
+          }
+        },
+        {
+          "nodeId": "198245",
+          "service": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0",
+          "nodeLevel": 10,
+          "nodeCenterWGS84": [
+            144.96571650056975,
+            -37.81603712332371,
+            43.29262810200453
+          ],
+          "sourceBoundingSphere": [
+            144.96571650056975,
+            -37.81603712332371,
+            43.29262810200453,
+            92.65247458302925
+          ],
+          "worldBounds": {
+            "min": [
+              -167.75330029792138,
+              6.370154194533825,
+              -303.24911639379735
+            ],
+            "max": [
+              -80.94814712135457,
+              81.23468666523695,
+              -198.3281062234326
+            ]
+          },
+          "footprintHullXZ": [
+            [
+              -167.753,
+              -245.699
+            ],
+            [
+              -167.427,
+              -277.314
+            ],
+            [
+              -166.862,
+              -279.563
+            ],
+            [
+              -80.948,
+              -303.249
+            ],
+            [
+              -82.879,
+              -203.487
+            ],
+            [
+              -83.102,
+              -199.28
+            ],
+            [
+              -83.47,
+              -198.655
+            ],
+            [
+              -87.642,
+              -198.53
+            ],
+            [
+              -97.013,
+              -198.355
+            ],
+            [
+              -119.652,
+              -198.328
+            ],
+            [
+              -157.399,
+              -198.332
+            ],
+            [
+              -164.106,
+              -198.513
+            ],
+            [
+              -166.381,
+              -198.6
+            ],
+            [
+              -166.784,
+              -198.724
+            ],
+            [
+              -167.43,
+              -199.345
+            ],
+            [
+              -167.702,
+              -225.047
+            ]
+          ],
+          "vertexCount": 7329,
+          "triangleCount": 2443,
+          "geometrySha256": "ea4a8443b43e3f3fa8df8d52e2ad2ac926f33dad3c12e24a3264e702034b9d2d",
+          "textureSha256": "1f928a8eff32f5eeb86ca611e9c8e53e96d71d197941500376d9cf7c6eaaee76",
+          "geometryBytes": 263868,
+          "textureBytes": 101162,
+          "license": "CC BY 4.0",
+          "attribution": "City of Melbourne, 3D Textured Mesh (Photomesh) 2020. Converted from I3S to local game coordinates.",
+          "resources": {
+            "geometry": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/198245/geometries/0",
+            "texture": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/198245/textures/0",
+            "metadata": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/198245"
+          }
+        },
+        {
+          "nodeId": "198528",
+          "service": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0",
+          "nodeLevel": 10,
+          "nodeCenterWGS84": [
+            144.964721590254,
+            -37.81619476425846,
+            30.717728464864194
+          ],
+          "sourceBoundingSphere": [
+            144.964721590254,
+            -37.81619476425846,
+            30.717728464864194,
+            81.45320600221042
+          ],
+          "worldBounds": {
+            "min": [
+              -247.43686087928475,
+              5.738140909932554,
+              -281.0212451259565
+            ],
+            "max": [
+              -162.85288050678903,
+              59.071835367940366,
+              -198.34784891041522
+            ]
+          },
+          "footprintHullXZ": [
             [
               -247.437,
               -257.552
@@ -9149,126 +10086,285 @@
             ],
             [
               -247.163,
-              -280.365
+              -277.434
+            ],
+            [
+              -246.433,
+              -279.545
+            ],
+            [
+              -246.061,
+              -280.063
+            ],
+            [
+              -242.027,
+              -280.55
             ],
             [
               -238.159,
               -280.986
             ],
             [
-              -83.734,
-              -281.221
+              -199.542,
+              -281.021
             ],
             [
-              -83.194,
-              -280.408
+              -166.427,
+              -280.659
             ],
             [
-              -83.101,
-              -275.864
+              -164.479,
+              -280.489
             ],
             [
-              -82.937,
-              -253.175
+              -163.855,
+              -280.188
             ],
             [
-              -82.908,
-              -203.924
+              -163.685,
+              -279.564
             ],
             [
-              -83.087,
-              -131.719
+              -163.276,
+              -268.752
             ],
             [
-              -83.155,
-              -120.796
+              -163.017,
+              -255.907
             ],
             [
-              -83.682,
-              -120.403
+              -162.853,
+              -205.353
             ],
             [
-              -94.572,
-              -120.203
+              -163.419,
+              -201.992
             ],
             [
-              -123.151,
-              -120.021
+              -163.803,
+              -199.761
             ],
             [
-              -233.743,
-              -120.195
+              -166.265,
+              -198.683
             ],
             [
-              -246.839,
-              -120.311
+              -168.079,
+              -198.526
             ],
             [
-              -247.48,
-              -120.756
+              -193.336,
+              -198.348
+            ],
+            [
+              -243.79,
+              -198.381
+            ],
+            [
+              -246.04,
+              -198.429
+            ],
+            [
+              -246.999,
+              -201.932
+            ],
+            [
+              -247.196,
+              -205.855
+            ],
+            [
+              -247.406,
+              -217.451
+            ],
+            [
+              -247.431,
+              -233.903
             ]
           ],
-          "vertexCount": 11178,
-          "triangleCount": 3726,
-          "geometrySha256": "5986f9cf3fa8013dd76589458a869789ecda4d0beb52bde9a2d868be73fdcb5f",
-          "textureSha256": "3a241d2d5230dc66f1a8ebb4535961d7cf03d9a0b2a76d9a1aecf8e0c9bdb719",
-          "geometryBytes": 402432,
-          "textureBytes": 108667,
+          "vertexCount": 9258,
+          "triangleCount": 3086,
+          "geometrySha256": "48887645084836104318a4bbc22c95e158c5896ebad7f0dff2494d1b055b57a2",
+          "textureSha256": "38984b57a3181506c67ad778cf42ecef5a5de26eef0c9376f875368be79589cd",
+          "geometryBytes": 333312,
+          "textureBytes": 108082,
           "license": "CC BY 4.0",
           "attribution": "City of Melbourne, 3D Textured Mesh (Photomesh) 2020. Converted from I3S to local game coordinates.",
           "resources": {
-            "geometry": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/198529/geometries/0",
-            "texture": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/198529/textures/0",
-            "metadata": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/198529"
+            "geometry": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/198528/geometries/0",
+            "texture": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/198528/textures/0",
+            "metadata": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/198528"
           }
         },
         {
-          "nodeId": "199208",
+          "nodeId": "198687",
           "service": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0",
-          "nodeLevel": 9,
+          "nodeLevel": 10,
           "nodeCenterWGS84": [
-            144.96698937208228,
-            -37.81759182926003,
-            16.98028444405645
+            144.96739719287416,
+            -37.817593226463906,
+            14.598740680143237
           ],
           "sourceBoundingSphere": [
-            144.96698937208228,
-            -37.81759182926003,
-            16.98028444405645,
-            115.73165602454328
+            144.96739719287416,
+            -37.817593226463906,
+            14.598740680143237,
+            71.47375100617737
           ],
           "worldBounds": {
             "min": [
-              -87.6553253106955,
-              0.615969411097467,
-              -124.79491551724834
+              -7.523938973089997,
+              6.310377223417163,
+              -123.69262348330665
             ],
             "max": [
-              76.2340951563259,
-              54.145476094447076,
-              -44.26904618941819
+              75.80834458747498,
+              44.596806628629565,
+              -44.29160013148646
             ]
           },
           "footprintHullXZ": [
             [
-              -87.655,
-              -103.121
+              -7.524,
+              -81.538
             ],
             [
-              -87.488,
-              -124.076
+              -6.565,
+              -119.873
             ],
             [
-              -86.954,
-              -124.388
+              -6.183,
+              -123.658
+            ],
+            [
+              35.164,
+              -123.684
+            ],
+            [
+              71.708,
+              -123.693
+            ],
+            [
+              75.397,
+              -123.585
+            ],
+            [
+              75.794,
+              -123.295
+            ],
+            [
+              75.795,
+              -121.321
+            ],
+            [
+              75.798,
+              -111.339
+            ],
+            [
+              75.802,
+              -95.366
+            ],
+            [
+              75.808,
+              -47.326
+            ],
+            [
+              75.808,
+              -44.311
+            ],
+            [
+              69.361,
+              -44.309
+            ],
+            [
+              43.462,
+              -44.302
+            ],
+            [
+              34.727,
+              -44.3
+            ],
+            [
+              -2.775,
+              -44.292
+            ],
+            [
+              -7.312,
+              -44.292
+            ],
+            [
+              -7.417,
+              -45.7
+            ],
+            [
+              -7.438,
+              -46.589
+            ]
+          ],
+          "vertexCount": 8595,
+          "triangleCount": 2865,
+          "geometrySha256": "13418bf7d8a645932651de2c825d4e619e03a4cde0a88db488714770c9e2cd8c",
+          "textureSha256": "f42f4a5439fdaa49e0c92b50401438408ad7407bc08f0df0f2c41c02c2c284a2",
+          "geometryBytes": 309444,
+          "textureBytes": 71062,
+          "license": "CC BY 4.0",
+          "attribution": "City of Melbourne, 3D Textured Mesh (Photomesh) 2020. Converted from I3S to local game coordinates.",
+          "resources": {
+            "geometry": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/198687/geometries/0",
+            "texture": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/198687/textures/0",
+            "metadata": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/198687"
+          }
+        },
+        {
+          "nodeId": "199207",
+          "service": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0",
+          "nodeLevel": 10,
+          "nodeCenterWGS84": [
+            144.9665958835079,
+            -37.817582944507336,
+            24.325298050418496
+          ],
+          "sourceBoundingSphere": [
+            144.9665958835079,
+            -37.817582944507336,
+            24.325298050418496,
+            77.51684266411874
+          ],
+          "worldBounds": {
+            "min": [
+              -87.91883839082078,
+              0.5165459904819727,
+              -124.85728168757504
+            ],
+            "max": [
+              -3.126277714067726,
+              55.03703091479838,
+              -44.26916210460348
+            ]
+          },
+          "footprintHullXZ": [
+            [
+              -87.919,
+              -98.826
+            ],
+            [
+              -87.609,
+              -123.255
+            ],
+            [
+              -87.396,
+              -123.551
+            ],
+            [
+              -86.641,
+              -124.507
             ],
             [
               -82.47,
               -124.703
             ],
             [
-              -77.429,
-              -124.747
+              -77.869,
+              -124.857
             ],
             [
               -60.975,
@@ -9279,70 +10375,74 @@
               -124.626
             ],
             [
-              76.214,
-              -124.115
+              -8.685,
+              -124.562
             ],
             [
-              76.218,
-              -108.973
+              -7.73,
+              -124.544
             ],
             [
-              76.232,
-              -53.968
+              -4.55,
+              -124.381
             ],
             [
-              76.234,
-              -45.627
+              -3.305,
+              -123.274
             ],
             [
-              76.234,
-              -44.311
+              -3.126,
+              -107.194
             ],
             [
-              69.719,
-              -44.309
+              -3.184,
+              -67.216
             ],
             [
-              43.382,
-              -44.302
+              -3.352,
+              -57.069
             ],
             [
-              31.924,
-              -44.299
+              -3.522,
+              -47.735
             ],
             [
-              -77.417,
-              -44.271
+              -4.536,
+              -44.292
             ],
             [
-              -81.493,
-              -44.27
+              -10.224,
+              -44.289
             ],
             [
-              -87.123,
+              -85.445,
               -44.269
             ],
             [
-              -87.314,
-              -45.645
+              -86.734,
+              -44.269
+            ],
+            [
+              -87.378,
+              -45.115
             ],
             [
               -87.422,
               -47.34
             ]
           ],
-          "vertexCount": 5250,
-          "triangleCount": 1750,
-          "geometrySha256": "bd5fa418c47d1e9da1993418b75f5c1bd3cf3ed7fe24c0e7b0cb90f1109f52ac",
-          "textureSha256": "98b4e828b49f62e7f95347737bcc52bb19fa57fbe101c388304c7f40b5414b7b",
-          "geometryBytes": 189024,
-          "textureBytes": 50773,
+          "vertexCount": 6450,
+          "triangleCount": 2150,
+          "geometrySha256": "1423dfd547a2f3abcf8e0424a6d2a2b1f397e6d703b3eb99e9e01326b84c6bb8",
+          "textureSha256": "08529f434f454d33198206a1cdf3181f82f36e6c7709d2a4caa9ae3ead2c0f22",
+          "geometryBytes": 232224,
+          "textureBytes": 106265,
           "license": "CC BY 4.0",
           "attribution": "City of Melbourne, 3D Textured Mesh (Photomesh) 2020. Converted from I3S to local game coordinates.",
           "resources": {
-            "geometry": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/199208/geometries/0",
-            "texture": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/199208/textures/0",
-            "metadata": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/199208"
+            "geometry": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/199207/geometries/0",
+            "texture": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/199207/textures/0",
+            "metadata": "https://tiles.arcgis.com/tiles/KGdHCCUjGBpOPPac/arcgis/rest/services/CBD_WGS84/SceneServer/layers/0/nodes/199207"
           }
         },
         {
@@ -13195,5 +14295,31 @@
         }
       ]
     }
-  ]
+  ],
+  "refinement": {
+    "retrievedAt": "2026-09-20T11:49:14.287257+00:00",
+    "parentsToChildren": {
+      "CBD:91824": [
+        "CBD:91663",
+        "CBD:91823"
+      ],
+      "CBD:196149": [
+        "CBD:194695",
+        "CBD:195376",
+        "CBD:195863",
+        "CBD:196148"
+      ],
+      "CBD:198529": [
+        "CBD:196740",
+        "CBD:197245",
+        "CBD:198245",
+        "CBD:198528"
+      ],
+      "CBD:199208": [
+        "CBD:198687",
+        "CBD:199207"
+      ]
+    },
+    "purpose": "Replace level 9 Flinders arrival facade tiles with their complete level 10 children, retaining all sibling coverage and existing clearance."
+  }
 }
