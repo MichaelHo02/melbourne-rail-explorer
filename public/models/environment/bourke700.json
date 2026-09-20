@@ -1,0 +1,16 @@
+{
+  "structureId": "810894",
+  "objectIds": [
+    "3663",
+    "3664",
+    "3665",
+    "3666"
+  ],
+  "address": "700\u2013704 Bourke Street, Docklands",
+  "geometrySource": "https://data.melbourne.vic.gov.au/explore/dataset/2023-building-footprints/",
+  "license": "CC BY 4.0",
+  "sourceSha256": "7668a1e25cfb5afd17c564ef1c2139801e6a0bf79f0ed500684247ef159807c9",
+  "reference": "https://www.woodsbagot.com/projects/national-australia-bank-docklands/",
+  "triangles": 74556,
+  "limitations": "2023 survey footprint and prepared relative heights preserved. Glazing, pale triangles, coloured return facets and mullion spacing interpreted from architect photographs, not measured facade drawings. 2014 address record identifies the site but predates the full building geometry."
+}

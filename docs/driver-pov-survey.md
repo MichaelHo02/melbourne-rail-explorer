@@ -257,3 +257,34 @@ Post-asset-change rendered service: six stops served, 1,241 frames, 57 visited
 100m cells, cab and door-check views exercised, errors `[]`, no browser warnings.
 Final frame remains 913 draws / 3,139,832 triangles on WebGPU. Coarse photographic
 building remnants and generic facade fidelity are still open goal requirements.
+
+### 700 Bourke Street foreground replacement
+
+The 1600m cab rays identified retained upper scan fragments in tiles I3S289401
+and I3S292532 around survey structure 810894. The City 2014 address record
+identifies this site as Bourke Junction, 700–704 Bourke Street; its low historic
+height/floor fields are not used for the replacement. All four 2023 sections
+3663–3666 form the Blender union. `docs/bourke700-reference.json` preserves the
+address cross-check and architect reference; the prepared 2023 relative heights
+control the model silhouette. The architect's railway-facing photo was inspected
+for dark glazing, pale triangular panels, narrow mullions, coloured return facets
+and the pale podium. Panel positions/materials remain authored approximations.
+
+The new editable source and GLB are built by `build_bourke700.py` (74,556
+triangles). The complete source hull masks overlapping photographic geometry;
+runtime source IDs are removed only after a valid replacement loads. Nearest
+survey edge to the 2m-sampled training line is 64.699m at route1830m. No extra
+apron or unmeasured plant structures extend this footprint.
+
+`bourke700/01600.png` shows a continuous dark/triangular facade replacing the
+mixed generic lower walls and torn upper mesh. `bourke700-passing/01800.png`
+confirms the model passes behind the cab normally; adjacent buildings still
+have coarse upper fragments and remain open work. The 1600m short sample is
+14.77ms mean/17.50ms max, 539 draws/2,287,884 triangles. The earlier matched
+capture was16.69ms mean/17.60ms max, 521 draws/2,140,991 triangles; no causal
+performance gain is inferred from these brief samples. Build and138 tests pass.
+
+Post-replacement rendered service: all six stops served, cab/door-check views,
+57 visited100m cells, 1,241 frames, errors `[]`, no browser warnings. Final
+frame922 draws/3,213,027 triangles, WebGPU; procedural sections8216, with the
+four replaced sections represented by the verified Blender envelope instead.

@@ -358,6 +358,16 @@ export class World {
         this.surface.add(asset.scene);source.ids.forEach(id=>federationObjectIds.add(id));
       }catch(error){console.warn(`${source.name} unavailable; retaining surveyed source sections.`,error);}
     }
+    const bourkeIds=new Set(['3663','3664','3665','3666']);let bourkeLoaded=false;
+    try{
+      const asset=await new GLTFLoader().loadAsync('/models/environment/bourke700.glb');
+      const envelope=asset.scene.getObjectByName('structure_810894_clean_envelope');
+      const ids=new Set(String(envelope?.userData.source_object_ids??'').split(','));
+      let hasGeometry=false;envelope?.traverse(node=>{if(node instanceof T.Mesh&&node.geometry.attributes.position?.count)hasGeometry=true;});
+      if(!hasGeometry||ids.size!==bourkeIds.size||![...bourkeIds].every(id=>ids.has(id)))throw new Error('Incomplete 700 Bourke survey envelope');
+      asset.scene.traverse(node=>{if(node instanceof T.Mesh){node.castShadow=true;node.receiveShadow=true;}});
+      this.surface.add(asset.scene);bourkeLoaded=true;
+    }catch(error){console.warn('700 Bourke unavailable; retaining surveyed sections.',error);}
     const materials=[createBuildingMaterial()];
     this.worker=new Worker(new URL('./city.worker.ts',import.meta.url),{type:'module'});
     return new Promise<void>((resolve,reject)=>{
@@ -369,7 +379,7 @@ export class World {
         const [x,z]=key.split(',').map(Number);const mesh=new T.Mesh(geometry,materials[Math.abs(x+z)%materials.length]);mesh.castShadow=true;mesh.receiveShadow=true;mesh.userData.center=new T.Vector3(x*250+125,0,z*250+125);
         this.cityChunks.push(mesh);this.surface.add(mesh);onProgress(`Preparing city blocks · ${this.cityChunks.length}`);
       };
-      this.worker!.postMessage({buildings:data.buildings.filter((b:{id:string;ring:[number,number][];base:number;height:number;kind?:string})=>!this.photographic.conflictsWithClearance(b)&&!this.photographic.replacesBuilding(b)&&!(frontageLoaded&&frontageObjectIds.has(String(b.id)))&&!(swannLoaded&&swannObjectIds.has(String(b.id)))&&!(federationObjectIds.has(String(b.id))))});
+      this.worker!.postMessage({buildings:data.buildings.filter((b:{id:string;ring:[number,number][];base:number;height:number;kind?:string})=>!this.photographic.conflictsWithClearance(b)&&!this.photographic.replacesBuilding(b)&&!(frontageLoaded&&frontageObjectIds.has(String(b.id)))&&!(swannLoaded&&swannObjectIds.has(String(b.id)))&&!(federationObjectIds.has(String(b.id)))&&!(bourkeLoaded&&bourkeIds.has(String(b.id))))});
     });
   }
   passengerMetrics(){return this.passengers.metrics();}
