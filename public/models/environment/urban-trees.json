@@ -9,5 +9,5 @@
   "placementSource": "City of Melbourne Urban Forest inventory, CC BY 4.0",
   "sourceUrl": "https://data.melbourne.vic.gov.au/explore/dataset/trees-with-species-and-dimensions-urban-forest/",
   "dimensions": "Authored species-class proportions; raw diameter field units are not assumed.",
-  "triangles": 11060
+  "triangles": 8252
 }

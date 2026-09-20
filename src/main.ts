@@ -3,6 +3,7 @@ import { Simulation, FIXED_STEP } from './game/simulation';
 import { TrainAudio } from './game/audio';
 import { GameRenderer } from './render/renderer';
 import { HUD } from './ui/hud';
+import {ROUTE_LENGTH,STATIONS} from './data/route';
 
 const app=document.querySelector<HTMLDivElement>('#app')!;
 app.innerHTML='<div id="viewport" role="img" aria-label="Three-dimensional Melbourne train driving scene"></div><div id="ui"></div>';
@@ -83,7 +84,17 @@ if(renderer){
   void renderer.loadCity(message=>hud.loading(message),sim.state).then(async()=>{
     if(import.meta.env.DEV){
       const scene=new URLSearchParams(location.search).get('scene');
-      if(scene==='tunnel'||scene==='approach'||scene==='departure'||scene==='platform'||scene==='viaduct'||scene==='flagstaff'||scene==='parliament'||scene==='southern-cross'){sim.loadScenario(scene);renderer?.render(sim.state,0);}
+      if(scene==='tunnel'||scene==='approach'||scene==='departure'||scene==='platform'||scene==='viaduct'||scene==='flagstaff'||scene==='parliament'||scene==='southern-cross'){
+        sim.loadScenario(scene);
+        // Reproducible, stationary environment audit without the pause overlay.
+        // This query is consumed only inside the existing development guard.
+        const params=new URLSearchParams(location.search),distance=Number(params.get('at'));
+        if(params.has('at')&&Number.isFinite(distance)&&distance>=0&&distance<ROUTE_LENGTH){
+          sim.state.distance=distance;const next=STATIONS.findIndex(st=>st.distance>=distance);sim.state.nextStation=next<0?STATIONS.length-1:next;sim.state.doors=false;sim.state.dwell=0;sim.message=`${STATIONS[sim.state.nextStation].name}. Environment inspection.`;
+        }
+        if(params.has('hold')){sim.state.speed=0;sim.state.controller=-4;}
+        renderer?.render(sim.state,0);
+      }
     }
     previous=performance.now();
     await renderer!.startLoop(frame);

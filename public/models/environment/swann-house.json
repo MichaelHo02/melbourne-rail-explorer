@@ -1,0 +1,23 @@
+{
+  "structureId": "801838",
+  "objectIds": [
+    "28379",
+    "28380",
+    "28381",
+    "28383"
+  ],
+  "address": "22\u201338 William Street, Swann House",
+  "identitySource": "City of Melbourne Building Outlines 2014, mccid 110151; centre contained by source polygon",
+  "geometrySource": "https://data.melbourne.vic.gov.au/explore/dataset/2023-building-footprints/",
+  "licence": "CC BY 4.0",
+  "reference": "https://orionig.com.au/projects/orion-house",
+  "heritageReference": "https://mvga-prod-files.s3.ap-southeast-4.amazonaws.com/public/2024-07/c186-central-city-heritage-review-part-3.pdf",
+  "limitations": "2023 footprint sections and prepared relative heights control the envelope. Window rhythm, materials, cornice profiles and rustication are authored interpretations, not measured restoration drawings. Historical floor counts differ by source and are not used to change survey height.",
+  "boundsXZ": [
+    -644.5,
+    34.1,
+    -611.1,
+    73
+  ],
+  "height": 49.0
+}

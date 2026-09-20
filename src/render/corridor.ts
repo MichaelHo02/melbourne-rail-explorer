@@ -5,10 +5,11 @@ import source from '../data/corridor-source.json';
 import extension from '../data/loop-landscape-source.json';
 import riverSource from '../data/river-source.json';
 import bridgeDecks from '../data/bridge-decks.json';
-import { project,positionAt,tangentAt,ROUTE_LENGTH } from '../data/route';
+import { project,positionAt,tangentAt,ROUTE_LENGTH,STATIONS } from '../data/route';
 import type { SurfaceLibrary } from './surface-library';
 import { insideRing,riverCrossings,streetElevations } from './corridor-geography';
 import { detailLawn,lawnMaterial } from './corridor-surfaces';
+import { SOUTHERN_CROSS_CLEARANCE,insideFootprint,ringsIntersect } from './photomesh-clearance';
 
 type LineFeature={geometry:{type:string;coordinates:number[][]|number[][][]};properties:Record<string,string|number|null>};
 type TreeFeature={geometry:{coordinates:number[]};properties:{com_id:string;species:number;diameter_breast_height?:number}};
@@ -79,7 +80,7 @@ export class CorridorScenery {
   private treeReady:Promise<void>=Promise.resolve();
   private lawnReady:Promise<void>=Promise.resolve();
   constructor(private surfaces:SurfaceLibrary){
-    this.buildStreets();this.buildBanks();this.buildTrees();this.buildRailDetails();
+    this.buildStreets();this.buildBanks();this.buildTrees();this.buildRailDetails();this.buildRailYard();this.buildApproachGround();
     this.ready=Promise.all([this.loadViaduct(),this.bankReady,this.treeReady,this.lawnReady]).then(()=>{});
   }
   private buildStreets(){
@@ -260,6 +261,9 @@ export class CorridorScenery {
     const detailedPlacements=new Map<T.Group,{kind:string;matrix:T.Matrix4}[]>();
     for(const feature of data.layers.trees.features){
       const [lon,lat]=feature.geometry.coordinates,p=project(lon,lat),key=`${Math.floor(p.x/200)},${Math.floor(p.z/200)}`;
+      // The playable station hall is wider than the source alignment. Retain
+      // source records, but do not grow street trees through platforms or roofs.
+      if(insideFootprint(p.x,p.z,SOUTHERN_CROSS_CLEARANCE))continue;
       const list=groups.get(key)??[];list.push(feature);groups.set(key,list);
     }
     const bark=new T.MeshStandardMaterial({color:'#706856',roughness:1});
@@ -303,7 +307,18 @@ export class CorridorScenery {
       group.add(trunks,leaves);this.group.add(group);detailedPlacements.set(group,placements);
       const [x,z]=key.split(',').map(Number);this.treeChunks.push({group,center:new T.Vector3(x*200+100,0,z*200+100)});
     }
-    this.treeReady=new GLTFLoader().loadAsync('/models/environment/urban-trees.glb').then(gltf=>{
+    this.treeReady=new GLTFLoader().loadAsync('/models/environment/urban-trees.glb').then(async gltf=>{
+      const leafMap=await new T.TextureLoader().loadAsync('/textures/surfaces/plane-leaf-cluster.png');
+      leafMap.colorSpace=T.SRGBColorSpace;leafMap.anisotropy=8;
+      gltf.scene.traverse(node=>{
+        if(!(node instanceof T.Mesh))return;
+        for(const material of Array.isArray(node.material)?node.material:[node.material]){
+          if(material instanceof T.MeshStandardMaterial&&material.name==='urban leaf clusters'){
+            material.map=leafMap;material.alphaTest=.45;material.alphaToCoverage=true;
+            material.transparent=false;material.depthWrite=true;material.side=T.DoubleSide;material.needsUpdate=true;
+          }
+        }
+      });
       gltf.scene.updateMatrixWorld(true);
       for(const chunk of this.treeChunks){
         const detail=new T.Group();detail.visible=false;this.group.add(detail);chunk.detail=detail;
@@ -360,6 +375,90 @@ export class CorridorScenery {
     merge(this.group,rails,new T.MeshStandardMaterial({color:'#767773',roughness:.31,metalness:.8}));
     merge(this.group,gantries,new T.MeshStandardMaterial({color:'#615f57',roughness:.78,metalness:.48}),true);
     const wg=new T.BufferGeometry();wg.setAttribute('position',new T.Float32BufferAttribute(wires,3));this.group.add(new T.LineSegments(wg,new T.LineBasicMaterial({color:'#333935'})));
+  }
+  private buildApproachGround(){
+    // The public DTP route constrains the corridor horizontally. These are
+    // authored cut/fill shoulders that reconcile it with the flat game ground.
+    const ballast:T.BufferGeometry[]=[],paths:T.BufferGeometry[]=[];
+    const crossingRoads=data.layers.roads.features.filter(f=>!['trail','tunnel','foot_bridge'].includes(String(f.properties.feature_type_code))).flatMap(f=>lines(f).flatMap(line=>line.slice(1).map((b,i)=>({a:line[i],b,width:streetWidth(f)}))));
+    for(let s=1154;s<STATIONS[1].distance+550;s+=4){
+      const a=vec(positionAt(s)),b=vec(positionAt(s+4));if((a.y+b.y)/2< -8)continue;
+      const t=b.clone().sub(a);t.y=0;t.normalize();const side=new T.Vector3(-t.z,0,t.x),mid=a.clone().add(b).multiplyScalar(.5);
+      const footprint=[a.clone().addScaledVector(side,18),b.clone().addScaledVector(side,18),b.clone().addScaledVector(side,-18),a.clone().addScaledVector(side,-18)].map(p=>[p.x,p.z]);
+      if(ringsIntersect(footprint,SOUTHERN_CROSS_CLEARANCE)||waterAt(mid))continue;
+      // Leave mapped street underpasses open rather than burying them in fill.
+      if(crossingRoads.some(({a,b,width})=>{const dx=b.x-a.x,dz=b.z-a.z,q=T.MathUtils.clamp(((mid.x-a.x)*dx+(mid.z-a.z)*dz)/(dx*dx+dz*dz||1),0,1);return Math.hypot(mid.x-a.x-dx*q,mid.z-a.z-dz*q)<width/2+3;}))continue;
+      for(const sign of [-1,1]){
+        const raised=Math.min(a.y,b.y)>-.4,inner=raised?2.15:5.3;
+        const topA=a.clone().addScaledVector(side,sign*inner).setY(raised?a.y-.03:-.94),topB=b.clone().addScaledVector(side,sign*inner).setY(raised?b.y-.03:-.94);
+        const edgeA=a.clone().addScaledVector(side,sign*18).setY(-.94),edgeB=b.clone().addScaledVector(side,sign*18).setY(-.94);
+        const vertices=sign>0?[topA,edgeA,topB,topB,edgeA,edgeB]:[topA,topB,edgeA,edgeA,topB,edgeB];
+        const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(vertices.flatMap(v=>v.toArray()),3));g.setAttribute('uv',new T.Float32BufferAttribute(vertices.flatMap(v=>[v.x/2,v.z/2]),2));g.computeVertexNormals();ballast.push(g);
+        if(!raised)paths.push(ribbon([a.clone().addScaledVector(side,sign*6.4).setY(-.91),b.clone().addScaledVector(side,sign*6.4).setY(-.91)],1.1,3.1));
+      }
+    }
+    merge(this.group,ballast,this.surfaces.ballast);merge(this.group,paths,this.surfaces.paving);
+  }
+  private buildRailYard(){
+    // Vicmap supplies network centrelines and occasional track counts, not
+    // operational pointwork. Spacing, ballast width and the 3m station datum
+    // are authored context; underground rail and tram routes stay excluded.
+    const beds:T.BufferGeometry[]=[],steel:T.BufferGeometry[]=[],sleepers:T.BufferGeometry[]=[],supports:T.BufferGeometry[]=[];
+    const samples=Array.from({length:Math.ceil(ROUTE_LENGTH/8)},(_,i)=>positionAt(i*8));
+    const roads=data.layers.roads.features.filter(f=>!['trail','tunnel'].includes(String(f.properties.feature_type_code))).flatMap(f=>lines(f).flatMap(line=>line.slice(1).map((b,i)=>({a:line[i],b,width:streetWidth(f)}))));
+    const roadAt=(p:T.Vector3)=>roads.some(({a,b,width})=>{
+      const dx=b.x-a.x,dz=b.z-a.z,t=T.MathUtils.clamp(((p.x-a.x)*dx+(p.z-a.z)*dz)/(dx*dx+dz*dz||1),0,1);
+      return Math.hypot(p.x-a.x-dx*t,p.z-a.z-dz*t)<width/2+3;
+    });
+    let segments=0;
+    for(const feature of data.layers.rails.features){
+      if(feature.properties.feature_type_code!=='railway')continue;
+      const count=Math.min(4,Math.max(1,Number(feature.properties.tracks_number_of)||1));
+      for(const original of lines(feature))for(let j=1;j<original.length;j++){
+        const start=original[j-1],end=original[j],steps=Math.ceil(start.distanceTo(end)/4);
+        for(let k=0;k<steps;k++){
+          const a=start.clone().lerp(end,k/steps),b=start.clone().lerp(end,(k+1)/steps),mid=a.clone().add(b).multiplyScalar(.5);
+          // Bound the pass to Southern Cross and its northern surface throat.
+          if(mid.x> -1120||mid.x< -1800||mid.z>330||mid.z< -850)continue;
+          if(insideFootprint(mid.x,mid.z,SOUTHERN_CROSS_CLEARANCE)||waterAt(mid))continue;
+          // Retain a generous clear area around the playable alignment and
+          // its existing multi-track viaduct. Never lay scenery over the cab line.
+          if(samples.some(p=>Math.hypot(p.x-mid.x,p.z-mid.z)<26))continue;
+          const direction=b.clone().sub(a).normalize(),side=new T.Vector3(-direction.z,0,direction.x);
+          const halfWidth=count*2.1;
+          const footprint=[a.clone().addScaledVector(side,halfWidth+4),b.clone().addScaledVector(side,halfWidth+4),b.clone().addScaledVector(side,-halfWidth-4),a.clone().addScaledVector(side,-halfWidth-4)].map(p=>[p.x,p.z]);
+          if(ringsIntersect(footprint,SOUTHERN_CROSS_CLEARANCE))continue;
+          a.y=b.y=3;
+          const overRoad=roadAt(mid);
+          if(!overRoad){
+            for(const sign of [-1,1]){
+              const topA=a.clone().addScaledVector(side,sign*halfWidth),topB=b.clone().addScaledVector(side,sign*halfWidth);
+              const footA=a.clone().addScaledVector(side,sign*(halfWidth+4)).setY(-.96),footB=b.clone().addScaledVector(side,sign*(halfWidth+4)).setY(-.96);
+              const points=sign>0?[topA,footA,topB,topB,footA,footB]:[topA,topB,footA,footA,topB,footB];
+              const slope=new T.BufferGeometry();slope.setAttribute('position',new T.Float32BufferAttribute(points.flatMap(p=>p.toArray()),3));slope.setAttribute('uv',new T.Float32BufferAttribute(points.flatMap(p=>[p.x/2,p.z/2+p.y/2]),2));slope.computeVertexNormals();beds.push(slope);
+            }
+          }
+          for(let track=0;track<count;track++){
+            const offset=(track-(count-1)/2)*4.2,x=a.clone().addScaledVector(side,offset),y=b.clone().addScaledVector(side,offset);
+            beds.push(ribbon([x,y],4.15,2));
+            // At road crossings keep a thin bridge deck and an open underpass.
+            // Elsewhere sloped ballast shoulders meet the authored ground.
+            if(overRoad)supports.push(beam(x.clone().setY(2.72),y.clone().setY(2.72),4.2,.45));
+            for(const gauge of [-.8,.8])steel.push(beam(x.clone().addScaledVector(side,gauge).addScaledVector(up,.2),y.clone().addScaledVector(side,gauge).addScaledVector(up,.2),.07,.14));
+            const n=Math.max(1,Math.ceil(x.distanceTo(y)/.7));
+            for(let q=0;q<n;q++){
+              const c=x.clone().lerp(y,(q+.5)/n).addScaledVector(up,.08);
+              sleepers.push(beam(c.clone().addScaledVector(side,-1.3),c.clone().addScaledVector(side,1.3),.23,.12));
+            }
+          }
+          segments++;
+        }
+      }
+    }
+    merge(this.group,supports,new T.MeshStandardMaterial({color:'#696c63',roughness:1}));
+    merge(this.group,beds,this.surfaces.ballast);merge(this.group,steel,new T.MeshStandardMaterial({color:'#8a8c83',metalness:.8,roughness:.4}));
+    merge(this.group,sleepers,new T.MeshStandardMaterial({color:'#85857c',roughness:1}));
+    this.group.userData.sourceRailYardSegments=segments;
   }
   private async loadViaduct(){
     const gltf=await new GLTFLoader().loadAsync('/models/environment/railway-viaduct.glb');

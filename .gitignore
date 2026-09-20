@@ -8,3 +8,5 @@ playwright-report/
 public/data/*-raw.json
 *.blend1
 assets/source/hcmt-user-reference.png
+
+__pycache__/
