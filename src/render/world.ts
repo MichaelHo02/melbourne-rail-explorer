@@ -17,6 +17,7 @@ import { CorridorScenery } from './corridor';
 import { applyBoxSurfaceUV } from './surface-uv';
 import { PhotographicCity } from './photographic-city';
 import {platformInboardShift} from './platform-layout';
+import {StationLighting} from './lighting';
 
 const vector=(v:{x:number;y:number;z:number})=>new T.Vector3(v.x,v.y,v.z);
 export class World {
@@ -25,6 +26,7 @@ export class World {
   exteriorBackground?:T.Texture;
   sun:T.DirectionalLight;ambient:T.HemisphereLight;sky:SkyMesh;
   private effects:EnvironmentEffects;
+  private lighting:StationLighting;
   private surfaces=new SurfaceLibrary();
   private corridor:CorridorScenery;
   private passengers:Passengers;
@@ -45,6 +47,7 @@ export class World {
     this.sun.shadow.camera.top=170;this.sun.shadow.camera.bottom=-170;this.sun.shadow.camera.near=.5;this.sun.shadow.camera.far=900;
     this.sun.shadow.bias=-.0002;this.sun.shadow.normalBias=.08;scene.add(this.sun,this.sun.target);
     this.ambient=new T.HemisphereLight('#c4ddeb','#787766',1.1);scene.add(this.ambient);
+    this.lighting=new StationLighting(this.ambient);
     this.corridor=new CorridorScenery(this.surfaces);this.surface.add(this.corridor.group,this.photographic.group);
     this.buildGround();this.buildTrack();this.buildStations();this.buildLandmarks();
     this.passengers=new Passengers(createPassengerPlacements());this.scene.add(this.passengers.group);
@@ -284,7 +287,7 @@ export class World {
     const p=vector(positionAt(distance)),underground=isUnderground(distance);
     const darkness=T.MathUtils.smoothstep(-p.y,0,15);
     this.scene.environmentIntensity=.55*(1-darkness)+.025*darkness;
-    this.surface.visible=!underground;this.sun.intensity=3.2*(1-darkness);this.ambient.intensity=1.1-.55*darkness;
+    this.surface.visible=!underground;this.sun.intensity=3.2*(1-darkness);this.lighting.update(camera.position,darkness);
     this.scene.background=underground?new T.Color('#141d21'):(this.exteriorBackground??null);
     this.sky.visible=!this.exteriorBackground;
     this.effects.update(darkness,seconds);this.corridor.update(camera);this.passengers.update(camera,state);this.photographic.update(camera);

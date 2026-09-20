@@ -10,10 +10,10 @@ class Node {
 }
 class Buffer {data:Float32Array;constructor(length:number){this.data=new Float32Array(length);}getChannelData(){return this.data;}}
 class Context {
-  static instances:Context[]=[];state='suspended';currentTime=0;sampleRate=32;destination={};sources:Node[]=[];filters:Node[]=[];gains:Node[]=[];
+  static instances:Context[]=[];state='suspended';currentTime=0;sampleRate=32;destination={};sources:Node[]=[];filters:Node[]=[];gains:Node[]=[];oscillators:Node[]=[];
   constructor(){Context.instances.push(this);}
   resume=vi.fn(async()=>{this.state='running';});suspend=vi.fn(async()=>{this.state='suspended';});close=vi.fn(async()=>{this.state='closed';});
-  createGain(){const node=new Node();this.gains.push(node);return node;}createOscillator(){return new Node();}createBiquadFilter(){const node=new Node();this.filters.push(node);return node;}
+  createGain(){const node=new Node();this.gains.push(node);return node;}createOscillator(){const node=new Node();this.oscillators.push(node);return node;}createBiquadFilter(){const node=new Node();this.filters.push(node);return node;}
   createBufferSource(){const source=new Node();this.sources.push(source);return source;}
   createBuffer(_channels:number,length:number){return new Buffer(length);}
   advance(seconds:number){if(this.state==='running')this.currentTime+=seconds;}
@@ -42,6 +42,70 @@ describe('audio lifecycle',()=>{
     await audio.toggle();audio.update(sim.state);await vi.waitFor(()=>expect(ctx.state).toBe('running'));
     expect(ctx.sources.at(-1)).toBe(departure);
     sim.state.distance=0;audio.update(sim.state);expect(departure.stop).toHaveBeenCalledOnce();
+  });
+  it('cancels old chime and horn nodes on an equal-time restore without replay',async()=>{
+    setup();const sim=new Simulation();sim.start();const {audio,ctx}=await audible(sim);
+    sim.toggleDoors();audio.update(sim.state);audio.horn();
+    const tones=ctx.oscillators.slice(1);expect(tones).toHaveLength(4);
+    expect(sim.restore(sim.snapshot())).toBe(true);audio.update(sim.state);
+    for(const tone of tones){expect(tone.stop).toHaveBeenCalledTimes(2);expect(tone.disconnect).toHaveBeenCalledOnce();tone.onended?.();expect(tone.disconnect).toHaveBeenCalledOnce();}
+    sim.pause();audio.update(sim.state);expect(ctx.oscillators).toHaveLength(5);
+    sim.reset();sim.start();audio.update(sim.state);expect(ctx.oscillators).toHaveLength(5);
+  });
+  it('does not replay the Parliament recording on restoring within its trigger area',async()=>{
+    setup();const sim=new Simulation();sim.loadScenario('parliament');const {audio,ctx}=await audible(sim);
+    const departure=ctx.sources.at(-1)!;expect(departure.buffer).not.toBeInstanceOf(Buffer);const count=ctx.sources.length;
+    expect(sim.restore(sim.snapshot())).toBe(true);audio.update(sim.state);expect(departure.stop).toHaveBeenCalledOnce();
+    sim.pause();audio.update(sim.state);expect(ctx.sources).toHaveLength(count);
+  });
+  it('cleans active tones at final service completion without a suspended chime',async()=>{
+    setup();const sim=new Simulation();sim.start();const {audio,ctx}=await audible(sim);
+    for(let index=0;index<STATIONS.length;index++){
+      if(index>0){sim.state.distance=STATIONS[index].distance;sim.toggleDoors();audio.update(sim.state);sim.step(8);audio.update(sim.state);}
+      if(index===STATIONS.length-1){audio.horn();const tones=ctx.oscillators.length;sim.toggleDoors();audio.update(sim.state);expect(ctx.oscillators).toHaveLength(tones);expect(audio.announcements.text).toContain('terminates');}
+      else{sim.toggleDoors();audio.update(sim.state);}
+    }
+    for(const tone of ctx.oscillators.slice(1))expect(tone.disconnect).toHaveBeenCalledOnce();
+    await vi.waitFor(()=>expect(ctx.state).toBe('suspended'));
+  });
+  it('resumes through the real HUD callback without replaying an equal-time saved platform',async()=>{
+    setup();
+    const saved=new Simulation();saved.loadScenario('parliament');
+    let actions:Record<string,()=>void>,frame:(now:number)=>void;
+    const now=vi.spyOn(performance,'now').mockReturnValue(1000);
+    const update=vi.spyOn(TrainAudio.prototype,'update');
+    const render=vi.fn();
+    // Keep the real application callback, simulation and audio lifecycle. Only
+    // browser presentation is replaced, so ordering regressions in main.ts fail.
+    vi.doMock('../src/ui/hud',()=>({HUD:class{
+      constructor(_root:unknown,registered:Record<string,()=>void>){actions=registered;}
+      cameraInputAllowed=true;closePanel(){}ready(){}loading(){}update(){}setAnnouncement(){}setSound(){}
+    }}));
+    vi.doMock('../src/render/renderer',()=>({GameRenderer:class{
+      view='cab';render=render;setCameraInputEnabled(){}async loadCity(){}async startLoop(callback:(now:number)=>void){frame=callback;}
+    }}));
+    vi.stubGlobal('document',{querySelector:()=>({innerHTML:'',dataset:{},style:{setProperty:vi.fn()}}),addEventListener:vi.fn()});
+    vi.stubGlobal('window',{addEventListener:vi.fn(),innerWidth:1280,innerHeight:720});vi.stubGlobal('location',{search:''});
+    vi.stubGlobal('localStorage',{getItem:()=>JSON.stringify(saved.snapshot()),setItem:vi.fn()});
+    try{
+      await import('../src/main');await vi.waitFor(()=>expect(frame).toBeTypeOf('function'));
+      frame!(1000);
+      const audio=update.mock.contexts.at(-1)!;await audio.toggle();
+      actions!.start();frame!(1000);actions!.doors();frame!(1000);actions!.horn();
+      const ctx=Context.instances.at(-1)!,tones=ctx.oscillators.slice(1),toneCount=ctx.oscillators.length;
+      expect(tones.length).toBeGreaterThan(0);
+      actions!.resume();frame!(1000);
+      expect(render.mock.calls.at(-1)![0].phase).toBe('driving');
+      expect(audio.announcements.text).toBe('');expect(ctx.oscillators).toHaveLength(toneCount);
+      // The actual Parliament recording is distinct from our Buffer-backed
+      // mechanical sounds and must not restart after the restored baseline.
+      expect(ctx.sources.filter(source=>!source.loop&&!(source.buffer instanceof Buffer))).toHaveLength(0);
+      for(const tone of tones)expect(tone.disconnect).toHaveBeenCalledOnce();
+      actions!.doors();frame!(1000);
+      expect(audio.announcements.text).toContain('The next station is Flinders Street');
+    }finally{
+      now.mockRestore();update.mockRestore();vi.doUnmock('../src/ui/hud');vi.doUnmock('../src/render/renderer');
+    }
   });
 });
 

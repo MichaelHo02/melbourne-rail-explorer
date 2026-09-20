@@ -49,3 +49,9 @@ Parliament output validation: 45.741474 seconds, 733,144 bytes, −21.8 LUFS int
 Cues follow accepted simulation state transitions. Initial/restored/restarted scenes establish a silent baseline, rejected door actions produce no effect, and camera switches cannot retrigger one. Muted/loading transitions are consumed instead of replaying when sound is enabled. A stop latch requires prior movement and clears after the stop, avoiding a continuous hiss at zero speed.
 
 All envelopes, delays and source stops use `AudioContext.currentTime`. The existing context suspension on pause/mute freezes partially played effects; they resume without being recreated. Finished sources, filters and gain nodes disconnect, and scene resets/completion cancel remaining mechanical nodes. `tests/audio.test.ts` verifies these transition, opt-in, pause/mute and cleanup behaviours. The synthesis has conservative gain levels; these automated tests do not constitute an audible mix review.
+
+## Service-caption lifecycle
+
+Approach captions clear after a missed marker or a change of target station. An accepted final door closure emits one Flinders Street termination caption; a missed final stop does not. The termination caption expires on the display clock because the completed service's simulation clock is frozen. Other captions freeze with a paused service.
+
+Restoring a service establishes a silent baseline before resuming, including an equal-time restore at an open platform. It clears pending horn/chime nodes and does not replay the consumed Parliament field recording or arrival caption. The regression exercises the actual application's saved-service callback, not only the audio class in isolation. Final completion also cancels pending one-shot tones. Clean voiced, station-specific service announcements remain an unfilled asset requirement; this change does not add synthesized speech.

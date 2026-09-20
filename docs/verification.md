@@ -1,3 +1,36 @@
+# Wraparound cab, free camera and station feedback — 20 September 2026
+
+## Changes and evidence
+
+The supplied cab references now inform the left annunciator/horn/sound console and the right radio-style service display, retaining the accepted centre desk. Lamps use accepted simulation state; the service display reports the real target stop, distance and emergency/door status. Its route, guide and camera keys are functional. The generated logo remains in the header, joined by five individually generated transparent button illustrations for route, cab, exterior, sound and guide. Their exact prompts and asset paths are recorded in `docs/brand-assets.md`; clear HTML labels remain alongside the images. The header replaces unlabelled icons with City Loop Route map, Cab, Outside, Centre, Sound, Guide and Pause. The station progress line also opens the map.
+
+At the user's direction, all compact layout variants were removed. There is one 1280 × 720 composition, uniformly scaled and centred to fit the browser. At a 1190 × 850 production viewport, browser layout diagnostics reported stage bounds x=0, y=90.3125, width=1190, height=669.375 and scale=0.9296875. A 600 × 850 visual check also retained the complete wide desk with letterboxing. No controls rearrange or disappear in a compact mode.
+
+Scene dragging now rotates the seated view, the exterior orbit and development inspection viewpoints. Double-click or Centre resets the view; selecting Cab or Outside exits a fixed inspection viewpoint. Drag distances use the transformed canvas bounds. Opening map/help, pausing, pointer loss and window blur gate/cancel dragging. Cab structure remains train-aligned while looking around. Surface exterior allows a full orbit; the underground outside view uses an authored front-quarter clearance envelope rather than placing the camera behind tunnel walls. This is not general collision detection against station props or buildings.
+
+Underground passengers now receive station-local diffuse fill from the existing hemisphere light, approximating reflection from pale walls and tiles. A curved, height-bounded chamber volume preserves the original exterior and running-tunnel light. Flagstaff, Melbourne Central and Parliament were visually inspected; faces and clothing read more clearly without changing skin materials, exposure or adding extra lights/shadow maps. Surface and dark tunnel views were checked in the same pass.
+
+Service captions clear at passed/missed stops, distinguish an accepted final stop from a missed one, and expire after completion even when simulation time is frozen. Restoring a service baselines audio while still paused before resuming, clearing pending tones without replaying an old arrival or Parliament field recording. An independent review caught the previous resume ordering issue, and its regression invokes the actual application HUD callback. Clean voiced station announcements remain an unfilled asset requirement; no voice asset was generated in this pass.
+
+## Validation
+
+- `npm test`: **104 tests pass across 16 files**, including camera limits/scaled pointer input, tunnel envelope samples, station lighting, announcement lifecycle and the real saved-service callback.
+- `npm run build`: strict TypeScript, Vite production build and native-WebGPU-only guard pass. Main application chunk: 2,368.69 KB before gzip, 338.23 KB gzip; stylesheet: 28.71 KB before gzip, 7.78 KB gzip. Existing large-chunk warning remains.
+- `git diff --check` passes. Bounded independent review found no further concrete defects in pointer dispatch, camera gating, control wiring, state indicators or save integrity.
+- The optional automated Chrome harness was updated for the single scaled layout but was not run. All interactive checks used the Codex in-app browser.
+
+## Browser checks
+
+At 1280 × 720, the centre desk and both side consoles fit without overlap; opening doors illuminated the correct lamps and changed the service display. Horn and sound controls were exercised, with topbar/desk sound state synchronized; this establishes control startup/wiring, not a new audible mix review. The side Route and Guide keys opened their intended panels. The final illustrated header was visually checked; clicking directly on the generated route image opened the map. Final development warning/error logs were empty.
+
+Dragging Melbourne Central's boarding view produced yaw=0.368, pitch=-0.085 with no simulation change. Centre restored zero angles; dragging while its route map was open retained zero and reported camera input disabled. Tunnel cab drag reached yaw=0.724, pitch=-0.113. The tunnel outside view reached yaw=-1.09, pitch=0.353 with the camera visibly inside the bore facing the train. Double-click reset to yaw=-0.55, pitch=0.24; pause disabled camera input. The tunnel remained dark away from headlamps and fixtures.
+
+The isolated production preview on port 5181 resumed the existing test save at zero speed, emergency brake applied and 1.38 km to Southern Cross. Exterior selection and drag produced yaw=0.432, pitch=0.353 in the surface scene. The user's separate port-5180 service was not loaded or overwritten. Screenshots remain under ignored `artifacts/`, including `wide-stage-scaled-600.png`, `tunnel-cab-free-look.png`, `tunnel-exterior-free-look.png`, `production-surface-orbit.png`, `flagstaff-indoor-fill.png` and `parliament-indoor-fill.png` and `illustrated-header-wide.png`.
+
+The prototype still uses authored station geometry and handling, stylised commuters, fixed-date timetable traffic and incomplete spoken audio. These checks do not establish photorealism, operational railway accuracy or unrestricted camera collision avoidance.
+
+---
+
 # Walking passengers, cab desk and Southern Cross concourse — 20 September 2026
 
 ## Changes and evidence

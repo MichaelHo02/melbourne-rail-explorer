@@ -13,6 +13,8 @@ npm run dev
 
 Open the local URL printed by Vite. A WebGPU-capable browser and GPU are required. `npm run build` creates a static site in `dist/`.
 
+The game uses one 1280 × 720 wide composition. Other windows scale the complete scene and interface proportionally, with letterboxing rather than rearranged controls.
+
 ## Graphics
 
 The renderer uses Three.js's native WebGPU backend, with TSL height-aware haze and animated Yarra water normals. Shadows, antialiasing and the current high-quality lighting are always enabled. The train simulation, controls and saves remain independent of the renderer. Start stays disabled until graphics, assets and initial material compilation finish. If WebGPU cannot initialize, the game shows an error and leaves the service unavailable.
@@ -28,11 +30,15 @@ There is no WebGL rendering path or reduced-quality mode. The production build r
 | D | Open / close doors |
 | Space | Emergency brake |
 | C | Cab / exterior camera |
+| Drag the scene | Look around the cab / orbit outside |
+| Double-click scene / Centre | Reset the current view |
 | M | Route map |
 | H | Horn (enable sound first) |
 | Escape | Pause / resume |
 
 The controller has four brake notches, coast, and four power notches. Stop within eight metres of the station marker to open doors. Boarding takes eight seconds. Doors lock out traction. Within 650 metres of the next stop, a training guide estimates the stopping point using the same physics and gradients as the train; it shows when to begin braking and whether the current brake setting stops short or beyond the marker. Pausing or leaving the tab saves progress locally; a new visit offers Continue saved service. No account or API key is needed for the included offline dataset.
+
+The wraparound desk includes state-driven annunciators, horn and sound controls, and a radio-style service display. The header and station progress line both open the route map. Camera dragging is disabled while map/help or pause surfaces are open. Cab turning is limited to the seated view; the outside camera uses a tighter envelope inside tunnels.
 
 ## What is geographically grounded
 

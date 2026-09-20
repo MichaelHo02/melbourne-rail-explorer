@@ -41,7 +41,7 @@ test('loads Melbourne and drives with real input through braking, pause, and cam
   expect(errors).toEqual([]);
 });
 
-test('narrow browser remains usable',async({page})=>{
+test('a narrow window scales the complete wide game without rearranging the desk',async({page})=>{
   await page.setViewportSize({width:600,height:850});await page.goto('/');
   await expect(page.getByRole('button',{name:'Take the driver’s seat'})).toBeEnabled({timeout:60000});
   await page.screenshot({path:'artifacts/06-narrow-menu.png'});
@@ -50,4 +50,9 @@ test('narrow browser remains usable',async({page})=>{
   await expect(page.locator('#welcome')).toBeHidden();
   await page.screenshot({path:'artifacts/07-narrow-cab.png'});
   expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(600);
+  const stage=await page.locator('#app').evaluate(element=>({width:(element as HTMLElement).offsetWidth,height:(element as HTMLElement).offsetHeight,visibleWidth:element.getBoundingClientRect().width,visibleHeight:element.getBoundingClientRect().height}));
+  expect(stage.width).toBe(1280);expect(stage.height).toBe(720);
+  expect(stage.visibleWidth).toBeCloseTo(600);expect(stage.visibleWidth/stage.visibleHeight).toBeCloseTo(16/9);
+  await expect(page.getByRole('complementary',{name:'Left cab panel'})).toBeVisible();
+  await expect(page.getByRole('complementary',{name:'Right cab panel'})).toBeVisible();
 });

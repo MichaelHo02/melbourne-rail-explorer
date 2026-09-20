@@ -8,6 +8,8 @@ export class TrainAudio{
   private loading?:Promise<void>;
   private ready=false;private running=false;private clockChange?:Promise<void>;private clockFailed=false;
   private parliament?:AudioBuffer;private parliamentSource?:AudioBufferSourceNode;private parliamentPlayed=false;private previousTime=0;
+  private audioState?:TrainState;private previousPhase?:TrainState['phase'];
+  private tones=new Map<OscillatorNode,()=>void>();
   private effectNoise?:AudioBuffer;
   private mechanicalState?:TrainState;
   private previousMechanical?:Pick<TrainState,'phase'|'time'|'doors'|'controller'|'speed'|'emergency'>;
@@ -47,7 +49,7 @@ export class TrainAudio{
     if(!this.loading)this.loading=this.initialise().catch(async error=>{
       const ctx=this.context;this.context=undefined;this.ready=false;this.enabled=false;
       this.parliamentSource?.stop();this.parliamentSource=undefined;this.parliament=undefined;this.parliamentPlayed=false;
-      this.clearMechanical();this.effectNoise=undefined;
+      this.clearMechanical();this.clearTones();this.effectNoise=undefined;
       this.loops=[];this.oscillator=undefined;this.master=undefined;this.gain=undefined;this.noiseGain=undefined;
       this.clockChange=undefined;
       try{if(ctx&&ctx.state!=='closed')await ctx.close();}finally{this.loading=undefined;}
@@ -68,12 +70,17 @@ export class TrainAudio{
   }
   update(state:TrainState,cabView=true){
     const cue=this.announcements.update(state);
-    const reset=state.time<this.previousTime||state.phase==='ready';
-    if(reset)this.parliamentPlayed=false;
-    if(this.parliamentSource&&(reset||Math.abs(state.distance-STATIONS[4].distance)>230)){
+    const reset=this.audioState!==state||state.time<this.previousTime||state.phase==='ready';
+    const completed=state.phase==='complete'&&this.previousPhase!=='complete';
+    if(reset){
+      // A restored platform scene must not replay a consumed neighbouring train.
+      this.parliamentPlayed=state.phase==='paused'&&Math.abs(state.distance-STATIONS[4].distance)<130;
+    }
+    if(reset||completed)this.clearTones();
+    if(this.parliamentSource&&(reset||completed||Math.abs(state.distance-STATIONS[4].distance)>230)){
       this.parliamentSource.stop();this.parliamentSource=undefined;
     }
-    this.previousTime=state.time;
+    this.audioState=state;this.previousTime=state.time;this.previousPhase=state.phase;
     this.updateMechanical(state,cabView);
     this.running=state.phase==='driving';this.syncClock();
     if(!this.context)return;const time=this.context.currentTime,running=this.running;
@@ -94,7 +101,7 @@ export class TrainAudio{
       gain.gain.value=cabView?.13:.4;source.connect(gain);gain.connect(this.master!);source.start();this.parliamentSource=source;
       source.onended=()=>{source.disconnect();gain.disconnect();if(this.parliamentSource===source)this.parliamentSource=undefined;};this.parliamentPlayed=true;
     }
-    if(cue&&this.enabled)this.chime();
+    if(cue&&this.enabled&&this.ready&&running&&!reset)this.chime();
   }
   private updateMechanical(state:TrainState,cabView:boolean){
     const previous=this.previousMechanical;
@@ -143,17 +150,22 @@ export class TrainAudio{
   private clearMechanical(){
     for(const [source,cleanup]of this.mechanicalSources){source.stop();cleanup();}
   }
+  private trackTone(source:OscillatorNode,gain:GainNode){
+    const cleanup=()=>{if(!this.tones.delete(source))return;source.disconnect();gain.disconnect();};
+    this.tones.set(source,cleanup);source.onended=cleanup;
+  }
+  private clearTones(){for(const [source,cleanup]of this.tones){source.stop();cleanup();}}
   private chime(){
     const ctx=this.context;if(!ctx)return;
     // Original two-note cue. This is not sampled Metro announcement branding.
     for(const [index,f] of [660,523.25].entries()){
       const osc=ctx.createOscillator(),gain=ctx.createGain(),start=ctx.currentTime+index*.2;
       osc.frequency.value=f;gain.gain.setValueAtTime(.0001,start);gain.gain.exponentialRampToValueAtTime(.028,start+.025);gain.gain.exponentialRampToValueAtTime(.0001,start+.7);
-      osc.connect(gain);gain.connect(this.master!);osc.start(start);osc.stop(start+.72);osc.onended=()=>{osc.disconnect();gain.disconnect();};
+      osc.connect(gain);gain.connect(this.master!);this.trackTone(osc,gain);osc.start(start);osc.stop(start+.72);
     }
   }
   horn(){
     if(!this.context||!this.enabled||!this.running)return;
-    for(const f of [311,370]){const osc=this.context.createOscillator(),gain=this.context.createGain();osc.type='triangle';osc.frequency.value=f;gain.gain.value=.045;osc.connect(gain);gain.connect(this.master!);osc.start();gain.gain.exponentialRampToValueAtTime(.001,this.context.currentTime+.65);osc.stop(this.context.currentTime+.7);osc.onended=()=>{osc.disconnect();gain.disconnect();};}
+    for(const f of [311,370]){const osc=this.context.createOscillator(),gain=this.context.createGain();osc.type='triangle';osc.frequency.value=f;gain.gain.value=.045;osc.connect(gain);gain.connect(this.master!);this.trackTone(osc,gain);osc.start();gain.gain.exponentialRampToValueAtTime(.001,this.context.currentTime+.65);osc.stop(this.context.currentTime+.7);}
   }
 }

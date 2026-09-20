@@ -6,6 +6,9 @@ import { HUD } from './ui/hud';
 
 const app=document.querySelector<HTMLDivElement>('#app')!;
 app.innerHTML='<div id="viewport" role="img" aria-label="Three-dimensional Melbourne train driving scene"></div><div id="ui"></div>';
+// A single 16:9 composition: scale scene and controls together, never reflow them.
+function fitGame(){app.style.setProperty('--game-scale',String(Math.min(window.innerWidth/1280,window.innerHeight/720)));}
+window.addEventListener('resize',fitGame);fitGame();
 const sim=new Simulation(),audio=new TrainAudio();const SAVE_KEY='melbourne-rail-explorer:service:v2';
 let inspectionScenario=import.meta.env.DEV&&new URLSearchParams(location.search).has('scene');
 let saved:unknown=null;try{saved=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');}catch{/* Invalid or unavailable storage does not prevent driving. */}
@@ -13,13 +16,22 @@ const validator=new Simulation();const hasSave=validator.restore(saved)&&validat
 let renderer:GameRenderer|undefined;
 function save(){if(inspectionScenario)return;try{if(sim.state.phase!=='ready')localStorage.setItem(SAVE_KEY,JSON.stringify(sim.snapshot()));}catch{/* Private browsing can reject persistence. */}}
 function pause(){sim.pause();save();}
-function changeView(){if(renderer){renderer.view=renderer.view==='cab'?'chase':'cab';renderer.render(sim.state,0);}}
+function changeView(){if(renderer){renderer.setView(renderer.view==='cab'?'chase':'cab');renderer.render(sim.state,0);}}
 const hud=new HUD(document.querySelector('#ui')!,{
   start:()=>{inspectionScenario=false;sim.start();hud.closePanel();renderer?.render(sim.state,0);},
-  resume:()=>{if(sim.restore(saved)){inspectionScenario=false;sim.pause();renderer?.render(sim.state,0);}else hud.error('This saved service could not be restored. Start a new service instead.');},
+  resume:()=>{
+    if(sim.restore(saved)){
+      inspectionScenario=false;
+      // Observe the restored paused state before resuming in the same click.
+      // This clears old tones and baselines consumed platform/approach cues.
+      audio.update(sim.state,renderer?.view==='cab');
+      sim.pause();renderer?.render(sim.state,0);
+    }else hud.error('This saved service could not be restored. Start a new service instead.');
+  },
   restart:()=>{inspectionScenario=false;sim.reset();audio.announcements.reset();sim.start();hud.closePanel();renderer?.render(sim.state,0);save();},
   pause,view:changeView,sound:()=>{void audio.toggle().then(on=>hud.setSound(on)).catch(()=>hud.error('Audio could not start in this browser. Driving is still available.'));},
-  doors:()=>sim.toggleDoors(),controller:n=>sim.setController(n),emergency:()=>sim.emergencyBrake(),
+  setView:view=>{renderer?.setView(view);renderer?.render(sim.state,0);},resetLook:()=>{renderer?.resetLook();renderer?.render(sim.state,0);},
+  doors:()=>sim.toggleDoors(),controller:n=>sim.setController(n),emergency:()=>sim.emergencyBrake(),horn:()=>audio.horn(),
 },hasSave);
 try{renderer=new GameRenderer(document.querySelector('#viewport')!,message=>{if(sim.state.phase==='driving')sim.pause();save();hud.error(message);});}
 catch(error){hud.startupError(`The 3D scene could not start. WebGPU is required. ${error instanceof Error?error.message:''}`);}
@@ -51,8 +63,9 @@ const frameTimes:number[]=[];
 function frame(now:number){
   const rawFrameMs=now-previous,elapsed=Math.min(.1,rawFrameMs/1000);previous=now;accumulator+=elapsed;
   while(accumulator>=FIXED_STEP){sim.step(FIXED_STEP);accumulator-=FIXED_STEP;}
+  renderer?.setCameraInputEnabled(sim.state.phase==='driving'&&hud.cameraInputAllowed);
   renderer?.render(sim.state,elapsed);audio.update(sim.state,renderer?.view==='cab');
-  if(now-lastUi>80){hud.update(sim,renderer?.view??'cab');hud.setAnnouncement(audio.announcements.text);lastUi=now;}
+  if(now-lastUi>80){hud.update(sim,renderer?.displayedView??'cab');hud.setAnnouncement(audio.announcements.text);lastUi=now;}
   if(now-lastSave>5000){save();lastSave=now;}
   frameTimes.push(rawFrameMs);if(frameTimes.length>180)frameTimes.shift();
   if(import.meta.env.DEV&&now-lastDiagnostics>1000){
