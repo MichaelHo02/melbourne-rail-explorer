@@ -1,12 +1,13 @@
 import * as T from 'three/webgpu';
 import {stationTileTexture} from './materials';
 
-type Finish='floor'|'wall'|'column'|'perforated';
+type Finish='floor'|'wall'|'column'|'perforated'|'canopy';
 const cache=new Map<string,T.MeshStandardMaterial>();
 
 /** Original, photo-informed patterns; no reference photograph is a texture.
  * PAR: Wong F151_3609; FGS: Wong F157_1397 (wall finishes only, during works);
- * MCE: Wpcpey, Melbourne Central Station Platform 2017. Pattern sizes are
+ * MCE: Wpcpey, Melbourne Central Station Platform 2017; FSS: Wong F130_8206.
+ * Pattern sizes are
  * authored visual approximations, not measured station dimensions. */
 export function stationFinish(code:string,finish:Finish):T.MeshStandardMaterial{
   const key=`${code}:${finish}`,existing=cache.get(key);if(existing)return existing;
@@ -33,7 +34,21 @@ export function stationFinish(code:string,finish:Finish):T.MeshStandardMaterial{
       bump.fillStyle='#b8b8b8';bump.fillRect(x+1,y+1,w-2,h-2);
     }
   };
-  if(finish==='floor'&&code==='MCE'){
+  if(finish==='floor'&&code==='FSS'){
+    // Broad pale paving slabs in the 2019 platform photo. Keep tonal variation
+    // quiet; the former small dark paver pattern dominated the walking surface.
+    tiles(3,3,['#c5c5b9','#c8c8bd','#c2c3b7','#c6c7bb'],'#979e94');
+    roughness=.79;bumpScale=.002;
+  }else if(finish==='canopy'&&code==='FSS'){
+    // Painted corrugated sheet. Grooves run along the roof slope (local X),
+    // with a generated repeating relief along Z; no photo pixels are reused.
+    for(let y=0;y<size;y++){
+      const wave=Math.cos(y/size*Math.PI*2*32),shade=Math.round(201+wave*3),height=Math.round(128+wave*68);
+      ctx.fillStyle=`rgb(${shade},${shade},${shade-8})`;ctx.fillRect(0,y,size,1);
+      bump.fillStyle=`rgb(${height},${height},${height})`;bump.fillRect(0,y,size,1);
+    }
+    roughness=.71;metalness=.16;bumpScale=.012;
+  }else if(finish==='floor'&&code==='MCE'){
     // Rectangular terracotta courses replace the former square checkerboard.
     tiles(4,8,['#a77c52','#9c7454','#ae8155','#927354','#ab805a','#92765a'],'#7f7b6a',true);
     roughness=.46;bumpScale=.003;

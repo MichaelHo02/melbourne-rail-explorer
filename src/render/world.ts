@@ -53,7 +53,7 @@ export class World {
     this.buildGround();this.buildTrack();this.buildStations();this.buildLandmarks();
     this.passengers=new Passengers(createPassengerPlacements());this.scene.add(this.passengers.group);
   }
-  private box(parent:T.Object3D,w:number,h:number,d:number,x:number,y:number,z:number,material:T.Material){
+  private box(parent:T.Object3D,w:number,h:number,d:number,x:number,y:number,z:number,material:T.Material):T.Mesh<T.BoxGeometry,T.Material|T.Material[]>{
     const geometry=new T.BoxGeometry(w,h,d,1,1,Math.max(1,Math.ceil(d/4)));
     applyBoxSurfaceUV(geometry,material);
     const m=new T.Mesh(geometry,material);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;parent.add(m);return m;
@@ -185,7 +185,17 @@ export class World {
       group.userData.center=p;group.userData.underground=station.underground;this.stations.add(group);
       const platformMaterial=station.code==='SXS'?this.surfaces.asphalt:station.code==='FSS'?this.surfaces.paving:stationFinish(station.code,'floor');
       const edgeShift=platformInboardShift(station.code);
-      this.box(group,(station.code==='MCE'?9:6)+edgeShift,1.1,200,(station.code==='MCE'?6.75:5.25)-edgeShift/2,.5,0,platformMaterial);
+      const platform=this.box(group,(station.code==='MCE'?9:6)+edgeShift,1.1,200,(station.code==='MCE'?6.75:5.25)-edgeShift/2,.5,0,platformMaterial);
+      if(station.code==='FSS'){
+        // Replace only the existing positive-Y slab face. The source-photo
+        // finish does not move its top, sides, coping or tactile geometry.
+        const floor=stationFinish('FSS','floor'),uv=platform.geometry.attributes.uv,normal=platform.geometry.attributes.normal;
+        const scale=platformMaterial.userData.textureMetres/floor.userData.textureMetres;
+        for(let i=0;i<uv.count;i++)if(normal.getY(i)>.5)uv.setXY(i,uv.getX(i)*scale,uv.getY(i)*scale);
+        uv.needsUpdate=true;
+        // BoxGeometry face order: +X, -X, +Y, -Y, +Z, -Z.
+        platform.material=[platformMaterial,platformMaterial,floor,platformMaterial,platformMaterial,platformMaterial];
+      }
       this.box(group,.45,.03,198,2.48-edgeShift,1.065,0,yellow);
       this.box(group,.1,.09,198,2.21-edgeShift,.96,0,this.concrete);
       const backMaterial=station.code==='PAR'||station.code==='FGS'?stationFinish(station.code,'wall'):new T.MeshStandardMaterial({color:station.color,roughness:.7,metalness:station.underground?.18:0});

@@ -127,10 +127,8 @@ export function stationDetails(group:T.Group,code:string,name:string){
         pipe([new T.Vector3(6,4.7,z),new T.Vector3(6+side*.35,5.3,z),new T.Vector3(6+side*1.45,5.68,z)],.047,materials.cream);
         const ring=new T.TorusGeometry(.28,.034,5,16);ring.translate(6+side*.48,5.28,z);put(ring,materials.cream);
       }
-      // Repeated crossed bracing under the historic platform canopies.
-      for(let x=1.8;x<8.7;x+=1.15){
-        pipe([new T.Vector3(x,5.76,z),new T.Vector3(x+.54,6.13,z),new T.Vector3(x+1.08,5.76,z)],.033,materials.cream);
-      }
+      // Roof-profile-fitted frame webs are batched in stationArchitecture;
+      // keep the ornate cream brackets and rings as the foreground ironwork.
     }
     for(const x of [.85,9.05]){
       box(.12,.2,198,x,5.89,0,materials.iron);

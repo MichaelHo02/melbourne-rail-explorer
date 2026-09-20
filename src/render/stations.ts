@@ -173,9 +173,31 @@ export function stationArchitecture(group:T.Group,station:Station,index:number,b
     }
     for(const [geometries,color] of [[running,'#798581'],[sleepers,'#777970']] as const){group.add(new T.Mesh(mergeGeometries(geometries),new T.MeshStandardMaterial({color,roughness:.85})));geometries.forEach(g=>g.dispose());}
   }else{
-    // Flinders Street: a modest pitched canopy and fine repeated iron supports.
-    for(const side of [-1,1]){const roof=new T.BoxGeometry(4.3,.13,200,1,1,60);roof.rotateZ(side*.18);roof.translate(5+side*2.1,6.1,0);parts.push(roof);}
-    for(let z=-90;z<=90;z+=20){box(7.7,.13,.13,5,5.65,z);for(const side of [-1,1]){const brace=new T.BoxGeometry(1.7,.1,.1);brace.rotateZ(side*.65);brace.translate(6+side*.7,5.2,z);parts.push(brace);}}
+    // Flinders Street's playable canopy only. Existing pitch/extents and
+    // support bays stay fixed; the finish and fitted frame layering are
+    // photographic interpretations of Wong F130_8206, not measured dimensions.
+    const sheet=stationFinish('FSS','canopy'),panels:T.BufferGeometry[]=[];
+    for(const side of [-1,1]){
+      const roof=new T.BoxGeometry(4.3,.13,200,1,1,60);applyBoxSurfaceUV(roof,sheet);
+      roof.rotateZ(side*.18);roof.translate(5+side*2.1,6.1,0);panels.push(roof);
+    }
+    const covering=new T.Mesh(mergeGeometries(panels),sheet);covering.castShadow=true;covering.receiveShadow=true;group.add(covering);panels.forEach(g=>g.dispose());
+    const underside=(x:number)=>6.1+(Math.abs(x-5)-2.1)*Math.tan(.18)-.065/Math.cos(.18);
+    const member=(a:T.Vector3,b:T.Vector3,r:number)=>parts.push(new T.TubeGeometry(new T.LineCurve3(a,b),1,r,6,false));
+    for(let z=-90;z<=90;z+=20){
+      box(7.7,.13,.13,5,5.65,z);
+      for(const side of [-1,1]){
+        const brace=new T.BoxGeometry(1.7,.1,.1);brace.rotateZ(side*.65);brace.translate(6+side*.7,5.2,z);parts.push(brace);
+        member(new T.Vector3(5,underside(5)-.035,z),new T.Vector3(5+side*3.85,underside(5+side*3.85)-.035,z),.027);
+      }
+      // Thin diagonal webs follow the underside instead of crossing its skin.
+      // They share the existing structural batch, with no per-bay draw calls.
+      for(let x=1.15;x<8.8;x+=1.1){
+        const end=Math.min(x+1.1,8.85),middle=(x+end)/2;
+        const high=new T.Vector3(middle,underside(middle)-.055,z);
+        member(new T.Vector3(x,5.70,z),high,.023);member(high,new T.Vector3(end,5.70,z),.023);
+      }
+    }
   }
   if(station.code==='FSS'&&index===0){
     // The playable platform belongs to a broad railway precinct, not an

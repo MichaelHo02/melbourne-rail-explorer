@@ -70,6 +70,10 @@ Relative effort: S = one bounded material/placement pass; M = one reusable geome
 
 Ranks 3, 7 and 8 remain queued. Access/track layout needs stronger evidence and has wider clearance/motion consequences; crowd polish depends on where circulation belongs. Re-rank using the same cab/door-check set, not a new set of flattering inspection cameras.
 
+**Surface-slice update, 20 September:** the actual Flinders [before view](../artifacts/flinders-street-door-check.png) and [after view](../artifacts/flinders-street-door-check-after.png) support bounded acceptance of broad pale paving slabs and the pale canopy treatment with fine fitted bracing. Corrugation is assigned as generated colour/bump relief, but is not clearly legible at this fixed player distance; canopy depth remains backlog. The slice preserves roof profile, support bays, platform geometry, side finish, coping and tactiles. Adjacent scenic roofs, the landmark facade and Southern Cross are unchanged. This is a partial rank-4 slice, not completion of the full surface-station batch. Keep Southern Cross's roof/support structure as the next substantial environment-uplift target.
+
+The Flinders slice passed eight focused UV/platform-clearance tests, TypeScript, production build, whitespace checks and independent code review. An actual-geometry comparison retained every platform vertex and all side-face UVs; the architecture/detail mesh total changes from 25 to 26, while triangles decrease from 29,296 to 24,016 after removing the duplicated curved bracing. These are generated-geometry counts before world batching, not runtime draw-call measurements. Direct before/source/after review found the pale slabs clear, the pale canopy and fine braces visible, and no obvious new clipping, texture seam or loss of boarding-edge readability. Corrugation is not clearly legible in the player view, so no visible corrugation claim is made. Southern Cross's roof and support structure remain queued.
+
 ### Batch 1 acceptance evidence
 
 | Player-view capture | Visible result against the original photograph |
