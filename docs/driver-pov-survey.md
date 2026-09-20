@@ -189,3 +189,40 @@ remains visibly sparse and is the next coverage priority. Production build and
 frames, visited 57 100m cells, exercised cab/door-check views, and reported no
 errors or browser warnings. Final frame: 913 draws / 3,095,732 triangles on
 WebGPU. This is functional validation, not a new frame-time benchmark.
+
+### Shared yard formation and restored nearby tracks
+
+The 1800m view showed a largely empty strip beside the training line despite
+available Vicmap railway centrelines. The former fixed 26m rejection removed
+narrow safe track beds. Clearance now measures each candidate segment against
+the sampled route polyline, subtracts half its length for a conservative whole-
+segment bound, and reserves 8m beyond the complete track-bed/shoulder footprint.
+Beds without at least a 4m shoulder are omitted; four-track widths remain wider.
+
+An initial comparison (`yard-track-clearance`) exposed artificial raised pads:
+Southern Cross context rails were hardcoded to elevation 3m. Both yards now use
+the same nearest-route gradient, clamped to nonnegative height. Shared gravel
+formation rises to 6cm below the rails, blends down over its outer 12m and fades
+away beside the running line. Existing road, park, water and shallow-trench
+exclusions remain. This is authored terrain adaptation to the training gradient,
+not an elevation survey or an operational railway reconstruction.
+
+The matched `yard-connected/01800.png` confirms visible neighbouring rails and
+connected gravel rather than isolated tall embankments. Its 44-frame sample
+measured 16.675ms mean, 17.7ms maximum, 459 draws and 1,651,661 triangles;
+`federation-corridor/01800.png` measured 16.670ms mean, 17.4ms maximum, 461 draws
+and 1,610,753 triangles. These short static samples are a smoke check, not a
+controlled performance comparison. Production build and all 138 tests pass.
+
+`yard-formation-route` completed all 24 captures; contact sheet and 1600m/5200m
+full-size views were inspected. The 1600m view exposed overlapping formation
+and approach triangles, so the ground blend now begins outside the existing
+18m approach shoulder and reaches full height at 28m. The final
+`yard-formation-join/01600.png` confirms the reduced overlap. Some coarse
+embankment transitions and mixed photographic/procedural facades remain;
+this pass is not a claim of finished whole-route fidelity.
+
+After the join adjustment, production build and 138 tests passed again. The
+rendered service served all six stops, exercised both cab and door-check views,
+visited 57 100m cells across 1,241 frames, and reported errors `[]`. Final frame:
+913 draws / 3,139,832 triangles, WebGPU. No gameplay logic was changed.

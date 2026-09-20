@@ -76,6 +76,7 @@ function streetWidth(feature:LineFeature){
 /** Official horizontal geography with explicitly authored widths and elevations. */
 export class CorridorScenery {
   readonly group=new T.Group();readonly ready:Promise<void>;
+  private yardRoute=Array.from({length:Math.ceil(ROUTE_LENGTH/8)},(_,i)=>positionAt(i*8));
   private bankReady:Promise<void>=Promise.resolve();
   private treeChunks:{group:T.Group;center:T.Vector3;detail?:T.Group;impostor?:T.Group}[]=[];
   private treeReady:Promise<void>=Promise.resolve();
@@ -502,6 +503,17 @@ export class CorridorScenery {
     merge(this.group,concrete,new T.MeshStandardMaterial({color:'#939183',roughness:1}));
     merge(this.group,walks,this.surfaces.paving);
   }
+  private yardHeight(point:T.Vector3){
+    let best=Infinity,height=0;
+    const samples=this.yardRoute;
+    for(let i=1;i<samples.length;i++){
+      const a=samples[i-1],b=samples[i],dx=b.x-a.x,dz=b.z-a.z;
+      const t=T.MathUtils.clamp(((point.x-a.x)*dx+(point.z-a.z)*dz)/(dx*dx+dz*dz||1),0,1);
+      const d=(point.x-a.x-dx*t)**2+(point.z-a.z-dz*t)**2;
+      if(d<best){best=d;height=a.y+(b.y-a.y)*t;}
+    }
+    return Math.max(0,height);
+  }
   private buildYardGround(){
     // Ground the spaces between mapped sidings rather than leaving the city's
     // plain base visible. These are authored gravel margins around Vicmap
@@ -533,6 +545,15 @@ export class CorridorScenery {
         if(roads.some(r=>distance(center.x,center.z,r.a,r.b)<r.width/2+7))continue;
         const corners=[new T.Vector3(x,-.97,z),new T.Vector3(x+8,-.97,z),new T.Vector3(x+8,-.97,z+8),new T.Vector3(x,-.97,z+8)];
         if(corners.some(p=>waterAt(p)||parks.some(rings=>insideRing(p,rings[0])&&!rings.slice(1).some(hole=>insideRing(p,hole)))))continue;
+        // Shared yard formation closes the empty troughs between neighbouring
+        // rail beds. Fade to the city base at its perimeter and beside the
+        // running trench; elevations are authored, not survey terrain heights.
+        for(const p of corners){
+          const railDistance=Math.min(...rails.map(r=>distance(p.x,p.z,r.a,r.b)));
+          const runningDistance=Math.min(...route.map(q=>Math.hypot(q.x-p.x,q.z-p.z)));
+          const influence=T.MathUtils.smoothstep(34-railDistance,0,12)*T.MathUtils.smoothstep(runningDistance,18,28);
+          p.y=-.97+influence*(this.yardHeight(p)+.91);
+        }
         for(const index of [0,3,1,1,3,2]){
           const p=corners[index];positions.push(p.x,p.y,p.z);uvs.push(p.x/2,p.z/2);
           const tone=.77+.04*Math.sin(p.x/37)+.03*Math.cos(p.z/23);colors.push(tone,tone,tone*.96);
@@ -552,16 +573,6 @@ export class CorridorScenery {
     // are authored context; underground rail and tram routes stay excluded.
     const beds:T.BufferGeometry[]=[],steel:T.BufferGeometry[]=[],sleepers:T.BufferGeometry[]=[],supports:T.BufferGeometry[]=[];
     const samples=Array.from({length:Math.ceil(ROUTE_LENGTH/8)},(_,i)=>positionAt(i*8));
-    const contextHeight=(point:T.Vector3)=>{
-      let best=Infinity,height=0;
-      for(let i=1;i<samples.length;i++){
-        const a=samples[i-1],b=samples[i],dx=b.x-a.x,dz=b.z-a.z;
-        const t=T.MathUtils.clamp(((point.x-a.x)*dx+(point.z-a.z)*dz)/(dx*dx+dz*dz||1),0,1);
-        const d=(point.x-a.x-dx*t)**2+(point.z-a.z-dz*t)**2;
-        if(d<best){best=d;height=a.y+(b.y-a.y)*t;}
-      }
-      return Math.max(0,height);
-    };
     const roads=data.layers.roads.features.filter(f=>!['trail','tunnel'].includes(String(f.properties.feature_type_code))).flatMap(f=>lines(f).flatMap(line=>line.slice(1).map((b,i)=>({a:line[i],b,width:streetWidth(f)}))));
     const roadAt=(p:T.Vector3,margin=0)=>roads.some(({a,b,width})=>{
       const dx=b.x-a.x,dz=b.z-a.z,t=T.MathUtils.clamp(((p.x-a.x)*dx+(p.z-a.z)*dz)/(dx*dx+dz*dz||1),0,1);
@@ -582,17 +593,23 @@ export class CorridorScenery {
           if(!southernCross&&!easternYard)continue;
           // The fictional training alignment rises gradually here. Match its
           // local level so scenery tracks cannot become walls above the cab.
-          const heightA=easternYard?contextHeight(a):3,heightB=easternYard?contextHeight(b):3;
+          const heightA=this.yardHeight(a),heightB=this.yardHeight(b);
           if(insideFootprint(mid.x,mid.z,SOUTHERN_CROSS_CLEARANCE)||waterAt(mid))continue;
-          // Retain a generous clear area around the playable alignment and
-          // its existing multi-track viaduct. Never lay scenery over the cab line.
-          if(samples.some(p=>Math.hypot(p.x-mid.x,p.z-mid.z)<26))continue;
+          // Measure the entire segment against the training polyline. A fixed
+          // 26m exclusion erased narrow neighbouring sidings as well as unsafe
+          // overlaps. Retain an 8m protected margin beyond the whole footprint.
+          const runningDistance=Math.min(...samples.slice(1).map((q,index)=>{
+            const p=samples[index],dx=q.x-p.x,dz=q.z-p.z;
+            const t=T.MathUtils.clamp(((mid.x-p.x)*dx+(mid.z-p.z)*dz)/(dx*dx+dz*dz||1),0,1);
+            return Math.hypot(mid.x-p.x-dx*t,mid.z-p.z-dz*t);
+          }))-a.distanceTo(b)/2;
           const direction=b.clone().sub(a).normalize(),side=new T.Vector3(-direction.z,0,direction.x);
           const halfWidth=count*2.1;
-          // Broad earthwork shoulders meet the existing terrain instead of
-          // leaving near-vertical 4m-wide ballast walls beside the approach.
-          // The 14m cap retains the 26m running-line exclusion at four tracks.
-          const shoulder=Math.min(14,Math.max(4,(Math.max(heightA,heightB)+.96)*3));
+          const availableShoulder=runningDistance-halfWidth-8;
+          if(availableShoulder<4)continue;
+          // Taper the earthwork to fit the available railway land. Its toe
+          // remains outside the protected running-line/trench margin.
+          const shoulder=Math.min(14,availableShoulder,Math.max(4,(Math.max(heightA,heightB)+.96)*3));
           const footprint=[a.clone().addScaledVector(side,halfWidth+shoulder),b.clone().addScaledVector(side,halfWidth+shoulder),b.clone().addScaledVector(side,-halfWidth-shoulder),a.clone().addScaledVector(side,-halfWidth-shoulder)].map(p=>[p.x,p.z]);
           if(ringsIntersect(footprint,SOUTHERN_CROSS_CLEARANCE))continue;
           a.y=heightA;b.y=heightB;
