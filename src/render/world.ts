@@ -281,7 +281,7 @@ export class World {
     const frontageObjectIds=new Set(['17612','17613','17614','17615','17616','25125','25126','25127','25128','25129','25130','25131','25132']);
     let frontageLoaded=false;
     try{
-      const frontage=await new GLTFLoader().loadAsync('/models/environment/viaduct-frontage.glb');
+      const frontage=await new GLTFLoader().loadAsync('/models/environment/corridor-frontage.glb');
       frontage.scene.updateMatrixWorld(true);
       const expectedSections:Record<string,Set<string>>={
         '817607':new Set(['17612','17613','17614','17615','17616']),

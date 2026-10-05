@@ -3,7 +3,8 @@ import fs from 'node:fs';
 const buildings = JSON.parse(fs.readFileSync('public/data/buildings.json', 'utf8')).buildings;
 const manifest = JSON.parse(fs.readFileSync('public/models/environment/viaduct-frontage.json', 'utf8'));
 const runtime = fs.readFileSync('src/render/world.ts', 'utf8');
-const glb = fs.readFileSync('public/models/environment/viaduct-frontage.glb');
+if (!runtime.includes("loadAsync('/models/environment/corridor-frontage.glb')")) throw new Error('Runtime must load the exported corridor workspace asset.');
+const glb = fs.readFileSync('public/models/environment/corridor-frontage.glb');
 const fail = message => { throw new Error(`Viaduct frontage check failed: ${message}`); };
 const near = (a, b, tolerance = .02) => Math.abs(a - b) <= tolerance;
 

@@ -81,6 +81,7 @@ The runtime ships the compact, attributed `public/data/buildings.json` snapshot 
 
 - [Adapted prompts and article implementation approach](docs/prompt-playbook.md)
 - [Blender HCMT source and export pipeline](docs/train-assets.md)
+- [Present-day Blender city layout workspace](docs/blender-city-layout.md)
 - [Blender viaduct kit, references and rebuild](docs/viaduct-assets.md)
 - [Corridor geography and data refresh](docs/corridor-data.md)
 - [Northbank references and authored elevation boundaries](docs/corridor-riverbank.md)
