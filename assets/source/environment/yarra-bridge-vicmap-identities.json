@@ -1,0 +1,215 @@
+{
+  "source_url": "https://vicmap.land.vic.gov.au/agsgis/rest/services/vicmap/Vicmap_Transport/MapServer/1/query?where=UFI+IN+%2846335153%2C46335154%2C56419697%2C58128337%2C58128338%2C58128488%2C58128490%2C62471494%2C66591607%2C70238230%2C70238240%2C70848034%2C70848036%2C73136498%2C73136533%2C73136536%2C73136537%2C73136538%2C73136549%2C73136550%2C74545479%2C74545480%29&outFields=ufi%2Cezi_road_name%2Cstructure_name%2Cfeature_type_code&returnGeometry=false&f=json",
+  "response": {
+    "displayFieldName": "EZI_ROAD_NAME",
+    "fieldAliases": {
+      "ufi": "ufi",
+      "ezi_road_name": "ezi_road_name",
+      "structure_name": "structure_name",
+      "feature_type_code": "feature_type_code"
+    },
+    "fields": [
+      {
+        "name": "ufi",
+        "type": "esriFieldTypeInteger",
+        "alias": "ufi"
+      },
+      {
+        "name": "ezi_road_name",
+        "type": "esriFieldTypeString",
+        "alias": "ezi_road_name",
+        "length": 65
+      },
+      {
+        "name": "structure_name",
+        "type": "esriFieldTypeString",
+        "alias": "structure_name",
+        "length": 50
+      },
+      {
+        "name": "feature_type_code",
+        "type": "esriFieldTypeString",
+        "alias": "feature_type_code",
+        "length": 30
+      }
+    ],
+    "features": [
+      {
+        "attributes": {
+          "ufi": 73136536,
+          "ezi_road_name": "UNNAMED",
+          "structure_name": "KINGS BRIDGE",
+          "feature_type_code": "bridge"
+        }
+      },
+      {
+        "attributes": {
+          "ufi": 46335154,
+          "ezi_road_name": "COLLINS STREET",
+          "structure_name": null,
+          "feature_type_code": "bridge"
+        }
+      },
+      {
+        "attributes": {
+          "ufi": 56419697,
+          "ezi_road_name": "CLARENDON STREET",
+          "structure_name": "SPENCER STREET BRIDGE",
+          "feature_type_code": "bridge"
+        }
+      },
+      {
+        "attributes": {
+          "ufi": 58128488,
+          "ezi_road_name": "UNNAMED",
+          "structure_name": "KINGS BRIDGE",
+          "feature_type_code": "bridge"
+        }
+      },
+      {
+        "attributes": {
+          "ufi": 58128490,
+          "ezi_road_name": "UNNAMED",
+          "structure_name": "KINGS BRIDGE",
+          "feature_type_code": "bridge"
+        }
+      },
+      {
+        "attributes": {
+          "ufi": 58128338,
+          "ezi_road_name": "QUEENS BRIDGE STREET",
+          "structure_name": "QUEENS BRIDGE",
+          "feature_type_code": "bridge"
+        }
+      },
+      {
+        "attributes": {
+          "ufi": 46335153,
+          "ezi_road_name": "COLLINS STREET",
+          "structure_name": null,
+          "feature_type_code": "bridge"
+        }
+      },
+      {
+        "attributes": {
+          "ufi": 58128337,
+          "ezi_road_name": "QUEENS BRIDGE STREET",
+          "structure_name": "QUEENS BRIDGE",
+          "feature_type_code": "bridge"
+        }
+      },
+      {
+        "attributes": {
+          "ufi": 62471494,
+          "ezi_road_name": "COLLINS STREET",
+          "structure_name": null,
+          "feature_type_code": "bridge"
+        }
+      },
+      {
+        "attributes": {
+          "ufi": 66591607,
+          "ezi_road_name": "SPENCER STREET",
+          "structure_name": "SPENCER STREET BRIDGE",
+          "feature_type_code": "bridge"
+        }
+      },
+      {
+        "attributes": {
+          "ufi": 70238230,
+          "ezi_road_name": "COLLINS STREET",
+          "structure_name": null,
+          "feature_type_code": "bridge"
+        }
+      },
+      {
+        "attributes": {
+          "ufi": 70238240,
+          "ezi_road_name": "COLLINS STREET",
+          "structure_name": null,
+          "feature_type_code": "bridge"
+        }
+      },
+      {
+        "attributes": {
+          "ufi": 70848036,
+          "ezi_road_name": "ST KILDA ROAD",
+          "structure_name": "PRINCES BRIDGE",
+          "feature_type_code": "bridge"
+        }
+      },
+      {
+        "attributes": {
+          "ufi": 73136498,
+          "ezi_road_name": "KINGS WAY",
+          "structure_name": "KINGS BRIDGE",
+          "feature_type_code": "bridge"
+        }
+      },
+      {
+        "attributes": {
+          "ufi": 73136533,
+          "ezi_road_name": "UNNAMED",
+          "structure_name": "KINGS BRIDGE",
+          "feature_type_code": "bridge"
+        }
+      },
+      {
+        "attributes": {
+          "ufi": 73136537,
+          "ezi_road_name": "KINGS WAY",
+          "structure_name": "KINGS BRIDGE",
+          "feature_type_code": "bridge"
+        }
+      },
+      {
+        "attributes": {
+          "ufi": 73136538,
+          "ezi_road_name": "KINGS WAY",
+          "structure_name": null,
+          "feature_type_code": "bridge"
+        }
+      },
+      {
+        "attributes": {
+          "ufi": 73136549,
+          "ezi_road_name": "KINGS WAY",
+          "structure_name": "KINGS BRIDGE",
+          "feature_type_code": "bridge"
+        }
+      },
+      {
+        "attributes": {
+          "ufi": 73136550,
+          "ezi_road_name": "KINGS WAY",
+          "structure_name": "KINGS BRIDGE",
+          "feature_type_code": "bridge"
+        }
+      },
+      {
+        "attributes": {
+          "ufi": 74545479,
+          "ezi_road_name": "ST KILDA ROAD",
+          "structure_name": "PRINCES BRIDGE",
+          "feature_type_code": "bridge"
+        }
+      },
+      {
+        "attributes": {
+          "ufi": 74545480,
+          "ezi_road_name": "ST KILDA ROAD",
+          "structure_name": "PRINCES BRIDGE",
+          "feature_type_code": "bridge"
+        }
+      },
+      {
+        "attributes": {
+          "ufi": 70848034,
+          "ezi_road_name": "ST KILDA ROAD",
+          "structure_name": "PRINCES BRIDGE",
+          "feature_type_code": "bridge"
+        }
+      }
+    ]
+  }
+}

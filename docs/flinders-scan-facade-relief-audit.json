@@ -1,0 +1,2935 @@
+{
+  "placed_windows": 209,
+  "rejected_candidates": 151,
+  "north": 100,
+  "south": 109,
+  "placements": [
+    {
+      "edge_index": 4,
+      "level": 1,
+      "bay": 0,
+      "center_xy": [
+        -10.412574768066406,
+        61.67166519165039
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.1674745798110961,
+      "side": "north"
+    },
+    {
+      "edge_index": 4,
+      "level": 2,
+      "bay": 0,
+      "center_xy": [
+        -10.412574768066406,
+        61.67166519165039
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.1572797417640686,
+      "side": "north"
+    },
+    {
+      "edge_index": 4,
+      "level": 1,
+      "bay": 1,
+      "center_xy": [
+        -14.494304656982422,
+        60.18952941894531
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.3477673053741455,
+      "side": "north"
+    },
+    {
+      "edge_index": 4,
+      "level": 2,
+      "bay": 1,
+      "center_xy": [
+        -14.494304656982422,
+        60.18952941894531
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.2907494574785232,
+      "side": "north"
+    },
+    {
+      "edge_index": 6,
+      "level": 1,
+      "bay": 0,
+      "center_xy": [
+        -18.224611282348633,
+        57.997135162353516
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.3307191848754882,
+      "side": "north"
+    },
+    {
+      "edge_index": 6,
+      "level": 2,
+      "bay": 0,
+      "center_xy": [
+        -18.224611282348633,
+        57.997135162353516
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.3724757999181747,
+      "side": "north"
+    },
+    {
+      "edge_index": 6,
+      "level": 1,
+      "bay": 1,
+      "center_xy": [
+        -22.13721466064453,
+        56.5764045715332
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.3231379359960556,
+      "side": "north"
+    },
+    {
+      "edge_index": 6,
+      "level": 2,
+      "bay": 1,
+      "center_xy": [
+        -22.13721466064453,
+        56.5764045715332
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.3134953796863555,
+      "side": "north"
+    },
+    {
+      "edge_index": 6,
+      "level": 1,
+      "bay": 2,
+      "center_xy": [
+        -26.049819946289062,
+        55.15567398071289
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.8014731973409652,
+      "side": "north"
+    },
+    {
+      "edge_index": 6,
+      "level": 2,
+      "bay": 2,
+      "center_xy": [
+        -26.049819946289062,
+        55.15567398071289
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.614527028799057,
+      "side": "north"
+    },
+    {
+      "edge_index": 8,
+      "level": 1,
+      "bay": 0,
+      "center_xy": [
+        -30.08971405029297,
+        54.34904479980469
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.3732697039842605,
+      "side": "north"
+    },
+    {
+      "edge_index": 8,
+      "level": 2,
+      "bay": 0,
+      "center_xy": [
+        -30.08971405029297,
+        54.34904479980469
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.4243804186582565,
+      "side": "north"
+    },
+    {
+      "edge_index": 8,
+      "level": 1,
+      "bay": 1,
+      "center_xy": [
+        -33.836280822753906,
+        52.98862838745117
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.511281993985176,
+      "side": "north"
+    },
+    {
+      "edge_index": 8,
+      "level": 2,
+      "bay": 1,
+      "center_xy": [
+        -33.836280822753906,
+        52.98862838745117
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.4277854532003402,
+      "side": "north"
+    },
+    {
+      "edge_index": 8,
+      "level": 1,
+      "bay": 2,
+      "center_xy": [
+        -37.582847595214844,
+        51.62821578979492
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.1726730585098266,
+      "side": "north"
+    },
+    {
+      "edge_index": 8,
+      "level": 2,
+      "bay": 2,
+      "center_xy": [
+        -37.582847595214844,
+        51.62821578979492
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.1796750843524932,
+      "side": "north"
+    },
+    {
+      "edge_index": 8,
+      "level": 1,
+      "bay": 3,
+      "center_xy": [
+        -41.32941436767578,
+        50.267799377441406
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.1307797104120254,
+      "side": "north"
+    },
+    {
+      "edge_index": 8,
+      "level": 2,
+      "bay": 3,
+      "center_xy": [
+        -41.32941436767578,
+        50.267799377441406
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.1173252657055854,
+      "side": "north"
+    },
+    {
+      "edge_index": 8,
+      "level": 1,
+      "bay": 4,
+      "center_xy": [
+        -45.07598114013672,
+        48.907386779785156
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.1493188709020614,
+      "side": "north"
+    },
+    {
+      "edge_index": 8,
+      "level": 2,
+      "bay": 4,
+      "center_xy": [
+        -45.07598114013672,
+        48.907386779785156
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.0440803736448288,
+      "side": "north"
+    },
+    {
+      "edge_index": 8,
+      "level": 1,
+      "bay": 5,
+      "center_xy": [
+        -48.822547912597656,
+        47.546974182128906
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.1238387644290924,
+      "side": "north"
+    },
+    {
+      "edge_index": 8,
+      "level": 2,
+      "bay": 5,
+      "center_xy": [
+        -48.822547912597656,
+        47.546974182128906
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.1133111760020256,
+      "side": "north"
+    },
+    {
+      "edge_index": 8,
+      "level": 1,
+      "bay": 6,
+      "center_xy": [
+        -52.569114685058594,
+        46.18655776977539
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.5344714194536209,
+      "side": "north"
+    },
+    {
+      "edge_index": 8,
+      "level": 2,
+      "bay": 6,
+      "center_xy": [
+        -52.569114685058594,
+        46.18655776977539
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.290180531144142,
+      "side": "north"
+    },
+    {
+      "edge_index": 8,
+      "level": 1,
+      "bay": 7,
+      "center_xy": [
+        -56.31568145751953,
+        44.826141357421875
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.1579871594905853,
+      "side": "north"
+    },
+    {
+      "edge_index": 8,
+      "level": 2,
+      "bay": 7,
+      "center_xy": [
+        -56.31568145751953,
+        44.826141357421875
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.3112433075904846,
+      "side": "north"
+    },
+    {
+      "edge_index": 10,
+      "level": 1,
+      "bay": 0,
+      "center_xy": [
+        -63.612937927246094,
+        41.34794235229492
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.2514232963323593,
+      "side": "north"
+    },
+    {
+      "edge_index": 10,
+      "level": 2,
+      "bay": 0,
+      "center_xy": [
+        -63.612937927246094,
+        41.34794235229492
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.2768804997205734,
+      "side": "north"
+    },
+    {
+      "edge_index": 10,
+      "level": 1,
+      "bay": 1,
+      "center_xy": [
+        -67.49540710449219,
+        39.93814468383789
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.2391119718551635,
+      "side": "north"
+    },
+    {
+      "edge_index": 10,
+      "level": 2,
+      "bay": 1,
+      "center_xy": [
+        -67.49540710449219,
+        39.93814468383789
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.2371460765600204,
+      "side": "north"
+    },
+    {
+      "edge_index": 10,
+      "level": 2,
+      "bay": 2,
+      "center_xy": [
+        -71.37788391113281,
+        38.528350830078125
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.9069116830825805,
+      "side": "north"
+    },
+    {
+      "edge_index": 12,
+      "level": 1,
+      "bay": 0,
+      "center_xy": [
+        -75.45663452148438,
+        37.77980041503906
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.141661313176155,
+      "side": "north"
+    },
+    {
+      "edge_index": 12,
+      "level": 2,
+      "bay": 0,
+      "center_xy": [
+        -75.45663452148438,
+        37.77980041503906
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.115520817041397,
+      "side": "north"
+    },
+    {
+      "edge_index": 12,
+      "level": 1,
+      "bay": 1,
+      "center_xy": [
+        -79.24754333496094,
+        36.375160217285156
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.294892293214798,
+      "side": "north"
+    },
+    {
+      "edge_index": 12,
+      "level": 2,
+      "bay": 1,
+      "center_xy": [
+        -79.24754333496094,
+        36.375160217285156
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.2650012493133544,
+      "side": "north"
+    },
+    {
+      "edge_index": 13,
+      "level": 1,
+      "bay": 0,
+      "center_xy": [
+        -83.1991958618164,
+        34.910953521728516
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.0273247256875038,
+      "side": "north"
+    },
+    {
+      "edge_index": 13,
+      "level": 2,
+      "bay": 0,
+      "center_xy": [
+        -83.1991958618164,
+        34.910953521728516
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 0.9990545779466629,
+      "side": "north"
+    },
+    {
+      "edge_index": 13,
+      "level": 1,
+      "bay": 1,
+      "center_xy": [
+        -87.31158447265625,
+        33.38718032836914
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.3731878370046615,
+      "side": "north"
+    },
+    {
+      "edge_index": 13,
+      "level": 2,
+      "bay": 1,
+      "center_xy": [
+        -87.31158447265625,
+        33.38718032836914
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.021665197610855,
+      "side": "north"
+    },
+    {
+      "edge_index": 13,
+      "level": 1,
+      "bay": 2,
+      "center_xy": [
+        -91.42398071289062,
+        31.863407135009766
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.3280345022678375,
+      "side": "north"
+    },
+    {
+      "edge_index": 13,
+      "level": 2,
+      "bay": 2,
+      "center_xy": [
+        -91.42398071289062,
+        31.863407135009766
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.3067785173654556,
+      "side": "north"
+    },
+    {
+      "edge_index": 14,
+      "level": 1,
+      "bay": 0,
+      "center_xy": [
+        -95.40264892578125,
+        30.389188766479492
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.0794158846139907,
+      "side": "north"
+    },
+    {
+      "edge_index": 14,
+      "level": 2,
+      "bay": 0,
+      "center_xy": [
+        -95.40264892578125,
+        30.389188766479492
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.1039445891976356,
+      "side": "north"
+    },
+    {
+      "edge_index": 14,
+      "level": 1,
+      "bay": 1,
+      "center_xy": [
+        -99.24759674072266,
+        28.964523315429688
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.4327304631471633,
+      "side": "north"
+    },
+    {
+      "edge_index": 14,
+      "level": 2,
+      "bay": 1,
+      "center_xy": [
+        -99.24759674072266,
+        28.964523315429688
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.386060681939125,
+      "side": "north"
+    },
+    {
+      "edge_index": 16,
+      "level": 1,
+      "bay": 0,
+      "center_xy": [
+        -102.92627716064453,
+        27.032011032104492
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.2839631110429763,
+      "side": "north"
+    },
+    {
+      "edge_index": 16,
+      "level": 2,
+      "bay": 0,
+      "center_xy": [
+        -102.92627716064453,
+        27.032011032104492
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.2420134514570236,
+      "side": "north"
+    },
+    {
+      "edge_index": 16,
+      "level": 1,
+      "bay": 1,
+      "center_xy": [
+        -106.81621551513672,
+        25.61955451965332
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.2311206132173538,
+      "side": "north"
+    },
+    {
+      "edge_index": 16,
+      "level": 2,
+      "bay": 1,
+      "center_xy": [
+        -106.81621551513672,
+        25.61955451965332
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.1861588329076767,
+      "side": "north"
+    },
+    {
+      "edge_index": 16,
+      "level": 1,
+      "bay": 2,
+      "center_xy": [
+        -110.70616149902344,
+        24.20709800720215
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.4234465479850769,
+      "side": "north"
+    },
+    {
+      "edge_index": 16,
+      "level": 2,
+      "bay": 2,
+      "center_xy": [
+        -110.70616149902344,
+        24.20709800720215
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.2045243352651596,
+      "side": "north"
+    },
+    {
+      "edge_index": 18,
+      "level": 1,
+      "bay": 0,
+      "center_xy": [
+        -114.90086364746094,
+        23.836153030395508
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 0.8731268316507339,
+      "side": "north"
+    },
+    {
+      "edge_index": 18,
+      "level": 2,
+      "bay": 0,
+      "center_xy": [
+        -114.90086364746094,
+        23.836153030395508
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 0.8313353404402732,
+      "side": "north"
+    },
+    {
+      "edge_index": 18,
+      "level": 1,
+      "bay": 1,
+      "center_xy": [
+        -118.66217803955078,
+        22.45691680908203
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 0.8773271039128303,
+      "side": "north"
+    },
+    {
+      "edge_index": 18,
+      "level": 2,
+      "bay": 1,
+      "center_xy": [
+        -118.66217803955078,
+        22.45691680908203
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 0.8927891001105308,
+      "side": "north"
+    },
+    {
+      "edge_index": 18,
+      "level": 1,
+      "bay": 2,
+      "center_xy": [
+        -122.4234848022461,
+        21.077680587768555
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 0.6644782990217208,
+      "side": "north"
+    },
+    {
+      "edge_index": 18,
+      "level": 2,
+      "bay": 2,
+      "center_xy": [
+        -122.4234848022461,
+        21.077680587768555
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 0.6716585874557495,
+      "side": "north"
+    },
+    {
+      "edge_index": 18,
+      "level": 1,
+      "bay": 3,
+      "center_xy": [
+        -126.18479919433594,
+        19.69844627380371
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 0.6362038448452949,
+      "side": "north"
+    },
+    {
+      "edge_index": 18,
+      "level": 2,
+      "bay": 3,
+      "center_xy": [
+        -126.18479919433594,
+        19.69844627380371
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 0.6936739280819892,
+      "side": "north"
+    },
+    {
+      "edge_index": 18,
+      "level": 1,
+      "bay": 4,
+      "center_xy": [
+        -129.94610595703125,
+        18.319210052490234
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 0.6862516596913337,
+      "side": "north"
+    },
+    {
+      "edge_index": 18,
+      "level": 2,
+      "bay": 4,
+      "center_xy": [
+        -129.94610595703125,
+        18.319210052490234
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 0.6010554999113082,
+      "side": "north"
+    },
+    {
+      "edge_index": 18,
+      "level": 1,
+      "bay": 5,
+      "center_xy": [
+        -133.70742797851562,
+        16.93997573852539
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 0.7118451789021492,
+      "side": "north"
+    },
+    {
+      "edge_index": 18,
+      "level": 2,
+      "bay": 5,
+      "center_xy": [
+        -133.70742797851562,
+        16.93997573852539
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 0.6390229061245918,
+      "side": "north"
+    },
+    {
+      "edge_index": 18,
+      "level": 1,
+      "bay": 6,
+      "center_xy": [
+        -137.46873474121094,
+        15.560739517211914
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 0.8449531391263008,
+      "side": "north"
+    },
+    {
+      "edge_index": 18,
+      "level": 2,
+      "bay": 6,
+      "center_xy": [
+        -137.46873474121094,
+        15.560739517211914
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 0.8365003511309623,
+      "side": "north"
+    },
+    {
+      "edge_index": 18,
+      "level": 1,
+      "bay": 7,
+      "center_xy": [
+        -141.23004150390625,
+        14.181503295898438
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 0.8745607927441597,
+      "side": "north"
+    },
+    {
+      "edge_index": 18,
+      "level": 2,
+      "bay": 7,
+      "center_xy": [
+        -141.23004150390625,
+        14.181503295898438
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 0.8473864614963531,
+      "side": "north"
+    },
+    {
+      "edge_index": 18,
+      "level": 1,
+      "bay": 8,
+      "center_xy": [
+        -144.99136352539062,
+        12.802267074584961
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 0.908562821149826,
+      "side": "north"
+    },
+    {
+      "edge_index": 18,
+      "level": 2,
+      "bay": 8,
+      "center_xy": [
+        -144.99136352539062,
+        12.802267074584961
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 0.9053446024656295,
+      "side": "north"
+    },
+    {
+      "edge_index": 20,
+      "level": 1,
+      "bay": 0,
+      "center_xy": [
+        -148.6138458251953,
+        10.75026798248291
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 0.8319947615265846,
+      "side": "north"
+    },
+    {
+      "edge_index": 20,
+      "level": 2,
+      "bay": 0,
+      "center_xy": [
+        -148.6138458251953,
+        10.75026798248291
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 0.8015915796160697,
+      "side": "north"
+    },
+    {
+      "edge_index": 20,
+      "level": 1,
+      "bay": 1,
+      "center_xy": [
+        -152.56243896484375,
+        9.316544532775879
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 0.8360195279121398,
+      "side": "north"
+    },
+    {
+      "edge_index": 20,
+      "level": 2,
+      "bay": 1,
+      "center_xy": [
+        -152.56243896484375,
+        9.316544532775879
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 0.879632231593132,
+      "side": "north"
+    },
+    {
+      "edge_index": 20,
+      "level": 2,
+      "bay": 2,
+      "center_xy": [
+        -156.5110321044922,
+        7.882821559906006
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.4095343619585037,
+      "side": "north"
+    },
+    {
+      "edge_index": 21,
+      "level": 1,
+      "bay": 0,
+      "center_xy": [
+        -161.82843017578125,
+        5.952099800109863
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.073796485364437,
+      "side": "north"
+    },
+    {
+      "edge_index": 21,
+      "level": 2,
+      "bay": 0,
+      "center_xy": [
+        -161.82843017578125,
+        5.952099800109863
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.1632439762353897,
+      "side": "north"
+    },
+    {
+      "edge_index": 22,
+      "level": 1,
+      "bay": 0,
+      "center_xy": [
+        -167.2326202392578,
+        3.9898581504821777
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.3506646275520324,
+      "side": "north"
+    },
+    {
+      "edge_index": 22,
+      "level": 2,
+      "bay": 0,
+      "center_xy": [
+        -167.2326202392578,
+        3.9898581504821777
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.212112721800804,
+      "side": "north"
+    },
+    {
+      "edge_index": 22,
+      "level": 1,
+      "bay": 1,
+      "center_xy": [
+        -171.35484313964844,
+        2.4930946826934814
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.3585904955863952,
+      "side": "north"
+    },
+    {
+      "edge_index": 22,
+      "level": 2,
+      "bay": 1,
+      "center_xy": [
+        -171.35484313964844,
+        2.4930946826934814
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.1758884012699127,
+      "side": "north"
+    },
+    {
+      "edge_index": 22,
+      "level": 1,
+      "bay": 2,
+      "center_xy": [
+        -175.47708129882812,
+        0.9963312149047852
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.3449135690927505,
+      "side": "north"
+    },
+    {
+      "edge_index": 22,
+      "level": 2,
+      "bay": 2,
+      "center_xy": [
+        -175.47708129882812,
+        0.9963312149047852
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.1076947197318077,
+      "side": "north"
+    },
+    {
+      "edge_index": 24,
+      "level": 1,
+      "bay": 0,
+      "center_xy": [
+        -180.02923583984375,
+        -0.04568248987197876
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 0.7980629473924636,
+      "side": "north"
+    },
+    {
+      "edge_index": 24,
+      "level": 2,
+      "bay": 0,
+      "center_xy": [
+        -180.02923583984375,
+        -0.04568248987197876
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 0.7629977285861969,
+      "side": "north"
+    },
+    {
+      "edge_index": 24,
+      "level": 1,
+      "bay": 1,
+      "center_xy": [
+        -184.6171112060547,
+        -1.728027582168579
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 0.8945101544260978,
+      "side": "north"
+    },
+    {
+      "edge_index": 24,
+      "level": 2,
+      "bay": 1,
+      "center_xy": [
+        -184.6171112060547,
+        -1.728027582168579
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 0.7938825979828834,
+      "side": "north"
+    },
+    {
+      "edge_index": 26,
+      "level": 1,
+      "bay": 0,
+      "center_xy": [
+        -188.69155883789062,
+        -3.8017683029174805
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.1803502559661865,
+      "side": "north"
+    },
+    {
+      "edge_index": 26,
+      "level": 2,
+      "bay": 0,
+      "center_xy": [
+        -188.69155883789062,
+        -3.8017683029174805
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.0510265052318573,
+      "side": "north"
+    },
+    {
+      "edge_index": 26,
+      "level": 1,
+      "bay": 1,
+      "center_xy": [
+        -192.6259002685547,
+        -5.230264663696289
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.3787363290786743,
+      "side": "north"
+    },
+    {
+      "edge_index": 26,
+      "level": 2,
+      "bay": 1,
+      "center_xy": [
+        -192.6259002685547,
+        -5.230264663696289
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.0675671219825744,
+      "side": "north"
+    },
+    {
+      "edge_index": 26,
+      "level": 1,
+      "bay": 2,
+      "center_xy": [
+        -196.56024169921875,
+        -6.658761501312256
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.3624511331319809,
+      "side": "north"
+    },
+    {
+      "edge_index": 26,
+      "level": 2,
+      "bay": 2,
+      "center_xy": [
+        -196.56024169921875,
+        -6.658761501312256
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.3191695183515548,
+      "side": "north"
+    },
+    {
+      "edge_index": 27,
+      "level": 1,
+      "bay": 0,
+      "center_xy": [
+        -200.4227294921875,
+        -8.06116008758545
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.0653935194015502,
+      "side": "north"
+    },
+    {
+      "edge_index": 27,
+      "level": 2,
+      "bay": 0,
+      "center_xy": [
+        -200.4227294921875,
+        -8.06116008758545
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.019807581603527,
+      "side": "north"
+    },
+    {
+      "edge_index": 27,
+      "level": 1,
+      "bay": 1,
+      "center_xy": [
+        -204.21336364746094,
+        -9.437459945678711
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 1.4961451709270477,
+      "side": "north"
+    },
+    {
+      "edge_index": 27,
+      "level": 2,
+      "bay": 1,
+      "center_xy": [
+        -204.21336364746094,
+        -9.437459945678711
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 1.4231932580471038,
+      "side": "north"
+    },
+    {
+      "edge_index": 29,
+      "level": 1,
+      "bay": 4,
+      "center_xy": [
+        -223.32826232910156,
+        -15.922579765319824
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 0.709200282394886,
+      "side": "north"
+    },
+    {
+      "edge_index": 29,
+      "level": 2,
+      "bay": 4,
+      "center_xy": [
+        -223.32826232910156,
+        -15.922579765319824
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 0.8447149142622947,
+      "side": "north"
+    },
+    {
+      "edge_index": 29,
+      "level": 1,
+      "bay": 5,
+      "center_xy": [
+        -227.11827087402344,
+        -17.312292098999023
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": 0.7929838791489601,
+      "side": "north"
+    },
+    {
+      "edge_index": 29,
+      "level": 2,
+      "bay": 5,
+      "center_xy": [
+        -227.11827087402344,
+        -17.312292098999023
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": 0.8154529228806495,
+      "side": "north"
+    },
+    {
+      "edge_index": 36,
+      "level": 1,
+      "bay": 0,
+      "center_xy": [
+        -221.2277069091797,
+        -29.385080337524414
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.4172257959842682,
+      "side": "south"
+    },
+    {
+      "edge_index": 36,
+      "level": 2,
+      "bay": 0,
+      "center_xy": [
+        -221.2277069091797,
+        -29.385080337524414
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.5129556685686112,
+      "side": "south"
+    },
+    {
+      "edge_index": 36,
+      "level": 1,
+      "bay": 1,
+      "center_xy": [
+        -217.44122314453125,
+        -27.967060089111328
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.2864671230316163,
+      "side": "south"
+    },
+    {
+      "edge_index": 36,
+      "level": 2,
+      "bay": 1,
+      "center_xy": [
+        -217.44122314453125,
+        -27.967060089111328
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.5127831727266312,
+      "side": "south"
+    },
+    {
+      "edge_index": 36,
+      "level": 1,
+      "bay": 2,
+      "center_xy": [
+        -213.65472412109375,
+        -26.549041748046875
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.1607639223337174,
+      "side": "south"
+    },
+    {
+      "edge_index": 36,
+      "level": 2,
+      "bay": 2,
+      "center_xy": [
+        -213.65472412109375,
+        -26.549041748046875
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.4441604793071747,
+      "side": "south"
+    },
+    {
+      "edge_index": 36,
+      "level": 1,
+      "bay": 3,
+      "center_xy": [
+        -209.86822509765625,
+        -25.131023406982422
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.3482976585626603,
+      "side": "south"
+    },
+    {
+      "edge_index": 36,
+      "level": 2,
+      "bay": 3,
+      "center_xy": [
+        -209.86822509765625,
+        -25.131023406982422
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.3975083708763123,
+      "side": "south"
+    },
+    {
+      "edge_index": 36,
+      "level": 1,
+      "bay": 4,
+      "center_xy": [
+        -206.0817413330078,
+        -23.713003158569336
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.2009701162576676,
+      "side": "south"
+    },
+    {
+      "edge_index": 36,
+      "level": 2,
+      "bay": 4,
+      "center_xy": [
+        -206.0817413330078,
+        -23.713003158569336
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.4111169159412384,
+      "side": "south"
+    },
+    {
+      "edge_index": 36,
+      "level": 1,
+      "bay": 5,
+      "center_xy": [
+        -202.2952423095703,
+        -22.294984817504883
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -0.7992325082421303,
+      "side": "south"
+    },
+    {
+      "edge_index": 36,
+      "level": 2,
+      "bay": 5,
+      "center_xy": [
+        -202.2952423095703,
+        -22.294984817504883
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.293916854262352,
+      "side": "south"
+    },
+    {
+      "edge_index": 36,
+      "level": 1,
+      "bay": 6,
+      "center_xy": [
+        -198.50875854492188,
+        -20.876964569091797
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.2213114976882935,
+      "side": "south"
+    },
+    {
+      "edge_index": 36,
+      "level": 2,
+      "bay": 6,
+      "center_xy": [
+        -198.50875854492188,
+        -20.876964569091797
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.3408646911382676,
+      "side": "south"
+    },
+    {
+      "edge_index": 36,
+      "level": 1,
+      "bay": 7,
+      "center_xy": [
+        -194.72225952148438,
+        -19.458946228027344
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.1995649069547654,
+      "side": "south"
+    },
+    {
+      "edge_index": 36,
+      "level": 2,
+      "bay": 7,
+      "center_xy": [
+        -194.72225952148438,
+        -19.458946228027344
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.234413954615593,
+      "side": "south"
+    },
+    {
+      "edge_index": 36,
+      "level": 1,
+      "bay": 8,
+      "center_xy": [
+        -190.93576049804688,
+        -18.040925979614258
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.1850926607847214,
+      "side": "south"
+    },
+    {
+      "edge_index": 36,
+      "level": 2,
+      "bay": 8,
+      "center_xy": [
+        -190.93576049804688,
+        -18.040925979614258
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.271843034029007,
+      "side": "south"
+    },
+    {
+      "edge_index": 36,
+      "level": 1,
+      "bay": 9,
+      "center_xy": [
+        -187.14927673339844,
+        -16.622909545898438
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.135245504975319,
+      "side": "south"
+    },
+    {
+      "edge_index": 36,
+      "level": 2,
+      "bay": 9,
+      "center_xy": [
+        -187.14927673339844,
+        -16.622909545898438
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.2442793875932694,
+      "side": "south"
+    },
+    {
+      "edge_index": 36,
+      "level": 1,
+      "bay": 10,
+      "center_xy": [
+        -183.36279296875,
+        -15.204889297485352
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.0837096005678177,
+      "side": "south"
+    },
+    {
+      "edge_index": 36,
+      "level": 2,
+      "bay": 10,
+      "center_xy": [
+        -183.36279296875,
+        -15.204889297485352
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.2034249037504197,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 1,
+      "center_xy": [
+        -176.39581298828125,
+        -11.434334754943848
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.514198887348175,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 1,
+      "center_xy": [
+        -176.39581298828125,
+        -11.434334754943848
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.320105168223381,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 2,
+      "center_xy": [
+        -172.7444610595703,
+        -10.080556869506836
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.4218140572309494,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 2,
+      "center_xy": [
+        -172.7444610595703,
+        -10.080556869506836
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.5701543718576432,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 3,
+      "center_xy": [
+        -169.09310913085938,
+        -8.72677993774414
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.5401692867279053,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 3,
+      "center_xy": [
+        -169.09310913085938,
+        -8.72677993774414
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.5838894575834275,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 4,
+      "center_xy": [
+        -165.44175720214844,
+        -7.373003005981445
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.5761223614215851,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 4,
+      "center_xy": [
+        -165.44175720214844,
+        -7.373003005981445
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.6036058694124222,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 5,
+      "center_xy": [
+        -161.7904052734375,
+        -6.01922607421875
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.1738265186548233,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 5,
+      "center_xy": [
+        -161.7904052734375,
+        -6.01922607421875
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.5798750400543213,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 6,
+      "center_xy": [
+        -158.13905334472656,
+        -4.665449142456055
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.6382103592157364,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 6,
+      "center_xy": [
+        -158.13905334472656,
+        -4.665449142456055
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.6563383221626282,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 7,
+      "center_xy": [
+        -154.48770141601562,
+        -3.3116722106933594
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.216662096977234,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 7,
+      "center_xy": [
+        -154.48770141601562,
+        -3.3116722106933594
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.3726576894521714,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 8,
+      "center_xy": [
+        -150.8363494873047,
+        -1.957895278930664
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.5839948385953904,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 8,
+      "center_xy": [
+        -150.8363494873047,
+        -1.957895278930664
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.5856610715389252,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 9,
+      "center_xy": [
+        -147.18499755859375,
+        -0.6041183471679688
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.5473514080047608,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 9,
+      "center_xy": [
+        -147.18499755859375,
+        -0.6041183471679688
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.5665762156248093,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 10,
+      "center_xy": [
+        -143.5336456298828,
+        0.7496585845947266
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.526172834634781,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 10,
+      "center_xy": [
+        -143.5336456298828,
+        0.7496585845947266
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.5456978112459183,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 11,
+      "center_xy": [
+        -139.88229370117188,
+        2.1034374237060547
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.3833479464054108,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 11,
+      "center_xy": [
+        -139.88229370117188,
+        2.1034374237060547
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.4197124272584916,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 12,
+      "center_xy": [
+        -136.23094177246094,
+        3.45721435546875
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.4432541310787201,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 12,
+      "center_xy": [
+        -136.23094177246094,
+        3.45721435546875
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.5007339298725129,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 13,
+      "center_xy": [
+        -132.57958984375,
+        4.810991287231445
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.3980506986379624,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 13,
+      "center_xy": [
+        -132.57958984375,
+        4.810991287231445
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.5128798365592957,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 14,
+      "center_xy": [
+        -128.92822265625,
+        6.164768218994141
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.562743666768074,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 15,
+      "center_xy": [
+        -125.2768783569336,
+        7.518545150756836
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.4347816437482834,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 15,
+      "center_xy": [
+        -125.2768783569336,
+        7.518545150756836
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.5129558324813843,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 16,
+      "center_xy": [
+        -121.62551879882812,
+        8.872323989868164
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.3482449978590012,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 16,
+      "center_xy": [
+        -121.62551879882812,
+        8.872323989868164
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.4667398363351822,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 17,
+      "center_xy": [
+        -117.97417449951172,
+        10.226099014282227
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.318440693616867,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 17,
+      "center_xy": [
+        -117.97417449951172,
+        10.226099014282227
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.4472670435905457,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 18,
+      "center_xy": [
+        -114.32281494140625,
+        11.579877853393555
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.2682412147521973,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 18,
+      "center_xy": [
+        -114.32281494140625,
+        11.579877853393555
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.430369558930397,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 19,
+      "center_xy": [
+        -110.67147064208984,
+        12.933652877807617
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.0705007493495942,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 19,
+      "center_xy": [
+        -110.67147064208984,
+        12.933652877807617
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.3330235809087754,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 20,
+      "center_xy": [
+        -107.02011108398438,
+        14.287431716918945
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.2446304589509964,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 20,
+      "center_xy": [
+        -107.02011108398438,
+        14.287431716918945
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.4143945306539536,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 21,
+      "center_xy": [
+        -103.36876678466797,
+        15.641206741333008
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.2889078438282013,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 21,
+      "center_xy": [
+        -103.36876678466797,
+        15.641206741333008
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.3806487053632737,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 22,
+      "center_xy": [
+        -99.7174072265625,
+        16.994985580444336
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.2920563697814942,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 22,
+      "center_xy": [
+        -99.7174072265625,
+        16.994985580444336
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.3594668090343476,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 23,
+      "center_xy": [
+        -96.06605529785156,
+        18.3487606048584
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.0539273649454117,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 23,
+      "center_xy": [
+        -96.06605529785156,
+        18.3487606048584
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.2489595144987107,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 24,
+      "center_xy": [
+        -92.41470336914062,
+        19.702537536621094
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.203698056936264,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 24,
+      "center_xy": [
+        -92.41470336914062,
+        19.702537536621094
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.3137490630149842,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 25,
+      "center_xy": [
+        -88.76335144042969,
+        21.056316375732422
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.0781747728586197,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 25,
+      "center_xy": [
+        -88.76335144042969,
+        21.056316375732422
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.344352486729622,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 26,
+      "center_xy": [
+        -85.11199951171875,
+        22.410091400146484
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.2136974513530732,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 26,
+      "center_xy": [
+        -85.11199951171875,
+        22.410091400146484
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.13316770195961,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 27,
+      "center_xy": [
+        -81.46063995361328,
+        23.763870239257812
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.1876131176948548,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 27,
+      "center_xy": [
+        -81.46063995361328,
+        23.763870239257812
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.2150555580854416,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 28,
+      "center_xy": [
+        -77.80929565429688,
+        25.117645263671875
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.140465858578682,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 28,
+      "center_xy": [
+        -77.80929565429688,
+        25.117645263671875
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.1827019184827805,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 29,
+      "center_xy": [
+        -74.1579360961914,
+        26.471424102783203
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.1415463119745255,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 29,
+      "center_xy": [
+        -74.1579360961914,
+        26.471424102783203
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.151566269993782,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 30,
+      "center_xy": [
+        -70.50658416748047,
+        27.825199127197266
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -0.9664299219846726,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 30,
+      "center_xy": [
+        -70.50658416748047,
+        27.825199127197266
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.118357139825821,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 31,
+      "center_xy": [
+        -66.85523223876953,
+        29.178977966308594
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.1107580095529557,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 31,
+      "center_xy": [
+        -66.85523223876953,
+        29.178977966308594
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.132306832075119,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 32,
+      "center_xy": [
+        -63.203880310058594,
+        30.532756805419922
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.0718705236911774,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 32,
+      "center_xy": [
+        -63.203880310058594,
+        30.532756805419922
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.1090154081583024,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 33,
+      "center_xy": [
+        -59.552528381347656,
+        31.886531829833984
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.0541931122541428,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 33,
+      "center_xy": [
+        -59.552528381347656,
+        31.886531829833984
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.1098253458738327,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 34,
+      "center_xy": [
+        -55.90116882324219,
+        33.24031066894531
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -0.9681175529956818,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 34,
+      "center_xy": [
+        -55.90116882324219,
+        33.24031066894531
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -0.9435482278466225,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 35,
+      "center_xy": [
+        -52.24983215332031,
+        34.594085693359375
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -1.0351654171943665,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 35,
+      "center_xy": [
+        -52.24983215332031,
+        34.594085693359375
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.0004337012767792,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 36,
+      "center_xy": [
+        -48.59846496582031,
+        35.9478645324707
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -0.9986880600452424,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 36,
+      "center_xy": [
+        -48.59846496582031,
+        35.9478645324707
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.005336093902588,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 1,
+      "bay": 37,
+      "center_xy": [
+        -44.947113037109375,
+        37.301639556884766
+      ],
+      "bottom": 8.5,
+      "top": 11.2,
+      "arch": false,
+      "source_plane_offset": -0.9976701468229294,
+      "side": "south"
+    },
+    {
+      "edge_index": 38,
+      "level": 2,
+      "bay": 37,
+      "center_xy": [
+        -44.947113037109375,
+        37.301639556884766
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.0477003186941147,
+      "side": "south"
+    },
+    {
+      "edge_index": 39,
+      "level": 2,
+      "bay": 0,
+      "center_xy": [
+        -41.227413177490234,
+        38.68079376220703
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -0.9196382716298104,
+      "side": "south"
+    },
+    {
+      "edge_index": 39,
+      "level": 2,
+      "bay": 1,
+      "center_xy": [
+        -37.43933868408203,
+        40.08531951904297
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -0.944041083753109,
+      "side": "south"
+    },
+    {
+      "edge_index": 39,
+      "level": 2,
+      "bay": 2,
+      "center_xy": [
+        -33.651268005371094,
+        41.48984146118164
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.0065409868955613,
+      "side": "south"
+    },
+    {
+      "edge_index": 39,
+      "level": 2,
+      "bay": 3,
+      "center_xy": [
+        -29.86319351196289,
+        42.89436721801758
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.0160447984933854,
+      "side": "south"
+    },
+    {
+      "edge_index": 39,
+      "level": 2,
+      "bay": 4,
+      "center_xy": [
+        -26.07512092590332,
+        44.298892974853516
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -0.9711166948080063,
+      "side": "south"
+    },
+    {
+      "edge_index": 39,
+      "level": 2,
+      "bay": 5,
+      "center_xy": [
+        -22.287050247192383,
+        45.70341873168945
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -0.9707135885953904,
+      "side": "south"
+    },
+    {
+      "edge_index": 39,
+      "level": 2,
+      "bay": 6,
+      "center_xy": [
+        -18.498977661132812,
+        47.107940673828125
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.0237990200519562,
+      "side": "south"
+    },
+    {
+      "edge_index": 39,
+      "level": 2,
+      "bay": 7,
+      "center_xy": [
+        -14.710905075073242,
+        48.51246643066406
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.0325835525989533,
+      "side": "south"
+    },
+    {
+      "edge_index": 42,
+      "level": 2,
+      "bay": 1,
+      "center_xy": [
+        -0.6878910064697266,
+        33.10254669189453
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.55634303689003,
+      "side": "south"
+    },
+    {
+      "edge_index": 42,
+      "level": 2,
+      "bay": 2,
+      "center_xy": [
+        2.998854637145996,
+        34.4608039855957
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.6682251870632172,
+      "side": "south"
+    },
+    {
+      "edge_index": 42,
+      "level": 2,
+      "bay": 3,
+      "center_xy": [
+        6.685600280761719,
+        35.81906509399414
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.6655575215816498,
+      "side": "south"
+    },
+    {
+      "edge_index": 42,
+      "level": 2,
+      "bay": 4,
+      "center_xy": [
+        10.372344970703125,
+        37.17732238769531
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.6462772071361542,
+      "side": "south"
+    },
+    {
+      "edge_index": 43,
+      "level": 2,
+      "bay": 0,
+      "center_xy": [
+        14.543700218200684,
+        38.714115142822266
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.526251780986786,
+      "side": "south"
+    },
+    {
+      "edge_index": 43,
+      "level": 2,
+      "bay": 1,
+      "center_xy": [
+        19.199661254882812,
+        40.429443359375
+      ],
+      "bottom": 14,
+      "top": 17.4,
+      "arch": true,
+      "source_plane_offset": -1.7619205594062806,
+      "side": "south"
+    }
+  ],
+  "limits": "Own glass/frame/sill geometry over retained scan; no photographic textures. Historical1905 front elevation and undated south-facade archival photo guide forms only. 3.8m target spacing, levels3.5/8.5/14m, dimensions and mullions authored, not surveyed current openings. Six support points per pane ray-tested against captured wall; gaps and excessive surface variation rejected. No actual facade cutting or measured bay count."
+}

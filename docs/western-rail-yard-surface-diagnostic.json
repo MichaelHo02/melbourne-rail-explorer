@@ -1,0 +1,76 @@
+{
+  "camera": "Aerial overview",
+  "hits": [
+    {
+      "pixel": [
+        510,
+        550
+      ],
+      "object": "Authored ground with City Square portal",
+      "point": [
+        -1678.43701171875,
+        654.893310546875,
+        -0.3999614715576172
+      ],
+      "face": 689,
+      "material": "Authored neutral urban ground"
+    },
+    {
+      "pixel": [
+        570,
+        620
+      ],
+      "object": "Authored grouped window bays - varied low rise",
+      "point": [
+        -1380.167724609375,
+        427.8316955566406,
+        38.5643310546875
+      ],
+      "face": 204542,
+      "material": "Authored slate blue glazing"
+    },
+    {
+      "pixel": [
+        590,
+        720
+      ],
+      "object": "survey_7716",
+      "point": [
+        -1010.3831787109375,
+        -16.530376434326172,
+        125.49972534179688
+      ],
+      "face": 39,
+      "material": "Authored grouped tower glazing 4 - colour unverified"
+    },
+    {
+      "pixel": [
+        520,
+        475
+      ],
+      "object": "survey_29073",
+      "point": [
+        -1832.75146484375,
+        895.2672119140625,
+        7.168425559997559
+      ],
+      "face": 0,
+      "material": "Authored short low-rise plain wall - Authored terracotta facade palette 0 - unsurveyed colour"
+    },
+    {
+      "pixel": [
+        550,
+        850
+      ],
+      "object": "Authored ground with City Square portal",
+      "point": [
+        -910.6099243164062,
+        -272.364013671875,
+        -0.3999805450439453
+      ],
+      "face": 692,
+      "material": "Authored neutral urban ground"
+    }
+  ],
+  "limits": "Geometric nearest-hit diagnostic; transparent faces can be returned. Render confirms optical appearance separately."
+}

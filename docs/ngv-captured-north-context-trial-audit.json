@@ -1,0 +1,10 @@
+{
+  "masked_faces": {
+    "Continuous surveyed roofs - authored finishes": 69,
+    "survey_16222": 0
+  },
+  "captured_triangles": 16407,
+  "reduction_ratio": 0.35,
+  "limits": "Unsaved trial. Historical2020 capture, own zinc. Authored95m boundary; scan holes and envelope contacts require visual review.",
+  "visual_decision": "Rejected: holes, jagged boundaries and stray geometry over Atrium. Smoothing does not restore missing topology. Canonical file unchanged."
+}

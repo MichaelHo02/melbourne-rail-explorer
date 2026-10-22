@@ -1,0 +1,11 @@
+{
+  "source": "https://gis-3dmodelcapture-2020.s3.ap-southeast-2.amazonaws.com/photomesh/OBJ/D4-01.zip",
+  "region": "D4-01",
+  "entry": "D4-01/D4-01.obj",
+  "archive_bytes": 233754951,
+  "compressed_bytes": 114588643,
+  "expected_obj_bytes": 476325570,
+  "expected_crc32": 2115058418,
+  "data_start": 14120,
+  "limits": "Historical2020 municipal geometry only. No photographic textures downloaded or imported."
+}

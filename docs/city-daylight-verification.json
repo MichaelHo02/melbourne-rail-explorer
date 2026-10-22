@@ -1,0 +1,15 @@
+{
+  "scan_geometry_unchanged": true,
+  "mesh_counts_unchanged": true,
+  "material_colours_unchanged": true,
+  "existing_sun_unchanged": true,
+  "repeat_run_same_world": true,
+  "repeat_run_no_extra_worlds": true,
+  "previous_world_retained": "Authored neutral daylight",
+  "no_image_or_environment_maps": true,
+  "station_geometry_sha256": "30c0e371bee5b0185de00c35fbaab93e4d56a4540406884ea334391713e22835",
+  "established_view_and_sun_preset_unchanged": true,
+  "previous_world_sky_model": "MULTIPLE_SCATTERING",
+  "previous_world_strength": 0.055,
+  "previous_world_has_saturation_node": true
+}

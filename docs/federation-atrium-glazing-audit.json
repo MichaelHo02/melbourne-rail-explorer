@@ -1,0 +1,12 @@
+{
+  "backup": "Authored Atrium pale clear glazing before thin glazing",
+  "roughness": 0.08,
+  "ior": 1.45,
+  "tint": [
+    0.94,
+    0.97,
+    0.96
+  ],
+  "geometry_changed": false,
+  "limits": "Authored thin-surface clear transmission and Fresnel reflections for zero-thickness prototype panes. No volumetric absorption or refraction, measured tint or exact glazing specification. Shape, framing and present-day condition remain approximate."
+}

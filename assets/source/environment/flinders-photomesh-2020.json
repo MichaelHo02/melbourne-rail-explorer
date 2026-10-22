@@ -1,0 +1,31 @@
+{
+  "source": "https://discover.data.vic.gov.au/dataset/city-of-melbourne-3d-textured-mesh-photomesh-2020",
+  "capture": "May 2020",
+  "license": "CC BY 4.0",
+  "tiles": [
+    {
+      "tile": "C4-34",
+      "source_faces": 1764955,
+      "retained_faces": 115406
+    },
+    {
+      "tile": "C4-35",
+      "source_faces": 1969250,
+      "retained_faces": 71800
+    },
+    {
+      "tile": "C4-28",
+      "source_faces": 3883671,
+      "retained_faces": 111303
+    },
+    {
+      "tile": "C4-29",
+      "source_faces": 2291414,
+      "retained_faces": 99078
+    }
+  ],
+  "vertices": 213666,
+  "faces": 397587,
+  "sha256": "51a95d4a33647bf8e1089a47141f3897b7cfd1618de1d941fe622aa9f6987566",
+  "limits": "2020 capture, not present-day survey. Crop uses 2023 station structure804817 footprint plus authored 1m tolerance. MGA55 EPSG28355 transformed to geographic/local scene; authored flat datum offset AHD4.1m. Photographic textures omitted. Scan may contain occlusions, artefacts and captured vehicles/people; inspect before final use."
+}

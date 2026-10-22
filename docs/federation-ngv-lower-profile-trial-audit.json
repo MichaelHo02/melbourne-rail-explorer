@@ -1,0 +1,12 @@
+{
+  "status": "rejected, not saved to canonical city",
+  "script": "scripts/blender/trial_ngv_lower_captured_profile.py",
+  "image": "docs/images/observatory-ngv-lower-captured-profile-trial.png",
+  "reasons": [
+    "Initial sparse cap vertices did not move with dense cladding",
+    "Subdivided cap exposed overlapping surfaces and artificial boundary rim",
+    "Roof fits lacked eastern municipal tileC4-30"
+  ],
+  "next_requirement": "Inspect two-tile captured roof before replacing roof profiles",
+  "original_scene_changed": false
+}

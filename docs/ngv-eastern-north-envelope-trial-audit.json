@@ -1,0 +1,16 @@
+{
+  "objects": {
+    "Continuous surveyed roofs - authored finishes": 69,
+    "Federation NGV - nested pinwheel panels": 1750,
+    "Federation Square - authored triangular cladding": 1068,
+    "survey_16222": 16
+  },
+  "plane": [
+    0.011907219055399845,
+    0.004237983563212835,
+    27.62608858163477
+  ],
+  "inlier_cells": 542,
+  "median_residual_m": 0.09052925133165601,
+  "limits": "Height correction supported by eastern2020 roof plane;235..240m and95..105m transition weights authored.27.9m deformation base retained. Sparse roof vertices may need matching subdivisions; no city save in this trial. Exact fold boundaries and skylights unresolved."
+}

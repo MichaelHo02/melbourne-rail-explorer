@@ -1,0 +1,33 @@
+{
+  "source": "https://discover.data.vic.gov.au/dataset/city-of-melbourne-3d-textured-mesh-photomesh-2020",
+  "capture": "May 2020",
+  "license": "CC BY 4.0",
+  "tiles": [
+    {
+      "tile": "C4-34",
+      "source_faces": 1764955,
+      "retained_faces": 0
+    },
+    {
+      "tile": "C4-35",
+      "source_faces": 1969250,
+      "retained_faces": 117487
+    },
+    {
+      "tile": "C4-28",
+      "source_faces": 3883671,
+      "retained_faces": 0
+    },
+    {
+      "tile": "C4-29",
+      "source_faces": 2291414,
+      "retained_faces": 565889
+    }
+  ],
+  "vertices": 356020,
+  "faces": 683376,
+  "sha256": "e5a28e845881a7a40003d5766e3986bf55ddc2529d5339a385ceb260092a5ffb",
+  "limits": "2020 capture, not present-day survey. Diagnostic precinct rectangle x35..320,y-45..155m, authored and not exact boundary. MGA55 EPSG28355 transformed to geographic/local scene; authored flat datum offset AHD4.1m. Photographic textures omitted. Scan may contain occlusions, artefacts and captured vehicles/people; inspect before final use.",
+  "samples_sha256": "07b5aa43c63d861c2175f5718a9ca80e566731b794c1c3a4daae6e1064ba10b7",
+  "sample_rule": "2m horizontal grid x50..310,y-45..115; downward rays from local13.1m, upward-facing triangles normal.z>.55, centre elevations0..13m; retained selected building footprints excluded. Samples include residual capture artefacts; authored median/outlier filtering applied by preparation script."
+}

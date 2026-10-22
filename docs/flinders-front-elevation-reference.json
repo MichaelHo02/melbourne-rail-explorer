@@ -1,0 +1,18 @@
+{
+  "reference_url": "https://www.flindersstreetstation.com.au/",
+  "drawing_url": "https://www.flindersstreetstation.com.au/images/flinders-street-station-elevation-front.jpg",
+  "publisher": "Our Station Flinders Street, Jenny Davies project",
+  "described_artifact": "Copy of front elevation lithograph signed by builder Peter Rodger, September1905",
+  "inspection": "Full2960\u00d7640 elevation viewed in browser on2026-10-06; no source image downloaded or mapped onto model",
+  "visual_observations": [
+    "Repeating upper arched window bays above rectangular lower-storey openings",
+    "Large entrance arches beneath pavilion pediments",
+    "Dome, separate clock tower, roof turrets and long cornice line"
+  ],
+  "limits": "Historical drawing reference, not verified current installed facade or calibrated dimensions. No bay counts or metric coordinates extracted yet. Compare with current restoration evidence before fitting new authored details. Old PTV upgrade URL now redirects to Transport Victoria homepage and cannot currently verify historical restoration text.",
+  "south_facade_reference": {
+    "page": "https://www.flindersstreetstation.com.au/south-facade.php",
+    "image": "https://www.flindersstreetstation.com.au/images/flinders-images/7-south-facade/east/S_Along_the_South_Facade_from_the2nd_Floor_looking_west.jpg",
+    "inspection": "Viewed archival photo in browser2026-10-06; arched upper openings, rectangular lower rows, horizontal bands and verandah visible. Capture date unknown; source photo not downloaded or mapped onto model."
+  }
+}

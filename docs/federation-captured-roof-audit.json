@@ -1,0 +1,11 @@
+{
+  "changed_vertices": {
+    "survey_20248": 20,
+    "Federation Square - authored triangular cladding": 900
+  },
+  "limits": "One robust plane fitted to May2020 captured samples. Outliers excluded at authored 0.4m floor; source geometry, not exact architectural detail. Larger roof kept unchanged after jagged IDW trial rejected.",
+  "source_roof_sections": [
+    "20248"
+  ],
+  "old_profiles_recoverable": true
+}

@@ -1,0 +1,15 @@
+{
+  "triangles": 16900,
+  "recovery": {
+    "Federation Square - authored triangular cladding": {
+      "mesh": "Federation Square - authored triangular cladding before NGV nested panels",
+      "faces": 9950
+    },
+    "Federation Square - authored triangular cladding Atrium retained outside fragments": {
+      "mesh": "Federation Square - authored triangular cladding Atrium retained outside fragments before NGV nested panels",
+      "faces": 110
+    }
+  },
+  "limits": "Nested five-triangle hierarchy;12m by6m target macro groups,68/26/6 stone/zinc/glass proportions and0.8percent seam shrink authored. NGV source edge geometry and fitted northern roof reused. Visitor-map Atrium cut approximated by2mm buffer. Fine architectural folds, openings and actual material schedule unresolved. Historical capture not present-day verification; no photographic textures.",
+  "reference": "https://fedsquare.com/history-design"
+}

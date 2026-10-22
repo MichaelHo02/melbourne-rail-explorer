@@ -1,0 +1,117 @@
+{
+  "source": "https://services1.arcgis.com/KGdHCCUjGBpOPPac/arcgis/rest/services/Photomesh_2020_OBJ_Grid/FeatureServer/0/query",
+  "query_geometry": {
+    "xmin": 144.96930721181727,
+    "xmax": 144.9703431571885,
+    "ymin": -37.8183538986705,
+    "ymax": -37.81700733021919,
+    "spatialReference": {
+      "wkid": 4326
+    }
+  },
+  "response": {
+    "objectIdFieldName": "OBJECTID",
+    "uniqueIdField": {
+      "name": "OBJECTID",
+      "isSystemMaintained": true
+    },
+    "globalIdFieldName": "",
+    "geometryProperties": {
+      "shapeAreaFieldName": "Shape__Area",
+      "shapeLengthFieldName": "Shape__Length",
+      "units": "esriMeters"
+    },
+    "geometryType": "esriGeometryPolygon",
+    "spatialReference": {
+      "wkid": 4326,
+      "latestWkid": 4326
+    },
+    "fields": [
+      {
+        "name": "Region",
+        "type": "esriFieldTypeString",
+        "alias": "Region",
+        "sqlType": "sqlTypeOther",
+        "length": 10,
+        "domain": null,
+        "defaultValue": null
+      },
+      {
+        "name": "Download_URL",
+        "type": "esriFieldTypeString",
+        "alias": "Download_URL",
+        "sqlType": "sqlTypeOther",
+        "length": 200,
+        "domain": null,
+        "defaultValue": null
+      }
+    ],
+    "features": [
+      {
+        "attributes": {
+          "Region": "C4-30",
+          "Download_URL": "https://gis-3dmodelcapture-2020.s3.ap-southeast-2.amazonaws.com/photomesh/OBJ/C4-30.zip"
+        },
+        "geometry": {
+          "rings": [
+            [
+              [
+                144.969704551118,
+                -37.8184202577166
+              ],
+              [
+                144.969773655136,
+                -37.815898155465
+              ],
+              [
+                144.972952883965,
+                -37.815952929916
+              ],
+              [
+                144.972883887979,
+                -37.8184750371144
+              ],
+              [
+                144.969704551118,
+                -37.8184202577166
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "attributes": {
+          "Region": "C4-29",
+          "Download_URL": "https://gis-3dmodelcapture-2020.s3.ap-southeast-2.amazonaws.com/photomesh/OBJ/C4-29.zip"
+        },
+        "geometry": {
+          "rings": [
+            [
+              [
+                144.966525222879,
+                -37.8183653925727
+              ],
+              [
+                144.966594434928,
+                -37.8158432952756
+              ],
+              [
+                144.969773655136,
+                -37.815898155465
+              ],
+              [
+                144.969704551118,
+                -37.8184202577166
+              ],
+              [
+                144.966525222879,
+                -37.8183653925727
+              ]
+            ]
+          ]
+        }
+      }
+    ]
+  },
+  "limits": "Municipal download-grid intersections identify candidate tiles, not proof of mesh coverage or current condition."
+}

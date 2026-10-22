@@ -1,0 +1,17 @@
+{
+  "objects": {
+    "Atrium adjacent upper and lower cut closures": 21,
+    "Continuous surveyed roofs - authored finishes": 61,
+    "Continuous surveyed roofs - authored finishes Atrium retained outside fragments": 20,
+    "Federation Square - authored triangular cladding": 2286,
+    "Federation Square - authored triangular cladding Atrium retained outside fragments": 36,
+    "NGV east Atrium exposed envelope closure": 15,
+    "survey_16222": 21
+  },
+  "plane": [
+    -0.004641548687300608,
+    -0.0398610895573919,
+    35.285921432618814
+  ],
+  "limits": "No-save trial. Northern capture least-squares plane; authored smooth transition95\u2013105m northing. Only upper envelope above27.9m compressed toward plane. Southern geometry remains unresolved. No photographic textures."
+}

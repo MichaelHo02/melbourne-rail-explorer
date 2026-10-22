@@ -1,0 +1,19 @@
+{
+  "study_bounds_xy_m": [
+    -15,
+    -170,
+    800,
+    25
+  ],
+  "explicit_ordinary_rail_features": 4,
+  "buffered_area_m2": 176.08765000000002,
+  "source_url": "https://vicmap.land.vic.gov.au/agsgis/rest/services/vicmap/Vicmap_Transport/MapServer/3",
+  "source_sha256": "bb9a8f4ab6dbbd3ae2d6e2e05a1acbdf2d211fdce285dfbb5d239289c5a9a8cd",
+  "source_ufis": [
+    72757758,
+    76809385,
+    76809407,
+    76809422
+  ],
+  "outcome": "Not applied: retained explicit ordinary railway lines supply insufficient coverage to reconstruct the visible eastern yard. Need public yard/track geometry or an architectural/reference plan. No inferred whole-yard polygon added."
+}

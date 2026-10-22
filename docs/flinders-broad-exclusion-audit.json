@@ -1,0 +1,1182 @@
+{
+  "source": "https://data.melbourne.vic.gov.au/explore/dataset/2023-building-footprints/",
+  "raw_sha256": "8ec34193972ee1f59200e89e9bb22e38c233bdb805ae1c9684b27916b99c64fb",
+  "cause": "scripts/prepare-city.mjs skips all centroids in broad rectangle144.9634..144.9680,-37.81885..-37.81745 to replace station survey with authored facade. This also removes neighbouring buildings.",
+  "groups": {
+    "808177": [
+      {
+        "objectid": "26425",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.9640420833449,
+          -37.81805562323603
+        ],
+        "base": 0.0,
+        "height": 30.5
+      },
+      {
+        "objectid": "26429",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.9639954149263,
+          -37.81805380894915
+        ],
+        "base": 46.0,
+        "height": 14.5
+      },
+      {
+        "objectid": "26430",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96425615408944,
+          -37.81786717067128
+        ],
+        "base": 46.0,
+        "height": 3.5
+      },
+      {
+        "objectid": "26426",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96399497031618,
+          -37.81805330612173
+        ],
+        "base": 60.5,
+        "height": 2.0
+      },
+      {
+        "objectid": "26427",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96404513552525,
+          -37.818032938524944
+        ],
+        "base": 30.5,
+        "height": 11.5
+      },
+      {
+        "objectid": "26428",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96404145026756,
+          -37.81800929504562
+        ],
+        "base": 42.0,
+        "height": 4.0
+      }
+    ],
+    "804817": [
+      {
+        "objectid": "1141",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.96701567066276,
+          -37.81855748534312
+        ],
+        "base": 6.300000000000001,
+        "height": 4.7
+      },
+      {
+        "objectid": "1143",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.966867253994,
+          -37.81823036915788
+        ],
+        "base": 6.300000000000001,
+        "height": 4.8
+      },
+      {
+        "objectid": "1145",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.9659623365268,
+          -37.81811970129105
+        ],
+        "base": 11.1,
+        "height": 11.8
+      },
+      {
+        "objectid": "1161",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.96551429389694,
+          -37.81823506630771
+        ],
+        "base": 22.9,
+        "height": 2.8
+      },
+      {
+        "objectid": "1162",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.96516802410366,
+          -37.81831422864513
+        ],
+        "base": 22.9,
+        "height": 1.7
+      },
+      {
+        "objectid": "1151",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.96728151137847,
+          -37.81790348264521
+        ],
+        "base": 22.9,
+        "height": 7.0
+      },
+      {
+        "objectid": "1153",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.9669766830104,
+          -37.817792523467084
+        ],
+        "base": 22.9,
+        "height": 6.6
+      },
+      {
+        "objectid": "1157",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.96449353685864,
+          -37.818492645452146
+        ],
+        "base": 22.9,
+        "height": 7.4
+      },
+      {
+        "objectid": "1160",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.96700508931852,
+          -37.81789049765919
+        ],
+        "base": 22.9,
+        "height": 2.3
+      },
+      {
+        "objectid": "1139",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.96639406276324,
+          -37.818377654301514
+        ],
+        "base": 0.0,
+        "height": 6.3
+      },
+      {
+        "objectid": "1149",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.96492671004282,
+          -37.81838335628561
+        ],
+        "base": 22.9,
+        "height": 3.2
+      },
+      {
+        "objectid": "1156",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.96481660777775,
+          -37.818415206124214
+        ],
+        "base": 22.9,
+        "height": 7.0
+      },
+      {
+        "objectid": "1142",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.9669494945633,
+          -37.81841022004253
+        ],
+        "base": 6.300000000000001,
+        "height": 4.6
+      },
+      {
+        "objectid": "1150",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.96612473537462,
+          -37.818037230193674
+        ],
+        "base": 22.9,
+        "height": 2.5
+      },
+      {
+        "objectid": "1144",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.96680520518754,
+          -37.81809728190226
+        ],
+        "base": 6.300000000000001,
+        "height": 4.7
+      },
+      {
+        "objectid": "1140",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.96699628387634,
+          -37.818755056451714
+        ],
+        "base": 6.300000000000001,
+        "height": 4.8
+      },
+      {
+        "objectid": "1152",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.96713386286072,
+          -37.817836385810615
+        ],
+        "base": 22.9,
+        "height": 16.9
+      },
+      {
+        "objectid": "1154",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.9652763747583,
+          -37.818283201829026
+        ],
+        "base": 22.9,
+        "height": 7.3
+      },
+      {
+        "objectid": "1159",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.96601083312123,
+          -37.81807066559864
+        ],
+        "base": 22.9,
+        "height": 6.6
+      },
+      {
+        "objectid": "1146",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.96660913985926,
+          -37.81825201771199
+        ],
+        "base": 6.300000000000001,
+        "height": 4.8
+      },
+      {
+        "objectid": "1147",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.9646606461756,
+          -37.818484054745376
+        ],
+        "base": 22.9,
+        "height": 1.5
+      },
+      {
+        "objectid": "1148",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.96753178382338,
+          -37.81832482469949
+        ],
+        "base": 6.300000000000001,
+        "height": 7.6
+      },
+      {
+        "objectid": "1158",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.96623778176792,
+          -37.81800414486212
+        ],
+        "base": 22.9,
+        "height": 6.2
+      },
+      {
+        "objectid": "1155",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.9650445171577,
+          -37.818346965839716
+        ],
+        "base": 22.9,
+        "height": 7.4
+      },
+      {
+        "objectid": "1163",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.9667328688386,
+          -37.81788005927085
+        ],
+        "base": 22.9,
+        "height": 3.0
+      }
+    ],
+    "806025": [
+      {
+        "objectid": "22867",
+        "kind": "Tram Stop",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96475724464972,
+          -37.817774330015
+        ],
+        "base": 0.0,
+        "height": 2.5
+      }
+    ],
+    "805830": [
+      {
+        "objectid": "23420",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.9645001525569,
+          -37.817829675622136
+        ],
+        "base": 0.0,
+        "height": 11.5
+      }
+    ],
+    "814766": [
+      {
+        "objectid": "23772",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96459908777703,
+          -37.81803738549335
+        ],
+        "base": 19.0,
+        "height": 23.0
+      },
+      {
+        "objectid": "23770",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96460831566642,
+          -37.81805733864149
+        ],
+        "base": 0.0,
+        "height": 16.5
+      },
+      {
+        "objectid": "23773",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96459454322758,
+          -37.81800099350247
+        ],
+        "base": 42.0,
+        "height": 2.0
+      },
+      {
+        "objectid": "23771",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.9646068983796,
+          -37.81805432546783
+        ],
+        "base": 16.5,
+        "height": 2.5
+      }
+    ],
+    "805323": [
+      {
+        "objectid": "26354",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96433960063735,
+          -37.81746088441606
+        ],
+        "base": 44.5,
+        "height": 2.0
+      }
+    ],
+    "817330": [
+      {
+        "objectid": "28405",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96455064308762,
+          -37.81793255527606
+        ],
+        "base": 0.0,
+        "height": 10.5
+      }
+    ],
+    "803110": [
+      {
+        "objectid": "36285",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.9635784378447,
+          -37.81821959021877
+        ],
+        "base": 0.0,
+        "height": 39.5
+      },
+      {
+        "objectid": "36290",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96350005676757,
+          -37.818074327763775
+        ],
+        "base": 39.5,
+        "height": 4.5
+      },
+      {
+        "objectid": "36288",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96346661295348,
+          -37.81833873697437
+        ],
+        "base": 39.5,
+        "height": 4.5
+      },
+      {
+        "objectid": "36286",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96366835910595,
+          -37.81828064389108
+        ],
+        "base": 39.5,
+        "height": 3.5
+      },
+      {
+        "objectid": "36287",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.9637380191535,
+          -37.81821099642872
+        ],
+        "base": 39.5,
+        "height": 2.5
+      },
+      {
+        "objectid": "36289",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96343246158187,
+          -37.8181406910487
+        ],
+        "base": 39.5,
+        "height": 2.5
+      }
+    ],
+    "806874": [
+      {
+        "objectid": "17456",
+        "kind": "Structure",
+        "capture_date": "20220120",
+        "prepared": false,
+        "lonlat": [
+          144.96444659198815,
+          -37.817715336744804
+        ],
+        "base": 0.0,
+        "height": 19.2
+      },
+      {
+        "objectid": "17454",
+        "kind": "Structure",
+        "capture_date": "20220120",
+        "prepared": false,
+        "lonlat": [
+          144.96445041020115,
+          -37.817712907625896
+        ],
+        "base": 19.2,
+        "height": 12.0
+      },
+      {
+        "objectid": "17455",
+        "kind": "Structure",
+        "capture_date": "20220120",
+        "prepared": false,
+        "lonlat": [
+          144.96446608159715,
+          -37.81768033409067
+        ],
+        "base": 31.2,
+        "height": 2.6
+      }
+    ],
+    "805748": [
+      {
+        "objectid": "29064",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96372769851473,
+          -37.8177186975511
+        ],
+        "base": 0.0,
+        "height": 22.5
+      },
+      {
+        "objectid": "29066",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.9639356245709,
+          -37.81786305763695
+        ],
+        "base": 38.5,
+        "height": 2.5
+      },
+      {
+        "objectid": "29065",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96374275595704,
+          -37.81770252589825
+        ],
+        "base": 22.5,
+        "height": 16.0
+      },
+      {
+        "objectid": "29067",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96373496648917,
+          -37.81763426406839
+        ],
+        "base": 38.5,
+        "height": 4.5
+      }
+    ],
+    "806026": [
+      {
+        "objectid": "36256",
+        "kind": "Tram Stop",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.9646832731,
+          -37.8176111561
+        ],
+        "base": 0.0,
+        "height": 2.5
+      }
+    ],
+    "800887": [
+      {
+        "objectid": "7629",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.9641534977059,
+          -37.817755342316566
+        ],
+        "base": 0.0,
+        "height": 10.5
+      }
+    ],
+    "806304": [
+      {
+        "objectid": "13648",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96571532971683,
+          -37.817595184980526
+        ],
+        "base": 30.5,
+        "height": 1.0
+      },
+      {
+        "objectid": "13647",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96572470258823,
+          -37.817582326429985
+        ],
+        "base": 25.0,
+        "height": 5.5
+      },
+      {
+        "objectid": "13644",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96563532036265,
+          -37.81761971345416
+        ],
+        "base": 0.0,
+        "height": 19.0
+      },
+      {
+        "objectid": "13646",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96573386662993,
+          -37.8175909660444
+        ],
+        "base": 19.0,
+        "height": 6.0
+      },
+      {
+        "objectid": "13645",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.9654947372978,
+          -37.817621259184776
+        ],
+        "base": 19.0,
+        "height": 20.5
+      }
+    ],
+    "806024": [
+      {
+        "objectid": "37610",
+        "kind": "Tram Stop",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.9648111892844,
+          -37.81789095187153
+        ],
+        "base": 0.0,
+        "height": 2.5
+      }
+    ],
+    "809023": [
+      {
+        "objectid": "36790",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96349913766585,
+          -37.81773057656101
+        ],
+        "base": 0.0,
+        "height": 24.5
+      }
+    ],
+    "808000": [
+      {
+        "objectid": "31489",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.9640581504238,
+          -37.817552281990324
+        ],
+        "base": 0.0,
+        "height": 31.0
+      }
+    ],
+    "808623": [
+      {
+        "objectid": "19368",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96433377062215,
+          -37.817674878374916
+        ],
+        "base": 0.0,
+        "height": 25.0
+      },
+      {
+        "objectid": "19369",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96444117421635,
+          -37.81764382228323
+        ],
+        "base": 0.0,
+        "height": 23.0
+      }
+    ],
+    "811641": [
+      {
+        "objectid": "6517",
+        "kind": "Tram Stop",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96435444496768,
+          -37.818315221710186
+        ],
+        "base": 0.0,
+        "height": 3.0
+      }
+    ],
+    "801339": [
+      {
+        "objectid": "6771",
+        "kind": "Structure",
+        "capture_date": "20220120",
+        "prepared": false,
+        "lonlat": [
+          144.96616095267373,
+          -37.817484545534704
+        ],
+        "base": 0.0,
+        "height": 20.3
+      },
+      {
+        "objectid": "6768",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.9662039093193,
+          -37.817559315427026
+        ],
+        "base": 0.7999999999999998,
+        "height": 16.0
+      }
+    ],
+    "806027": [
+      {
+        "objectid": "13326",
+        "kind": "Tram Stop",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96463105209418,
+          -37.817484085596185
+        ],
+        "base": 0.0,
+        "height": 2.5
+      }
+    ],
+    "811639": [
+      {
+        "objectid": "41239",
+        "kind": "Tram Stop",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96432260861485,
+          -37.818423923424966
+        ],
+        "base": 0.0,
+        "height": 3.0
+      }
+    ],
+    "811643": [
+      {
+        "objectid": "41289",
+        "kind": "Tram Stop",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96458702331907,
+          -37.81824759010467
+        ],
+        "base": 0.0,
+        "height": 3.0
+      }
+    ],
+    "814434": [
+      {
+        "objectid": "86",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.9678879302851,
+          -37.81755526429883
+        ],
+        "base": 0.0,
+        "height": 19.0
+      },
+      {
+        "objectid": "85",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.96792169440906,
+          -37.81762822007899
+        ],
+        "base": 0.09999999999999964,
+        "height": 11.2
+      },
+      {
+        "objectid": "87",
+        "kind": "Structure",
+        "capture_date": "20230511",
+        "prepared": false,
+        "lonlat": [
+          144.9679629477325,
+          -37.817705917129516
+        ],
+        "base": 0.29999999999999893,
+        "height": 8.3
+      }
+    ],
+    "805487": [
+      {
+        "objectid": "11488",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.9659932809337,
+          -37.817521292567754
+        ],
+        "base": 0.0,
+        "height": 19.5
+      }
+    ],
+    "814888": [
+      {
+        "objectid": "18258",
+        "kind": "Structure",
+        "capture_date": "20220120",
+        "prepared": false,
+        "lonlat": [
+          144.9652185447621,
+          -37.81778892007486
+        ],
+        "base": 66.0,
+        "height": 2.7
+      },
+      {
+        "objectid": "18259",
+        "kind": "Structure",
+        "capture_date": "20220120",
+        "prepared": false,
+        "lonlat": [
+          144.965124640888,
+          -37.817613082656756
+        ],
+        "base": 17.8,
+        "height": 23.2
+      },
+      {
+        "objectid": "18256",
+        "kind": "Structure",
+        "capture_date": "20220120",
+        "prepared": false,
+        "lonlat": [
+          144.96508339045832,
+          -37.81761591546468
+        ],
+        "base": 13.499999999999998,
+        "height": 4.3
+      },
+      {
+        "objectid": "18257",
+        "kind": "Structure",
+        "capture_date": "20220120",
+        "prepared": false,
+        "lonlat": [
+          144.96513718588022,
+          -37.81781292878821
+        ],
+        "base": 17.8,
+        "height": 48.2
+      },
+      {
+        "objectid": "18261",
+        "kind": "Structure",
+        "capture_date": "20220120",
+        "prepared": false,
+        "lonlat": [
+          144.96509116141306,
+          -37.81763583089358
+        ],
+        "base": 0.0,
+        "height": 13.5
+      }
+    ],
+    "804834": [
+      {
+        "objectid": "10183",
+        "kind": "Tram Stop",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.9666815605117,
+          -37.817700435167865
+        ],
+        "base": 0.0,
+        "height": 3.0
+      }
+    ],
+    "813650": [
+      {
+        "objectid": "12151",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96534919413685,
+          -37.817711492056326
+        ],
+        "base": 0.0,
+        "height": 60.0
+      }
+    ],
+    "802831": [
+      {
+        "objectid": "27342",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96436885354592,
+          -37.81754617175916
+        ],
+        "base": 0.0,
+        "height": 6.5
+      }
+    ],
+    "803791": [
+      {
+        "objectid": "30524",
+        "kind": "Tram Stop",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.9677463942411,
+          -37.81827289533343
+        ],
+        "base": 0.0,
+        "height": 3.0
+      }
+    ],
+    "816565": [
+      {
+        "objectid": "26392",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96435272993972,
+          -37.8180746038489
+        ],
+        "base": 0.0,
+        "height": 24.0
+      },
+      {
+        "objectid": "26393",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96433891671626,
+          -37.81806530195613
+        ],
+        "base": 24.0,
+        "height": 5.0
+      }
+    ],
+    "811642": [
+      {
+        "objectid": "37509",
+        "kind": "Tram Stop",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96447265077637,
+          -37.8182816745275
+        ],
+        "base": 0.0,
+        "height": 3.0
+      }
+    ],
+    "816623": [
+      {
+        "objectid": "9699",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96385198625697,
+          -37.817643044921965
+        ],
+        "base": 0.0,
+        "height": 31.5
+      },
+      {
+        "objectid": "9700",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.9638828540964,
+          -37.81772599029525
+        ],
+        "base": 31.5,
+        "height": 3.5
+      }
+    ],
+    "804835": [
+      {
+        "objectid": "37622",
+        "kind": "Tram Stop",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96692615326066,
+          -37.81762930080032
+        ],
+        "base": 0.0,
+        "height": 3.5
+      }
+    ],
+    "816330": [
+      {
+        "objectid": "29453",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.9643094000621,
+          -37.8176225543093
+        ],
+        "base": 0.0,
+        "height": 25.0
+      },
+      {
+        "objectid": "29454",
+        "kind": "Structure",
+        "capture_date": "20180528",
+        "prepared": false,
+        "lonlat": [
+          144.96441676246613,
+          -37.817591401446954
+        ],
+        "base": 0.0,
+        "height": 21.0
+      }
+    ],
+    "816815": [
+      {
+        "objectid": "13757",
+        "kind": "Tram Stop",
+        "capture_date": "20220120",
+        "prepared": false,
+        "lonlat": [
+          144.96788814117036,
+          -37.81826274288867
+        ],
+        "base": 0.0,
+        "height": 2.3
+      }
+    ]
+  },
+  "limits": "Historical survey geometry. Structure804817 is a station-area candidate requiring footprint identification before choosing exact replacement exclusions. Raw absence from prepared data verified; four example objects confirmed absent from saved scene. Other groups not all checked against Blender objects."
+}

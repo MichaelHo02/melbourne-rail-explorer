@@ -1,0 +1,13 @@
+{
+  "objects": {
+    "Authored roof edge cornices": {
+      "faces": 26,
+      "vertices": 52
+    },
+    "Authored rooftop equipment - illustrative": {
+      "faces": 12,
+      "vertices": 16
+    }
+  },
+  "limits": "Existing generic cornice strips and illustrative equipment only reconciled vertically to fitted historical roof. Their placement, existence and construction remain authored assumptions. No additional real architectural details claimed. Original meshes recoverable."
+}

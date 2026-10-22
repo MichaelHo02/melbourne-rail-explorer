@@ -1,0 +1,310 @@
+{
+  "records": [
+    {
+      "objectid": "4607",
+      "structure_id": "806667",
+      "structure_min_elevation": 10.0,
+      "footprint_min_elevation": 10.0,
+      "footprint_max_elevation": 32.5,
+      "date_captured": "20180528"
+    },
+    {
+      "objectid": "37332",
+      "structure_id": "805928",
+      "structure_min_elevation": 10.5,
+      "footprint_min_elevation": 33.0,
+      "footprint_max_elevation": 37.0,
+      "date_captured": "20180528"
+    },
+    {
+      "objectid": "16223",
+      "structure_id": "816359",
+      "structure_min_elevation": 12.5,
+      "footprint_min_elevation": 28.0,
+      "footprint_max_elevation": 32.0,
+      "date_captured": "20180528"
+    },
+    {
+      "objectid": "20248",
+      "structure_id": "812338",
+      "structure_min_elevation": 8.1,
+      "footprint_min_elevation": 28.5,
+      "footprint_max_elevation": 34.0,
+      "date_captured": "20220120"
+    },
+    {
+      "objectid": "16221",
+      "structure_id": "816359",
+      "structure_min_elevation": 12.5,
+      "footprint_min_elevation": 12.5,
+      "footprint_max_elevation": 28.0,
+      "date_captured": "20180528"
+    },
+    {
+      "objectid": "20249",
+      "structure_id": "812338",
+      "structure_min_elevation": 8.1,
+      "footprint_min_elevation": 8.1,
+      "footprint_max_elevation": 24.1,
+      "date_captured": "20220120"
+    },
+    {
+      "objectid": "16222",
+      "structure_id": "816359",
+      "structure_min_elevation": 12.5,
+      "footprint_min_elevation": 32.0,
+      "footprint_max_elevation": 36.5,
+      "date_captured": "20180528"
+    },
+    {
+      "objectid": "37331",
+      "structure_id": "805928",
+      "structure_min_elevation": 10.5,
+      "footprint_min_elevation": 10.5,
+      "footprint_max_elevation": 33.0,
+      "date_captured": "20180528"
+    },
+    {
+      "objectid": "20246",
+      "structure_id": "812338",
+      "structure_min_elevation": 8.1,
+      "footprint_min_elevation": 28.5,
+      "footprint_max_elevation": 34.0,
+      "date_captured": "20180528"
+    },
+    {
+      "objectid": "15832",
+      "structure_id": "809180",
+      "structure_min_elevation": 5.5,
+      "footprint_min_elevation": 5.5,
+      "footprint_max_elevation": 12.5,
+      "date_captured": "20180528"
+    },
+    {
+      "objectid": "20247",
+      "structure_id": "812338",
+      "structure_min_elevation": 8.1,
+      "footprint_min_elevation": 24.1,
+      "footprint_max_elevation": 28.5,
+      "date_captured": "20220120"
+    }
+  ],
+  "scene_objects": [
+    {
+      "name": "06 Federation Square detail",
+      "type": "CAMERA",
+      "hidden": false,
+      "bounds_z": null,
+      "props": {
+        "purpose": "Inspect authored triangular precinct cladding",
+        "architect_reference": "https://fedsquare.com/history-design"
+      }
+    },
+    {
+      "name": "07 Federation roof inspection",
+      "type": "CAMERA",
+      "hidden": false,
+      "bounds_z": null,
+      "props": {
+        "purpose": "Inspect roof profiles and facade clearance",
+        "architect_reference": "https://fedsquare.com/history-design"
+      }
+    },
+    {
+      "name": "Federation Square - authored approximate sandstone plaza",
+      "type": "MESH",
+      "hidden": false,
+      "bounds_z": [
+        0.3199999928474426,
+        0.3199999928474426
+      ],
+      "props": {
+        "limits": "Authored approximate Main Square boundary informed by 2019 precinct diagram, clipped around retained ground-level building envelopes with 1 m margin and road surfaces. Area calibrated to the official 5000 m2 venue figure; boundary still not georegistered or surveyed. Flat .32 m preview level; documented eastward rise of approximately 6 m not yet reconciled with local building datums. Paver sizes, joints and palette authored; artwork not reproduced.",
+        "reference": "https://assets.heritagecouncil.vic.gov.au/assets/Determination-Federation-Square-FINAL.pdf",
+        "area_m2": 4999.999999963048
+      }
+    },
+    {
+      "name": "Federation Square - authored gable edge trim",
+      "type": "CURVE",
+      "hidden": false,
+      "bounds_z": null,
+      "props": {
+        "limits": "Authored .9 m metal seam spacing and edge trim fitted to authored gables. Zinc family supported by official design description; actual roof detailing, panel schedule and present-day finish unmeasured.",
+        "guide_count": 31,
+        "reference": "https://fedsquare.com/history-design"
+      }
+    },
+    {
+      "name": "Federation Square - authored gable roof profiles",
+      "type": "MESH",
+      "hidden": false,
+      "bounds_z": [
+        16.0,
+        25.899999618530273
+      ],
+      "props": {
+        "limits": "Survey Gable classifications and retained envelope heights. Long-axis ridge and linear planes authored, not measured; captures 2022, not present-day confirmation.",
+        "source_ids": "20247,20248",
+        "source_url": "https://data.melbourne.vic.gov.au/explore/dataset/2023-building-footprints/"
+      }
+    },
+    {
+      "name": "Federation Square - authored triangular cladding",
+      "type": "MESH",
+      "hidden": false,
+      "bounds_z": [
+        0.004666666500270367,
+        26.496000289916992
+      ],
+      "props": {
+        "source_ids": "4607,37332,16223,20248,16221,20249,16222,37331,15832,20247",
+        "source_url": "https://data.melbourne.vic.gov.au/explore/dataset/2023-building-footprints/",
+        "design_reference": "https://fedsquare.com/history-design",
+        "limits": "Selected precinct survey envelopes receive authored sandstone/zinc/glass triangles. Five-piece right-triangle groups share one material, informed by documented pinwheel language. Cell dimensions, ratio adaptation, panel schedule and present-day cladding distribution authored; not an exact facade reconstruction. Survey silhouettes retained; architectural roof forms and precinct boundary need further reconciliation.",
+        "survey_sections": 10,
+        "panel_triangles": 20060,
+        "panel_revision": "five-piece-v5",
+        "gable_fit_revision": "section-owned-v2"
+      }
+    },
+    {
+      "name": "Federation Square - authored zinc seams",
+      "type": "CURVE",
+      "hidden": false,
+      "bounds_z": null,
+      "props": {
+        "limits": "Authored .9 m metal seam spacing and edge trim fitted to authored gables. Zinc family supported by official design description; actual roof detailing, panel schedule and present-day finish unmeasured.",
+        "guide_count": 55,
+        "reference": "https://fedsquare.com/history-design"
+      }
+    },
+    {
+      "name": "survey_16221",
+      "type": "MESH",
+      "hidden": false,
+      "bounds_z": [
+        0.0,
+        15.5
+      ],
+      "props": {
+        "source_id": "16221",
+        "source_url": "https://data.melbourne.vic.gov.au/explore/dataset/2023-building-footprints/",
+        "source_license": "CC BY 4.0",
+        "appearance": "Authored facade, survey-derived envelope, current condition unverified",
+        "roof_surface": "Continuous surveyed roofs - authored finishes",
+        "colour_basis": "Deterministic authored palette on retained source ID; actual building colour unverified",
+        "fenestration_basis": "Authored low-rise proportions keyed by retained structure ID; exact facade unverified",
+        "edge_finish_basis": "Authored 0.12 m corner softening for shading only; unmeasured. Base survey mesh retained; modifier reversible."
+      }
+    },
+    {
+      "name": "survey_16222",
+      "type": "MESH",
+      "hidden": false,
+      "bounds_z": [
+        19.5,
+        24.0
+      ],
+      "props": {
+        "source_id": "16222",
+        "source_url": "https://data.melbourne.vic.gov.au/explore/dataset/2023-building-footprints/",
+        "source_license": "CC BY 4.0",
+        "appearance": "Authored facade, survey-derived envelope, current condition unverified",
+        "roof_surface": "Continuous surveyed roofs - authored finishes",
+        "colour_basis": "Authored finish consistent within source structure group; actual material and colour unverified",
+        "previous_generic_facade_material": "Authored concrete facade palette 1 - unsurveyed colour"
+      }
+    },
+    {
+      "name": "survey_16223",
+      "type": "MESH",
+      "hidden": false,
+      "bounds_z": [
+        15.5,
+        19.5
+      ],
+      "props": {
+        "source_id": "16223",
+        "source_url": "https://data.melbourne.vic.gov.au/explore/dataset/2023-building-footprints/",
+        "source_license": "CC BY 4.0",
+        "appearance": "Authored facade, survey-derived envelope, current condition unverified",
+        "roof_surface": "Continuous surveyed roofs - authored finishes",
+        "colour_basis": "Authored finish consistent within source structure group; actual material and colour unverified",
+        "previous_generic_facade_material": "Authored terracotta facade palette 3 - unsurveyed colour"
+      }
+    },
+    {
+      "name": "survey_20249",
+      "type": "MESH",
+      "hidden": false,
+      "bounds_z": [
+        0.0,
+        16.0
+      ],
+      "props": {
+        "source_id": "20249",
+        "source_url": "https://data.melbourne.vic.gov.au/explore/dataset/2023-building-footprints/",
+        "source_license": "CC BY 4.0",
+        "appearance": "Authored facade, survey-derived envelope, current condition unverified",
+        "roof_surface": "Continuous surveyed roofs - authored finishes",
+        "colour_basis": "Deterministic authored palette on retained source ID; actual building colour unverified",
+        "fenestration_basis": "Authored low-rise proportions keyed by retained structure ID; exact facade unverified",
+        "edge_finish_basis": "Authored 0.12 m corner softening for shading only; unmeasured. Base survey mesh retained; modifier reversible."
+      }
+    },
+    {
+      "name": "survey_37331",
+      "type": "MESH",
+      "hidden": false,
+      "bounds_z": [
+        0.0,
+        22.5
+      ],
+      "props": {
+        "source_id": "37331",
+        "source_url": "https://data.melbourne.vic.gov.au/explore/dataset/2023-building-footprints/",
+        "source_license": "CC BY 4.0",
+        "appearance": "Authored facade, survey-derived envelope, current condition unverified",
+        "roof_surface": "Continuous surveyed roofs - authored finishes",
+        "colour_basis": "Deterministic authored palette on retained source ID; actual building colour unverified",
+        "fenestration_basis": "Authored low-rise proportions keyed by retained structure ID; exact facade unverified",
+        "edge_finish_basis": "Authored 0.12 m corner softening for shading only; unmeasured. Base survey mesh retained; modifier reversible."
+      }
+    },
+    {
+      "name": "survey_4607",
+      "type": "MESH",
+      "hidden": false,
+      "bounds_z": [
+        0.0,
+        22.5
+      ],
+      "props": {
+        "source_id": "4607",
+        "source_url": "https://data.melbourne.vic.gov.au/explore/dataset/2023-building-footprints/",
+        "source_license": "CC BY 4.0",
+        "appearance": "Authored facade, survey-derived envelope, current condition unverified",
+        "roof_surface": "Continuous surveyed roofs - authored finishes",
+        "colour_basis": "Deterministic authored palette on retained source ID; actual building colour unverified",
+        "fenestration_basis": "Authored low-rise proportions keyed by retained structure ID; exact facade unverified",
+        "edge_finish_basis": "Authored 0.12 m corner softening for shading only; unmeasured. Base survey mesh retained; modifier reversible."
+      }
+    }
+  ],
+  "preparation_rule": "base=max(0,footprint_min_elevation-structure_min_elevation)",
+  "finding": "Per-structure relative datum removes between-building minimum elevation differences. Current plaza slope cannot be reconciled by changing paving alone.",
+  "limits": "Source minima are building geometry extents, not verified entrance thresholds. A common datum must be verified before rebuilding precinct. Existing generic grouped roof/window meshes also need coherent updates; do not translate survey objects alone.",
+  "slope_trial": {
+    "x_bounds": [
+      42.2477912902832,
+      168.3132781982422
+    ],
+    "assumed_base_m": 0.32,
+    "documented_approximate_rise_m": 6,
+    "interpolation": "Linear eastward trial only; not surveyed topography",
+    "source": "https://assets.heritagecouncil.vic.gov.au/assets/Determination-Federation-Square-FINAL.pdf",
+    "source_page": 6,
+    "saved_scene": false
+  }
+}

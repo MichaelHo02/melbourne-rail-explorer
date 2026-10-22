@@ -1,0 +1,58 @@
+[
+  {
+    "pixel": [
+      710,
+      655
+    ],
+    "point": [
+      100.36691284179688,
+      -84.76190948486328,
+      9.530001640319824
+    ],
+    "object": "Vicmap bridge carriageway on survey 36402",
+    "face": 19,
+    "material": "Authored asphalt"
+  },
+  {
+    "pixel": [
+      710,
+      675
+    ],
+    "point": [
+      112.99224853515625,
+      -110.01263427734375,
+      9.0673828125
+    ],
+    "object": "Continuous surveyed roofs - authored finishes",
+    "face": 30015,
+    "material": "Authored Princes Bridge upper stone"
+  },
+  {
+    "pixel": [
+      703,
+      695
+    ],
+    "point": [
+      121.51174926757812,
+      -138.23193359375,
+      9.067413330078125
+    ],
+    "object": "Continuous surveyed roofs - authored finishes",
+    "face": 30021,
+    "material": "Authored Princes Bridge upper stone"
+  },
+  {
+    "pixel": [
+      700,
+      715
+    ],
+    "point": [
+      132.92930603027344,
+      -165.85861206054688,
+      9.5
+    ],
+    "object": "Continuous surveyed roofs - authored finishes",
+    "face": 30003,
+    "material": "Authored Princes Bridge upper stone"
+  }
+]

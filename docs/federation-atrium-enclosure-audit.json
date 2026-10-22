@@ -1,0 +1,15 @@
+{
+  "original_geometry_hashes": {
+    "survey_16221": "09a98f9d4d6a15d578bfb39828ca97389857b25f839d502d3d10f1d071c465aa",
+    "survey_16222": "a6ddf7e786ec8d4a2384677269b27a481237cf109fa40072c8beda05db801627",
+    "survey_16223": "c8d1f305f95aed92b2f79f1c3fe31b8108c2427e77848ef9702fde2b4cd3975b",
+    "Federation Square - authored triangular cladding": "6932c51eb5889b3b31a5f314cba872dfcd316c2e0164cafbfcd1f31ab60e3603",
+    "Continuous surveyed roofs - authored finishes": "83e7d243b91900a3fe4d136e8ce0ab507d00125daa0f5b8594c8f4c5b07d0555",
+    "Authored grouped window bays - varied low rise": "04a0bfffa62eb1706f5ba746f02cb9d52090df1609acb59008e656d01ebe4c8d",
+    "Authored low rise sill and lintel bands": "03fa9aec53f9982ae1485114077e45046646ea0f846c072bc69690be4858f89e",
+    "Authored roof edge cornices": "e61039a84703bfe03ae0cae5620930605f8b315109ea3219c7a67683f63b83f2"
+  },
+  "original_geometry_unchanged": true,
+  "revision": "source-guided-prototype-v1",
+  "limits": "Schematic footprint; locally median-filtered May2020 roof samples, not exact folds. Frame bay spacing and node positions authored. Floor graded10.7m north to12.2m south from North Atrium height inference and adjacent deck contact, not surveyed interior. East closure approximate; do not claim as-built."
+}

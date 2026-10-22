@@ -1,0 +1,11 @@
+{
+  "masked_faces": {
+    "Continuous surveyed roofs - authored finishes": 69,
+    "survey_16222": 0
+  },
+  "captured_triangles": 911,
+  "reduction_ratio": 1.0,
+  "limits": "Unsaved trial; historical captured heights, two-metre grid, local robust planes and authored gap fill. Retained schematic Atrium boundary excluded; exact folds and cap/fa\u00e7ade contacts unresolved.",
+  "visual_decision": "Not installed: Atrium exclusion fixes spillover and continuous mesh removes scan holes, but local-fit bumps and a western cap contact gap remain.",
+  "samples_used": 1955
+}

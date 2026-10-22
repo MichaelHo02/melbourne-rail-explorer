@@ -1,0 +1,94 @@
+{
+  "object": "Authored roof edge cornices",
+  "changes": [
+    {
+      "face": 20041,
+      "before": 0,
+      "after": 3
+    },
+    {
+      "face": 20042,
+      "before": 0,
+      "after": 3
+    },
+    {
+      "face": 20043,
+      "before": 0,
+      "after": 3
+    },
+    {
+      "face": 20044,
+      "before": 0,
+      "after": 3
+    },
+    {
+      "face": 20045,
+      "before": 0,
+      "after": 3
+    },
+    {
+      "face": 20046,
+      "before": 0,
+      "after": 3
+    },
+    {
+      "face": 20047,
+      "before": 0,
+      "after": 3
+    },
+    {
+      "face": 20048,
+      "before": 0,
+      "after": 3
+    },
+    {
+      "face": 49888,
+      "before": 0,
+      "after": 3
+    },
+    {
+      "face": 49889,
+      "before": 0,
+      "after": 3
+    },
+    {
+      "face": 49890,
+      "before": 0,
+      "after": 3
+    },
+    {
+      "face": 49891,
+      "before": 0,
+      "after": 3
+    },
+    {
+      "face": 49892,
+      "before": 0,
+      "after": 3
+    },
+    {
+      "face": 49893,
+      "before": 0,
+      "after": 3
+    },
+    {
+      "face": 49894,
+      "before": 0,
+      "after": 3
+    },
+    {
+      "face": 49895,
+      "before": 0,
+      "after": 3
+    }
+  ],
+  "backup_mesh": "Cornices before cathedral stone finish",
+  "limits": "Generic authored cornice faces within0.5m of existing cathedral tower wall planes receive warm masonry finish. Geometry and dimensions remain illustrative; exact stringcourses not measured. Other cornice faces unchanged; original mesh recoverable.",
+  "reference": "https://ausmed.arts.uwa.edu.au/items/show/752",
+  "saved_verification": {
+    "all_vertices_and_connectivity_unchanged": true,
+    "all_material_assignments_checked": 60134,
+    "changed_faces": 16,
+    "recovery_mesh_verified": true
+  }
+}

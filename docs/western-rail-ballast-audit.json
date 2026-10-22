@@ -1,0 +1,10 @@
+{
+  "status": "partial_pass_verified",
+  "revision": "authored-six-point-four-v1",
+  "faces": 298,
+  "source_ufis": 39,
+  "area_m2": 30952.2456,
+  "verification": "Fresh saved-file marker and face count asserted; detail render visually inspected.",
+  "remaining": "Broad pale yard gaps, bridge geometry and generic building details remain unfinished.",
+  "native_reload": "Current marker asserted in Blender console; Rendered shading visually inspected and clean-title save completed."
+}

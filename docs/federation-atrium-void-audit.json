@@ -1,0 +1,38 @@
+{
+  "objects": {
+    "survey_16221": {
+      "masked_faces": 13,
+      "outside_fragment_faces": 27
+    },
+    "survey_16222": {
+      "masked_faces": 12,
+      "outside_fragment_faces": 25
+    },
+    "survey_16223": {
+      "masked_faces": 12,
+      "outside_fragment_faces": 25
+    },
+    "Federation Square - authored triangular cladding": {
+      "masked_faces": 2030,
+      "outside_fragment_faces": 110
+    },
+    "Continuous surveyed roofs - authored finishes": {
+      "masked_faces": 19,
+      "outside_fragment_faces": 59
+    },
+    "Authored grouped window bays - varied low rise": {
+      "masked_faces": 66,
+      "outside_fragment_faces": 0
+    },
+    "Authored low rise sill and lintel bands": {
+      "masked_faces": 132,
+      "outside_fragment_faces": 0
+    },
+    "Authored roof edge cornices": {
+      "masked_faces": 6,
+      "outside_fragment_faces": 6
+    }
+  },
+  "limits": "Exact surface clipping against schematic visitor-map Atrium polygon. Outside fragments retained; original planes preserved. Cut does not establish actual construction boundary; glass and interior closure reconstruction still required.",
+  "original_geometry_retained": true
+}

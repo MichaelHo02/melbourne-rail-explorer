@@ -1,0 +1,56 @@
+{
+  "Continuous Vicmap road surface": {
+    "before_vertices": 8560,
+    "after_vertices": 9790,
+    "shifted": 1243
+  },
+  "Continuous authored pavement bands": {
+    "before_vertices": 15445,
+    "after_vertices": 16688,
+    "shifted": 1284
+  },
+  "Authored kerbs - retained road edges": {
+    "before_vertices": 61712,
+    "after_vertices": 63460,
+    "shifted": 2210
+  },
+  "Authored CBD junction crossings - illustrative": {
+    "before_vertices": 7820,
+    "after_vertices": 7820,
+    "shifted": 388
+  },
+  "Authored CBD midblock lane guides - illustrative": {
+    "before_vertices": 1808,
+    "after_vertices": 1808,
+    "shifted": 38
+  },
+  "Authored illustrative lane dashes": {
+    "before_vertices": 17896,
+    "after_vertices": 17896,
+    "shifted": 291
+  },
+  "Authored ground with City Square portal": {
+    "vertices": 10752,
+    "faces": 3584
+  },
+  "Authored grouped window bays - varied low rise": {
+    "shifted_vertices": 26332
+  },
+  "Authored low rise sill and lintel bands": {
+    "shifted_vertices": 30528
+  },
+  "Authored roof edge cornices": {
+    "shifted_vertices": 2044
+  },
+  "Authored rooftop equipment - illustrative": {
+    "shifted_vertices": 432
+  },
+  "Continuous surveyed roofs - authored finishes": {
+    "shifted_vertices": 4881
+  },
+  "Authored short low-rise window bays": {
+    "shifted_vertices": 488
+  },
+  "trees": 57,
+  "cathedral_offset": 4.0
+}

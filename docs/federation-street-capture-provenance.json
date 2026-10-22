@@ -1,0 +1,33 @@
+{
+  "source": "https://discover.data.vic.gov.au/dataset/city-of-melbourne-3d-textured-mesh-photomesh-2020",
+  "capture": "May 2020",
+  "license": "CC BY 4.0",
+  "tiles": [
+    {
+      "tile": "C4-34",
+      "source_faces": 1764955,
+      "retained_faces": 315025
+    },
+    {
+      "tile": "C4-35",
+      "source_faces": 1969250,
+      "retained_faces": 517264
+    },
+    {
+      "tile": "C4-28",
+      "source_faces": 3883671,
+      "retained_faces": 1800440
+    },
+    {
+      "tile": "C4-29",
+      "source_faces": 2291414,
+      "retained_faces": 2291414
+    }
+  ],
+  "vertices": 2563494,
+  "faces": 4924143,
+  "sha256": "cb15e3d6571d59a5f609c9941941476bfb304aed2e3a8d7aabc22578cefd7654",
+  "limits": "2020 capture, not present-day survey. Diagnostic precinct rectangle x-200..450,y-150..400m, authored and not exact boundary. MGA55 EPSG28355 transformed to geographic/local scene; authored flat datum offset AHD4.1m. Photographic textures omitted. Scan may contain occlusions, artefacts and captured vehicles/people; inspect before final use.",
+  "sampling_rule": "4m grid within buffered authored road corridors on Vicmap alignment; retained ground-level building footprints plus0.4m excluded. Downward rays from local15.1m onto upward-facing triangles normal.z>.55, triangle centre local0..15m. 4004 requested points,1322 captured samples;1191 after12m median/1.2m elevated outlier rejection.",
+  "remaining": "Partial geometry coverage: do not extrapolate a full CBD elevation model from this crop. 2020 capture not present-day construction verification."
+}

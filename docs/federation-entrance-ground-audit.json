@@ -1,0 +1,9 @@
+{
+  "selected_cells": 65,
+  "median_z": 6.765473333333333,
+  "minimum_z": 6.495635,
+  "maximum_z": 7.335258333333334,
+  "existing_north_floor_z": 10.701285,
+  "limits": "Authored bbox and6..7.4m rejection filter. Ground cluster supports entrance datum; does not survey interior floor or prove a ramp. Source capture May2020, local crop datum. Historical appearance not present-day verification.",
+  "next_action": "Build entrance-only captured-height apron; reconcile provisional floor and side-frame base before accepting render."
+}

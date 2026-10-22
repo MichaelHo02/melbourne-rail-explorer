@@ -1,0 +1,15 @@
+{
+  "repeat_geometry_and_object_locations_unchanged": true,
+  "station_scan_geometry_unchanged": true,
+  "station_scan_mesh_sha256": "d5cce4a59917b0a0932876f5285d8b854df88d4c8e84de396502e9b50e5b8dcf",
+  "mesh_sha256": {
+    "Continuous Vicmap road surface": "499fdc29a58fc61f5e36062c7cde364d2dcd97e5541c812948b09c1947806c7f",
+    "Continuous authored pavement bands": "41c8eadab71b730945503aff01969ba084f2054728a93fd73520b193c67dc5e0",
+    "Authored kerbs - retained road edges": "e4641b65b2e68c708a9e60fb3461e6694e3abdb1b0f1f66aa8511a7f8af0d65e",
+    "Authored CBD junction crossings - illustrative": "5daef92f6bee51322ac8f12de6d48c913d81160a15b9c793c304007f763faa6f",
+    "Authored CBD midblock lane guides - illustrative": "e54531880cdbf630a3af069bf40353434a3b5401e3c611f09277fdd3784a2642",
+    "Authored illustrative lane dashes": "7c19511c854326c5037e4686ad1967ef029e4a79c877fabcc9ad7780ff5dbd5e",
+    "Authored ground with City Square portal": "37abab35c80429d32591d2ecac4bcfff516b704e95d2bfa9de21ac175e50b1db"
+  },
+  "limits": "2020 geometry-only capture. Road corridor widths illustrative; 4m samples,12m median neighbourhood,1.2m high-point rejection, authored AHD minus4.1m local reference. Core transition weights from bounds x-80..260,y-60..250 over50m, supported-point distance12..40m taper. Boundary transitions and building structure shifts approximate; source building minima not entrance thresholds. 42 neighbouring structures/119 sections; component-centre geometric attribution of generic details is authored, not a measured facade inventory. Cathedral uses4m source-minimum offset. Existing Federation deck sections excluded from repeat translation. Pavement rise .125m and 8m surface subdivision authored."
+}

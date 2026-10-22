@@ -1,0 +1,12 @@
+{
+  "cells_selected": 113,
+  "cells_accepted": 82,
+  "plane": [
+    -0.0037546157836914062,
+    0.01532745361328125,
+    19.962158203125
+  ],
+  "offset_m": 0.04,
+  "limits": "Trial authored plane and one-metre cell boundaries; excludes high residual cells. Scan retained; overlap visibility unproven.",
+  "visual_decision": "Not installed: fitted patch lies west of close review and does not repair dominant damaged eastern roof. Expand diagnostic to lower roof heights and target eastern station footprint."
+}

@@ -1,0 +1,200 @@
+{
+  "source_geometry_sha256": "b9d73574091c5824c823d27850cb56eeaeb3c606d1b947620e5e805d52fae7ca",
+  "bays": [
+    {
+      "tower_face": 0,
+      "width": 1.1533842714171512,
+      "height": 9,
+      "base_z": 46.199998474121095
+    },
+    {
+      "tower_face": 0,
+      "width": 1.1533842714171512,
+      "height": 9,
+      "base_z": 46.199998474121095
+    },
+    {
+      "tower_face": 2,
+      "width": 1.2192395740332944,
+      "height": 9,
+      "base_z": 46.199998474121095
+    },
+    {
+      "tower_face": 2,
+      "width": 1.2192395740332944,
+      "height": 9,
+      "base_z": 46.199998474121095
+    },
+    {
+      "tower_face": 5,
+      "width": 1.5023137133615299,
+      "height": 9,
+      "base_z": 46.199998474121095
+    },
+    {
+      "tower_face": 5,
+      "width": 1.5023137133615299,
+      "height": 9,
+      "base_z": 46.199998474121095
+    },
+    {
+      "tower_face": 6,
+      "width": 1.4471281806911798,
+      "height": 9,
+      "base_z": 46.199998474121095
+    },
+    {
+      "tower_face": 6,
+      "width": 1.4471281806911798,
+      "height": 9,
+      "base_z": 46.199998474121095
+    },
+    {
+      "tower_face": 7,
+      "width": 1.3118385144142173,
+      "height": 9,
+      "base_z": 46.199998474121095
+    },
+    {
+      "tower_face": 7,
+      "width": 1.3118385144142173,
+      "height": 9,
+      "base_z": 46.199998474121095
+    },
+    {
+      "tower_face": 8,
+      "width": 1.4240001050742415,
+      "height": 9,
+      "base_z": 46.199998474121095
+    },
+    {
+      "tower_face": 8,
+      "width": 1.4240001050742415,
+      "height": 9,
+      "base_z": 46.199998474121095
+    },
+    {
+      "tower_face": 9,
+      "width": 1.3927196450393462,
+      "height": 9,
+      "base_z": 46.199998474121095
+    },
+    {
+      "tower_face": 9,
+      "width": 1.3927196450393462,
+      "height": 9,
+      "base_z": 46.199998474121095
+    },
+    {
+      "tower_face": 10,
+      "width": 1.5513511110347113,
+      "height": 9,
+      "base_z": 46.199998474121095
+    },
+    {
+      "tower_face": 10,
+      "width": 1.5513511110347113,
+      "height": 9,
+      "base_z": 46.199998474121095
+    },
+    {
+      "tower_face": 52,
+      "width": 1.1606998960886248,
+      "height": 3.3600006103515625,
+      "base_z": 37.3799991607666
+    },
+    {
+      "tower_face": 52,
+      "width": 1.1606998960886248,
+      "height": 3.3600006103515625,
+      "base_z": 37.3799991607666
+    },
+    {
+      "tower_face": 55,
+      "width": 1.8,
+      "height": 3.3600006103515625,
+      "base_z": 37.3799991607666
+    },
+    {
+      "tower_face": 55,
+      "width": 1.8,
+      "height": 3.3600006103515625,
+      "base_z": 37.3799991607666
+    },
+    {
+      "tower_face": 57,
+      "width": 0.9487746586119999,
+      "height": 3.3600006103515625,
+      "base_z": 37.3799991607666
+    },
+    {
+      "tower_face": 57,
+      "width": 0.9487746586119999,
+      "height": 3.3600006103515625,
+      "base_z": 37.3799991607666
+    },
+    {
+      "tower_face": 60,
+      "width": 1.7532201636686515,
+      "height": 3.3600006103515625,
+      "base_z": 37.3799991607666
+    },
+    {
+      "tower_face": 60,
+      "width": 1.7532201636686515,
+      "height": 3.3600006103515625,
+      "base_z": 37.3799991607666
+    },
+    {
+      "tower_face": 104,
+      "width": 1.2655278114265456,
+      "height": 3.3600006103515625,
+      "base_z": 37.3799991607666
+    },
+    {
+      "tower_face": 104,
+      "width": 1.2655278114265456,
+      "height": 3.3600006103515625,
+      "base_z": 37.3799991607666
+    },
+    {
+      "tower_face": 106,
+      "width": 1.8,
+      "height": 3.3600006103515625,
+      "base_z": 37.3799991607666
+    },
+    {
+      "tower_face": 106,
+      "width": 1.8,
+      "height": 3.3600006103515625,
+      "base_z": 37.3799991607666
+    },
+    {
+      "tower_face": 108,
+      "width": 0.9949955205025124,
+      "height": 3.3600006103515625,
+      "base_z": 37.3799991607666
+    },
+    {
+      "tower_face": 108,
+      "width": 0.9949955205025124,
+      "height": 3.3600006103515625,
+      "base_z": 37.3799991607666
+    },
+    {
+      "tower_face": 110,
+      "width": 1.8,
+      "height": 3.3600006103515625,
+      "base_z": 37.3799991607666
+    },
+    {
+      "tower_face": 110,
+      "width": 1.8,
+      "height": 3.3600006103515625,
+      "base_z": 37.3799991607666
+    }
+  ],
+  "faces": 240,
+  "limits": "Authored pointed lancet blind/recess relief, stone surrounds, mullions and stringcourses on existing tower faces. Counts, placement, dimensions and recess finish approximate, not measured current openings. Source tower geometry and silhouette unchanged. No photographic textures.",
+  "reference": "https://ausmed.arts.uwa.edu.au/items/show/752"
+}

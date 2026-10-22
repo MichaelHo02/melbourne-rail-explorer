@@ -1,0 +1,6 @@
+import bpy,json
+from pathlib import Path
+from mathutils import Vector
+root=Path(bpy.data.filepath).resolve().parents[3];d=json.loads((root/'assets/source/environment/city-parking-markings.json').read_text());rows=d['records'];r=max(rows,key=lambda a:sum((a['xy'][0]-b['xy'][0])**2+(a['xy'][1]-b['xy'][1])**2<30**2 for b in rows));x,y=r['xy'];name='18 Parking markings inspection';c=bpy.data.objects.get(name)
+if not c:c=bpy.data.objects.new(name,bpy.data.cameras.new(name));bpy.data.collections['PREVIEW - lighting and aerial camera'].objects.link(c)
+c.location=(x+25,y-35,100);target=Vector((x,y,2));c.rotation_euler=(target-c.location).to_track_quat('-Z','Y').to_euler();c.location+=c.rotation_euler.to_quaternion()@Vector((0,0,600));c.data.type='ORTHO';c.data.ortho_scale=100;c.data.clip_end=10000;c['source_asset']=r['kerbsideid'];c['purpose']='Inspect illustrative parking paint at official parking points';bpy.ops.wm.save_as_mainfile(filepath=bpy.data.filepath,compress=True);s=bpy.context.scene;s.camera=c;s.render.resolution_x=1400;s.render.resolution_y=1100;s.render.resolution_percentage=100;s.render.filepath=str(root/'docs/images/observatory-parking-markings-study.png');bpy.ops.render.render(write_still=True);print('VERIFIED parking marking camera and render',r['kerbsideid'])

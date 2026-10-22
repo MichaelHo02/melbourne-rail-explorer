@@ -1,0 +1,13 @@
+{
+  "cell_count": 4134,
+  "counts": {
+    "selected_faces": 37273,
+    "all_source_faces": 397241
+  },
+  "height_range": [
+    6.029453277587891,
+    30.24900245666504
+  ],
+  "cells_with_p90_p10_over_1m": 187,
+  "limits": "Material/normal selection can include upper ornament and exclude steep roof slopes. Cells are evidence, not replacement roof or verified roof ownership. Sparse cells and height spreads require review."
+}

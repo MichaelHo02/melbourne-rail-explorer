@@ -1,0 +1,13 @@
+{
+  "world": "Melbourne authored procedural daylight",
+  "retained_previous_world": "Authored neutral daylight",
+  "sky_model": "MULTIPLE_SCATTERING",
+  "sun_disc": false,
+  "existing_sun": "Preview sun",
+  "sun_elevation_deg": 53.93085266752969,
+  "sun_rotation_deg": -154.1301307727778,
+  "sky_strength": 0.11999999731779099,
+  "no_photographic_map": true,
+  "limits": "Authored clear daylight atmosphere, aligned to existing scene SUN. Atmospheric densities and strength artistic; not measured weather or calibrated time. No photographic environment map.",
+  "reference": "https://docs.blender.org/manual/en/5.1/render/shader_nodes/textures/sky.html"
+}

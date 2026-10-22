@@ -1,0 +1,32 @@
+{
+  "hidden_faces": 55025,
+  "additional_edge_band_faces_per_panel": [
+    6091,
+    3361,
+    4864,
+    3924,
+    4111
+  ],
+  "faces_per_panel": [
+    13937,
+    9682,
+    11397,
+    9867,
+    10142
+  ],
+  "hidden_surface_area_per_panel_m2": [
+    1604.9791828343464,
+    1132.4011666600766,
+    1252.7034305091179,
+    1208.609597474895,
+    1129.0101823280752
+  ],
+  "captured_vertices": 213307,
+  "captured_faces": 397241,
+  "captured_geometry_unchanged": true,
+  "geometry_sha256": "30c0e371bee5b0185de00c35fbaab93e4d56a4540406884ea334391713e22835",
+  "recovery_text_block": "Flinders canopy overlap original material slots.json",
+  "selection": "All vertices either inside panel within0.6m of plane, or above local2.4m, between0.8m above and3.5m below plane and within1.5m of outer edge. Extra edge band excludes main station zones1145/1146/1148 and holes.",
+  "limits": "Author-selected presentation cleanup. Captured geometry retained; only surface material visibility changes. Edge repair extends at most1.5m beyond fitted footprint; lower and taller disconnected scan defects remain. No captured support layout is claimed.",
+  "recovery_sha256": "af2ded31d5b2cfbda1d3cf8ccb37725f6d5ca4d9a263a5d5b3f1dddf8d17b96f"
+}

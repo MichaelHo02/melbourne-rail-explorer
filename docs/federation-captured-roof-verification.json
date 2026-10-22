@@ -1,0 +1,8 @@
+{
+  "station_geometry_unchanged": true,
+  "existing_object_locations_unchanged": true,
+  "repeat_application_unchanged": true,
+  "captured_section": "20248",
+  "inlier_count": 30,
+  "note": "Plane residual supports fitted shape only, not absolute survey accuracy."
+}

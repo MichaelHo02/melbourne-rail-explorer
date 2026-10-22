@@ -1,0 +1,15 @@
+{
+  "scan_geometry_sha256": "30c0e371bee5b0185de00c35fbaab93e4d56a4540406884ea334391713e22835",
+  "scan_vertices": 213307,
+  "scan_faces": 397241,
+  "source_geometry_unchanged": true,
+  "original_materials_restored_exactly": true,
+  "repeat_geometry_and_mask_identical": true,
+  "support_posts": 132,
+  "assumed_platform_bases": 132,
+  "fascia_depth_m": 0.55,
+  "main_station_excluded_from_extra_edge_mask": true,
+  "holes_excluded": true,
+  "limits": "Approximate authored support arrangement. Aerial scan does not resolve column bases; local1.2m fallback platform height,8m bays,.24m post diameter and.18m crossbeams are assumptions.",
+  "native_blender_support_faces_observed": 2244
+}

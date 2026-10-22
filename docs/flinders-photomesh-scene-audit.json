@@ -1,0 +1,50 @@
+{
+  "scan_object": "Flinders station - municipal 2020 scan, authored colours",
+  "vertices": 213307,
+  "faces": 397241,
+  "source_faces": 397587,
+  "importer_removed_faces": 51,
+  "authored_cleanup_removed_faces": 295,
+  "matrix_world": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "hidden_authored_objects": [
+    "Flinders authored canopy seams and edges",
+    "Flinders authored main roof seams",
+    "Flinders authored pitched platform canopy shells",
+    "Flinders authored pitched zinc roof",
+    "Flinders authored platform precinct - PTV schematic",
+    "FSS_brick",
+    "FSS_clock",
+    "FSS_copper",
+    "FSS_glass",
+    "FSS_iron",
+    "FSS_lightstone",
+    "FSS_ochre",
+    "FSS_roof"
+  ],
+  "limits": "2020 capture, not present-day survey. Crop uses 2023 station structure804817 footprint plus authored 1m tolerance. MGA55 EPSG28355 transformed to geographic/local scene; authored flat datum offset AHD4.1m. Photographic textures omitted. Scan may contain occlusions, artefacts and captured vehicles/people; inspect before final use. Own material assignment uses surveyed section zones and authored height/normal rules; gentle smoothing is authored scan cleanup, not measured surface finishes. Tiny disconnected fragments outside protected main-building zones removed by authored heuristic; raw source OBJ retained."
+}

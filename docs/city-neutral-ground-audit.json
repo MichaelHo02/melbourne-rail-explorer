@@ -1,0 +1,143 @@
+{
+  "objects": [
+    {
+      "object": "Authored flat ground",
+      "material": "Authored neutral urban ground",
+      "faces": 2,
+      "local_surface_area": 20090000.0,
+      "centres_xy_bounds": [
+        -3500.0,
+        -700.0,
+        1400.0,
+        3400.0
+      ]
+    },
+    {
+      "object": "Retained open space M010843_0",
+      "material": "Authored neutral urban ground",
+      "faces": 36,
+      "local_surface_area": 7736.968850031495,
+      "centres_xy_bounds": [
+        -1150.64990234375,
+        -729.5900268554688,
+        -986.93994140625,
+        -594.376708984375
+      ]
+    },
+    {
+      "object": "Retained open space P364110_0",
+      "material": "Authored neutral urban ground",
+      "faces": 77,
+      "local_surface_area": 6058.731771891471,
+      "centres_xy_bounds": [
+        -702.1599731445312,
+        -236.44334411621094,
+        -520.6300048828125,
+        -181.75
+      ]
+    },
+    {
+      "object": "Retained open space M014220_0",
+      "material": "Authored neutral urban ground",
+      "faces": 54,
+      "local_surface_area": 3365.938451707363,
+      "centres_xy_bounds": [
+        -1978.86328125,
+        -252.51332092285156,
+        -1911.43994140625,
+        -197.9266815185547
+      ]
+    },
+    {
+      "object": "Retained open space M010918_0",
+      "material": "Authored neutral urban ground",
+      "faces": 4,
+      "local_surface_area": 3011.22119140625,
+      "centres_xy_bounds": [
+        -5.043333530426025,
+        245.4966583251953,
+        17.676666259765625,
+        280.45001220703125
+      ]
+    },
+    {
+      "object": "Retained open space M010909_0",
+      "material": "Authored neutral urban ground",
+      "faces": 10,
+      "local_surface_area": 2639.2468490302563,
+      "centres_xy_bounds": [
+        -573.7433471679688,
+        -180.1166534423828,
+        -525.5800170898438,
+        -126.49666595458984
+      ]
+    },
+    {
+      "object": "Retained open space P376809_0",
+      "material": "Authored neutral urban ground",
+      "faces": 10,
+      "local_surface_area": 1732.219123840332,
+      "centres_xy_bounds": [
+        -1173.86669921875,
+        -716.4933471679688,
+        -1141.9766845703125,
+        -667.4733276367188
+      ]
+    },
+    {
+      "object": "Retained open space M010898_0",
+      "material": "Authored neutral urban ground",
+      "faces": 4,
+      "local_surface_area": 1409.8720626831055,
+      "centres_xy_bounds": [
+        -140.086669921875,
+        1181.7734375,
+        -129.68333435058594,
+        1239.5833740234375
+      ]
+    },
+    {
+      "object": "Retained open space M014637_0",
+      "material": "Authored neutral urban ground",
+      "faces": 17,
+      "local_surface_area": 1280.3467922210693,
+      "centres_xy_bounds": [
+        80.66666412353516,
+        -263.643310546875,
+        117.54666900634766,
+        -235.7033233642578
+      ]
+    },
+    {
+      "object": "Retained open space M014636_0",
+      "material": "Authored neutral urban ground",
+      "faces": 20,
+      "local_surface_area": 1101.8091201782227,
+      "centres_xy_bounds": [
+        92.5966567993164,
+        -292.6600036621094,
+        129.68333435058594,
+        -271.7333068847656
+      ]
+    },
+    {
+      "object": "Retained open space M010944_0",
+      "material": "Authored neutral urban ground",
+      "faces": 2,
+      "local_surface_area": 125.20912551879883,
+      "centres_xy_bounds": [
+        1246.6666259765625,
+        1691.6600341796875,
+        1247.8199462890625,
+        1700.17333984375
+      ]
+    }
+  ],
+  "limits": "Local mesh area is not exposed area: the base plane extends underneath buildings and mapped surfaces. Polygon centre bounds are not full object extents. Neutral parcel classifications do not establish actual paving or grass.",
+  "next_precinct": {
+    "candidate": "M010918 near Swanston between Collins and Flinders Lane; location-based City Square candidate, unnamed in retained inventory",
+    "reference": "https://www.premier.vic.gov.au/upgraded-city-square-ready-rock-n-roll",
+    "reference_date": "2025-11-23",
+    "findings": "Official source describes 12000 custom-laid pavers, new landscaping and artworks, five escalators at Collins Street end. Exact as-built footprint, entrance dimensions, paver layout and materials still require stronger geometry evidence. Existing scene does not represent the rebuilt station entrance."
+  }
+}

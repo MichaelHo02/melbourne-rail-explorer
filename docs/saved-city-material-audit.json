@@ -1,0 +1,19 @@
+{
+  "audited_at_utc": "2026-10-05T22:49:58.761225+00:00",
+  "scene_sha256": "b4bb08bba19aa4e64df9a867a6c73ca4b02e4df8770c3e748d5cd6940645081d",
+  "saved_camera": "02 Flinders precinct",
+  "render_visible_meshes": 24924,
+  "missing_material_objects": [],
+  "material_image_nodes": [],
+  "world_image_nodes": [],
+  "layout": [
+    {
+      "shading": "MATERIAL",
+      "scene_lights": true,
+      "scene_world": true
+    }
+  ],
+  "stadium_support_revision": 1,
+  "live_window_verified": false,
+  "limits": "Saved datablock audit only. Does not prove architectural accuracy, surface completeness or live viewport refresh."
+}

@@ -1,0 +1,18 @@
+{
+  "target": "Convincing aerial CBD ready for user review, majority buildings and landscape; NGV priority; close-up ornament deferred by direct user steering.",
+  "evidence": {
+    "aerial_city": "docs/images/observatory-city-completion-review.png inspected",
+    "cbd_scale": "docs/images/observatory-cbd-final-aerial-review.png inspected",
+    "ngv": "docs/images/observatory-ngv-aerial-palette.png inspected",
+    "materials": "docs/city-material-coverage-audit.json: 25452 visible meshes, no missing assignments, zero image nodes",
+    "sources": "docs/sources.md, retained environment data, detailed Blender walkthrough and pass audits",
+    "native": "Canonical city-observatory.blend reload observed; Material Preview enabled and coloured city visible",
+    "walkthrough": "docs/blender-design-walkthrough.md and docs/blender-visual-walkthrough.html updated"
+  },
+  "assessment": "Aerial user-review target passes with disclosed approximations. Not photorealistic engineering reconstruction or complete surrounding Melbourne.",
+  "remaining_deferred": [
+    "Close-up ornament and measured facade schedules",
+    "Outer district coverage beyond core CBD",
+    "Web integration and Sites publication"
+  ]
+}

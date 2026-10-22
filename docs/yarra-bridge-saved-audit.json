@@ -1,0 +1,153 @@
+{
+  "saved_blend": "/Users/holeminhthach/.codex/worktrees/blender-city-layout/train-simulator/assets/source/environment/city-observatory.blend",
+  "checks": {
+    "yarra_bridge_pedestrian_revision": true,
+    "yarra_western_bridge_structure_revision": true,
+    "yarra_western_bridge_deck_finish_revision": true,
+    "yarra_princes_captured_landing_revision": true,
+    "yarra_authored_unified_decks_revision": true,
+    "all_recovery_meshes_exist": true,
+    "17604_retained_geometry": true,
+    "20327_retained_geometry": true,
+    "39116_source_hidden": true,
+    "39116_old_road_hidden": true,
+    "39117_source_hidden": true,
+    "39117_old_road_hidden": true,
+    "Yarra Kings unified authored5m deck_matches_authored_union": true,
+    "Yarra Kings retained road union on authored5m deck_matches_authored_union": true,
+    "full_southern_approach_supported": true,
+    "Continuous Vicmap road surface_landing_recoverable": true,
+    "Authored kerbs - retained road edges_landing_recoverable": true,
+    "Continuous authored pavement bands_landing_recoverable": true,
+    "bridge_materials_have_no_image_textures": true
+  },
+  "recovery_meshes": [
+    {
+      "object": "Authored kerbs - retained road edges",
+      "property": "yarra_captured_landing_original_unsubdivided_mesh",
+      "mesh": "Authored kerbs - retained road edges outside mapped Swanston approach.001",
+      "exists": true
+    },
+    {
+      "object": "Authored kerbs - retained road edges",
+      "property": "yarra_captured_landing_original_mesh",
+      "mesh": "Authored kerbs - retained road edges outside mapped Swanston approach.001 locally subdivided landing.001",
+      "exists": true
+    },
+    {
+      "object": "Continuous authored pavement bands",
+      "property": "yarra_captured_landing_original_unsubdivided_mesh",
+      "mesh": "Continuous authored pavement bands outside mapped Swanston approach.001",
+      "exists": true
+    },
+    {
+      "object": "Continuous authored pavement bands",
+      "property": "yarra_captured_landing_original_mesh",
+      "mesh": "Continuous authored pavement bands outside mapped Swanston approach.001 locally subdivided landing.001",
+      "exists": true
+    },
+    {
+      "object": "Continuous surveyed roofs - authored finishes",
+      "property": "yarra_bridge_original_roof_mesh",
+      "mesh": "Continuous surveyed roofs - authored finishes after Town Hall portico review.001",
+      "exists": true
+    },
+    {
+      "object": "Continuous surveyed roofs - authored finishes",
+      "property": "yarra_western_finish_original_mesh",
+      "mesh": "Continuous surveyed roofs - authored finishes after Town Hall portico review.003",
+      "exists": true
+    },
+    {
+      "object": "Continuous surveyed roofs - authored finishes",
+      "property": "yarra_western_original_roof_mesh",
+      "mesh": "Continuous surveyed roofs - authored finishes after Town Hall portico review.005",
+      "exists": true
+    },
+    {
+      "object": "Continuous Vicmap road surface",
+      "property": "yarra_captured_landing_original_unsubdivided_mesh",
+      "mesh": "Continuous Vicmap road surface outside mapped Swanston approach.001",
+      "exists": true
+    },
+    {
+      "object": "Continuous Vicmap road surface",
+      "property": "yarra_captured_landing_original_mesh",
+      "mesh": "Continuous Vicmap road surface outside mapped Swanston approach.001 locally subdivided landing.001",
+      "exists": true
+    },
+    {
+      "object": "Retained Vicmap tram rails - authored road-draped gauge",
+      "property": "yarra_captured_landing_original_mesh",
+      "mesh": "Retained Vicmap tram rails - authored road-draped gauge.001",
+      "exists": true
+    },
+    {
+      "object": "survey_17604",
+      "property": "yarra_bridge_original_mesh",
+      "mesh": "survey_17604.001",
+      "exists": true
+    },
+    {
+      "object": "survey_20327",
+      "property": "yarra_bridge_original_mesh",
+      "mesh": "survey_20327.001",
+      "exists": true
+    },
+    {
+      "object": "survey_22347",
+      "property": "yarra_original_deck_finish_mesh",
+      "mesh": "survey_22347.001",
+      "exists": true
+    },
+    {
+      "object": "survey_24181",
+      "property": "yarra_original_deck_finish_mesh",
+      "mesh": "survey_24181.001",
+      "exists": true
+    },
+    {
+      "object": "survey_39116",
+      "property": "yarra_original_deck_finish_mesh",
+      "mesh": "survey_39116.001",
+      "exists": true
+    },
+    {
+      "object": "Vicmap bridge carriageway on survey 39116",
+      "property": "yarra_original_road_mesh",
+      "mesh": "Vicmap bridge carriageway on survey 39116.001",
+      "exists": true
+    },
+    {
+      "object": "Vicmap bridge carriageway on survey 39117",
+      "property": "yarra_original_road_mesh",
+      "mesh": "Vicmap bridge carriageway on survey 39117.001",
+      "exists": true
+    },
+    {
+      "object": "Yarra Kings authored deck railing",
+      "property": "yarra_original_structure_mesh",
+      "mesh": "Yarra Kings authored deck railing.001",
+      "exists": true
+    },
+    {
+      "object": "Yarra Kings authored girder lines",
+      "property": "yarra_original_structure_mesh",
+      "mesh": "Yarra Kings authored girder lines.001",
+      "exists": true
+    },
+    {
+      "object": "Yarra Kings authored simplified supports",
+      "property": "yarra_original_structure_mesh",
+      "mesh": "Yarra Kings authored simplified supports.001",
+      "exists": true
+    }
+  ],
+  "passed": true,
+  "visual_review": "Both saved-scene renders inspected. Kings has one coherent deck and road. Princes bridge joins supported terrace; full southern grade rejoins existing street. Stepped mapped kerbs and approximate retaining profile remain disclosed.",
+  "limits": "Kings5m chosen from retained lower authored layer, not surveyed fit. Princes52m apron and southern100m grade authored from sparse historical road context. Structural dimensions approximate.",
+  "renders": [
+    "images/yarra-bridge-western-saved.png",
+    "images/yarra-bridge-princes-landing-saved.png"
+  ]
+}

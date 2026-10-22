@@ -1,0 +1,8 @@
+{
+  "captured_triangles": 872,
+  "features": 5,
+  "authored_contact_quads": 176,
+  "object": "NGV retained eastern roof relief",
+  "original_capture_retained": true,
+  "limits": "Original captured raised geometry only, authored centre bounds240..261,105..136m; residual0.3..4m, vertex limits-0.1..4.5m against fitted eastern plane; shared4-decimal vertex coordinates, components>=2m2 and8faces. Features may include skylights, plant or scan artefacts; function/material unverified. Own zinc finish, no photographic textures. Edges may be open; inspect contact before apply. Boundary skirts down to corrected roof are authored contact approximations, including internal holes. Feature functions and exact current appearance unverified."
+}

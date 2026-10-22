@@ -1,0 +1,104 @@
+{
+  "camera": "02 Flinders precinct",
+  "hits": [
+    {
+      "pixel": [
+        780,
+        720
+      ],
+      "object": "Yarra - Vicmap Hydro water boundary",
+      "point": [
+        106.82086944580078,
+        -68.92042541503906,
+        0.1499999761581421
+      ],
+      "face": 186,
+      "material": "Authored Yarra water colour"
+    },
+    {
+      "pixel": [
+        780,
+        760
+      ],
+      "object": "Yarra - Vicmap Hydro water boundary",
+      "point": [
+        131.0719451904297,
+        -117.42250061035156,
+        0.15000292658805847
+      ],
+      "face": 181,
+      "material": "Authored Yarra water colour"
+    },
+    {
+      "pixel": [
+        660,
+        875
+      ],
+      "object": "Authored ground with City Square portal",
+      "point": [
+        128.80401611328125,
+        -291.77215576171875,
+        -0.3999967575073242
+      ],
+      "face": 694,
+      "material": "Authored neutral urban ground"
+    },
+    {
+      "pixel": [
+        635,
+        870
+      ],
+      "object": "Arts Centre retained roof beneath lattice",
+      "point": [
+        134.93795776367188,
+        -341.3077392578125,
+        30.0
+      ],
+      "face": 1,
+      "material": "Authored pale roof finish"
+    },
+    {
+      "pixel": [
+        800,
+        635
+      ],
+      "object": "Federation fitted captured-height deck",
+      "point": [
+        72.00215148925781,
+        30.531349182128906,
+        6.197855472564697
+      ],
+      "face": 1841,
+      "material": "Authored Federation surrounding neutral stone - assumed"
+    },
+    {
+      "pixel": [
+        790,
+        695
+      ],
+      "object": "Federation approximate deck closure walls",
+      "point": [
+        101.3902359008789,
+        -43.15211486816406,
+        4.902698516845703
+      ],
+      "face": 617,
+      "material": "Authored Federation deck walls - approximate"
+    },
+    {
+      "pixel": [
+        755,
+        785
+      ],
+      "object": "Continuous surveyed roofs - authored finishes",
+      "point": [
+        138.72561645507812,
+        -169.99761962890625,
+        9.499969482421875
+      ],
+      "face": 30005,
+      "material": "Authored Princes Bridge upper stone"
+    }
+  ],
+  "limits": "Geometric nearest-hit diagnostic; transparent faces can be returned. Render confirms optical appearance separately."
+}

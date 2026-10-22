@@ -1,0 +1,23 @@
+{
+  "assets": [
+    "1425102",
+    "1425122"
+  ],
+  "area_m2": 1157.6994385006644,
+  "original_buffer_retained": "Vicmap bridge carriageway on survey 36402",
+  "limits": "Municipal road asset polygons clipped to retained2023 survey36402. Authored flat deck9.535m and illustrative asphalt/concrete shaders; exact current elevations, rails and markings unresolved. Geometry replaces9m buffered width assumption.",
+  "saved_file_verification": [
+    {
+      "assetid": "1425102",
+      "coordinate_error_m": 8.255298915318663e-06,
+      "faces": 698
+    },
+    {
+      "assetid": "1425122",
+      "coordinate_error_m": 7.814547046422911e-06,
+      "faces": 659
+    }
+  ],
+  "native_preview": "Canonical scene reloaded via Revert; fresh native screenshot confirmed coloured city in Rendered shading.",
+  "visual_review": "Fresh saved-file precinct render shows two dark mapped carriageways; central bridge band remains pale and requires tram/marking detail."
+}

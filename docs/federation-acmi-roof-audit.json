@@ -1,0 +1,22 @@
+{
+  "objects": {
+    "survey_17199": {
+      "vertices": 34,
+      "cap_faces": 0
+    },
+    "Federation ACMI and Beer Deluxe - authored triangular cladding": {
+      "vertices": 5850,
+      "cap_faces": 0
+    },
+    "Continuous surveyed roofs - authored finishes": {
+      "vertices": 45,
+      "cap_faces": 15
+    }
+  },
+  "base": 15.551502227783203,
+  "previous_top": 28.051502227783203,
+  "fit_inliers": 1180,
+  "median_residual": 0.0720819849213914,
+  "limits": "Plane fitted to May2020 captured geometry with authored0.4m residual rejection. Source section outline retained. Fine relief, plant and edge construction unresolved. Zinc-like finish authored; not measured present-day appearance.",
+  "original_meshes_recoverable": true
+}

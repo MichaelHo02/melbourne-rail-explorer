@@ -1,0 +1,127 @@
+{
+  "object": "NGV eastern captured-fit roof relief",
+  "features": [
+    {
+      "captured_component_bounds": [
+        [
+          246.20396008250498,
+          111.14594677641065,
+          30.945017242432
+        ],
+        [
+          248.32567525431392,
+          118.30759182830377,
+          31.955458068847996
+        ]
+      ],
+      "top_plane": [
+        -0.044857739585650765,
+        0.043654454045114345,
+        37.82469648737934
+      ],
+      "inlier_faces": 78,
+      "median_residual_m": 0.012648782441022632,
+      "hull_area_m2": 7.371792061862268
+    },
+    {
+      "captured_component_bounds": [
+        [
+          243.1707809390218,
+          123.84217462505603,
+          31.205027008057
+        ],
+        [
+          244.08742232955166,
+          127.46077642139625,
+          31.529207611083997
+        ]
+      ],
+      "top_plane": [
+        -0.06025286158686596,
+        0.010278200254553341,
+        44.792426082365346
+      ],
+      "inlier_faces": 17,
+      "median_residual_m": 0.016324848746226195,
+      "hull_area_m2": 1.2298094297166038
+    },
+    {
+      "captured_component_bounds": [
+        [
+          244.45598810414285,
+          126.3430826844936,
+          31.231890106201
+        ],
+        [
+          249.62776660385816,
+          134.88358623935085,
+          32.714128875732
+        ]
+      ],
+      "top_plane": [
+        -0.019274075642934492,
+        -0.06384818233314084,
+        45.49020212344446
+      ],
+      "inlier_faces": 77,
+      "median_residual_m": 0.033693653173557436,
+      "hull_area_m2": 9.9061442523639
+    },
+    {
+      "captured_component_bounds": [
+        [
+          252.3011717227641,
+          131.2839491543042,
+          31.201109313965
+        ],
+        [
+          259.99068719939646,
+          135.74794071239864,
+          32.517099761962996
+        ]
+      ],
+      "top_plane": [
+        -0.0030180090000542516,
+        -0.041869184430134716,
+        38.75266397753717
+      ],
+      "inlier_faces": 153,
+      "median_residual_m": 0.014715695393192618,
+      "hull_area_m2": 13.894424607756067
+    },
+    {
+      "captured_component_bounds": [
+        [
+          239.66076829574567,
+          134.0770483468799,
+          31.247179412842
+        ],
+        [
+          243.59288290026225,
+          136.2743507023481,
+          31.764440917968997
+        ]
+      ],
+      "top_plane": [
+        -0.04642043730992782,
+        0.0489666506947,
+        36.24043871061407
+      ],
+      "inlier_faces": 37,
+      "median_residual_m": 0.015627262280347054,
+      "hull_area_m2": 4.608520792500316
+    }
+  ],
+  "faces": 102,
+  "vertices": 362,
+  "original_captured_data_retained": true,
+  "existing_meshes_modified": false,
+  "limits": "Clean authored roof relief fitted to historical raised capture components. Upward normals>.55,0.08m local RANSAC tolerance; convex inlier support hulls approximate feature perimeters. Hull may bridge small gaps. Vertical zinc-like closures authored down to fitted roof; functions and current appearance unverified. Original capture retained; no photographic textures.",
+  "saved_file_verification": {
+    "faces": 102,
+    "features": 5,
+    "maximum_source_coordinate_error_m": 1.59319064934273e-05,
+    "no_image_texture_nodes": true,
+    "active_camera_preserved": "37 CBD aerial review"
+  }
+}

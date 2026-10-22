@@ -1,0 +1,29 @@
+{
+  "captured_scan_vertices": 213307,
+  "captured_scan_faces": 397241,
+  "panels": 5,
+  "roof_triangles": 42,
+  "eave_quads": 52,
+  "seam_quads": 92,
+  "total_faces": 186,
+  "removed_previous_authored_grid_faces": 0,
+  "panel_area_m2": 4196.879602258596,
+  "filled_projected_area_m2": 368.368324367174,
+  "trimmed_projected_area_m2": 128.11372210857894,
+  "limits": "Five low captured canopy strips only. Planar least-squares fits, statistical lift, footprint cleanup and seams authored; not measured as-built roof detail. Larger unsupported roofs remain.",
+  "assumptions": {
+    "gap_closing_radius_m": 1.2,
+    "outline_simplification_m": 1.5,
+    "seam_spacing_m": 0.9,
+    "seam_width_m": 0.018,
+    "fascia_depth_m": 0.55,
+    "grid_base_lift_m": 0.055
+  },
+  "support_rmse_m": [
+    0.06359416470811971,
+    0.06362247866492947,
+    0.05759033021848401,
+    0.04454962555621914,
+    0.07400882093630434
+  ]
+}

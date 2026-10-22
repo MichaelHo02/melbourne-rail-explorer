@@ -1,0 +1,230 @@
+{
+  "camera": "02 Flinders precinct",
+  "source_mask": "observatory-placeholder-ground-mask.png",
+  "ground_plane_z": -0.4000000059604645,
+  "cell_size_m": 40,
+  "sampling_stride_pixels": 2,
+  "largest_cells": [
+    {
+      "centre_xy_m": [
+        60,
+        -500
+      ],
+      "centre_lonlat": [
+        144.9677822911336,
+        -37.82279155587496
+      ],
+      "sample_pixels": 194
+    },
+    {
+      "centre_xy_m": [
+        20,
+        -20
+      ],
+      "centre_lonlat": [
+        144.96732743037785,
+        -37.818479662235
+      ],
+      "sample_pixels": 192
+    },
+    {
+      "centre_xy_m": [
+        -300,
+        20
+      ],
+      "centre_lonlat": [
+        144.96368854433186,
+        -37.818120337765
+      ],
+      "sample_pixels": 186
+    },
+    {
+      "centre_xy_m": [
+        -300,
+        60
+      ],
+      "centre_lonlat": [
+        144.96368854433186,
+        -37.817761013295005
+      ],
+      "sample_pixels": 180
+    },
+    {
+      "centre_xy_m": [
+        60,
+        -460
+      ],
+      "centre_lonlat": [
+        144.9677822911336,
+        -37.82243223140496
+      ],
+      "sample_pixels": 174
+    },
+    {
+      "centre_xy_m": [
+        60,
+        -420
+      ],
+      "centre_lonlat": [
+        144.9677822911336,
+        -37.82207290693496
+      ],
+      "sample_pixels": 174
+    },
+    {
+      "centre_xy_m": [
+        20,
+        20
+      ],
+      "centre_lonlat": [
+        144.96732743037785,
+        -37.818120337765
+      ],
+      "sample_pixels": 172
+    },
+    {
+      "centre_xy_m": [
+        -100,
+        -780
+      ],
+      "centre_lonlat": [
+        144.96596284811062,
+        -37.82530682716493
+      ],
+      "sample_pixels": 162
+    },
+    {
+      "centre_xy_m": [
+        -260,
+        20
+      ],
+      "centre_lonlat": [
+        144.9641434050876,
+        -37.818120337765
+      ],
+      "sample_pixels": 158
+    },
+    {
+      "centre_xy_m": [
+        500,
+        100
+      ],
+      "centre_lonlat": [
+        144.97278575944688,
+        -37.81740168882501
+      ],
+      "sample_pixels": 157
+    },
+    {
+      "centre_xy_m": [
+        60,
+        -540
+      ],
+      "centre_lonlat": [
+        144.9677822911336,
+        -37.823150880344954
+      ],
+      "sample_pixels": 156
+    },
+    {
+      "centre_xy_m": [
+        20,
+        -740
+      ],
+      "centre_lonlat": [
+        144.96732743037785,
+        -37.82494750269493
+      ],
+      "sample_pixels": 155
+    },
+    {
+      "centre_xy_m": [
+        100,
+        -500
+      ],
+      "centre_lonlat": [
+        144.96823715188935,
+        -37.82279155587496
+      ],
+      "sample_pixels": 154
+    },
+    {
+      "centre_xy_m": [
+        60,
+        -340
+      ],
+      "centre_lonlat": [
+        144.9677822911336,
+        -37.82135425799497
+      ],
+      "sample_pixels": 148
+    },
+    {
+      "centre_xy_m": [
+        60,
+        -380
+      ],
+      "centre_lonlat": [
+        144.9677822911336,
+        -37.821713582464966
+      ],
+      "sample_pixels": 135
+    },
+    {
+      "centre_xy_m": [
+        -140,
+        60
+      ],
+      "centre_lonlat": [
+        144.96550798735487,
+        -37.817761013295005
+      ],
+      "sample_pixels": 135
+    },
+    {
+      "centre_xy_m": [
+        -260,
+        60
+      ],
+      "centre_lonlat": [
+        144.9641434050876,
+        -37.817761013295005
+      ],
+      "sample_pixels": 131
+    },
+    {
+      "centre_xy_m": [
+        300,
+        20
+      ],
+      "centre_lonlat": [
+        144.97051145566812,
+        -37.818120337765
+      ],
+      "sample_pixels": 129
+    },
+    {
+      "centre_xy_m": [
+        -180,
+        100
+      ],
+      "centre_lonlat": [
+        144.96505312659912,
+        -37.81740168882501
+      ],
+      "sample_pixels": 128
+    },
+    {
+      "centre_xy_m": [
+        460,
+        100
+      ],
+      "centre_lonlat": [
+        144.97233089869113,
+        -37.81740168882501
+      ],
+      "sample_pixels": 121
+    }
+  ],
+  "limits": "Approximate orthographic projection of diagnostic red pixels onto flat fallback plane. Pixel count ranks screen-space visibility, not real land area. Cell centres locate review areas, not classified surface types; nearby buildings/footways may lie inside each cell."
+}

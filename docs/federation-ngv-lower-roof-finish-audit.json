@@ -1,0 +1,20 @@
+{
+  "changed_faces": 40,
+  "sections": [
+    {
+      "id": 16221,
+      "current_top": 23.899999618530273
+    },
+    {
+      "id": 16222,
+      "current_top": 32.400001525878906
+    },
+    {
+      "id": 16223,
+      "current_top": 27.899999618530273
+    }
+  ],
+  "recovery_text": "NGV lower roof original material assignments.json",
+  "reference": "https://mvga-prod-files.s3.ap-southeast-4.amazonaws.com/public/about-council/committees-meetings/meeting-archive/MeetingAgendaItemAttachments/843/15077/DEC18%2520FMC2%2520AGENDA%2520ITEM%25206.4.pdf",
+  "limits": "Roof material type informed by municipal2018 heritage nomination. Flat cap matching uses source footprints and current section top heights, all vertices within5mm tolerance. Exact roof glazing distribution, folds, finish weathering and present-day specification unresolved; zinc colour authored. Existing geometry and Atrium masks unchanged."
+}

@@ -1,0 +1,37 @@
+{
+  "materials": {
+    "sandstone": {
+      "backup": "Authored Federation Square sandstone before NGV aerial palette",
+      "low": [
+        0.34,
+        0.23,
+        0.18
+      ],
+      "high": [
+        0.46,
+        0.34,
+        0.27
+      ],
+      "roughness": 0.78,
+      "metallic": 0
+    },
+    "zinc": {
+      "backup": "Authored Federation Square zinc before NGV aerial palette",
+      "low": [
+        0.105,
+        0.145,
+        0.139
+      ],
+      "high": [
+        0.19,
+        0.23,
+        0.215
+      ],
+      "roughness": 0.57,
+      "metallic": 0.45
+    }
+  },
+  "geometry_changed": false,
+  "reference": "https://www.batessmart.com/projects/fed-square",
+  "limits": "Own warm mineral stone and muted green-grey zinc, informed visually by architect exterior references. No sampled colours or photographic textures. Shared Federation materials affected; panel distribution and present-day calibrated colours approximate."
+}

@@ -1,0 +1,256 @@
+{
+  "old_surface_cuts": {
+    "Continuous Vicmap road surface": {
+      "replaced_faces": 208,
+      "original_faces": 10525,
+      "result_faces": 10450,
+      "recovery_mesh": "Continuous Vicmap road surface expanded coverage.002"
+    },
+    "Continuous authored pavement bands": {
+      "replaced_faces": 80,
+      "original_faces": 13996,
+      "result_faces": 13943,
+      "recovery_mesh": "Continuous authored pavement bands expanded coverage.002"
+    },
+    "Authored kerbs - retained road edges": {
+      "replaced_faces": 176,
+      "original_faces": 48032,
+      "result_faces": 47870,
+      "recovery_mesh": "Authored kerbs - retained road edges.001"
+    },
+    "Authored CBD junction crossings - illustrative": {
+      "replaced_faces": 24,
+      "original_faces": 1955,
+      "result_faces": 1957,
+      "recovery_mesh": "Authored CBD junction crossings - illustrative.001"
+    },
+    "Authored illustrative lane dashes": {
+      "replaced_faces": 40,
+      "original_faces": 8948,
+      "result_faces": 8908,
+      "recovery_mesh": "Authored illustrative lane dashes.001"
+    }
+  },
+  "limits": "Municipal mapped planforms outside bridge footprint. Historical2020 eight-nearest inverse-distance ground interpolation; authored22m blend to6.2m bridge deck,6m triangle subdivision, surface offsets35/150mm. Current heights, pavement material colours and unknown material classes approximate. No photographic textures.",
+  "saved_file_verification": {
+    "mapped_assets": [
+      {
+        "assetid": "1387622",
+        "coordinate_error_m": 3.617365461424837e-06,
+        "faces": 43
+      },
+      {
+        "assetid": "1388534",
+        "coordinate_error_m": 3.7806243759106107e-06,
+        "faces": 179
+      },
+      {
+        "assetid": "1389698",
+        "coordinate_error_m": 4.120209989720147e-06,
+        "faces": 162
+      },
+      {
+        "assetid": "1414116",
+        "coordinate_error_m": 3.7593266011708804e-06,
+        "faces": 76
+      },
+      {
+        "assetid": "1416603",
+        "coordinate_error_m": 4.0670378020223785e-06,
+        "faces": 67
+      },
+      {
+        "assetid": "1444499",
+        "coordinate_error_m": 3.936310912166697e-06,
+        "faces": 41
+      },
+      {
+        "assetid": "1438852",
+        "coordinate_error_m": 4.113674344519063e-06,
+        "faces": 67
+      },
+      {
+        "assetid": "1395588",
+        "coordinate_error_m": 2.0053323019447406e-06,
+        "faces": 12
+      },
+      {
+        "assetid": "1395593",
+        "coordinate_error_m": 3.810906677673941e-06,
+        "faces": 96
+      },
+      {
+        "assetid": "1395604",
+        "coordinate_error_m": 3.917903942703766e-06,
+        "faces": 80
+      },
+      {
+        "assetid": "1395906",
+        "coordinate_error_m": 3.811905239107182e-06,
+        "faces": 150
+      },
+      {
+        "assetid": "1395940",
+        "coordinate_error_m": 3.7706873716993674e-06,
+        "faces": 187
+      },
+      {
+        "assetid": "1395951",
+        "coordinate_error_m": 3.8114776546576456e-06,
+        "faces": 370
+      },
+      {
+        "assetid": "1396665",
+        "coordinate_error_m": 3.960060786137024e-06,
+        "faces": 75
+      },
+      {
+        "assetid": "1399495",
+        "coordinate_error_m": 3.930000296921719e-06,
+        "faces": 155
+      },
+      {
+        "assetid": "1415772",
+        "coordinate_error_m": 3.800385548309105e-06,
+        "faces": 92
+      },
+      {
+        "assetid": "1415785",
+        "coordinate_error_m": 3.9140932199290075e-06,
+        "faces": 82
+      },
+      {
+        "assetid": "1415794",
+        "coordinate_error_m": 2.159676698349509e-06,
+        "faces": 12
+      },
+      {
+        "assetid": "1758956",
+        "coordinate_error_m": 3.7243736587361777e-06,
+        "faces": 54
+      },
+      {
+        "assetid": "1852506",
+        "coordinate_error_m": 4.150026152912831e-06,
+        "faces": 72
+      },
+      {
+        "assetid": "1387555",
+        "coordinate_error_m": 3.951154071659813e-06,
+        "faces": 46
+      },
+      {
+        "assetid": "1387779",
+        "coordinate_error_m": 3.7968914490121048e-06,
+        "faces": 47
+      },
+      {
+        "assetid": "1388660",
+        "coordinate_error_m": 3.793422042283301e-06,
+        "faces": 548
+      },
+      {
+        "assetid": "1395598",
+        "coordinate_error_m": 3.736515093519574e-06,
+        "faces": 80
+      },
+      {
+        "assetid": "1758576",
+        "coordinate_error_m": 3.7881528068745913e-06,
+        "faces": 194
+      },
+      {
+        "assetid": "1415641",
+        "coordinate_error_m": 4.006496112344283e-06,
+        "faces": 155
+      },
+      {
+        "assetid": "1417128",
+        "coordinate_error_m": 2.1253336558471312e-06,
+        "faces": 163
+      },
+      {
+        "assetid": "1388550",
+        "coordinate_error_m": 3.905224882481769e-06,
+        "faces": 48
+      },
+      {
+        "assetid": "1390447",
+        "coordinate_error_m": 3.5813435607672513e-06,
+        "faces": 82
+      },
+      {
+        "assetid": "1395382",
+        "coordinate_error_m": 3.936310912166697e-06,
+        "faces": 90
+      },
+      {
+        "assetid": "1395595",
+        "coordinate_error_m": 3.5258847866081884e-06,
+        "faces": 240
+      },
+      {
+        "assetid": "1438870",
+        "coordinate_error_m": 3.902548946671894e-06,
+        "faces": 198
+      },
+      {
+        "assetid": "1438882",
+        "coordinate_error_m": 3.667719110767593e-06,
+        "faces": 67
+      },
+      {
+        "assetid": "1656214",
+        "coordinate_error_m": 3.833175616530127e-06,
+        "faces": 137
+      },
+      {
+        "assetid": "1424885",
+        "coordinate_error_m": 3.884112382344074e-06,
+        "faces": 1153
+      },
+      {
+        "assetid": "1425120",
+        "coordinate_error_m": 3.847502765082988e-06,
+        "faces": 420
+      },
+      {
+        "assetid": "1425121",
+        "coordinate_error_m": 4.148939142570691e-06,
+        "faces": 219
+      },
+      {
+        "assetid": "1425100",
+        "coordinate_error_m": 4.099845078118002e-06,
+        "faces": 90
+      },
+      {
+        "assetid": "1425098",
+        "coordinate_error_m": 3.834595591463656e-06,
+        "faces": 246
+      },
+      {
+        "assetid": "1425126",
+        "coordinate_error_m": 2.159676698349509e-06,
+        "faces": 107
+      }
+    ],
+    "outside_faces_preserved": [
+      "Continuous Vicmap road surface",
+      "Continuous authored pavement bands",
+      "Authored kerbs - retained road edges",
+      "Authored CBD junction crossings - illustrative",
+      "Authored illustrative lane dashes"
+    ],
+    "image_textures": 0
+  },
+  "visual_review": {
+    "saved_detail_render": "docs/images/observatory-swanston-approach-detail.png",
+    "native_blender": "Reloaded saved file; rendered shading visible, revert dialog closed",
+    "limitations": [
+      "Station scan roof damage remains visible",
+      "Tram rails and current markings unfinished",
+      "Boundary closures and neighbouring plaza detail unfinished"
+    ]
+  }
+}

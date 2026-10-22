@@ -1,0 +1,8 @@
+"""Source-bounded railway ground with an authored aggregate finish."""
+import bpy,json
+from pathlib import Path
+R=Path(bpy.data.filepath).resolve().parents[3];name='OSM railway land - authored aggregate ground'
+if not bpy.data.objects.get(name):
+ d=json.loads((R/'assets/source/environment/city-rail-precinct-ground.json').read_text());m=bpy.data.materials.get('Authored railway precinct aggregate') or bpy.data.materials.new('Authored railway precinct aggregate');m.use_nodes=True;n=m.node_tree.nodes;l=m.node_tree.links;s=n.get('Principled BSDF');s.inputs['Roughness'].default_value=.93
+ coord=n.new('ShaderNodeNewGeometry');noise=n.new('ShaderNodeTexNoise');noise.inputs['Scale'].default_value=.4;noise.inputs['Detail'].default_value=3;ramp=n.new('ShaderNodeValToRGB');ramp.color_ramp.elements[0].color=(.075,.064,.048,1);ramp.color_ramp.elements[1].color=(.18,.16,.12,1);l.new(coord.outputs['Position'],noise.inputs['Vector']);l.new(noise.outputs['Fac'],ramp.inputs[0]);l.new(ramp.outputs['Color'],s.inputs['Base Color'])
+ mesh=bpy.data.meshes.new(name);mesh.from_pydata(d['vertices'],[],d['faces']);mesh.materials.append(m);mesh.update();assert all(p.normal.z>.99 for p in mesh.polygons);o=bpy.data.objects.new(name,mesh);bpy.data.collections['GROUND - official horizontal geography, authored levels'].objects.link(o);o['source_url']=d['source'];o['source_license']=d['license'];o['attribution']=d['attribution'];o['source_ids']=','.join(w['id'] for w in d['source_ways']);o['limits']=d['limits'];o['area_m2']=d['area_m2'];print('VERIFIED railway precinct ground',d['area_m2'],len(mesh.polygons),flush=True)

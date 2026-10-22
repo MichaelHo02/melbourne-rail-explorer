@@ -1,0 +1,13 @@
+{
+  "original_geometry_hashes_unchanged": {
+    "survey_20247": "eda659b3321f9d429ebcc688c34bc52f38b32f668f0baa665a7ea408fccc67d5",
+    "survey_20248": "2f65d47b460b8f5c1c5acd56fd03bb204e80f5d989389eceec87039d995af019",
+    "Federation Square - authored triangular cladding": "03b9db2cf2f742fc0d4b7cd4c78905632124c0b42f6738b01b9d56cbdf5c91aa",
+    "Continuous surveyed roofs - authored finishes": "74ba6c69ab6f05f70d79d2854cee164ae5eda891ddd12766753400081ce76480",
+    "Flinders captured canopy fitted metal skins": "db7f344f915419aa8502bf657c344a4b06b6524be799b469f6dc6a5daf762bbd"
+  },
+  "existing_object_locations_unchanged": true,
+  "repeat_counts_unchanged": true,
+  "source_upper_section_hidden_recoverably": true,
+  "limits": "Geometry hashes cover named source, cladding, continuous roof and captured station meshes; no whole-city completion claim."
+}

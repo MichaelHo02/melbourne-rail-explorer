@@ -1,0 +1,25 @@
+{
+  "status": "verified review composition; whole-city goal incomplete",
+  "camera": "37 CBD aerial review",
+  "location": [
+    900,
+    -950,
+    2100
+  ],
+  "target": [
+    -100,
+    600,
+    40
+  ],
+  "orthographic_scale": 1900,
+  "saved_render": "docs/images/observatory-cbd-focused.png",
+  "verification": [
+    "Fresh saved-scene camera and scale assertions followed by Cycles render",
+    "Native Blender screenshot shows coloured rendered CBD camera view and clean saved title"
+  ],
+  "limits": [
+    "Composition only; no landmark geometry repair in this pass",
+    "Connected NGV patch is reference evidence, not installed finished roof",
+    "Federation joins, railway gaps and street contacts remain unfinished"
+  ]
+}

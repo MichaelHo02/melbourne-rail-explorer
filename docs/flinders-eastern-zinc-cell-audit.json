@@ -1,0 +1,13 @@
+{
+  "cell_count": 396,
+  "counts": {
+    "all_zinc_faces": 64647,
+    "selected_faces": 2133
+  },
+  "height_range": [
+    6.029453277587891,
+    30.24900245666504
+  ],
+  "cells_with_p90_p10_over_1m": 52,
+  "limits": "Material/normal selection can include upper ornament and exclude steep roof slopes. Cells are evidence, not replacement roof or verified roof ownership. Sparse cells and height spreads require review."
+}

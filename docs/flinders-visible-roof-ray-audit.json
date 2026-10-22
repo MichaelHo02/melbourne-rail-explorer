@@ -1,0 +1,162 @@
+[
+  {
+    "pixel": [
+      300,
+      350
+    ],
+    "hit": true,
+    "point": [
+      -8.022354125976562,
+      15.36407470703125,
+      11.914459228515625
+    ],
+    "normal": [
+      -0.03119209036231041,
+      0.08823315054178238,
+      0.9956114292144775
+    ],
+    "face": 326695,
+    "object": "Flinders station - municipal 2020 scan, authored colours",
+    "material": "Scan Flinders authored station ground"
+  },
+  {
+    "pixel": [
+      350,
+      450
+    ],
+    "hit": true,
+    "point": [
+      11.328330993652344,
+      0.614593505859375,
+      11.857391357421875
+    ],
+    "normal": [
+      -0.06605983525514603,
+      0.10217462480068207,
+      0.9925706386566162
+    ],
+    "face": 308001,
+    "object": "Flinders station - municipal 2020 scan, authored colours",
+    "material": "Scan Flinders authored station ground"
+  },
+  {
+    "pixel": [
+      350,
+      550
+    ],
+    "hit": true,
+    "point": [
+      23.42414093017578,
+      -19.041107177734375,
+      12.253173828125
+    ],
+    "normal": [
+      0.23108427226543427,
+      -0.672831654548645,
+      0.7027785778045654
+    ],
+    "face": 178269,
+    "object": "Flinders station - municipal 2020 scan, authored colours",
+    "material": "Scan Flinders authored station ground"
+  },
+  {
+    "pixel": [
+      300,
+      650
+    ],
+    "hit": true,
+    "point": [
+      27.9996337890625,
+      -43.171630859375,
+      12.49200439453125
+    ],
+    "normal": [
+      0.06774097681045532,
+      0.05331389978528023,
+      0.9962775111198425
+    ],
+    "face": 147383,
+    "object": "Flinders station - municipal 2020 scan, authored colours",
+    "material": "Scan Flinders authored station ground"
+  },
+  {
+    "pixel": [
+      230,
+      450
+    ],
+    "hit": true,
+    "point": [
+      -7.256446838378906,
+      -9.254043579101562,
+      10.249725341796875
+    ],
+    "normal": [
+      -0.1001293808221817,
+      -0.19252073764801025,
+      0.97617107629776
+    ],
+    "face": 171512,
+    "object": "Flinders station - municipal 2020 scan, authored colours",
+    "material": "Scan Flinders authored station ground"
+  },
+  {
+    "pixel": [
+      440,
+      500
+    ],
+    "hit": true,
+    "point": [
+      31.083969116210938,
+      -1.436676025390625,
+      12.7308349609375
+    ],
+    "normal": [
+      -0.3685113191604614,
+      -0.11516260355710983,
+      0.922462522983551
+    ],
+    "face": 310354,
+    "object": "Flinders station - municipal 2020 scan, authored colours",
+    "material": "Scan Flinders authored station ground"
+  },
+  {
+    "pixel": [
+      400,
+      600
+    ],
+    "hit": true,
+    "point": [
+      36.63232421875,
+      -23.80902099609375,
+      11.780975341796875
+    ],
+    "normal": [
+      -0.14713816344738007,
+      -0.059585943818092346,
+      0.9873195886611938
+    ],
+    "face": 184409,
+    "object": "Flinders station - municipal 2020 scan, authored colours",
+    "material": "Scan Flinders authored station ground"
+  },
+  {
+    "pixel": [
+      340,
+      250
+    ],
+    "hit": true,
+    "point": [
+      -14.185409545898438,
+      38.7353515625,
+      11.452423095703125
+    ],
+    "normal": [
+      -0.010292121209204197,
+      -0.017982354387640953,
+      0.9997853636741638
+    ],
+    "face": 339830,
+    "object": "Flinders station - municipal 2020 scan, authored colours",
+    "material": "Scan Flinders authored station ground"
+  }
+]

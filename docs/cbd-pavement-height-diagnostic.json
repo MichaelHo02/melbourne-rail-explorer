@@ -1,0 +1,61 @@
+{
+  "Continuous Vicmap road surface": {
+    "vertices": 8560,
+    "min_z": 0.2549999952316284,
+    "max_z": 0.2549999952316284,
+    "source": {
+      "source_url": "https://vicmap.land.vic.gov.au/agsgis/rest/services/vicmap/Vicmap_Transport/MapServer/1/query",
+      "source_license": "CC BY 4.0",
+      "appearance": "Official horizontal road centrelines; authored preview widths and level, current kerbs unverified; expanded data clipped to survey preview bounds; float-degenerate microfaces omitted",
+      "plan_area_m2": 1279949.9225862958,
+      "coverage_revision": "expanded-clipped-20261006",
+      "source_feature_count": 2990,
+      "preview_clip_bounds": "<bpy id property array [4]>"
+    }
+  },
+  "Continuous authored pavement bands": {
+    "vertices": 15445,
+    "min_z": 0.20000000298023224,
+    "max_z": 0.20000000298023224,
+    "source": {
+      "source_url": "https://vicmap.land.vic.gov.au/agsgis/rest/services/vicmap/Vicmap_Transport/MapServer/1/query",
+      "source_license": "CC BY 4.0",
+      "appearance": "Official horizontal road centrelines; authored preview widths and level, current kerbs unverified; expanded data clipped to survey preview bounds; float-degenerate microfaces omitted",
+      "plan_area_m2": 476164.05013529205,
+      "coverage_revision": "expanded-clipped-20261006",
+      "source_feature_count": 2990,
+      "preview_clip_bounds": "<bpy id property array [4]>",
+      "cbd_bluestone_finish": true,
+      "bluestone_faces": 4312,
+      "bluestone_reference": "https://mvga-prod-files.s3.ap-southeast-4.amazonaws.com/public/2024-08/operating-procedure-bluestone.pdf",
+      "bluestone_limits": "Authored finish on approximate central-CBD pavement region. Standard 1m by 0.5m paver rhythm; joints, colour and placement illustrative. City guidance explicitly says bluestone coverage is incomplete; this assignment is not an existing-surface inventory."
+    }
+  },
+  "Authored kerbs - retained road edges": {
+    "vertices": 61712,
+    "min_z": 0.2549999952316284,
+    "max_z": 0.3799999952316284,
+    "source": {
+      "source_url": "https://vicmap.land.vic.gov.au/agsgis/rest/services/vicmap/Vicmap_Transport/MapServer/1/query",
+      "segments": 7714,
+      "limits": "Edges derived from retained unioned road surfaces. Width .16 m and rise .125 m authored. Clipped map boundaries omitted. Driveways, intersection ramps and actual kerb profiles unmeasured; refinement required."
+    }
+  },
+  "trial": {
+    "pavement_z_m": 0.38,
+    "source_scene_saved": false,
+    "result": "Minor kerb alignment improvement; not adopted. Larger surface gaps and flat plaza dominate visible defects.",
+    "camera_location": [
+      110,
+      -60,
+      55
+    ],
+    "camera_target": [
+      90,
+      70,
+      0.3
+    ],
+    "orthographic_scale_m": 150,
+    "limits": "All elevations and widths authored. Official road centrelines supply horizontal basis only. No surveyed existing footpath levels claimed."
+  }
+}

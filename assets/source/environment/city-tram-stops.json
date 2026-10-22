@@ -1,0 +1,3718 @@
+{
+  "metadata_url": "https://opendata.transport.vic.gov.au/api/3/action/package_show?id=public-transport-lines-and-stops",
+  "source_url": "https://opendata.transport.vic.gov.au/dataset/6d36dfd9-8693-4552-8a03-05eb29a391fd/resource/dc5a9bdc-b79e-4806-8288-2a983db30930/download/public_transport_stops.geojson",
+  "resource_metadata": {
+    "cache_last_updated": null,
+    "cache_url": null,
+    "created": "2026-09-28T00:33:43.196849",
+    "dataset_last_updated_date": "2025-07-28T00:00:00",
+    "datastore_active": false,
+    "datastore_contains_all_records_of_source_file": false,
+    "description": "Stop locations for every public transport mode in Victoria.",
+    "edc_id": "579",
+    "edc_sync": true,
+    "file_name": "/published/public_transport/public_transport_stops/public_transport_stops.geojson",
+    "format": "GeoJSON",
+    "geographic_coordinate_system": "WGS84",
+    "geographic_coverage": "Victoria",
+    "hash": "",
+    "historical": false,
+    "id": "dc5a9bdc-b79e-4806-8288-2a983db30930",
+    "last_modified": "2026-09-28T00:33:43.156925",
+    "metadata_modified": "2026-09-28T00:33:43.175133",
+    "mimetype": "application/geo+json",
+    "mimetype_inner": null,
+    "name": "Public Transport Stops",
+    "open_dataset_title": "Public Transport Stops",
+    "package_id": "6d36dfd9-8693-4552-8a03-05eb29a391fd",
+    "position": 1,
+    "publication_date": "2024-11-19T00:00:00",
+    "resource_type": null,
+    "security_value": "BIL1 OFFICIAL - Authorised Public Release",
+    "size": 8416967,
+    "state": "active",
+    "update_method": "Full Dataset Update",
+    "url": "https://opendata.transport.vic.gov.au/dataset/6d36dfd9-8693-4552-8a03-05eb29a391fd/resource/dc5a9bdc-b79e-4806-8288-2a983db30930/download/public_transport_stops.geojson",
+    "url_type": "upload",
+    "visualisation_urls": [],
+    "attributes": [
+      {
+        "attribute_display_order_id": 1,
+        "db_format": "VARCHAR",
+        "db_name": "type",
+        "definition": "The geojson type",
+        "id": "9734",
+        "name": "type",
+        "ref_number": "AT-9734"
+      },
+      {
+        "attribute_display_order_id": 2,
+        "db_format": "VARCHAR",
+        "db_name": "name",
+        "definition": "The geojson name",
+        "id": "9732",
+        "name": "name",
+        "ref_number": "AT-9732"
+      },
+      {
+        "attribute_display_order_id": 3,
+        "db_format": "VARCHAR",
+        "db_name": "features",
+        "definition": "The geojson features",
+        "id": "9733",
+        "name": "features",
+        "ref_number": "AT-9733"
+      },
+      {
+        "attribute_display_order_id": 4,
+        "db_format": "VARCHAR",
+        "db_name": "features[*].type",
+        "definition": "The feature type",
+        "id": "9152",
+        "name": "Features Type",
+        "ref_number": "AT-9152"
+      },
+      {
+        "attribute_display_order_id": 5,
+        "db_format": "VARCHAR",
+        "db_name": "features[*].geometry",
+        "definition": "The geometry of the stop",
+        "id": "9072",
+        "name": "Geometry",
+        "ref_number": "AT-9072"
+      },
+      {
+        "attribute_display_order_id": 6,
+        "db_format": "VARCHAR",
+        "db_name": "features[*].geometry.type",
+        "definition": "The geometry type of Geojson",
+        "id": "9070",
+        "name": "Geometry Type",
+        "ref_number": "AT-9070"
+      },
+      {
+        "attribute_display_order_id": 7,
+        "db_format": "VARCHAR",
+        "db_name": "features[*].geometry.coordinates",
+        "definition": "The Latitude and Longitude of the geographical location of the stop",
+        "id": "9074",
+        "name": "Coordinates",
+        "ref_number": "AT-9074"
+      },
+      {
+        "attribute_display_order_id": 8,
+        "db_format": "FeedEntity",
+        "db_name": "features[*].properties",
+        "definition": "The API property",
+        "id": "9075",
+        "name": "Properties",
+        "ref_number": "AT-9075"
+      },
+      {
+        "attribute_display_order_id": 9,
+        "db_format": "INTEGER",
+        "db_name": "features[*].properties.STOP_ID",
+        "definition": "The unique id of the stop location",
+        "id": "9076",
+        "name": "Stop ID",
+        "ref_number": "AT-9076"
+      },
+      {
+        "attribute_display_order_id": 10,
+        "db_format": "STRING",
+        "db_name": "features[*].properties.STOP_NAME",
+        "definition": "The name of the stop",
+        "id": "9077",
+        "name": "Stop Name",
+        "ref_number": "AT-9077"
+      },
+      {
+        "attribute_display_order_id": 11,
+        "db_format": "STRING",
+        "db_name": "features[*].properties.MODE",
+        "definition": "Mode of transportation",
+        "fixed_values": "INTERSTATE TRAIN, METRO BUS, METRO TRAIN, METRO TRAM, REGIONAL BUS, REGIONAL COACH, REGIONAL TRAIN, SKYBUS",
+        "id": "9078",
+        "name": "Mode",
+        "ref_number": "AT-9078"
+      }
+    ]
+  },
+  "dataset_modified": "2026-09-28T00:33:43.168113",
+  "license_id": "CC-BY-4.0",
+  "fetched_at": "2026-10-05T20:43:14.097603+00:00",
+  "source_sha256": "2d8b452f088a54c7d9c390ab5ccf2f6d383afd82fc95c4427a3ffdf354c26daa",
+  "records": [
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96848101,
+            -37.81270797
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17591",
+          "STOP_NAME": "Russell St/Bourke St #7",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        121.44463839150492,
+        622.5047796002809
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96581257,
+            -37.8135
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17593",
+          "STOP_NAME": "Swanston St/Bourke St #6",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -113.21530676918775,
+        534.3360000003366
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96338498,
+            -37.81420601
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17594",
+          "STOP_NAME": "Elizabeth St/Bourke St #5",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -326.69514377886867,
+        455.74296680013504
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95982386,
+            -37.81523478
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17596",
+          "STOP_NAME": "Queen St/Bourke St #4",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -639.8564754589152,
+        341.22029040038086
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95763684,
+            -37.81586374
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17597",
+          "STOP_NAME": "William St/Bourke St #3",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -832.1808272396215,
+        271.20446320035484
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95378947,
+            -37.81696847
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17848",
+          "STOP_NAME": "Spencer St/Bourke St #1",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1170.5146976685978,
+        148.225919600182
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95406646,
+            -37.81681107
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17849",
+          "STOP_NAME": "Spencer St/Bourke St #1",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1146.156474058312,
+        165.74768760008027
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96476527,
+            -37.81771743
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17850",
+          "STOP_NAME": "Flinders Street Railway Station/Elizabeth St #1",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -205.31382147010314,
+        64.85169239987073
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96370181,
+            -37.81549116
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17851",
+          "STOP_NAME": "Collins St/Elizabeth St #2",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -298.8334304086303,
+        312.6800688000162
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96280104,
+            -37.81354706
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17852",
+          "STOP_NAME": "Bourke Street Mall/Elizabeth St #3",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -378.04624343998694,
+        529.097280800338
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96147244,
+            -37.8106403
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17854",
+          "STOP_NAME": "Melbourne Central Station/Elizabeth St #5",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -494.8819988394316,
+        852.677803999758
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95961788,
+            -37.80662499
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17856",
+          "STOP_NAME": "Queen Victoria Market/Elizabeth St #7",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -657.970150679271,
+        1299.6621131997326
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95741921,
+            -37.80603715
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17857",
+          "STOP_NAME": "Peel St/Victoria St #8",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -851.3189918078907,
+        1365.100461999894
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95390781,
+            -37.80568781
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17858",
+          "STOP_NAME": "William St/Victoria St #9",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1160.1079964085789,
+        1403.9889907998543
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95239053,
+            -37.80551725
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17859",
+          "STOP_NAME": "Chetwynd St/Victoria St #10",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1293.5360823287212,
+        1422.9757299999455
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.94944632,
+            -37.80519567
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17860",
+          "STOP_NAME": "Errol St/Victoria St #11",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1552.4469655195708,
+        1458.774015599703
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.94933927,
+            -37.8049595
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17861",
+          "STOP_NAME": "Victoria St/Errol St #11",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1561.8608354692972,
+        1485.0644599997997
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95203023,
+            -37.80540285
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17862",
+          "STOP_NAME": "Chetwynd St/Victoria St #10",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1325.2205040297056,
+        1435.7107380000643
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95350235,
+            -37.80556361
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17863",
+          "STOP_NAME": "Howard St/Victoria St #9",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1195.7637433482344,
+        1417.8149348000666
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.9579634,
+            -37.80607362
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17864",
+          "STOP_NAME": "Peel St/Victoria St #8",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -803.4634673979444,
+        1361.040621600146
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95980592,
+            -37.80680848
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17871",
+          "STOP_NAME": "Queen Victoria Market/Elizabeth St #7",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -641.4341011182312,
+        1279.2360063999852
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96173476,
+            -37.81101433
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17873",
+          "STOP_NAME": "Melbourne Central Station/Elizabeth St #5",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -471.8138403577881,
+        811.0407844001878
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96305327,
+            -37.81387585
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17875",
+          "STOP_NAME": "Bourke Street Mall/Elizabeth St #3",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -355.8653894699022,
+        492.4963779998225
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.9639422,
+            -37.81583776
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17876",
+          "STOP_NAME": "Collins St/Elizabeth St #2",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -277.69377419971585,
+        274.09655679998195
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96476428,
+            -37.81775346
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17877",
+          "STOP_NAME": "Flinders Street Railway Station/Elizabeth St #1",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -205.4008810791835,
+        60.84083280022071
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97351137,
+            -37.80612594
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17878",
+          "STOP_NAME": "Melbourne Museum/Nicholson St #11",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        563.8094664320624,
+        1355.216359199949
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97292615,
+            -37.8096665
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17880",
+          "STOP_NAME": "Albert St/Nicholson St #10",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        512.3458048516281,
+        961.0812200002181
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97255749,
+            -37.81151658
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17882",
+          "STOP_NAME": "Spring St/Bourke St #9",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        479.92621311230005,
+        755.1303143997634
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95787925,
+            -37.81572375
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17885",
+          "STOP_NAME": "William St/Bourke St #3",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -810.863534249756,
+        286.7881500004637
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96006602,
+            -37.8151038
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17886",
+          "STOP_NAME": "Queen St/Bourke St #4",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -618.561167218994,
+        355.8009839997632
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96365033,
+            -37.8140574
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17887",
+          "STOP_NAME": "Elizabeth St/Bourke St #5",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -303.3605301282977,
+        472.2862319997512
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.9664442,
+            -37.81324957
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17888",
+          "STOP_NAME": "Swanston St/Bourke St #6",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -57.67039619786047,
+        562.2138675996842
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96914719,
+            -37.8124401
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17889",
+          "STOP_NAME": "Russell St/Bourke St #7",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        180.02784141115976,
+        652.3240679996943
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97231882,
+            -37.81152149
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17891",
+          "STOP_NAME": "Spring St/Bourke St #9",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        458.93781198090426,
+        754.5837332004157
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.9728748,
+            -37.80946736
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17892",
+          "STOP_NAME": "Albert St/Nicholson St #10",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        507.83013720103213,
+        983.2494848001547
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97354393,
+            -37.80576602
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17894",
+          "STOP_NAME": "Melbourne Museum/Nicholson St #11",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        566.6727602715316,
+        1395.282653600068
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97631501,
+            -37.8082739
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17895",
+          "STOP_NAME": "St Vincents Plaza/Victoria Pde #12",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        810.3587643917301,
+        1116.10545199972
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97572795,
+            -37.80939028
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17896",
+          "STOP_NAME": "Albert St/Gisborne St #11",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        758.7332950504048,
+        991.8300303998158
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97434947,
+            -37.8124486
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17897",
+          "STOP_NAME": "Parliament Railway Station/Macarthur St #10",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        637.5111423304376,
+        651.3778479997103
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97327462,
+            -37.81353855
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17898",
+          "STOP_NAME": "Spring St/Collins St #8",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        542.9899081821399,
+        530.0446140004141
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96595711,
+            -37.81568334
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17901",
+          "STOP_NAME": "Melbourne Town Hall/Collins St #6",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -100.50460370848737,
+        291.2865912001166
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96346083,
+            -37.81640619
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17902",
+          "STOP_NAME": "Elizabeth St/Collins St #5",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -320.02497062871345,
+        210.81892919983886
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95938493,
+            -37.81756122
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17903",
+          "STOP_NAME": "William St/Collins St #3",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -678.4555407290375,
+        82.24098959988197
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95499861,
+            -37.81884589
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17905",
+          "STOP_NAME": "Spencer St/Collins St #1",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1064.1841352098234,
+        -60.768474799770615
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95524103,
+            -37.81870592
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17906",
+          "STOP_NAME": "Spencer St/Collins St #1",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1042.86596282926,
+        -45.187014399845964
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95980976,
+            -37.81739736
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17908",
+          "STOP_NAME": "William St/Collins St #3",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -641.096415357784,
+        100.48188479995787
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96369188,
+            -37.816266
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17910",
+          "STOP_NAME": "Elizabeth St/Collins St #5",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -299.7066646790249,
+        226.4248800002079
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96627972,
+            -37.81551769
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17911",
+          "STOP_NAME": "Melbourne Town Hall/Collins St #6",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -72.13460291993223,
+        309.7267492000691
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97348244,
+            -37.81341597
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17914",
+          "STOP_NAME": "Spring St/Collins St #8",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        561.2653911608875,
+        543.6902195999426
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97443658,
+            -37.81217073
+          ]
+        },
+        "properties": {
+          "STOP_ID": "17915",
+          "STOP_NAME": "Parliament Railway Station/Macarthur St #10",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        645.171508621292,
+        682.3103364002679
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97560605,
+            -37.80969458
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18006",
+          "STOP_NAME": "Albert St/Gisborne St #11",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        748.0135309519759,
+        957.955354400232
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97356184,
+            -37.80801928
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18009",
+          "STOP_NAME": "Nicholson St/Victoria Pde #10",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        568.2477477612542,
+        1144.4497503996934
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97097182,
+            -37.80761421
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18010",
+          "STOP_NAME": "La Trobe St/Victoria St #9",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        340.48397898004623,
+        1189.542142800411
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96411517,
+            -37.80954153
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18030",
+          "STOP_NAME": "Melbourne Central & State Library stations/La Trobe St (Melb... #6",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -262.48296536772955,
+        974.9928804004037
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95676376,
+            -37.81168516
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18033",
+          "STOP_NAME": "Flagstaff Station/La Trobe St  #3",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -908.9586093588281,
+        736.3639887997169
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.9464029,
+            -37.81460496
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18040",
+          "STOP_NAME": "Docklands Stadium/La Trobe St  #D1",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1820.0822768980886,
+        411.3318528004183
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96102598,
+            -37.81035321
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18045",
+          "STOP_NAME": "Melbourne Central Station/La Trobe St  #5",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -534.1432447799816,
+        884.6366627998125
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96479244,
+            -37.80928289
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18046",
+          "STOP_NAME": "Melbourne Central & State Library stations/La Trobe St (Melb... #6",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -202.92451883923727,
+        1003.7846852002281
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97026645,
+            -37.80765612
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18049",
+          "STOP_NAME": "Victoria St/La Trobe St #9",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        278.4544465507946,
+        1184.8767216003887
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97282782,
+            -37.80786246
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18050",
+          "STOP_NAME": "Nicholson St/Victoria Pde #10",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        503.69876298036564,
+        1161.9069527997863
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97632809,
+            -37.80821104
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18051",
+          "STOP_NAME": "St Vincents Plaza/Victoria Pde #12",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        811.5090065119252,
+        1123.1030271997074
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.9448358,
+            -37.81458663
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18052",
+          "STOP_NAME": "Central Pier/Harbour Esp #D2",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1957.8914837995667,
+        413.37234839998075
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.9462247,
+            -37.81775596
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18053",
+          "STOP_NAME": "Stadium Precinct - Bourke St/Harbour Esp #D3",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1835.7530067000134,
+        60.562532800132374
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.94759898,
+            -37.82145671
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18054",
+          "STOP_NAME": "Docklands Park/Harbour Esp #D4",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1714.900197778114,
+        -351.40495719988337
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95116687,
+            -37.82184327
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18055",
+          "STOP_NAME": "South Wharf/Wurundjeri Way #D5",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1401.143519068171,
+        -394.4368164001716
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95352808,
+            -37.82149683
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18056",
+          "STOP_NAME": "Flinders Street West/Flinders St #D6",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1193.5010728778486,
+        -355.8711156000291
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96172875,
+            -37.81907974
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18087",
+          "STOP_NAME": "Market St/Flinders St #3",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -472.3423537496529,
+        -86.80065679985489
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96454604,
+            -37.81825434
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18089",
+          "STOP_NAME": "Elizabeth St/Flinders St #4",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -224.59268844001656,
+        5.0828711997593246
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96713247,
+            -37.81756006
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18090",
+          "STOP_NAME": "Swanston St/Flinders St #5",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        2.8553793306888906,
+        82.37012080028364
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97078666,
+            -37.81645156
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18091",
+          "STOP_NAME": "Russell St/Flinders St #6",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        324.2011937399666,
+        205.7683408003777
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.9744178,
+            -37.81535157
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18092",
+          "STOP_NAME": "Spring St/Flinders St #8",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        643.5200142008628,
+        328.2192276003957
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97716407,
+            -37.81545285
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18093",
+          "STOP_NAME": "Lansdowne St/Wellington Pde #9",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        885.0242517298714,
+        316.94473800010115
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97979141,
+            -37.81575029
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18094",
+          "STOP_NAME": "Jolimont Rd/Wellington Pde #10",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        1116.0699039901915,
+        283.8337172004245
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97932514,
+            -37.81576932
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18103",
+          "STOP_NAME": "Jolimont Rd/Wellington Pde #10",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        1075.066586459841,
+        281.7152975999514
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97666374,
+            -37.81547129
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18104",
+          "STOP_NAME": "Lansdowne St/Wellington Pde #9",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        841.0257318603846,
+        314.8919972003165
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97415221,
+            -37.81550921
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18105",
+          "STOP_NAME": "Spring St/Flinders St #8",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        620.164295191045,
+        310.67074279986883
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97900672,
+            -37.81953078
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18108",
+          "STOP_NAME": "Rod Laver Arena/MCG Gates 1-3 #7B",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        1047.0650500811553,
+        -137.01042960002326
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97852214,
+            -37.81938728
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18172",
+          "STOP_NAME": "Rod Laver Arena/MCG Gates 1-3 #7B",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        1004.451569460671,
+        -121.036009600015
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97025918,
+            -37.81663172
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18174",
+          "STOP_NAME": "Russell St/Flinders St #6",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        277.81513002100905,
+        185.71292960045355
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96647957,
+            -37.81775606
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18175",
+          "STOP_NAME": "Swanston St/Flinders St #5",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -54.55999376981495,
+        60.551400800002284
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96432634,
+            -37.81839473
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18176",
+          "STOP_NAME": "Elizabeth St/Flinders St #4",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -243.91288673772615,
+        -10.545343600078922
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96136019,
+            -37.81926261
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18178",
+          "STOP_NAME": "Market St/Flinders St #3",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -504.7531515895031,
+        -107.15774520021967
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95333132,
+            -37.82162858
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18179",
+          "STOP_NAME": "Flinders Street West/Flinders St #D6",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1210.8039505198517,
+        -370.53752560017585
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95095899,
+            -37.82196581
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18180",
+          "STOP_NAME": "South Wharf/Wurundjeri Way #D5",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1419.4242783886048,
+        -408.07796920012265
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.94756953,
+            -37.82169951
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18181",
+          "STOP_NAME": "Docklands Park/Harbour Esp #D4",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1717.4900013280737,
+        -378.4334532001415
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.9460046,
+            -37.81749979
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18182",
+          "STOP_NAME": "Stadium Precinct - Bourke St/Harbour Esp #D3",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1855.108380598134,
+        89.07937720014473
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.94460636,
+            -37.8142582
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18183",
+          "STOP_NAME": "Central Pier/Harbour Esp #D2",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1978.0682079594126,
+        449.9331760003443
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95616433,
+            -37.82353421
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18185",
+          "STOP_NAME": "Casino/MCEC/Clarendon St #124A",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -961.6718841283068,
+        -582.67225719973
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95526467,
+            -37.82155404
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18186",
+          "STOP_NAME": "Batman Park/Spencer St #124",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1040.78708486971,
+        -362.2397328001807
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95377437,
+            -37.81833799
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18187",
+          "STOP_NAME": "Southern Cross Railway Station/Spencer St #122",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1171.842576569744,
+        -4.2290468003014325
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95238116,
+            -37.81531286
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18189",
+          "STOP_NAME": "Lonsdale St/Spencer St #120",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1294.36007076004,
+        332.52842480021
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95150241,
+            -37.81340511
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18190",
+          "STOP_NAME": "La Trobe St/Spencer St #119",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1371.6364670098872,
+        544.8991548003073
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95231139,
+            -37.81496019
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18192",
+          "STOP_NAME": "Lonsdale St/Spencer St #120",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1300.495574788446,
+        371.78764919999367
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95403669,
+            -37.81871203
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18194",
+          "STOP_NAME": "Southern Cross Railway Station/Spencer St #122",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1148.7744180881007,
+        -45.86717959996378
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95551366,
+            -37.82199993
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18196",
+          "STOP_NAME": "Batman Park/Spencer St #124",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1018.891153258206,
+        -411.8762075995818
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95622335,
+            -37.82345413
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18197",
+          "STOP_NAME": "Casino/MCEC/Clarendon St #124A",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -956.4817243500136,
+        -573.7577516001213
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.9579176,
+            -37.81515668
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18199",
+          "STOP_NAME": "Bourke St/William St #5",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -807.4910735987729,
+        349.91438239994494
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95651565,
+            -37.81203232
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18201",
+          "STOP_NAME": "Flagstaff Railway Station/William St #7",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -930.7771546489278,
+        697.7181376000615
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95601626,
+            -37.80542704
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18203",
+          "STOP_NAME": "Victoria St/Peel St #10",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -974.6930118578235,
+        1433.0179072003139
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95606756,
+            -37.80562619
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18204",
+          "STOP_NAME": "Victoria St/Peel St #10",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -970.1817411582161,
+        1410.8485292002852
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95574591,
+            -37.80740494
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18205",
+          "STOP_NAME": "Queen Victoria Market/Peel St #9",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -998.4673205097838,
+        1212.8380792003165
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95570546,
+            -37.807224
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18206",
+          "STOP_NAME": "Queen Victoria Market/Peel St #9",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1002.0244530598006,
+        1232.9803200003062
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95678807,
+            -37.81245158
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18208",
+          "STOP_NAME": "Flagstaff Railway Station/William St #7",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -906.8208122700266,
+        651.0461143999466
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95808344,
+            -37.81532177
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18210",
+          "STOP_NAME": "Bourke St/William St #5",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -792.9072698393026,
+        331.5365636004046
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95897275,
+            -37.8172657
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18211",
+          "STOP_NAME": "Collins St/William St #4",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -714.7022377501003,
+        115.13827600006664
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96123971,
+            -37.81951285
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18214",
+          "STOP_NAME": "Flinders St/Queens Bridge St #1",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -515.3480423088471,
+        -135.01446200019018
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96122609,
+            -37.82207195
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18215",
+          "STOP_NAME": "Casino/Southbank/Queens Bridge St #115",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -516.5457714892223,
+        -419.89347400009535
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96722286,
+            -37.82378874
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18227",
+          "STOP_NAME": "Arts Precinct/Sturt St #17",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        10.804185540415148,
+        -611.0065367996654
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96718039,
+            -37.82409441
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18229",
+          "STOP_NAME": "Arts Precinct/Sturt St #17",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        7.069416211946503,
+        -645.0337212000031
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96124711,
+            -37.82172086
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18450",
+          "STOP_NAME": "Casino/Southbank/Queens Bridge St #115",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -514.6972937099902,
+        -380.810135199836
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96110568,
+            -37.81942943
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18465",
+          "STOP_NAME": "Flinders St/Queens Bridge St #1",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -527.1345064786817,
+        -125.72814759987494
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.9587536,
+            -37.81697353
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18469",
+          "STOP_NAME": "Collins St/William St #4",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -733.9740695994317,
+        147.66264040024367
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.94580241,
+            -37.80266294
+          ]
+        },
+        "properties": {
+          "STOP_ID": "18541",
+          "STOP_NAME": "Abbotsford St/Queensberry St #14",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1872.8887670090314,
+        1740.7175192003438
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.94794449,
+            -37.80282645
+          ]
+        },
+        "properties": {
+          "STOP_ID": "19250",
+          "STOP_NAME": "Curzon St/Queensberry St #13",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1684.5163938891446,
+        1722.5155860003279
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.94940519,
+            -37.80298707
+          ]
+        },
+        "properties": {
+          "STOP_ID": "19251",
+          "STOP_NAME": "North Melbourne Town Hall/Queensberry St #12",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1556.0638965895366,
+        1704.6353676000374
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97834381,
+            -37.80843491
+          ]
+        },
+        "properties": {
+          "STOP_ID": "19374",
+          "STOP_NAME": "Lansdowne St/Victoria Pde #13",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        988.7694075921742,
+        1098.1818187997922
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96312181,
+            -37.80559522
+          ]
+        },
+        "properties": {
+          "STOP_ID": "19492",
+          "STOP_NAME": "Queensberry St/Swanston St #4",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -349.8380504098236,
+        1414.2961095999967
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96321071,
+            -37.80814709
+          ]
+        },
+        "properties": {
+          "STOP_ID": "19494",
+          "STOP_NAME": "RMIT University/Swanston St #7",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -342.02027330906674,
+        1130.2219412002428
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96423951,
+            -37.81039079
+          ]
+        },
+        "properties": {
+          "STOP_ID": "19495",
+          "STOP_NAME": "Melbourne Central Station/Swanston St #8",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -251.54863010904262,
+        880.4532572001235
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96557932,
+            -37.81330672
+          ]
+        },
+        "properties": {
+          "STOP_ID": "19497",
+          "STOP_NAME": "Bourke Street Mall/Swanston St #10",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -133.7270785198874,
+        555.8519296000852
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96693998,
+            -37.81629509
+          ]
+        },
+        "properties": {
+          "STOP_ID": "19498",
+          "STOP_NAME": "City Square/Swanston St #11",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -14.071998778363167,
+        223.18658120041079
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96795936,
+            -37.81847551
+          ]
+        },
+        "properties": {
+          "STOP_ID": "19499",
+          "STOP_NAME": "Federation Square/Swanston St #13",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        75.57125904185287,
+        -19.537773199807305
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96953446,
+            -37.82193616
+          ]
+        },
+        "properties": {
+          "STOP_ID": "19500",
+          "STOP_NAME": "Arts Precinct/St Kilda Rd #14",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        214.08397794155474,
+        -404.7773311999134
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.94836153,
+            -37.80294186
+          ]
+        },
+        "properties": {
+          "STOP_ID": "19589",
+          "STOP_NAME": "Curzon St/Queensberry St #13",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1647.842313328961,
+        1709.6681448003978
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.94953494,
+            -37.80322364
+          ]
+        },
+        "properties": {
+          "STOP_ID": "19590",
+          "STOP_NAME": "North Melbourne Town Hall/Errol St #12",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1544.653811338352,
+        1678.3003952002114
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96927255,
+            -37.82154414
+          ]
+        },
+        "properties": {
+          "STOP_ID": "19684",
+          "STOP_NAME": "Arts Precinct/St Kilda Rd #14",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        191.05187445101984,
+        -361.13766479995746
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96769648,
+            -37.81811951
+          ]
+        },
+        "properties": {
+          "STOP_ID": "19685",
+          "STOP_NAME": "Federation Square/Swanston St #13",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        52.45385472113344,
+        20.092146799799764
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96662528,
+            -37.81575796
+          ]
+        },
+        "properties": {
+          "STOP_ID": "19686",
+          "STOP_NAME": "City Square/Swanston St #11",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -41.74640207997419,
+        282.9798928001756
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96523232,
+            -37.81270595
+          ]
+        },
+        "properties": {
+          "STOP_ID": "19687",
+          "STOP_NAME": "Bourke Street Mall/Swanston St #10",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -164.24191151782617,
+        622.729645999903
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96388093,
+            -37.80979882
+          ]
+        },
+        "properties": {
+          "STOP_ID": "19689",
+          "STOP_NAME": "Melbourne Central Station/Swanston St #8",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -283.08179673000893,
+        946.3513576003581
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96294838,
+            -37.80777307
+          ]
+        },
+        "properties": {
+          "STOP_ID": "19691",
+          "STOP_NAME": "RMIT University/Swanston St #7",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -365.0893111789085,
+        1171.8578475997208
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96311,
+            -37.8051985
+          ]
+        },
+        "properties": {
+          "STOP_ID": "19693",
+          "STOP_NAME": "Queensberry St/Swanston St #4",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -350.8766099989011,
+        1458.458979999739
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97884065,
+            -37.80854257
+          ]
+        },
+        "properties": {
+          "STOP_ID": "19726",
+          "STOP_NAME": "Lansdowne St/Victoria Pde #13",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        1032.4610203506363,
+        1086.1971076000568
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95644378,
+            -37.80351496
+          ]
+        },
+        "properties": {
+          "STOP_ID": "20492",
+          "STOP_NAME": "Queensberry St/Peel St #11",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -937.097330578867,
+        1645.8706527999536
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95638064,
+            -37.80333363
+          ]
+        },
+        "properties": {
+          "STOP_ID": "20493",
+          "STOP_NAME": "Queensberry St/Peel St #11",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -942.6497990396447,
+        1666.0563084003716
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97324638,
+            -37.81166362
+          ]
+        },
+        "properties": {
+          "STOP_ID": "20979",
+          "STOP_NAME": "Bourke St/Spring St #0",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        540.5065108216115,
+        738.7618216003705
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.94673342,
+            -37.81456566
+          ]
+        },
+        "properties": {
+          "STOP_ID": "20981",
+          "STOP_NAME": "Docklands Stadium/La Trobe St  #D1",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1791.0166786200898,
+        415.70672880013007
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95576122,
+            -37.82085073
+          ]
+        },
+        "properties": {
+          "STOP_ID": "21231",
+          "STOP_NAME": "Spencer St/Flinders St #1",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -997.120974418984,
+        -283.94726359953665
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.9554161,
+            -37.82100695
+          ]
+        },
+        "properties": {
+          "STOP_ID": "21232",
+          "STOP_NAME": "Spencer St/Flinders St #1",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1027.47048209824,
+        -301.33767399964
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95786768,
+            -37.82026547
+          ]
+        },
+        "properties": {
+          "STOP_ID": "21233",
+          "STOP_NAME": "Melbourne Aquarium/Flinders St #2",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -811.8809884795864,
+        -218.7961204002005
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95821305,
+            -37.82010024
+          ]
+        },
+        "properties": {
+          "STOP_ID": "21234",
+          "STOP_NAME": "Melbourne Aquarium/Flinders St #2",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -781.5094960478866,
+        -200.4027168001616
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97072269,
+            -37.81422456
+          ]
+        },
+        "properties": {
+          "STOP_ID": "22152",
+          "STOP_NAME": "Exhibition St/Collins St #7",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        318.57573591127266,
+        453.6779808001282
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97048055,
+            -37.81435556
+          ]
+        },
+        "properties": {
+          "STOP_ID": "22153",
+          "STOP_NAME": "Exhibition St/Collins St #7",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        297.2821864502474,
+        439.09506079977064
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97612342,
+            -37.81820158
+          ]
+        },
+        "properties": {
+          "STOP_ID": "22903",
+          "STOP_NAME": "William Barak Bridge/Melbourne Park #7A",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        793.5105313804788,
+        10.956114400054275
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97587116,
+            -37.81828736
+          ]
+        },
+        "properties": {
+          "STOP_ID": "22904",
+          "STOP_NAME": "William Barak Bridge/Melbourne Park #7A",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        771.3270392408006,
+        1.4070848001492209
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97711935,
+            -37.80585453
+          ]
+        },
+        "properties": {
+          "STOP_ID": "4141",
+          "STOP_NAME": "Gertrude St/Brunswick St #13",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        881.0916196519023,
+        1385.4297204003292
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97761062,
+            -37.80283501
+          ]
+        },
+        "properties": {
+          "STOP_ID": "4142",
+          "STOP_NAME": "Hanover St/Brunswick St #14",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        924.2934121817011,
+        1721.5626867997912
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95218145,
+            -37.81966206
+          ]
+        },
+        "properties": {
+          "STOP_ID": "43472",
+          "STOP_NAME": "Southern Cross Station/Collins St #D14",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1311.9223684478889,
+        -151.62451919979588
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95015445,
+            -37.82024859
+          ]
+        },
+        "properties": {
+          "STOP_ID": "43473",
+          "STOP_NAME": "Batman's Hill/Collins St #D15",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1490.1747214477327,
+        -216.91703879975591
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.94520032,
+            -37.821514
+          ]
+        },
+        "properties": {
+          "STOP_ID": "43474",
+          "STOP_NAME": "Merchant St/Collins St #D17",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1925.8359595191193,
+        -357.78247999998086
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.94799191,
+            -37.8208057
+          ]
+        },
+        "properties": {
+          "STOP_ID": "43475",
+          "STOP_NAME": "Harbour Esp/Collins St #D16",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1680.346326507776,
+        -278.9345240000432
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95046552,
+            -37.8200918
+          ]
+        },
+        "properties": {
+          "STOP_ID": "43476",
+          "STOP_NAME": "Batman's Hill/Collins St #D15",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1462.8195367194148,
+        -199.46317599993932
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95257249,
+            -37.81948862
+          ]
+        },
+        "properties": {
+          "STOP_ID": "43477",
+          "STOP_NAME": "Southern Cross Station/Collins St #D14",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1277.5347018894308,
+        -132.3171784000712
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.9481847,
+            -37.82081807
+          ]
+        },
+        "properties": {
+          "STOP_ID": "43480",
+          "STOP_NAME": "Harbour Esp/Collins St #D16",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1663.3925666977907,
+        -280.3115524000785
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97731947,
+            -37.80559663
+          ]
+        },
+        "properties": {
+          "STOP_ID": "4450",
+          "STOP_NAME": "Gertrude St/Brunswick St #13",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        898.6899723308599,
+        1414.1391484004564
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97780729,
+            -37.80270321
+          ]
+        },
+        "properties": {
+          "STOP_ID": "4451",
+          "STOP_NAME": "King William St/Brunswick St #14",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        941.588375309925,
+        1736.2346628003984
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95257325,
+            -37.81288303
+          ]
+        },
+        "properties": {
+          "STOP_ID": "46863",
+          "STOP_NAME": "Spencer St/La Trobe St #1",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1277.4678682488995,
+        603.0171003998726
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95289563,
+            -37.81272642
+          ]
+        },
+        "properties": {
+          "STOP_ID": "46864",
+          "STOP_NAME": "Spencer St/La Trobe St #1",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1249.1180934288939,
+        620.4509256004042
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.95669713,
+            -37.81162994
+          ]
+        },
+        "properties": {
+          "STOP_ID": "46865",
+          "STOP_NAME": "Flagstaff Station/La Trobe St  #3",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -914.8179849281311,
+        742.5110791997317
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96070263,
+            -37.81054587
+          ]
+        },
+        "properties": {
+          "STOP_ID": "46866",
+          "STOP_NAME": "Melbourne Central Station/La Trobe St  #5",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -562.578320430172,
+        863.1897516002377
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96762067,
+            -37.80845759
+          ]
+        },
+        "properties": {
+          "STOP_ID": "46867",
+          "STOP_NAME": "Exhibition St/La Trobe St #8",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        45.78719913126929,
+        1095.6570811997121
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.96727563,
+            -37.80861385
+          ]
+        },
+        "properties": {
+          "STOP_ID": "46868",
+          "STOP_NAME": "Exhibition St/La Trobe St #8",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        15.444726570096066,
+        1078.2622180000315
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97635252,
+            -37.80814838
+          ]
+        },
+        "properties": {
+          "STOP_ID": "46871",
+          "STOP_NAME": "St Vincent Plaza/Victoria St  #12",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        813.6573562816,
+        1130.0783384002257
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.94550865,
+            -37.8214563
+          ]
+        },
+        "properties": {
+          "STOP_ID": "46873",
+          "STOP_NAME": "Merchant St/Collins St #D17",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        -1898.721727649493,
+        -351.3593160000619
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97052685,
+            -37.82427831
+          ]
+        },
+        "properties": {
+          "STOP_ID": "46880",
+          "STOP_NAME": "Grant St-Police Memorial/St Kilda Rd #17",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        301.35376215096494,
+        -665.5054691995722
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97076754,
+            -37.82461589
+          ]
+        },
+        "properties": {
+          "STOP_ID": "46881",
+          "STOP_NAME": "Grant St-Police Memorial/St Kilda Rd #17",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        322.5198000608125,
+        -703.0848747995788
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97928726,
+            -37.80590978
+          ]
+        },
+        "properties": {
+          "STOP_ID": "6057",
+          "STOP_NAME": "Napier St/Gertrude St #14",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        1071.735457141653,
+        1379.279290400038
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97705664,
+            -37.8056552
+          ]
+        },
+        "properties": {
+          "STOP_ID": "6058",
+          "STOP_NAME": "Brunswick St/Gertrude St #13",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        875.5769649611291,
+        1407.6191360004339
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97980483,
+            -37.80608988
+          ]
+        },
+        "properties": {
+          "STOP_ID": "6131",
+          "STOP_NAME": "Napier St/Gertrude St #14",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        1117.250045371611,
+        1359.2305583998755
+      ]
+    },
+    {
+      "source_feature": {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.97738144,
+            -37.80582299
+          ]
+        },
+        "properties": {
+          "STOP_ID": "6132",
+          "STOP_NAME": "Brunswick St/Gertrude St #13",
+          "MODE": "METRO TRAM"
+        }
+      },
+      "xy": [
+        904.1395521599978,
+        1388.940753199754
+      ]
+    }
+  ],
+  "limits": "Official stop points only; source update does not prove each physical stop is unchanged. Platform boundaries, pole locations, accessible boarding layout, current service and operational status unverified. No realtime API key required or used."
+}

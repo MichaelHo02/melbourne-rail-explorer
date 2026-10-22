@@ -1,0 +1,67 @@
+{
+  "source_grid_unchanged": true,
+  "input_sha256": "344bcdd8ae7e4deb89123845f6a9710d326705a6fc0e1f2bcb50112ec36f5cd9",
+  "outline_tolerance_m": 1.5,
+  "maximum_allowed_displacement_m": 2.5,
+  "panels": [
+    {
+      "panel": 0,
+      "old_boundary_vertices": 169,
+      "new_boundary_vertices": 20,
+      "max_displacement_from_scan_m": 1.9105453143358844,
+      "support_fit_unchanged": true,
+      "old_panel_area_m2": 1033.3834082252695,
+      "new_panel_area_m2": 1049.4794438411968
+    },
+    {
+      "panel": 1,
+      "old_boundary_vertices": 114,
+      "new_boundary_vertices": 7,
+      "max_displacement_from_scan_m": 1.986413235531129,
+      "support_fit_unchanged": true,
+      "old_panel_area_m2": 818.157833341054,
+      "new_panel_area_m2": 813.9194498941467
+    },
+    {
+      "panel": 2,
+      "old_boundary_vertices": 95,
+      "new_boundary_vertices": 5,
+      "max_displacement_from_scan_m": 2.0106936710507632,
+      "support_fit_unchanged": true,
+      "old_panel_area_m2": 786.74230652869,
+      "new_panel_area_m2": 787.2466476417346
+    },
+    {
+      "panel": 3,
+      "old_boundary_vertices": 116,
+      "new_boundary_vertices": 7,
+      "max_displacement_from_scan_m": 1.6752696074326858,
+      "support_fit_unchanged": true,
+      "old_panel_area_m2": 759.0733370903768,
+      "new_panel_area_m2": 796.7624363039505
+    },
+    {
+      "panel": 4,
+      "old_boundary_vertices": 114,
+      "new_boundary_vertices": 13,
+      "max_displacement_from_scan_m": 1.6698422091186542,
+      "support_fit_unchanged": true,
+      "old_panel_area_m2": 744.3998412757384,
+      "new_panel_area_m2": 749.4716245775667
+    }
+  ],
+  "limits": "Author-selected simplified roof outlines; not measured as-built edges. Underlying captured station remains unchanged. Lower scan artifacts are outside this repair.",
+  "captured_geometry_unchanged": true,
+  "captured_geometry_sha256": "30c0e371bee5b0185de00c35fbaab93e4d56a4540406884ea334391713e22835",
+  "raw_obj_sha256": "51a95d4a33647bf8e1089a47141f3897b7cfd1618de1d941fe622aa9f6987566",
+  "repeat_panel_geometry_identical": true,
+  "roof_triangles": 42,
+  "eave_quads": 52,
+  "seam_quads": 92,
+  "panel_faces": 186,
+  "zero_area_faces": 0,
+  "downward_roof_faces": 0,
+  "photographic_image_nodes": 0,
+  "all_panels_within_captured_bounds": true,
+  "native_blender_panel_faces_observed": 186
+}

@@ -1,0 +1,6 @@
+{
+  "native_visual_state": "Rendered colour preview verified through CUA screenshot",
+  "background_reopen_layout_shading": "SOLID",
+  "persistence_verified": false,
+  "limits": "Native live screenshot verifies visible preview. Background loading may differ; reopening persistence not proven. City completion remains unverified."
+}

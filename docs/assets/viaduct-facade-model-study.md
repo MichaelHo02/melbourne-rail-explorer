@@ -1,0 +1,13 @@
+# Viaduct facade modelling study
+
+Generated with the built-in image generation tool on 20 September 2026. Asset: `viaduct-facade-model-study.png`.
+
+An original visual interpretation for Blender modelling, not surveyed geometry or a runtime texture. Use it to distinguish the slender projecting fins at 15–33 William Street from the stronger rectangular framing at 452–470 Flinders Street. The cutaway slabs, louvres and junction details are inferred; their exact construction is not established by the reference photos. The City survey determines building footprints and height bands. Do not bake the pictured reflections into the glass material.
+
+Real photo references inspected (not redistributed here):
+- https://www.commercialrealestate.com.au/property/15-william-street-melbourne-vic-3000-14849344
+- https://www.cushmanwakefield.com/en/australia/news/2020/09/deka-immobilien-acquires-melbourne-office-tower-for-%24454-million
+
+## Exact generation prompt
+
+Use case: stylized-concept. Asset type: original Blender architectural facade modelling reference sheet, NOT a game screenshot, texture map or measured drawing. Use the two supplied photos only as architecture/material references. Create a landscape sheet on neutral warm grey, with two distinct clean three-quarter cutaway facade module studies side by side. LEFT module corresponds to 15–33 William Street Melbourne (reference image1): blue-grey reflective curtain wall, slender pale silver vertical blade fins continuing above a stepped roof edge, finer thin horizontal transoms, glazed corner with closely spaced corner courses. Show a representative three-storey corner bay plus the fin-to-parapet detail; preserve the observed slender vertical emphasis. RIGHT module corresponds to 452–470 Flinders Street Melbourne (reference image2): deeper blue reflective curtain wall, broad pale silver/white vertical structural framing, clear rectangular window grid and a recessed horizontal level break. Show representative three-storey corner bay with structural recess. Expose shallow geometry so a modeller can understand glass plane versus projecting framing. Separate material swatches below each module: glass, framing, spandrel. Original physically plausible studio renders, soft diffuse lighting and restrained reflections, no pasted photo content. No people, streets, signs, logos, dimensional annotations, fictional decoration or invented whole-building silhouettes. Small exact captions: '15–33 WILLIAM STREET', '452–470 FLINDERS STREET', 'FACADE STUDIES · INTERPRETATION, NOT SURVEY'. Survey polygons/heights will determine actual asset proportions separately; the sheet's purpose is facade rhythm and material separation.

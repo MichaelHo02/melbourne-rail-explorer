@@ -1,0 +1,48 @@
+{
+  "source": "https://assets.ctfassets.net/j001bqnk84dk/1Ettb2QUEi8Lpt9QsWfOMi/3d7d79aa7a321122b17616960243b255/dulux_case__study_flinders_st_web.pdf",
+  "reference_page": 4,
+  "government_reference": "https://www.premier.vic.gov.au/flinders-street-station-be-repainted-its-original-colours",
+  "changes": [
+    {
+      "object": "FSS_ochre",
+      "material": "ochre",
+      "authored_srgb": [
+        0.73,
+        0.66,
+        0.54
+      ],
+      "reference_munsell": "10YR 7/4"
+    },
+    {
+      "object": "FSS_lightstone",
+      "material": "lightstone",
+      "authored_srgb": [
+        0.78,
+        0.72,
+        0.62
+      ],
+      "reference_munsell": "10YR 7/4"
+    },
+    {
+      "object": "FSS_brick",
+      "material": "brick",
+      "authored_srgb": [
+        0.43,
+        0.15,
+        0.13
+      ],
+      "reference_munsell": "10R 3/8"
+    },
+    {
+      "object": "FSS_iron",
+      "material": "iron",
+      "authored_srgb": [
+        0.12,
+        0.17,
+        0.15
+      ],
+      "reference_munsell": "10GY 2/2"
+    }
+  ],
+  "limits": "Exact paint appearance, light calibration, facade material boundaries and present-day weathering unverified. No photographic textures used."
+}

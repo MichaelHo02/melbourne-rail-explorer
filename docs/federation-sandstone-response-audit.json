@@ -1,0 +1,39 @@
+{
+  "before_ramp": [
+    [
+      0.1899999976158142,
+      0.125,
+      0.07400000095367432,
+      1.0
+    ],
+    [
+      0.3199999928474426,
+      0.23000000417232513,
+      0.15000000596046448,
+      1.0
+    ]
+  ],
+  "after_ramp": [
+    [
+      0.28,
+      0.19,
+      0.115,
+      1
+    ],
+    [
+      0.4,
+      0.29,
+      0.19,
+      1
+    ]
+  ],
+  "backup": "Authored Federation Square sandstone before buff response",
+  "reference": "https://fedsquare.com/history-design",
+  "limits": "Authored buff sandstone colour estimates and roughness. Official material identity retained; values not measured or current-condition verified. Procedural noise only.",
+  "saved_file_verification": {
+    "ramp_matches": true,
+    "recovery_material_present": true,
+    "no_image_texture_nodes": true,
+    "camera_preserved": true
+  }
+}

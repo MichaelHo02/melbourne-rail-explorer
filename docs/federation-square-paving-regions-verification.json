@@ -1,0 +1,8 @@
+{
+  "saved_revision_present": true,
+  "vertices_checked_against_original_terrain": 33451,
+  "max_height_difference_m": 9.5367431640625e-07,
+  "repeat_counts_unchanged": true,
+  "no_image_texture_in_region_materials": true,
+  "limits": "Boundary is official schematic cartography; grey finish assumption. Terrain verification tolerates edge ray misses under5percent."
+}

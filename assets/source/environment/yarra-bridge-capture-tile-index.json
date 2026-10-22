@@ -1,0 +1,331 @@
+{
+  "source_url": "https://services1.arcgis.com/KGdHCCUjGBpOPPac/arcgis/rest/services/Photomesh_2020_OBJ_Grid/FeatureServer/0/query?geometry=%7B%22xmin%22%3A+144.954%2C+%22ymin%22%3A+-37.8237%2C+%22xmax%22%3A+144.962%2C+%22ymax%22%3A+-37.82%2C+%22spatialReference%22%3A+%7B%22wkid%22%3A+4326%7D%7D&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=Region%2CDownload_URL&returnGeometry=true&outSR=4326&f=json",
+  "response": {
+    "objectIdFieldName": "OBJECTID",
+    "uniqueIdField": {
+      "name": "OBJECTID",
+      "isSystemMaintained": true
+    },
+    "globalIdFieldName": "",
+    "geometryProperties": {
+      "shapeAreaFieldName": "Shape__Area",
+      "shapeLengthFieldName": "Shape__Length",
+      "units": "esriMeters"
+    },
+    "geometryType": "esriGeometryPolygon",
+    "spatialReference": {
+      "wkid": 4326,
+      "latestWkid": 4326
+    },
+    "fields": [
+      {
+        "name": "Region",
+        "type": "esriFieldTypeString",
+        "alias": "Region",
+        "sqlType": "sqlTypeOther",
+        "length": 10,
+        "domain": null,
+        "defaultValue": null
+      },
+      {
+        "name": "Download_URL",
+        "type": "esriFieldTypeString",
+        "alias": "Download_URL",
+        "sqlType": "sqlTypeOther",
+        "length": 200,
+        "domain": null,
+        "defaultValue": null
+      }
+    ],
+    "features": [
+      {
+        "attributes": {
+          "Region": "C4-31",
+          "Download_URL": "https://gis-3dmodelcapture-2020.s3.ap-southeast-2.amazonaws.com/photomesh/OBJ/C4-31.zip"
+        },
+        "geometry": {
+          "rings": [
+            [
+              [
+                144.953738342472,
+                -37.8206671489406
+              ],
+              [
+                144.95380799646,
+                -37.8181450727504
+              ],
+              [
+                144.956987290077,
+                -37.818200280871
+              ],
+              [
+                144.956917744129,
+                -37.820722362047
+              ],
+              [
+                144.953738342472,
+                -37.8206671489406
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "attributes": {
+          "Region": "C4-33",
+          "Download_URL": "https://gis-3dmodelcapture-2020.s3.ap-southeast-2.amazonaws.com/photomesh/OBJ/C4-33.zip"
+        },
+        "geometry": {
+          "rings": [
+            [
+              [
+                144.960097154438,
+                -37.8207774903033
+              ],
+              [
+                144.960166592345,
+                -37.8182554041493
+              ],
+              [
+                144.9633459033,
+                -37.8183104407829
+              ],
+              [
+                144.963276573436,
+                -37.8208325319072
+              ],
+              [
+                144.960097154438,
+                -37.8207774903033
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "attributes": {
+          "Region": "D4-09",
+          "Download_URL": "https://gis-3dmodelcapture-2020.s3.ap-southeast-2.amazonaws.com/photomesh/OBJ/D4-09.zip"
+        },
+        "geometry": {
+          "rings": [
+            [
+              [
+                144.959958254905,
+                -37.8258216590767
+              ],
+              [
+                144.960027709004,
+                -37.8232995752856
+              ],
+              [
+                144.963207236057,
+                -37.8233546218602
+              ],
+              [
+                144.963137890028,
+                -37.8258767106223
+              ],
+              [
+                144.959958254905,
+                -37.8258216590767
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "attributes": {
+          "Region": "D4-08",
+          "Download_URL": "https://gis-3dmodelcapture-2020.s3.ap-southeast-2.amazonaws.com/photomesh/OBJ/D4-08.zip"
+        },
+        "geometry": {
+          "rings": [
+            [
+              [
+                144.956778628472,
+                -37.8257665208633
+              ],
+              [
+                144.95684819064,
+                -37.823244442051
+              ],
+              [
+                144.960027709004,
+                -37.8232995752856
+              ],
+              [
+                144.959958254905,
+                -37.8258216590767
+              ],
+              [
+                144.956778628472,
+                -37.8257665208633
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "attributes": {
+          "Region": "D4-07",
+          "Download_URL": "https://gis-3dmodelcapture-2020.s3.ap-southeast-2.amazonaws.com/photomesh/OBJ/D4-07.zip"
+        },
+        "geometry": {
+          "rings": [
+            [
+              [
+                144.953599010694,
+                -37.8257112977844
+              ],
+              [
+                144.953668680929,
+                -37.8231892239585
+              ],
+              [
+                144.95684819064,
+                -37.823244442051
+              ],
+              [
+                144.956778628472,
+                -37.8257665208633
+              ],
+              [
+                144.953599010694,
+                -37.8257112977844
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "attributes": {
+          "Region": "C4-32",
+          "Download_URL": "https://gis-3dmodelcapture-2020.s3.ap-southeast-2.amazonaws.com/photomesh/OBJ/C4-32.zip"
+        },
+        "geometry": {
+          "rings": [
+            [
+              [
+                144.956917744129,
+                -37.820722362047
+              ],
+              [
+                144.956987290077,
+                -37.818200280871
+              ],
+              [
+                144.960166592345,
+                -37.8182554041493
+              ],
+              [
+                144.960097154438,
+                -37.8207774903033
+              ],
+              [
+                144.956917744129,
+                -37.820722362047
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "attributes": {
+          "Region": "D4-01",
+          "Download_URL": "https://gis-3dmodelcapture-2020.s3.ap-southeast-2.amazonaws.com/photomesh/OBJ/D4-01.zip"
+        },
+        "geometry": {
+          "rings": [
+            [
+              [
+                144.953668680929,
+                -37.8231892239585
+              ],
+              [
+                144.953738342472,
+                -37.8206671489406
+              ],
+              [
+                144.956917744129,
+                -37.820722362047
+              ],
+              [
+                144.95684819064,
+                -37.823244442051
+              ],
+              [
+                144.953668680929,
+                -37.8231892239585
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "attributes": {
+          "Region": "D4-03",
+          "Download_URL": "https://gis-3dmodelcapture-2020.s3.ap-southeast-2.amazonaws.com/photomesh/OBJ/D4-03.zip"
+        },
+        "geometry": {
+          "rings": [
+            [
+              [
+                144.960027709004,
+                -37.8232995752856
+              ],
+              [
+                144.960097154438,
+                -37.8207774903033
+              ],
+              [
+                144.963276573436,
+                -37.8208325319072
+              ],
+              [
+                144.963207236057,
+                -37.8233546218602
+              ],
+              [
+                144.960027709004,
+                -37.8232995752856
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "attributes": {
+          "Region": "D4-02",
+          "Download_URL": "https://gis-3dmodelcapture-2020.s3.ap-southeast-2.amazonaws.com/photomesh/OBJ/D4-02.zip"
+        },
+        "geometry": {
+          "rings": [
+            [
+              [
+                144.95684819064,
+                -37.823244442051
+              ],
+              [
+                144.956917744129,
+                -37.820722362047
+              ],
+              [
+                144.960097154438,
+                -37.8207774903033
+              ],
+              [
+                144.960027709004,
+                -37.8232995752856
+              ],
+              [
+                144.95684819064,
+                -37.823244442051
+              ]
+            ]
+          ]
+        }
+      }
+    ]
+  }
+}

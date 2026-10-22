@@ -1,0 +1,971 @@
+{
+  "survey_envelopes": 8573,
+  "facade_palette_variants": 16,
+  "mapped_tree_instances": 15512,
+  "park_parcels": 70,
+  "bridge_carriageways": 8,
+  "park_trails": 307,
+  "image_texture_nodes": [],
+  "saved_camera": "Aerial overview",
+  "status": "Incomplete: fresh whole-city render inspected; material, street and landmark refinement still required.",
+  "visual_findings": [
+    "CBD skyline, mapped street trees, park parcels and named landmarks are broadly legible in the current aerial image.",
+    "Yarra now has authored sediment-toned water; exact dock variation and current turbidity remain unverified.",
+    "Most tall facades still share blue procedural grids; individual architecture remains generic.",
+    "Broad pale road/rail-adjacent surfaces, boundary truncation and several paths remain schematic.",
+    "Precinct detail views reveal unresolved Federation masses/Atrium, scan artefacts and ground-level transitions.",
+    "Present-day reconciliation and actual web export/publication not verified."
+  ],
+  "next_priorities": [
+    "Inspect road/rail land around Flinders and Southbank at closer aerial scale; repair uncovered paved/vegetated extents from retained sources.",
+    "Extend facade specificity where it materially affects skyline; retain material/geometry recovery.",
+    "Complete precinct contacts and audit full aerial plus named detail cameras before claiming completion."
+  ],
+  "retained_ordinary_road_features": 2990,
+  "road_preview_clip_bounds": [
+    -2000,
+    -800,
+    1250,
+    1750
+  ],
+  "park_interior_holes": 2,
+  "southern_cross_study_camera": "04 Southern Cross roof study",
+  "southern_cross_study_render": "docs/images/observatory-southern-cross-study.png",
+  "southern_cross_roof": {
+    "source_id": "3296",
+    "plan_area_m2": 34440.258781321005,
+    "triangles": 8378,
+    "status": "Authored dune roof, seams, Y supports and diffusing rooflight bands. Exact wave/rooflight arrangement and apex ventilation details remain incomplete.",
+    "authored_seam_guides": 161,
+    "authored_Y_supports": 15,
+    "rooflight_plan_area_m2": 1947.9928787077858,
+    "rooflight_bands": 4
+  },
+  "review_renders": {
+    "observatory-blender-preview.png": "3b102cb74d264dac6df96482c31e3174754b9e22f33ae806e863356e59005da3",
+    "observatory-flinders-detail.png": "6a2362f8c1ba78537fd9320e5d9db9768257be2588e5eb095dc82a64d5643a70",
+    "observatory-street-detail.png": "aeb19dce80ed71f7acf0eddd346934ba740212c44ae8b3b789351f593e7fe684",
+    "observatory-federation-square-detail.png": "d1ac87673b502f60cc5a43353f4a021ca4a043d2781bcb6c8a6dcf2f99d95dac"
+  },
+  "lowrise_facade_refinement": {
+    "sections": 2765,
+    "structures": 2242,
+    "basis": "Retained structure grouping; authored window proportions, plain masonry and sill/lintel strips; individual facade unverified"
+  },
+  "tower_material_refinement": {
+    "sections": 292,
+    "structures": 264,
+    "authored_variants": 8,
+    "limits": "Structure-consistent authored tint and roughness; individual finishes unverified"
+  },
+  "ordinary_trackbeds": {
+    "features": 50,
+    "triangles": 325,
+    "area_m2": 35156.5496,
+    "width_m": 3.6,
+    "limits": "Authored flat ballast union; no inferred yard extent or additional tracks"
+  },
+  "flinders_eastern_platforms": {
+    "platforms": [
+      12,
+      13
+    ],
+    "state": "Authored schematic paired deck; actual pairing, extents, height, covered infrastructure and track clearance unverified",
+    "visibility": "Below flat preview ground; not an exposed aerial feature"
+  },
+  "federation_square_cladding": {
+    "survey_sections": 10,
+    "panel_triangles": 20060,
+    "structure_ids": [
+      "806667",
+      "816359",
+      "812338",
+      "805928",
+      "809180"
+    ],
+    "reference": "https://fedsquare.com/history-design",
+    "limits": "Five-piece same-material groups with adapted ratios and authored distribution; exact modular facade and roof profiles unresolved"
+  },
+  "federation_square_camera": "06 Federation Square detail",
+  "federation_surface_pass": {
+    "revision": "procedural-grain-v1",
+    "materials": [
+      "sandstone",
+      "zinc"
+    ],
+    "limits": "Authored grain and colour ranges, no photo textures. Main Square paving boundary unresolved; official linked site plan returned HTTP 404.",
+    "reference": "https://fedsquare.com/venues/main-square",
+    "detail_sha256": "d1ac87673b502f60cc5a43353f4a021ca4a043d2781bcb6c8a6dcf2f99d95dac"
+  },
+  "street_kerbs": {
+    "segments": 7714,
+    "width_m": 0.16,
+    "rise_m": 0.125,
+    "limits": "Authored dimensions on retained road union boundaries. Driveways and accessible ramps unmeasured; incomplete."
+  },
+  "kerb_pass_review_sha256": {
+    "observatory-blender-preview.png": "0225ae19408d882e1f951c049548d227d4ba0ee0aa73c32643f9353fce26a51b",
+    "observatory-flinders-detail.png": "4a098aa3979871f14b3485a64cf8dcbe83479f26a1a4aa7cbf79ad5fa275e802",
+    "observatory-street-detail.png": "b39d6ee865227ad26b12033be795fa25ec4c47d767718497bb917db6f96efb16"
+  },
+  "federation_roof_source_audit": "assets/source/environment/federation-roof-source-audit.json",
+  "federation_gables": {
+    "source_ids": [
+      20247,
+      20248
+    ],
+    "roof_faces": 31,
+    "retained_flat_roof_faces": 114420,
+    "limits": "Authored long-axis ridges and linear planes within retained footprints/elevation ranges; 2022 Gable classification, exact roof profile and rooftop plant unresolved.",
+    "cladding_fit": "section-owned-v2; source IDs normalized to integers; only matching panel vertices fitted"
+  },
+  "federation_roof_inspection": {
+    "camera": "07 Federation roof inspection",
+    "image": "docs/images/observatory-federation-roof-inspection.png",
+    "sha256": "a373d2196d334b1d6468e1700bb855a331baa0e4b1bbf8e1537dce033a215744",
+    "finding": "Ray checks show upper plane belongs to authored gable. Ownership-based facade fit removes projecting roof-section panels. Exact profile remains authored."
+  },
+  "federation_plaza": {
+    "area_m2": 4999.999999963048,
+    "triangles": 44,
+    "reference": "https://assets.heritagecouncil.vic.gov.au/assets/Determination-Federation-Square-FINAL.pdf",
+    "limits": "Authored approximate Main Square boundary informed by 2019 precinct diagram, clipped around retained ground-level building envelopes with 1 m margin and road surfaces. Area calibrated to the official 5000 m2 venue figure; boundary still not georegistered or surveyed. Flat .32 m preview level; documented eastward rise of approximately 6 m not yet reconciled with local building datums. Paver sizes, joints and palette authored; artwork not reproduced.",
+    "reference_pdf_sha256": "72da0fa1dbbefa61879ed658ec936832b6bb20f2b5e7a4e46df69a5abcbde9b9"
+  },
+  "federation_roof_trim": {
+    "seams": 55,
+    "edge_guides": 31,
+    "spacing_m": 0.9,
+    "limits": "Authored metal relief fitted to authored gables; actual seam layout and roof finish unmeasured."
+  },
+  "tall_masonry": {
+    "sections": 1899,
+    "structures": 422,
+    "materials": 12,
+    "limits": "Continuous authored stone/concrete/terracotta shading with geometric windows. Individual finish and fenestration unmeasured."
+  },
+  "masonry_pass_review_sha256": {
+    "observatory-blender-preview.png": "2478cee374e8d1103461bc305032f5b600de1910bef7f0918ac44ab6f9958701",
+    "observatory-flinders-detail.png": "46a9aea304c2c50ebb6306f33dbb1ee82142dfb5ee6c95afef9f88b9471bc2b9",
+    "observatory-street-detail.png": "bbfb47b593bef7f08797ef6e43becc405189acf929f2d7946a3171394eee25ac"
+  },
+  "mapped_feature_lights": {
+    "selected_assets": 580,
+    "source": "https://data.melbourne.vic.gov.au/api/explore/v2.1/catalog/datasets/feature-lighting-including-light-type-wattage-and-location/exports/json",
+    "raw_sha256": "8f647aa1e2c9981fab2e5461ffd121f177f4c5810ef4767d678c3058ef6a241d",
+    "limits": "Mapped lighting assets selected by explicit pole mounting and Flood/Down Light classification, plus generic Pole. Up Light, ambiguous Feature and other mountings omitted. Ground-building overlaps omitted. Authored 4.5 m pole height, fixture design/orientation and ground datum; locations are asset points, not proof of independent poles or present-day operation. No lux sample positions used as assets.",
+    "camera": "08 Northbank asset detail"
+  },
+  "feature_light_review_sha256": {
+    "observatory-blender-preview.png": "2963c7acc86249ca5a7180e9e30a07cd744a3833d4165544d147a10d14d4e204",
+    "observatory-flinders-detail.png": "ab546d1a02728a1e30bf02d6b3c47bfad05c1847d3f398c713b5cbd4f6baabe7",
+    "observatory-street-detail.png": "e24c2a0f4e26bfc112d7cb5da614ccf4f63d553c33a410c7d9b102fb270be076",
+    "observatory-northbank-asset-detail.png": "b361ca71e285944f2d2f61bb5a35bca5ba2fccc37ceead9c8a58127cc3c830ba"
+  },
+  "princes_bridge": {
+    "survey_id": "36402",
+    "recoloured_cap_faces": 444,
+    "railing_edge_segments": 10,
+    "posts": 169,
+    "reference": "https://mvga-prod-files.s3.ap-southeast-4.amazonaws.com/public/2024-07/central-city-heritage-study-review-1993-p5.pdf",
+    "limits": "Authored stone shades and simplified iron rails on retained outline. Ornament, arches, lamps, approach levels and current finish unresolved."
+  },
+  "date_palms": {
+    "count": 190,
+    "shared_mesh_faces": 2220,
+    "revision": "authored-pinnate-v2",
+    "camera": "09 Date palm grove inspection",
+    "reference": "https://vicflora.rbg.vic.gov.au/flora/taxon/a3860b68-24a3-424a-8906-1f43be6d3497",
+    "limits": "Inventory point and common-name retained. Authored 8 m stem, three layers of 16 fronds, size variation and palette. Individual crown/height and current condition unmeasured. Other palm species retain generic crowns. Current full-city and grove renders include revised upright upper fronds."
+  },
+  "date_palm_review_sha256": {
+    "observatory-blender-preview.png": "8e8bc6d86a89fc810d5ee4d96037954425ccf8f040fd70e9c678e647d86c5a1c",
+    "observatory-flinders-detail.png": "c877d902ccd372123c0041f0eef4d6c858d75dae3a3a1bc6d65bd967c051c0c0",
+    "observatory-street-detail.png": "94435d3a59e36c740e81d24c3becf814162b99e25c3984998f5de6771f46f7c7",
+    "observatory-date-palm-grove.png": "0e13b1d43673af35ef6ca45608750b74dd50a0dc7b1a22d177f37e8664ae9b97"
+  },
+  "ordinary_tree_crowns": {
+    "count": 15112,
+    "shared_profiles": 3,
+    "faces_per_profile": 400,
+    "position_tolerance_m": 0.01,
+    "limits": "Authored lobed forms and rotation at retained inventory points. Existing illustrative scales retained; species-specific size/shape, individual branching and condition unmeasured."
+  },
+  "crown_pass_review_sha256": {
+    "observatory-blender-preview.png": "6e919470bb878c94630781a5adee034f86f80c818e158fc5f9dd8c5270af9a6e",
+    "observatory-flinders-detail.png": "ec610c0a9278663560ae03e97da2a0f969b26bea4fbf6eb5aa29e190f516a67f",
+    "observatory-street-detail.png": "915fe5f7d116debb749b53140b95701067c3cd708d771343629c676812c067c0",
+    "observatory-date-palm-grove.png": "c16d594998f2a996b4d88774653588e0b1e1e779aa7e36549a0a4b911e50f1fb"
+  },
+  "st_pauls_spires": {
+    "structure_id": 819362,
+    "source_sections": [
+      27583,
+      27587
+    ],
+    "towers": 3,
+    "authored_faces": 152,
+    "generic_upper_faces_omitted": 329,
+    "equipment_faces_omitted": 24,
+    "camera": "10 St Pauls Cathedral inspection",
+    "limitations": "Authored octagonal spires within survey height ranges; nave, Gothic fenestration and facades remain generic."
+  },
+  "st_pauls_masonry": {
+    "authored_lancet_bays": 28,
+    "generic_faces_removed": 423,
+    "preview_sha256": "b69e34f1985724e493032fda60e916540041dd4d999d4ff1ae54709ca6fb0544",
+    "limits": "Illustrative bay geometry and spacing. Pitched roofs, buttresses, entrance and tower openings unfinished."
+  },
+  "st_pauls_roof": {
+    "triangles": 60,
+    "tower_junction_quads": 32,
+    "flat_caps_removed": 41,
+    "equipment_faces_removed": 12,
+    "source_section": 27586,
+    "eave_relative_m": 23,
+    "ridge_relative_m": 29.6,
+    "preview_sha256": "1a16b17c74b4f11d8b4b253439a04ef780213dc967a5a050da5e66acc4357b28",
+    "limits": "Illustrative longitudinal gable; exact intersecting nave/transept/chancel roof planes and ornament unfinished."
+  },
+  "current_aerial_review": {
+    "scene_sha256": "16a228bf0a928994362770959160ac3b4e8e393ee4b25af1018966405eb0e209",
+    "rendered_at_utc": "2026-10-05T21:43:01.030707+00:00",
+    "images": {
+      "observatory-blender-preview.png": "9a5cd1ad670c8584af48aeb49ee7a5286246b6e9bc21971d7b4fbbe66068da97",
+      "observatory-flinders-detail.png": "77c55271628221bfca038bf892662f160040b1be1725bfa62ac0584bd02663a0",
+      "observatory-street-detail.png": "54e735f8890b8a53a453fe4589e59bd3e16e9874461b54f42a86efe9cfa8233a"
+    },
+    "visual_inspection": "Overview and Flinders inspected. Current muted station palette appears at aerial scale; broad neutral ground, cropped dataset edges and generic facades still prevent completeness.",
+    "live_window_verified": false
+  },
+  "flinders_ballast_margins": {
+    "source_features": 13,
+    "area_m2": 15247.94515,
+    "triangles": 70,
+    "authored_width_m": 6.4,
+    "level_m": 0.395,
+    "preview_sha256": "236ef089b05c115ac182a05e78fd10aef1b51fc976c2e8ec592e4b13821bc02c",
+    "visual_findings": "Subtle at precinct scale; roofs and canopies conceal much of the new margin. Broader rail-yard ground remains incomplete.",
+    "limits": "Source-aligned authored margin, not measured yard boundary; roads and retained ground footprints excluded."
+  },
+  "flinders_canopy_trim": {
+    "guide_count": 896,
+    "canopies": 4,
+    "authored_spacing_m": 1,
+    "guide_radius_m": 0.025,
+    "inspection_camera": "11 Flinders platform inspection",
+    "preview_sha256": "5719d7799b6a2b0db536dc4123a39e7a6c523ef2616a3f87b2dd6d50badb1abc",
+    "findings": "Seams remain subtle at 320m orthographic scale. Main station roof treatment, schematic access structures and neutral ground remain unfinished. Black foreground faces were caused by camera-plane intersection and are corrected.",
+    "limits": "Illustrative metal detail; exact canopy construction schedule and extents unmeasured."
+  },
+  "flinders_inspection_camera_fix": {
+    "backward_offset_m": 600,
+    "projection": "Orthographic framing preserved; foreground building volumes now fully in front of camera",
+    "verified_render_sha256": "c380d882c58ecb81199ef1b904df99776482e285b000f210caaed7062f6eebf1"
+  },
+  "flinders_main_roof_finish": {
+    "seam_edge_guides": 364,
+    "authored_seam_spacing_m": 0.8,
+    "procedural_grain": true,
+    "image_textures_added": 0,
+    "verified_preview_sha256": "0e14e0a64ac3788d23569a5c9b74f3252db2e80592dccf24e129328b8eb33631",
+    "limits": "Authored zinc finish and shallow roof profile; exact materials, dimensions and roof schedule unverified."
+  },
+  "southbank_bluestone": {
+    "source_parcels": [
+      "P378351",
+      "P363430",
+      "P363429"
+    ],
+    "area_m2": 3589.8086515216937,
+    "triangles": 59,
+    "camera": "12 Southbank paving inspection",
+    "image_sha256": "abb857211b5722b8082186c1b6ce9dba7f992ce9e352e11732b38e067cf4bede",
+    "limits": "Authored eastern reach clipping and paver schedule; precise completed works boundary, upper/lower levels and furniture unverified."
+  },
+  "cbd_authored_bluestone": {
+    "pavement_faces": 4312,
+    "standard_paver_m": [
+      1,
+      0.5
+    ],
+    "reference": "https://mvga-prod-files.s3.ap-southeast-4.amazonaws.com/public/2024-08/operating-procedure-bluestone.pdf",
+    "preview_sha256": "d667977ffd9ef56b5e0cb689585b4700281c95ca3eaf5df43430b0cdfc5477f5",
+    "limits": "Illustrative central-CBD assignment, not actual bluestone surface inventory. City guidance states existing coverage remains incomplete."
+  },
+  "arts_centre_spire": {
+    "structure_id": 810427,
+    "source_sections": [
+      25568,
+      25569
+    ],
+    "capture_date": "2018-05-28",
+    "generic_faces_removed": 177,
+    "retained_roof_triangles_restored": 2,
+    "survey_relative_top_m": 150,
+    "published_street_height_m": 162,
+    "image_sha256": "02d165c0f69baa27b9c9a5ffcb967d308edcb3e4858371b8d1bb53e2fc5579a6",
+    "limits": "Authored 12-sided open lattice and gold skirt; height datums unreconciled, exact mast/lattice/current refurbishment unfinished. Thin silhouette at precinct scale.",
+    "tip_cornice_faces_removed": 8,
+    "inspection_camera": "13 Arts Centre spire inspection",
+    "inspection_sha256": "7875cd643e431f42473d66261c6ebe92f675ab79a5678b3aa6530216c1c07141"
+  },
+  "arts_theatre_facade": {
+    "source_sections": [
+      25564,
+      25565,
+      25566,
+      25567
+    ],
+    "glazing_band_quads": 126,
+    "generic_faces_removed": 192,
+    "image_sha256": "46a8208172f5e12340721c41b13741d87826542512f062c4865ae06f66908138",
+    "limits": "Reference-led concrete/bronze hierarchy; illustrative glazing levels, exact balconies and current refurbishment unresolved."
+  },
+  "hamer_hall_finish": {
+    "structure_id": 813491,
+    "source_sections": [
+      3167,
+      3168,
+      3169
+    ],
+    "capture_date": "2023-05-11",
+    "glazing_quads": 101,
+    "inspection_camera": "14 Hamer Hall inspection",
+    "preview_sha256": "c6ba8b052e291df389ff770d81fa8516cbfc465cac2895981df1256df955d44b",
+    "limits": "Authored concrete palette and illustrative upper glazing ribbon. Deep openings, balconies, restaurant curtain, exact finish and current museum works unfinished."
+  },
+  "hamer_hall_bays": {
+    "bay_count": 15,
+    "mesh_faces": 450,
+    "authored_reveal_projection_m": 0.45,
+    "image_sha256": "45ae0db0a4404242dd8d9a6e9f283f9e5682d6979058134d32ec40af2b8a89d1",
+    "limits": "Illustrative east-facing selection nx>0.3 and bay dimensions. River-side irregular carved openings and glass terraces remain unresolved.",
+    "revision": "road-facing sector only",
+    "previous_all_around_mesh": "Hidden, recoverable",
+    "architect_reference": "https://armarchitecture.com.au/projects/hamer-hall/"
+  },
+  "mapped_wooden_seats": {
+    "selected_records": 446,
+    "visible_instances": 445,
+    "excluded_inside_building": 1,
+    "source": "https://data.melbourne.vic.gov.au/api/explore/v2.1/catalog/datasets/street-furniture-including-bollards-bicycle-rails-bins-drinking-fountains-horse-/exports/json",
+    "source_raw_sha256": "6a4ae0737a99593219963869a263554f953c8fef5c4b3a207544fc40b0e1d1a4",
+    "inspection_camera": "15 Mapped wooden seats inspection",
+    "image_sha256": "eea679e3d48dd40c0bc7cb7300cf5c2233b3452f7ed3170954a1e974f0bf2ce3",
+    "limits": "Inventory points retained; wooden battens supported by model description. Dimensions, backrest, supports, ground height and orientation authored; current asset presence unverified."
+  },
+  "latest_full_review": {
+    "scene_commit": null,
+    "views": {
+      "observatory-blender-preview.png": "01fc24f493cda6fb812734e895f1ed0d9f7a80da88574a4d2c203261a0a60ddc",
+      "observatory-flinders-detail.png": "bddf9865b9b02d4b2dbbf61a7b70edafe515a6aa44ba042a3ad40fc7ac778152",
+      "observatory-street-detail.png": "d0096cabc5be137b1df5193ffc5e3ac3f652a929ee642034a58bd529653946e6"
+    },
+    "findings": [
+      "Upper-tower consistency, expanded rails/sleepers, mapped seats and local Bourke paving included. Generic facade patterns, partial streetscape reconciliation and hard boundaries remain incomplete.",
+      "Generic facade detail, incomplete ground and hard boundary remain visible.",
+      "Live Blender refresh unavailable while Mac locked."
+    ],
+    "complete": false,
+    "scene_sha256": "6353ba88c9638fb7552cd0fa0b95b829176e98dc120034ddd042d903d8385259",
+    "limits": "Latest full-city views include Hardware Lane paving and generic roof tone adjustment. Dedicated earlier inspections precede this material pass."
+  },
+  "building_edge_shading": {
+    "visible_envelopes": 3759,
+    "width_m": 0.12,
+    "segments": 2,
+    "angle_limit_radians": 0.52,
+    "source_mesh_preserved": true,
+    "image_sha256": "3edf7c4ca7f7a3c7cbf6df2d124d0b25cf47a30ae9b0509c8fb6db4cf5dac4ec",
+    "limits": "Authored unmeasured corner finish; subtle at aerial scale. Generic facades remain unresolved."
+  },
+  "qvm_roof_ranges": {
+    "source_section": 24605,
+    "structure_id": 811022,
+    "authored_ranges": 5,
+    "roof_triangles": 59,
+    "flat_roof_faces_removed": 54,
+    "generic_facade_faces_removed": 3338,
+    "inspection_camera": "16 Queen Victoria Market roof inspection",
+    "preview_sha256": "e916c418414e8974e469c383a661bf44d2335d81fc03152356a64dec8e9c14f1",
+    "limits": "Historical plan-led gables; authored roof pitch/spacing. Upper sheds now open. Southern sheds, solar arrays, lanterns and current works unresolved."
+  },
+  "qvm_open_sheds": {
+    "timber_posts": 218,
+    "beam_intervals": 1128,
+    "support_faces": 8076,
+    "source_upper_solid_walls_removed": true,
+    "southern_envelope_retained": true,
+    "preview_sha256": "921421a908facf53d28e992198685febead9d836c700b268d1779973949305fd",
+    "limits": "Historical construction reference; setout, support height and flat asphalt authored. Trusses, stalls, southern roof forms and present-day redevelopment remain unresolved."
+  },
+  "qvm_roof_finish": {
+    "guide_runs": 21,
+    "corrugation_pitch_m": 0.076,
+    "bump_distance_m": 0.008,
+    "photographic_textures": false,
+    "inspection_camera": "16 Queen Victoria Market roof inspection, north view",
+    "preview_sha256": "d03f679d8e5e0369e52c165961dc9025765997d0331a09828d113bffcc5305de",
+    "limits": "Illustrative metal grain and dimensions. Inspection clearly exposes southern flat-envelope roof as unfinished."
+  },
+  "qvm_south_roofs": {
+    "roof_triangles": 24,
+    "support_columns": 195,
+    "flat_cap_faces_removed": 6,
+    "original_survey_hidden": true,
+    "forms": [
+      "F gable",
+      "J gable",
+      "KL central gable with lower secondary gables"
+    ],
+    "preview_sha256": "d2d1f890f286509934c15ac2f299122b804ebf84647c097ee6926b105993111b",
+    "source": "https://mvga-prod-files.s3.ap-southeast-4.amazonaws.com/public/2024-07/qvm-conservation-management-plan.pdf",
+    "limits": "Historical roof hierarchy with authored lanterns; exact current setout, solar arrays, trusses and redevelopment unresolved."
+  },
+  "qvm_lanterns": {
+    "forms": [
+      "J glazed gable approximation",
+      "KL convex metal cover with sash/louvre bands"
+    ],
+    "mesh_faces": 78,
+    "maximum_authored_z_m": 10,
+    "preview_sha256": "1dc4f19ba0f9a7bdfeea32f337fb299f6d0aac51a9c18da7377abc549cd739e6",
+    "limits": "Historical plan-led forms; dimensions, optical material, current solar arrays and refurbishment unresolved."
+  },
+  "recorded_lowrise_gables": {
+    "selected_buildings": 395,
+    "roof_and_edge_faces": 5146,
+    "gable_end_triangles": 792,
+    "flat_roof_faces_removed": 1760,
+    "rooftop_equipment_faces_removed": 420,
+    "source": "City of Melbourne 2023 footprint roof_type=Gable",
+    "preview_sha256": "331d69e5efa67ac1e30ddaa3c5b3ddd9d2387e3c41a325e500699eab94c204af",
+    "limits": "Roof form recorded; long-axis ridge, pitch/eaves and zinc finish authored. Single-section simple low-rise footprints only; capture dates retained, current materials unverified."
+  },
+  "recorded_lowrise_hips": {
+    "selected_buildings": 358,
+    "roof_and_edge_faces": 7300,
+    "flat_roof_faces_removed": 1637,
+    "equipment_faces_removed": 648,
+    "coordinates_finite": true,
+    "retained_height_bounds_verified": true,
+    "inspection_camera": "17 Recorded low-rise roofs inspection",
+    "preview_sha256": "46e56a7487458efa4669dbb248088bba82f50186b07f695c597d7d34ccca68d4",
+    "limits": "Public Hip roof classification; authored ridge/pitch/eaves/zinc. Simple single-section footprints only. Generic facades, multi-section terraces and current materials unresolved."
+  },
+  "parking_markings": {
+    "retained_points": 900,
+    "tree_conflicts_excluded": 204,
+    "paint_triangles": 9738,
+    "paint_union_prevents_coplanar_overlap": true,
+    "source": "https://data.melbourne.vic.gov.au/api/explore/v2.1/catalog/datasets/on-street-parking-bays/exports/json",
+    "raw_sha256": "fef8987c3cb6f37bb9776ffeb99570e55ad5a08477bd6c2c7b788f2acaac60c0",
+    "inspection_camera": "18 Parking markings inspection",
+    "preview_sha256": "58ff2d8409de781680f3ff026a4518021258321885fbec9fa3aaf7f5b1775cd2",
+    "limits": "Current export provides points, not polygons. Illustrative parallel 5.5 x 2.2 m bay boxes oriented to nearest Vicmap road, retained only where whole rectangle fits authored asphalt. Not actual paint inventory, current availability, restriction or vehicle tracking. Mapped tree clearance is authored 1.5 m."
+  },
+  "daylight_presentation": {
+    "look": "AgX Medium High Contrast",
+    "exposure": 0.45,
+    "sun_color": [
+      1,
+      0.96,
+      0.88
+    ],
+    "sun_angle_radians": 0.09,
+    "image_sha256": "45c66014f4985d52305608b644f25080407ee126b0382e65b53924c72f812711",
+    "limits": "Authored presentation, not current weather, calibrated colour or geographic sun simulation."
+  },
+  "eureka_crown": {
+    "structure_id": 815210,
+    "capture_date": "2018-05-28",
+    "crown_quads": 55,
+    "overlay_faces_recolored": 609,
+    "authored_lower_height_m": 265,
+    "inspection_camera": "19 Eureka crown inspection",
+    "architect_reference": "https://fkaustralia.com/project/eureka-tower/",
+    "preview_sha256": "9edfff02164f8a4456074e82b26d8c2f8bb040a57c91943b8a04f1643b2ea7e8",
+    "limits": "Documented gold crown with authored gold glass/frame palette and lower boundary. Generic window spacing, red stripe, exact facade composition and crown rakes unresolved."
+  },
+  "visual_walkthrough": {
+    "path": "docs/blender-visual-walkthrough.html",
+    "views": 15,
+    "image_files_verified": true,
+    "browser_interaction_verified": false,
+    "limits": "Thirteen actual-render views with scope labels. Full city images current; dedicated historical pass images labelled. Opening in Codex queued; interaction and live Blender window unverified."
+  },
+  "princes_bridge_arches": {
+    "survey_section": 36402,
+    "spans": 3,
+    "ribs": 18,
+    "spandrel_quads": 192,
+    "inspection_camera": "20 Princes Bridge river inspection",
+    "reference": "https://collections.museumsvictoria.com.au/items/1396611",
+    "preview_sha256": "a9fcd52e804fe8f851ac8305c02e7f2ee364923f7e032d3aea994367ac3d48ae",
+    "limits": "Illustrative 120 m core within retained roughly 150 m approach footprint. Arch profiles, ribs, piers, flat levels, materials and alignment unmeasured; ornament and present-day condition unresolved."
+  },
+  "latest_scene_sha256": "ffde1f8e6d95d0cc54f7953f37cfff8e3d9e82c8d1043620ced28e19f50ded16",
+  "facade_colour_consistency": {
+    "groups": 1523,
+    "changed_sections": 2928,
+    "recovery": "Original material names retained on each changed object and in city-facade-colour-consistency.json",
+    "limits": "Authored dominant wall finish within source structure groups; individual real colours and intentional mixed materials unverified. Landmark-specific materials excluded."
+  },
+  "eastern_rail_coverage": {
+    "study_bounds_xy_m": [
+      -15,
+      -170,
+      800,
+      25
+    ],
+    "explicit_ordinary_rail_features": 4,
+    "buffered_area_m2": 176.08765000000002,
+    "source_url": "https://vicmap.land.vic.gov.au/agsgis/rest/services/vicmap/Vicmap_Transport/MapServer/3",
+    "source_sha256": "bb9a8f4ab6dbbd3ae2d6e2e05a1acbdf2d211fdce285dfbb5d239289c5a9a8cd",
+    "source_ufis": [
+      72757758,
+      76809385,
+      76809407,
+      76809422
+    ],
+    "outcome": "Not applied: retained explicit ordinary railway lines supply insufficient coverage to reconstruct the visible eastern yard. Need public yard/track geometry or an architectural/reference plan. No inferred whole-yard polygon added."
+  },
+  "expanded_rail_source": {
+    "features": 475,
+    "class_counts": {
+      "railway": 156,
+      "tramway": 140,
+      "bridge_rail_o": 60,
+      "rail_uground_o": 114,
+      "rail_siding": 5
+    },
+    "bounds": [
+      144.942,
+      -37.827,
+      144.984,
+      -37.8
+    ],
+    "fetched_at": "2026-10-05T20:16:37.712689+00:00",
+    "source": "https://vicmap.land.vic.gov.au/agsgis/rest/services/vicmap/Vicmap_Transport/MapServer/3/query",
+    "sha256": "fd013081f01f65f5a13dc1ae61524719c96e7fcbd83cc645e22ca9b631070462",
+    "applied_to_scene": "Additional ordinary railway features only",
+    "limits": "Official source extent now matches expanded preview. Classes retained separately; vertical datum, bridge heights, sidings, tunnel depth and individual track multiplicity remain unverified."
+  },
+  "expanded_ordinary_rails": {
+    "source_features": 106,
+    "ballast_area_m2": 33706.081050000146,
+    "ballast_triangles": 558,
+    "steel_segments": 464,
+    "limits": "Additional union of authored 3.6 m ballast beds on ordinary railway features only. Bridges, underground rail and tramways excluded by explicit feature type. Flat datum and width illustrative; not complete station tracks or surveyed yard boundary. Steel uses authored 1.6 m gauge and .50 m flat top; complete segments within bounds only. Sleepers and surveyed vertical clearances unresolved."
+  },
+  "expanded_rail_sleepers": {
+    "count": 13791,
+    "camera": "21 Expanded railway detail",
+    "preview_sha256": "87871c3685076409a1f654894675a1de7d5e8ae64e73060bc03fa59436b29f81",
+    "limits": "Authored dimensions and flat datum. Coplanar sleeper overlap corrected by union; original boxes preserved hidden. Switch rails, equipment, realistic turnout arrangement and bridge transitions unresolved.",
+    "union_faces": 83682,
+    "union_area_m2": 8052.213311000026
+  },
+  "rialto_inspection": {
+    "candidate_structure": 803943,
+    "sections": 19,
+    "camera": "22 Rialto retained envelope inspection",
+    "preview_sha256": "ddd640375fb336dcae39944507f7a9dbdd7df69fec70d585515139ca0a21bf3b",
+    "findings": "Eight generic upper section finishes now share main-section authored glazing; contrasting facade bands reduced in inspected render. Retained roof caps remain. Exact curtain wall, glazing properties and podium unresolved.",
+    "changed_generic_sections": 8
+  },
+  "upper_tower_consistency": {
+    "groups": 299,
+    "changed_sections": 821,
+    "limits": "Dominant vertical-area generic finish applied only to eligible sections base>=20m in source groups height>45m; selected bespoke landmarks excluded. Actual colours, mixed material zones, podium differentiation and current condition unverified. Individually authored landmark finishes excluded.",
+    "source_records": "city-upper-tower-consistency.json"
+  },
+  "saved_colour_preview": {
+    "layout_shading": "MATERIAL",
+    "scene_lights": true,
+    "scene_world": true,
+    "reopened_file_verified": true,
+    "live_window_verified": false,
+    "visible_mesh_material_coverage": 24910,
+    "missing_material_assignments": 0,
+    "material_image_texture_nodes": 0
+  },
+  "tram_stop_source": {
+    "retained_points": 170,
+    "source_url": "https://opendata.transport.vic.gov.au/dataset/6d36dfd9-8693-4552-8a03-05eb29a391fd/resource/dc5a9bdc-b79e-4806-8288-2a983db30930/download/public_transport_stops.geojson",
+    "metadata_url": "https://opendata.transport.vic.gov.au/api/3/action/package_show?id=public-transport-lines-and-stops",
+    "dataset_modified": "2026-09-28T00:33:43.168113",
+    "source_sha256": "2d8b452f088a54c7d9c390ab5ccf2f6d383afd82fc95c4427a3ffdf354c26daa",
+    "applied_to_scene": false,
+    "limits": "Official stop points only; source update does not prove each physical stop is unchanged. Platform boundaries, pole locations, accessible boarding layout, current service and operational status unverified. No realtime API key required or used."
+  },
+  "mapped_stainless_seats": {
+    "count": 292,
+    "excluded_inside_building": 2,
+    "camera": "23 Mapped stainless seats inspection",
+    "preview_sha256": "cb96fe8a91230623560a62347175fcd81531a6a8f6e80c8d737de48afa88185f",
+    "limits": "Inventory supports points and stainless model description. Dimensions, slats, back/supports, flat levels and street-parallel orientation authored; current presence and clearance unresolved."
+  },
+  "bourke_local_paving": {
+    "source_ufi": 76347243,
+    "area_m2": 154.36496284674809,
+    "triangles": 6,
+    "camera": "23 Mapped stainless seats inspection",
+    "limits": "Partial local side band overlay; width and levels authored. Render still shows several seat/tree positions within broad asphalt beyond this patch; whole-block street-width and curb reconciliation remains incomplete."
+  },
+  "hardware_lane_paving": {
+    "source_ufi": 76809583,
+    "area_m2": 344.252729358744,
+    "triangles": 10,
+    "camera": "24 Hardware Lane paving inspection",
+    "reference": "https://participate.melbourne.vic.gov.au/hardware-lane/stage-one-works-complete",
+    "preview_sha256": "8c968ae8091c19e864a09fd1d7acb782ac3dcd6112c9cf36a8d2d2274b000704",
+    "limits": "City confirms2023 bluestone finish. Width, joints, levels and2026 condition authored/unverified. Current rendering retains generic buildings; dining frontage, vehicle barriers and exact street details incomplete."
+  },
+  "generic_roof_tones": {
+    "materials": 3,
+    "lighting_changed": false,
+    "limits": "Darker authored colour ramps and roughness/metal response; no calibrated or individually verified roof material claim. Original ramp colours retained on materials."
+  },
+  "generic_window_tones": {
+    "varied_faces": 88825,
+    "total_faces": 504751,
+    "palette_variants": 3,
+    "limits": "Authored tones and roughness only. Named landmark material overrides retained. Exact glass, reflections, blinds and occupancy unverified.",
+    "reference": "https://docs.blender.org/manual/en/5.1/render/shader_nodes/shader/principled.html"
+  },
+  "irregular_tree_crowns": {
+    "non_palm_instances": 15112,
+    "shared_variants": 7,
+    "clusters_per_variant": 13,
+    "limits": "Existing public points and illustrative scales retained; species geometry, crown dimensions, season and condition unmeasured."
+  },
+  "flinders_ballast_normal_correction": {
+    "faces_corrected": 70,
+    "remaining_downward_faces": 0,
+    "source_features": 13,
+    "area_m2": 15247.94515,
+    "inspection_render_sha256": "25421731b9fc772ff94df2105dec84f3e5adf58ded9c96fd6b8fee1fbfe3a938",
+    "limits": "Winding correction only. Existing authored width and flat level unchanged; exact platform, track and yard geometry unresolved. Full aerial renders precede this correction."
+  },
+  "flinders_restored_palette": {
+    "materials": 4,
+    "record": "assets/source/environment/flinders-restoration-palette.json",
+    "primary_pdf_sha256": "ebd9117a85e5d54ed734a5f42471ee0fe4b6943a00c33b5eb81032bfbe80a345",
+    "primary_pdf_page_inspected": 4,
+    "preview_sha256": "8272614c2a3ccad83c0fdf08a827aa013aebd22f31eff44c9ddab4a8564e9024",
+    "limits": "Authored RGB approximations, not calibrated Munsell conversions. Existing schematic facade material zones remain. Full aerial renders precede this palette pass."
+  },
+  "flinders_authored_masonry": {
+    "reference": "https://localjobsfirst.vic.gov.au/commissioner/newsroom/news-items/flinders-st-redevelopment",
+    "course_width_m": 0.6,
+    "course_height_m": 0.25,
+    "joint_width_m": 0.006,
+    "shader_relief_m": 0.003,
+    "inspection_camera": "25 Flinders masonry inspection",
+    "inspection_near_clip": "15m before target, excludes foreground buildings for detail inspection",
+    "preview_sha256": "7fba9912d41552d395fa38cc9a6244237a590ecfb3a0b5529ddaa263958a1fd6",
+    "visual_inspection": "Subtle courses visible on retained terracotta facade, no stretched long-wall pattern observed. End projection configured but this view does not prove end-face appearance.",
+    "limits": "Course dimensions, bond, actual relief and weathering authored/unmeasured. Full-city images precede this pass; live window unverified."
+  },
+  "flinders_fitted_arch_glazing": {
+    "openings": 282,
+    "arch_segments": 12,
+    "bounds_retained": true,
+    "inspection_camera": "25 Flinders masonry inspection",
+    "preview_sha256": "6d319baf23756d63ac0e9108e963b9b60fbc07c034c08006a5a1ff7d04de4a08",
+    "limits": "Fits existing illustrative glass to rounded trim; exact facade and glazing dimensions unmeasured. Other openings retained. Full aerial renders precede this correction."
+  },
+  "civic_inventory_paving": {
+    "parcels": 6,
+    "area_m2": 11043.24955,
+    "source_records": "assets/source/environment/city-civic-surfaces.json",
+    "camera": "26 Civic paving inspection",
+    "preview_sha256": "416725a4a86e01b724851f0983a0e36c36bfceec197e6a9d771065a3cfb9c73f",
+    "visual_inspection": "Overhead M020718 inspection confirms authored paving visible around retained buildings and trees; other five parcels not individually visually reviewed.",
+    "limits": "Category-derived generic finish, not measured paving inventory. Capture age and current condition unverified. Hard boundary and larger rail-yard gaps remain.",
+    "coverage_review": {
+      "docklands_ids": [
+        "M021968",
+        "M012907",
+        "M021969"
+      ],
+      "harbour_id": "P378294",
+      "images": {
+        "observatory-docklands-civic-study.png": "0006334baf3e7f26b2a00ac604dc1c24c53cdee70b0ffc655ff92c6bdb8647ed",
+        "observatory-harbour-civic-study.png": "0bc0eaa7a7837ae51bd16dc60e562490da01ade977d68947e45a667aaa8218d5"
+      },
+      "limits": "Rendered coverage within clipped parcels inspected; hard scene boundary remains. M020717 northern edge remains outside camera26. Actual material and present-day condition unverified."
+    }
+  },
+  "stadium_roof_reference": {
+    "candidate_structure_id": "808392",
+    "sections": 16,
+    "capture": "20230511",
+    "source_record": "assets/source/environment/stadium-roof-reference.json",
+    "camera": "29 Docklands stadium roof inspection",
+    "preview_sha256": "291633bdf1c0f084407624e6a5e6f566ac96b992b3d0118bd1cfef69e9a0695a",
+    "findings": "Generic flat cap covers the entire upper footprint; no moving-panel distinction or supporting roof geometry. Generic masonry and windows also insufficiently specific.",
+    "geometry_applied": true,
+    "limits": "Identity location-derived; exact current roof configuration and dimensions beyond historic engineer paper unverified."
+  },
+  "stadium_authored_roof": {
+    "fixed_triangles": 705,
+    "panel_quads": 2184,
+    "moving_panels": 2,
+    "panel_plan_dimensions_m": [
+      168,
+      52
+    ],
+    "removed_cap_faces": 65,
+    "removed_generic_window_faces": 422,
+    "removed_generic_trim_faces": 844,
+    "perimeter_separation_m": 0.05,
+    "camera": "29 Docklands stadium roof inspection",
+    "preview_sha256": "fadeee4003b21e764e7a97585018627540d9a46fe731b9a09ba928dfa0f21a22",
+    "visual_inspection": "New fixed slope and closed-panel pattern visible. First-render coplanar dark patches and floating upper window strips corrected.",
+    "limits": "Survey-bounded authored roof slope and pale finish; closed presentation state, not realtime. Current full aerial images include the support pass. Exact machinery, facade and current refurbishment unresolved.",
+    "current_sheet_datum_m": 28.7,
+    "previous_seam_guides_hidden": true
+  },
+  "stadium_panel_supports": {
+    "supports": 4,
+    "members": 336,
+    "historical_clear_span_m": 165,
+    "historical_depth_m": 12,
+    "authored_bays": 16,
+    "authored_member_radius_m": 0.15,
+    "authored_cross_width_m": 1.3,
+    "removed_underlying_caps": 113,
+    "perimeter_band_area_m2": 1765.115,
+    "perimeter_band_triangles": 64,
+    "paper_doi": "10.2749/222137802796336090",
+    "preview_sha256": "fa591d42ea221e00b3d09427f2c4fa9cc0b7936723db62f1ad4008bfc86bc5c2",
+    "visual_inspection": "Four supports visible; dark perimeter wedges from intermediate cap removal closed using retained925-minus934 band.",
+    "limits": "Parabolic form, topology, setout and panel datum authored. Paper figure not visually verified. Exact trusses, end runways, bogies, contemporary refurbishment and roof operational state unresolved."
+  },
+  "saved_material_audit": {
+    "path": "docs/saved-city-material-audit.json",
+    "scene_sha256": "87e49cfe9bb4cef981aca6ccb5022c31c5493928032ff725ea6f5e71c63e73ef",
+    "render_visible_meshes": 24924,
+    "missing_material_objects": 0,
+    "photographic_texture_nodes": 0,
+    "live_window_verified": false,
+    "limits": "Full audit predates added ground meshes; new pedestrian meshes have assigned materials and upward-normal assertions. Current scene hash here, original audit retained."
+  },
+  "ballast_grain": {
+    "script": "scripts/blender/refine_ballast_grain.py",
+    "reference": "https://extranet.artc.com.au/docs/eng/track-civil/procedures/ballast/eta-04-01.pdf",
+    "cell_scale_per_m": 20,
+    "bump_distance_m": 0.008,
+    "roughness": 0.92,
+    "audited_upward_polygons": 1251,
+    "downward_polygons": 0,
+    "limits": "General ARTC engineering reference only; Melbourne metro material, colours, stone shapes and weathering unmeasured. Neutral ground gaps unchanged.",
+    "preview_sha256": "812e7d738e6e3df1eee9e534526de7f65ab768b30505fcc3adc0e275fc52612a",
+    "visual_inspection": "Platform inspection render checked: ballast tone variation retained, fine stone relief subtle at this scale; broad neutral ground and schematic platform geometry remain."
+  },
+  "flinders_platform_end_refinement": {
+    "decks": 6,
+    "taper_length_m": 15,
+    "terminal_width_fraction": 0.65,
+    "source": "https://www.ptv.vic.gov.au/assets/DTP1124-FlindersStreetStation-Precinct-Map_Degraves-Subway_web_Stage-1_v3.pdf",
+    "reference_visually_inspected": true,
+    "preview_sha256": "fc42641639b403d12bdae77bc1cdf597ffb9ef0cb9c320139956a1a951c7fa2b",
+    "limits": "Authored shape from schematic, not surveyed. Exact orientation, widths, canopy alignment, rail clearances and current changes unverified. Improvement is subtle in oblique render."
+  },
+  "cbd_midblock_lane_guides": {
+    "road_features": 57,
+    "dashes": 452,
+    "data": "assets/source/environment/cbd-authored-lane-guides.json",
+    "visual_inspection": "Hoddle aerial render checked; subtle midblock white guides visible on exposed selected roads. Wider street surfaces, median geometry and facade repetition remain unresolved.",
+    "preview_sha256": "45cb43dc111e6b78567d7a6fd8ca379f08fb597f2030a23e4f8f69b08a19ebf1",
+    "limits": "Illustrative lane guides, not an as-built marking inventory. Selected five named streets, bidirectional divided-single representation. Two authored offsets +/-3.2 m; 100 mm width and 3 m dash/9 m gap based published VicRoads standard pattern. End setbacks 24 m; current lane counts, turning lanes, tram operations and controls unverified. No centre dividing line added."
+  },
+  "qvm_interior_carpark_surface": {
+    "area_m2": 12893.313793087273,
+    "triangles": 16,
+    "source": "https://qvm.com.au/parking/",
+    "status_reference": "https://qvm.com.au/gurrowa-place-update/",
+    "plan_reference": "https://mvga-prod-files.s3.ap-southeast-4.amazonaws.com/public/2024-07/qvm-conservation-management-plan.pdf",
+    "preview_sha256": "a05711d18bb81c0614be248767149fe25a1d6602bb7899d417e9151a6268b808",
+    "visual_inspection": "Dark interior asphalt patch visible south of market sheds in fresh Hoddle aerial render. Rectangular authored boundary and neighbouring neutral areas remain visibly approximate.",
+    "limits": "Conservative authored interior patch located south of shed ranges from historical 2002 plan. Exact footprint, present surface, bay layout and construction staging unverified. Road paving and ground-building footprints excluded. Asphalt finish and flat level authored; no occupancy inference."
+  },
+  "flat_roof_parapets": {
+    "buildings": 173,
+    "faces": 4240,
+    "capture_counts": {
+      "20180528": 171,
+      "20220120": 1,
+      "20230511": 1
+    },
+    "data": "assets/source/environment/city-authored-flat-parapets.json",
+    "preview_sha256": "b03b8dbf2b27f79f0ca273286ee8bc9ed0aee5b5c7a1381208276c0e26e3032b",
+    "visual_inspection": "Close low-rise inspection shows shallow roof rims and their shadows; broader repetitive glass facade treatment and street surface coverage remain unfinished.",
+    "limits": "Flat classification and footprint are source-derived. Parapet presence, width .22 m, height .40 m and pale finish authored, not measured. Added maximum .425 m above retained envelope; source envelope retained. Conservative single-section rectangular low-rise selection only; current condition and true roofprint unverified."
+  },
+  "short_lowrise_facades": {
+    "changed_sections": 2103,
+    "added_window_quads": 27556,
+    "audit": "assets/source/environment/city-short-lowrise-facade-audit.json",
+    "preview_sha256": "4f82225dbd7317124640ee299e9d3b8fc3e008ab66e7cc04386472a609da8d26",
+    "visual_inspection": "Close render confirms broad legacy glass grids removed from low-rise sections and replaced by plain walls with individual windows. Current facade proportions remain authored.",
+    "limits": "Source envelope and structure groups retained; wall finish and window proportions authored. Landmark materials excluded; exact individual facade and current condition unverified."
+  },
+  "walkthrough_views": 18,
+  "live_preview_status": "Computer-use native pipe unavailable during current review; saved state and renders verified independently.",
+  "material_colour_separation": {
+    "materials_updated": 47,
+    "preview": "docs/images/observatory-colour-separation-study.png",
+    "preview_sha256": "66c434c5ba7df61447f10cc52e2bda420cec3285fbefc0e25426cc0cc881976b",
+    "geometry_changed": false,
+    "lighting_changed": false,
+    "visual_inspection": "Fresh same-camera Flinders aerial render shows warmer brick and stone, cool metal roof tones and deeper glass; neutral ground and generic architecture remain unresolved.",
+    "limits": "Generic RGB material families authored. Does not establish current individual materials or calibrated colours. Main overview and street images precede this palette pass."
+  },
+  "railway_precinct_ground": {
+    "source": "https://api.openstreetmap.org/api/0.6/map?bbox=144.953,-37.822,144.975,-37.815",
+    "license": "ODbL 1.0",
+    "attribution": "\u00a9 OpenStreetMap contributors",
+    "source_way_ids": [
+      "304076912",
+      "1071010064",
+      "1480992861",
+      "1480992862",
+      "1480992863",
+      "1480992864",
+      "1480992865",
+      "1480992866"
+    ],
+    "area_m2": 128531.71250000002,
+    "triangles": 649,
+    "preview_sha256": "89a6fa9b65c5a2b9de74c6556eca65ca7bf9792ca6836e799240f92c1ad64bbb",
+    "visual_inspection": "Fresh Flinders aerial render confirms brown-grey ground replaces pale default surface inside railway land-use boundaries. Track/platform layout remains schematic; adjacent uncovered ground and current levels unresolved.",
+    "limits": "Railway land-use boundaries from community mapping, not an official cadastral or surface survey. Authored aggregate finish and flat .05 m level; no claim entire railway land is ballast. Existing road/paving, parks, civic paving, ground-building footprints and river excluded. Exact current surfaces, elevations, platform clearances and data completeness unresolved."
+  },
+  "pedestrian_area_infill": {
+    "source": "https://api.openstreetmap.org/api/0.6/map?bbox=144.953,-37.822,144.975,-37.815",
+    "license": "ODbL 1.0",
+    "attribution": "\u00a9 OpenStreetMap contributors",
+    "polygons": 16,
+    "area_m2": 12684.6994,
+    "source_way_ids": [
+      "45479505",
+      "46328276",
+      "48159057",
+      "415183238",
+      "658642591",
+      "712606592",
+      "712606593",
+      "728214144",
+      "740521889",
+      "740523373",
+      "799252781",
+      "1481639791",
+      "1481659369",
+      "1481726294",
+      "1483304180",
+      "1485640642"
+    ],
+    "preview_sha256": "6a5e4fab5b3aafbbdbfc08b249adefd6c209146d43becbca87bf133849b2a99b",
+    "visual_inspection": "Fresh Flinders aerial render checked; additional waterfront and plaza infill visible. Unknown ground gaps, grades and current surfacing remain unresolved.",
+    "limits": "Explicit community surface tags support material family only; exact current finish, colour, joints and flat .335 m level authored. Elevated, covered and unknown-surface polygons skipped. Existing mapped road/paving, park, civic, plaza, paths, ground buildings and river excluded; incomplete coverage remains."
+  },
+  "town_hall_initial_pass": {
+    "source_structure": "818838",
+    "retained_material_sections": 8,
+    "restored_clock_footprint": "27719",
+    "preview": "docs/images/observatory-town-hall-study.png",
+    "preview_sha256": "bc0f249b821b7c2eddcd42111ddb51189779dacbeb13e472a8f06d91d039290b",
+    "scene_sha256": "055e48e0f2b9bfa72dc8b1265a3b952fe4b46513851ad67cfe7de0ec6697a823",
+    "limits": "Initial freestone/slate material and clock tower pass only. Main roof caps remain generic and flat; classical facades, mansard profile, cupola and bluestone plinth unfinished. Historical public elevations and footprint retained; current condition unverified. Full material audit predates this pass."
+  },
+  "town_hall_slate_roof": {
+    "source_id": "27721",
+    "faces": 47,
+    "removed_generic_cap_triangles": 21,
+    "reference": "https://librarysearch.melbourne.vic.gov.au/cgi-bin/spydus.exe/ENQ/OPAC/ARCENQ?RNI=1272729&SETLVL=",
+    "limits": "Author-defined inset rings retain footprint/min/max. Concave junctions and adjacent roof sections still need refinement; exact mansard profiles, dormers and present-day condition unverified. Render inspected: darker stepped roof distinct from generic caps, with unresolved dark joints."
+  },
+  "town_hall_roof_junctions": {
+    "source_id": "27721",
+    "triangles": 95,
+    "verified_plan_area_m2": 1199.0774135802694,
+    "plan_coverage": "Triangle union equals original footprint; summed triangle area equals footprint; upward Blender normals verified.",
+    "limits": "2m/4m inward offsets and1.2m shoulder height authored. Other roof sections, classical facades and dormers unresolved.",
+    "preview_sha256": "f0a7df07e19ff1a3752ba1e6e1872183846f265980c4dfbe8963743b08bb9905",
+    "scene_sha256": "950e37b3ef5033acdcdfc11416a0c678514cb571c694ed3b84af3cf54fa14e34"
+  },
+  "live_blender_refresh": {
+    "verified_at": "2026-10-05T23:30:48.925105+00:00",
+    "method": "CUA File Revert followed by native screenshot",
+    "result": "Saved city-observatory file visible in Material Preview; warmer roofs/facades, restored Flinders palette and expanded railway ground visible.",
+    "limits": "Aerial view verified; walkthrough browser interaction and architectural completion remain unverified."
+  },
+  "town_hall_gable": {
+    "source_id": "27720",
+    "classification": "Gable",
+    "plan_area_m2": 1118.7608711420003,
+    "faces": 20,
+    "removed_generic_cap_triangles": 7,
+    "relative_base_m": 24.4,
+    "relative_top_m": 29.9,
+    "preview_sha256": "0d5d12a98e30d8359fa9657e60a299af0e6342c3b063da66a198bc00ec70272d",
+    "scene_sha256": "fd17d7e3ebf87d623b6ac343e4fedaed43439b17c71d4503041128eb2d3f8e59",
+    "limits": "Near-square ridge direction, slope and metal-like finish authored. Render inspected: raised flat slab replaced by pitched planes; other roof sections and classical facade details unfinished."
+  },
+  "current_city_review": {
+    "verified_at": "2026-10-05T23:40:45.456561+00:00",
+    "scene_sha256": "fd17d7e3ebf87d623b6ac343e4fedaed43439b17c71d4503041128eb2d3f8e59",
+    "renders": {
+      "observatory-blender-preview.png": "3b102cb74d264dac6df96482c31e3174754b9e22f33ae806e863356e59005da3",
+      "observatory-flinders-detail.png": "6a2362f8c1ba78537fd9320e5d9db9768257be2588e5eb095dc82a64d5643a70",
+      "observatory-street-detail.png": "aeb19dce80ed71f7acf0eddd346934ba740212c44ae8b3b789351f593e7fe684"
+    },
+    "visible_meshes": 24942,
+    "missing_material_objects": [],
+    "material_image_nodes": [],
+    "visual_findings": [
+      "Warm masonry, cool roofs and glass separate more clearly in current aerial views.",
+      "Tower facade grids remain repetitive; generic rooftop finish assignment remains approximate.",
+      "Broad neutral ground around civic buildings and hard outer data boundaries remain conspicuous."
+    ],
+    "live_blender": "Latest saved file reloaded through File Revert; native screenshot verifies aerial Material Preview remains visible.",
+    "status": "Incomplete; material coverage and fresh renders do not prove architectural fidelity."
+  },
+  "town_hall_facade_relief": {
+    "source_id": "27725",
+    "pilasters": 15,
+    "west_boundary_segments": 5,
+    "faces": 390,
+    "reference": "https://librarysearch.melbourne.vic.gov.au/cgi-bin/spydus.exe/ENQ/OPAC/ARCENQ?RNI=1272729&SETLVL=",
+    "preview_sha256": "be76722745dc94f8f9d861e0f160177c5104254fd42f255451555862d7853dd1",
+    "scene_sha256": "64c07aebe98ca3a21be6282efd74f755d43ea0dfd4bf29ac7c73a705df8c9da3",
+    "limits": "Simplified shafts/block capitals, cornices and bluestone base. Bay positions, heights, widths and projections authored. Corinthian carving, portico, correct window order, adjacent facades and current condition unresolved. Full-city render and material audit predate this pass."
+  },
+  "cbd_signal_hardware": {
+    "source": "https://discover.data.vic.gov.au/dataset/victorian-traffic-signals",
+    "official_sites": 60,
+    "authored_poles": 236,
+    "building_conflicts_excluded": 4,
+    "preview": "docs/images/observatory-signal-hardware-study.png",
+    "preview_sha256": "0f4fb3d56d621c30a8b1b7b64f099caa13c7a3bf76bc9b3a7560a2264760ae4f",
+    "scene_sha256": "c516347bdd91d055bd75ed19fd9d008f0d0197829397e96425f34f0cd1ad3375",
+    "limits": "Site points establish signal intersections only. Four12m grid offsets,4.2m poles, casing/lens dimensions and colours authored; true pole inventory, timings and active states unknown. Lenses unlit. Current camera verifies one intersection only; wider placement review required."
+  },
+  "fine_foliage_crowns": {
+    "mapped_non_palm_trees": 15112,
+    "shared_meshes": 7,
+    "clusters_each": 85,
+    "faces_each": 1700,
+    "source": "https://data.melbourne.vic.gov.au/explore/dataset/trees-with-species-and-dimensions-urban-forest/information/",
+    "preview_sha256": "7ea2a25a3806a0d1b8ae811f9a5fe71b6bca1d595f12e939f97651a71a92b744",
+    "scene_sha256": "153964632291116c986bcfab2d74d6cb620a849e2eba54212571a09a10666dc2",
+    "visual_findings": "Finer angular canopy edges and broken shadows replace large smooth lobes. Still stylised in close view; species morphology and foliage shading require refinement.",
+    "limits": "Inventory positions and existing illustrative scales unchanged. Crown shape, leaf geometry, branches, dimensions, season and condition authored/unverified. Main city renders and live Blender refresh predate this pass."
+  },
+  "current_review": "city-completion-review.json",
+  "current_water_review": "city-sediment-water-review.json"
+}

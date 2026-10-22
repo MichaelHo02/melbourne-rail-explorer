@@ -1,0 +1,17 @@
+{
+  "viewports_set": [
+    "Animation",
+    "Animation",
+    "Geometry Nodes",
+    "Layout",
+    "Modeling",
+    "Scripting",
+    "Sculpting",
+    "Shading",
+    "Texture Paint",
+    "UV Editing"
+  ],
+  "camera": "37 CBD aerial review",
+  "limits": "Blender can reopen saved Rendered mode as Solid; native Z then R required in this verified reload. Geometry and materials unchanged.",
+  "native_verification": "Reload succeeded via file dialog Return; Blender reopened in Solid mode. Z then R activated Rendered mode, visually verified with coloured city and scene shadows."
+}
