@@ -1,0 +1,25 @@
+{
+  "object": "Flinders station - municipal 2020 scan, authored colours",
+  "roof_selection": "Upward normal z >= 0.35; local height >= 18m; diagnostic includes domes and other upper surfaces, not roof ownership proof",
+  "materials": {
+    "Scan Flinders authored weathered zinc canopy": {
+      "faces": 42369,
+      "area_m2": 4404.982777151866,
+      "height_min": 18.0082950592041,
+      "height_max": 44.71104431152344
+    },
+    "Scan Flinders authored green roof metal": {
+      "faces": 4069,
+      "area_m2": 389.96730768355326,
+      "height_min": 31.00596046447754,
+      "height_max": 52.60798645019531
+    }
+  },
+  "modifiers": [
+    {
+      "name": "Authored scan noise reduction - three gentle passes",
+      "type": "SMOOTH"
+    }
+  ],
+  "limits": "Classification audit only. Geometry damage and material boundary accuracy require spatial review."
+}

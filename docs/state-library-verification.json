@@ -1,0 +1,22 @@
+{
+  "source_envelope_geometry_unchanged": {
+    "survey_12837": "c79dc027e6fda86383d1380135e14244999c3901bb136f7df4831c88678fbfd6",
+    "survey_12838": "384a5c476c625eb2549def64454a2d38df8cad17a3aa9575dbd2e62928133a32",
+    "survey_12839": "970e3ba8b0a51723f33a52f71c8459f13f4120d62d13515ab35f9061ea51341b",
+    "survey_12840": "e9cf631614defc62ae4d0606c946eb6b33b650551f01382b45d3258758280c8d",
+    "survey_12842": "5efcef8156fc3d465a126cbc7322b61febc2a392228d2a88d6ad6ce77f37f1f4",
+    "survey_12843": "7231f7552eeb2d80623d096d4cccfaf388ff5053e0242ba341646a74cca2b9ab",
+    "survey_12844": "bee20d365a5009c2d23bf6785c8497e3fc42aa5e8455b3cefd92929ed1ea5db1",
+    "survey_12845": "e5dc49b4c2370b3a71e0bd469ef5400df146450ae3f3e8274e2730fd88c5bf0b",
+    "survey_12846": "10435d8c22ad2b70675a45406c57bd96af4b2a7d637e548b35fa300342cbf038",
+    "survey_12848": "2d5404a6a8b4172bd8afb0734e078d8db9a582643fc8b0c872fa5f58479a0d2c",
+    "survey_12849": "c15980a7fe10b497abd283ecd56ab569d2d964b70434f624ae0e3e04218e9b0f",
+    "survey_12850": "e36dffd352d0803862ba9d28a438b426d19a3634e32f7e493817dbe68c65ca57",
+    "survey_12851": "8659abb5f51c0a7d201c67953726613c42c3bcf18b9a42ae0c76d13ff9155d54",
+    "survey_12852": "04507ac9833ad59b05dfca251614135cdd6095042aff25ad26fedfbd99f37d02",
+    "survey_12853": "b8f39fdf56068791e7cf78d1ae7ecfd21fa4dd41a64b69ab9f28ffaccca7e965"
+  },
+  "authored_faces": 2681,
+  "no_photographic_nodes_in_library_materials": true,
+  "upper_envelope_recoverably_hidden": true
+}

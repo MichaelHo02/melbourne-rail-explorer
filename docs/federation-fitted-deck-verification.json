@@ -1,0 +1,19 @@
+{
+  "repeat_geometry_sha256": "8e9feaa9a11265318bb4024942946d276ea987ea398c8de186dc94311437604a",
+  "repeat_unchanged": true,
+  "objects": {
+    "Federation fitted captured-height deck": {
+      "vertices": 6323,
+      "faces": 10823
+    },
+    "Federation approximate deck closure walls": {
+      "vertices": 7316,
+      "faces": 1829
+    },
+    "Federation approximate building base closures": {
+      "vertices": 232,
+      "faces": 58
+    }
+  },
+  "limits": "Partial authored precinct reconstruction. 2020 captured heights, local AHD minus4.1m datum, 2m sample spacing, 11x11 sample median, inverse-distance interpolation, 4m morphological coverage closing, 2m outline simplification, <100m2 tear fill and .38m wall bases authored. Not surveyed boundaries, entrance levels or structural reconstruction. Street datum and pedestrian access reconciliation, detailed steps, eastern deck boundaries and entrance relationships unresolved."
+}

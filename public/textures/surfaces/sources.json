@@ -1,0 +1,95 @@
+[
+  {
+    "name": "ballast",
+    "asset": "gravel_stones",
+    "url": "https://polyhaven.com/a/gravel_stones",
+    "license": "CC0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "authors": {
+      "Amal Kumar": "All"
+    },
+    "dimensionsMillimetres": [
+      2000,
+      2000
+    ],
+    "maps": {
+      "diff": {
+        "file": "ballast-diff.jpg",
+        "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/gravel_stones/gravel_stones_diff_1k.jpg",
+        "bytes": 802344
+      },
+      "nor_gl": {
+        "file": "ballast-nor_gl.jpg",
+        "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/gravel_stones/gravel_stones_nor_gl_1k.jpg",
+        "bytes": 1485214
+      },
+      "rough": {
+        "file": "ballast-rough.jpg",
+        "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/gravel_stones/gravel_stones_rough_1k.jpg",
+        "bytes": 643561
+      }
+    }
+  },
+  {
+    "name": "asphalt",
+    "asset": "asphalt_02",
+    "url": "https://polyhaven.com/a/asphalt_02",
+    "license": "CC0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "authors": {
+      "Rob Tuytel": "All"
+    },
+    "dimensionsMillimetres": [
+      3000.000238418579,
+      3000
+    ],
+    "maps": {
+      "diff": {
+        "file": "asphalt-diff.jpg",
+        "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_02/asphalt_02_diff_1k.jpg",
+        "bytes": 731707
+      },
+      "nor_gl": {
+        "file": "asphalt-nor_gl.jpg",
+        "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_02/asphalt_02_nor_gl_1k.jpg",
+        "bytes": 1240122
+      },
+      "rough": {
+        "file": "asphalt-rough.jpg",
+        "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/asphalt_02/asphalt_02_rough_1k.jpg",
+        "bytes": 544032
+      }
+    }
+  },
+  {
+    "name": "paving",
+    "asset": "pavement_04",
+    "url": "https://polyhaven.com/a/pavement_04",
+    "license": "CC0",
+    "licenseUrl": "https://polyhaven.com/license",
+    "authors": {
+      "Jan Burghardt": "All"
+    },
+    "dimensionsMillimetres": [
+      3099.9999046325684,
+      3099.9999046325684
+    ],
+    "maps": {
+      "diff": {
+        "file": "paving-diff.jpg",
+        "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/pavement_04/pavement_04_diff_1k.jpg",
+        "bytes": 883696
+      },
+      "nor_gl": {
+        "file": "paving-nor_gl.jpg",
+        "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/pavement_04/pavement_04_nor_gl_1k.jpg",
+        "bytes": 609931
+      },
+      "rough": {
+        "file": "paving-rough.jpg",
+        "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/pavement_04/pavement_04_rough_1k.jpg",
+        "bytes": 260901
+      }
+    }
+  }
+]

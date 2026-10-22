@@ -1,0 +1,12 @@
+{
+  "vertices": 65,
+  "faces": 96,
+  "width_m": 7,
+  "ground_changed_vertices": 399,
+  "ground_backup": "Authored ground with City Square portal street context patch",
+  "z_range": [
+    6.586173333333333,
+    7.145321825136537
+  ],
+  "limits": "Authored7m exterior apron and subdivision. Outer heights median of nearest9 retained May2020 ground cells filtered6..7.4m; threshold follows approximate interior floor. Concrete finish and boundaries assumed; neutral ground fitted with authored8m falloff; exact paving joints, stairs, street datum and present-day condition unverified."
+}

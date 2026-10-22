@@ -1,0 +1,17 @@
+{
+  "masked_details": {
+    "Authored grouped window bays - varied low rise": {
+      "masked": 0,
+      "reason": "No explicit source ownership; preserved"
+    },
+    "Authored low rise sill and lintel bands": {
+      "masked": 0,
+      "reason": "No explicit source ownership; preserved"
+    },
+    "Authored short low-rise window bays": {
+      "masked": 0,
+      "reason": "No explicit source ownership; preserved"
+    }
+  },
+  "limits": "Official visitor-map overlaps identify these source sections with ACMI and Beer Deluxe. Existing survey silhouettes and current heights retained. Panel cells and stone/zinc/glass distribution approximate; no exact facade reconstruction or photographic textures."
+}

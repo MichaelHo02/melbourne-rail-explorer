@@ -1,0 +1,23 @@
+{
+  "north_z": 6.765473333333333,
+  "south_z": 12.2,
+  "objects": {
+    "Atrium assumed graded concrete floor": {
+      "changed_vertices": 10,
+      "faces": 10,
+      "backup": "Atrium assumed graded concrete floor"
+    },
+    "Atrium north west and southern glazing": {
+      "changed_vertices": 322,
+      "faces": 96,
+      "backup": "Atrium north west and southern glazing open north trial"
+    },
+    "Atrium authored200mm square steel frame": {
+      "changed_vertices": 2052,
+      "faces": 2266,
+      "backup": "Atrium authored200mm square steel frame open north trial"
+    }
+  },
+  "roof_unchanged": true,
+  "limits": "Entrance datum from filtered May2020 ground cluster median. Whole interior grade to retained southern12.2m is authored approximation, not surveyed floor. Frame/glazing lower vertices follow linear vertical taper; roof and framing at/above25.5m unchanged. Adjacent closures and exact threshold unresolved."
+}

@@ -1,0 +1,22 @@
+{
+  "source": "https://services1.arcgis.com/KGdHCCUjGBpOPPac/arcgis/rest/services/Photomesh_2020_OBJ_Grid/FeatureServer/0/query",
+  "lower_ngv_footprint_area_m2": 7934.8499999999985,
+  "tiles": [
+    {
+      "tile": "C4-30",
+      "download_url": "https://gis-3dmodelcapture-2020.s3.ap-southeast-2.amazonaws.com/photomesh/OBJ/C4-30.zip",
+      "footprint_overlap_m2": 4495.623848857605,
+      "footprint_overlap_fraction": 0.5665669607941681,
+      "previously_retained": false
+    },
+    {
+      "tile": "C4-29",
+      "download_url": "https://gis-3dmodelcapture-2020.s3.ap-southeast-2.amazonaws.com/photomesh/OBJ/C4-29.zip",
+      "footprint_overlap_m2": 3439.226151142395,
+      "footprint_overlap_fraction": 0.4334330392058319,
+      "previously_retained": true
+    }
+  ],
+  "conclusion": "C4-30 needed to complete historical NGV geometry coverage; previous roof fits only describe retained western portion. Candidate download grid is coverage evidence, not roof surface proof.",
+  "limits": "Municipal grid4326 transformed to authored local projection. Boundary precision and GDA94/GDA2020 differences unresolved; fractions approximate. No scene edits."
+}

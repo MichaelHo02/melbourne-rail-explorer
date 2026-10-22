@@ -1,0 +1,151 @@
+{
+  "reference": "https://nationalprecast.com.au/wp-content/uploads/2015/09/Precaster-24.pdf",
+  "changed": [
+    {
+      "section": "26401",
+      "base": 57,
+      "height": 2.5,
+      "previous": [
+        "Westin authored pale warm upper wall",
+        "Westin authored coordinated neutral roof cap"
+      ],
+      "current": [
+        "Westin authored pale warm upper wall",
+        "Westin authored coordinated neutral roof cap"
+      ]
+    },
+    {
+      "section": "26405",
+      "base": 53,
+      "height": 4,
+      "previous": [
+        "Westin authored pale warm upper wall",
+        "Westin authored coordinated neutral roof cap"
+      ],
+      "current": [
+        "Westin authored pale warm upper wall",
+        "Westin authored coordinated neutral roof cap"
+      ]
+    },
+    {
+      "section": "26409",
+      "base": 53,
+      "height": 6.5,
+      "previous": [
+        "Westin authored pale warm upper wall",
+        "Westin authored coordinated neutral roof cap"
+      ],
+      "current": [
+        "Westin authored pale warm upper wall",
+        "Westin authored coordinated neutral roof cap"
+      ]
+    },
+    {
+      "section": "26408",
+      "base": 53,
+      "height": 4,
+      "previous": [
+        "Westin authored pale warm upper wall",
+        "Westin authored coordinated neutral roof cap"
+      ],
+      "current": [
+        "Westin authored pale warm upper wall",
+        "Westin authored coordinated neutral roof cap"
+      ]
+    },
+    {
+      "section": "26410",
+      "base": 0,
+      "height": 34,
+      "previous": [
+        "Westin candidate authored sandstone precast",
+        "Westin authored warm mineral horizontal cap"
+      ],
+      "current": [
+        "Westin candidate authored sandstone precast",
+        "Westin authored warm mineral horizontal cap"
+      ]
+    },
+    {
+      "section": "26400",
+      "base": 53,
+      "height": 4,
+      "previous": [
+        "Westin authored pale warm upper wall",
+        "Westin authored coordinated neutral roof cap"
+      ],
+      "current": [
+        "Westin authored pale warm upper wall",
+        "Westin authored coordinated neutral roof cap"
+      ]
+    },
+    {
+      "section": "26402",
+      "base": 53,
+      "height": 4,
+      "previous": [
+        "Westin authored pale warm upper wall",
+        "Westin authored coordinated neutral roof cap"
+      ],
+      "current": [
+        "Westin authored pale warm upper wall",
+        "Westin authored coordinated neutral roof cap"
+      ]
+    },
+    {
+      "section": "26403",
+      "base": 57,
+      "height": 2.5,
+      "previous": [
+        "Westin authored pale warm upper wall",
+        "Westin authored coordinated neutral roof cap"
+      ],
+      "current": [
+        "Westin authored pale warm upper wall",
+        "Westin authored coordinated neutral roof cap"
+      ]
+    },
+    {
+      "section": "26407",
+      "base": 49,
+      "height": 4,
+      "previous": [
+        "Westin authored pale warm upper wall",
+        "Westin authored coordinated neutral roof cap"
+      ],
+      "current": [
+        "Westin authored pale warm upper wall",
+        "Westin authored coordinated neutral roof cap"
+      ]
+    },
+    {
+      "section": "26404",
+      "base": 34,
+      "height": 15,
+      "previous": [
+        "Westin authored pale warm upper wall",
+        "Westin authored warm mineral horizontal cap"
+      ],
+      "current": [
+        "Westin authored pale warm upper wall",
+        "Westin authored warm mineral horizontal cap"
+      ]
+    },
+    {
+      "section": "26406",
+      "base": 57,
+      "height": 2.5,
+      "previous": [
+        "Westin authored pale warm upper wall",
+        "Westin authored coordinated neutral roof cap"
+      ],
+      "current": [
+        "Westin authored pale warm upper wall",
+        "Westin authored coordinated neutral roof cap"
+      ]
+    }
+  ],
+  "limits": "Location-based building identity inferred. Finish relationships authored from historical reference, not calibrated colour/as-built finish measurement. Existing separate authored gable/hip overlays retained; complex upper geometry remains unresolved.",
+  "continuous_roof_cap_triangles_changed": 144,
+  "selection": "Source relative top height within .025m and triangle centroid inside corresponding source ring."
+}

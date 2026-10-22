@@ -1,0 +1,53 @@
+{
+  "source_structure": "812895",
+  "source_ids": [
+    "1590",
+    "1591",
+    "1592",
+    "1593",
+    "1594",
+    "1595",
+    "1596",
+    "1597",
+    "1598",
+    "1599",
+    "1600",
+    "1601",
+    "1602",
+    "1603"
+  ],
+  "source_geometry_hashes": {
+    "survey_1595": "cd70d86b932feede5750a04cff0afde8434a7f014d6c2d21b5ed8fdd195fad6b",
+    "survey_1603": "1dd393a9a33c2d7c624930df7991e9ff6a8386dc9fb784fc284cbae012f7174c",
+    "survey_1598": "76247006d276bad2a1f4b2bda833518610f1e80c36c06497cd4d64aaa0552476",
+    "survey_1602": "86c92bd6edfd09c696bb6bef390a2805c0450874c98f2d8ef1d082260b28a95d",
+    "survey_1596": "d88200f5ea2e5a10d6104b59cf416fae717c45d5abe544fed0b5a259926c32f6",
+    "survey_1590": "6b36721a60e785ead7fdcec85d6e96e563ea69f76317685d4df278da9da5c8cb",
+    "survey_1601": "0da21aca97b1aca186830f956bcc34212cdf76f89b06c85ee3656ce755225521",
+    "survey_1594": "006bb79a50231a8ea054920d950d20ea3a0071d0ad569c21c06fa29958590b41",
+    "survey_1591": "599dadc5f1f5eafb0bb63c6a95a4a955c9d9eeb64b07bc4a266c64729ba926ce",
+    "survey_1592": "163678ad01e34eea4dd0cbb6fec6a04b91c053f12915f394e3bca878b00593f0",
+    "survey_1593": "796843d7c174788aa1e4978b287a4bc89b3292a27b8852cf9882e63f52651dba",
+    "survey_1600": "488a4f5cea73decb0fc59ca6f09d10119bcf62b05f3e7dbc3a1c4ca892efa16e",
+    "survey_1597": "1985db9d499ebf0caf7d217420f3860c44741c7d762ab00afac0f78ed96e0e50",
+    "survey_1599": "d54eeaf207b8a64b2852a09a6d72cbdde3bc24514e9c455b733bccb849f24420"
+  },
+  "removed_generic_faces": {
+    "Authored grouped window bays - varied low rise": 24,
+    "Authored short low-rise window bays": 513,
+    "Authored low rise sill and lintel bands": 48,
+    "Authored roof edge cornices": 8,
+    "Continuous surveyed roofs - authored finishes": 590
+  },
+  "authored_faces": 2192,
+  "columns": 12,
+  "end_bays": 9,
+  "steps": 26,
+  "point_source": "https://whatson.melbourne.vic.gov.au/things-to-do/parliament-house",
+  "verified_local_point": [
+    591.0380189999004,
+    807.4150920015586
+  ],
+  "reference": "https://www.parliament.vic.gov.au/about/history-and-heritage/building/construction",
+  "limits": "Municipal listing point verifies retained structure812895. Official1901 built-facade photo establishes long colonnade, stepped approach, rectilinear entablature and high end blocks. Column count/spacing, steps, inner wall setback, windows, capitals and colour authored unmeasured. No unbuilt dome or photographic textures."
+}

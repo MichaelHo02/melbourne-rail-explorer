@@ -1,0 +1,11 @@
+{
+  "replacement_faces": 21,
+  "closure_faces": 56,
+  "old_profile_recoverable": true,
+  "original_geometry_changed": false,
+  "masked_obsolete_cladding_faces": 640,
+  "fit_inliers": 176,
+  "fit_samples_after_exclusion": 196,
+  "median_residual": 0.11659909380289513,
+  "limits": "Shallow roof plane fitted to May2020 capture excluding higher section20248 footprint and residuals over0.6m. Original roof boundary retained; small surface relief, plant and edge detail omitted. Authored zinc finish; not verified present-day condition."
+}

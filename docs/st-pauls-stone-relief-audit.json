@@ -1,0 +1,9 @@
+{
+  "revision": "authored-stone-relief-v1",
+  "surround_faces": 196,
+  "openings": 28,
+  "source": "https://cathedral.org.au/wp-content/uploads/2022/11/2022-English-Guide-Sheet-Final.pdf",
+  "limits": "Authored colour values, procedural stone grain, lancet surrounds and slate response. No photographic textures. Material family supported by cathedral guide; exact finishes and dimensions unmeasured.",
+  "survey_geometry_changed": false,
+  "datum_changed": false
+}

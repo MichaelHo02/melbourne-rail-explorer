@@ -1,0 +1,24 @@
+{
+  "accepted_scene_commit": "0efaf69",
+  "source_capture": "May 2020 municipal photomesh, own sandstone/zinc materials; no photographic textures",
+  "capture_trial": {
+    "vertices": 56817,
+    "faces": 106365,
+    "accepted": false,
+    "reason": "Clipped source surfaces contain torn roofs and holes; surviving generic detail meshes remain visible."
+  },
+  "overlap_trial": {
+    "masked_faces": {
+      "Authored grouped window bays - varied low rise": 631,
+      "Authored low rise sill and lintel bands": 1262,
+      "Authored roof edge cornices": 136,
+      "Authored rooftop equipment - illustrative": 25,
+      "Continuous surveyed roofs - authored finishes": 194,
+      "Authored short low-rise window bays": 32
+    },
+    "accepted": false,
+    "reason": "Broad roof-cap masking exposes open survey shells. Replacement surfaces must cover each masked polygon before source caps can be hidden."
+  },
+  "ownership_audit": "Only Federation triangular cladding has FACE source_section values matching selected IDs. Generic merged detail meshes need conservative geometric ownership or reconstructed source tags. Adjacent window grids must not be assumed to belong to Federation.",
+  "next_required": "Rebuild complete piecewise roof surfaces per structure from capture support, retain original meshes and material slots, verify full cap coverage before hiding overlaps. Then reconcile plaza edges and cladding schedule."
+}

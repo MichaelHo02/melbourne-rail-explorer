@@ -1,0 +1,55 @@
+{
+  "camera": "02 Flinders precinct",
+  "resolution": [
+    1000,
+    800
+  ],
+  "red_exposed_fallback_pixels": 56229,
+  "yellow_neutral_parcel_pixels": 344,
+  "total_pixels": 800000,
+  "fallback_frame_fraction": 0.07028625,
+  "neutral_parcel_frame_fraction": 0.00043,
+  "classified_objects": [
+    {
+      "object": "Authored ground with City Square portal",
+      "category": "fallback"
+    },
+    {
+      "object": "Retained open space M010843_0",
+      "category": "neutral_parcel"
+    },
+    {
+      "object": "Retained open space M010898_0",
+      "category": "neutral_parcel"
+    },
+    {
+      "object": "Retained open space M010909_0",
+      "category": "neutral_parcel"
+    },
+    {
+      "object": "Retained open space M010944_0",
+      "category": "neutral_parcel"
+    },
+    {
+      "object": "Retained open space M014220_0",
+      "category": "neutral_parcel"
+    },
+    {
+      "object": "Retained open space M014636_0",
+      "category": "neutral_parcel"
+    },
+    {
+      "object": "Retained open space M014637_0",
+      "category": "neutral_parcel"
+    },
+    {
+      "object": "Retained open space P364110_0",
+      "category": "neutral_parcel"
+    },
+    {
+      "object": "Retained open space P376809_0",
+      "category": "neutral_parcel"
+    }
+  ],
+  "limits": "Screen-space diagnostic, not ground area, material accuracy or city-wide completeness. Bright interior category pixels counted; antialiased edge pixels excluded. Camera framing includes a different field of view than the normal review render because aspect ratio differs. Transparent materials replaced by opaque black; this mask reports geometry occlusion, not optical ground visibility through glass. No scene file saved."
+}

@@ -1,0 +1,7 @@
+{
+  "outside_triangles_checked": 252,
+  "max_plane_distance_m": 6.7192121783118e-06,
+  "max_projected_void_overlap_m2": 1.48239973030365e-14,
+  "status": "pass",
+  "limits": "Checks original planes, winding and outside ownership; not architectural completeness or closure."
+}

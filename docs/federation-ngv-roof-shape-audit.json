@@ -1,0 +1,26 @@
+{
+  "section": "16222",
+  "source": "https://discover.data.vic.gov.au/dataset/city-of-melbourne-3d-textured-mesh-photomesh-2020",
+  "license": "CC BY 4.0",
+  "capture_date": "May 2020",
+  "upward_triangle_centres": 23087,
+  "grid_cells": 2653,
+  "single_plane": [
+    0.06263065422226217,
+    -0.00537389274711451,
+    15.126704543524692
+  ],
+  "single_plane_median_residual": 0.6770804411928673,
+  "single_plane_p90_residual": 1.833840769731556,
+  "current_authored_cap_height": 32.4,
+  "height_quantiles": [
+    15.369973333333334,
+    26.803980000000003,
+    28.50358333333333,
+    29.932540000000003,
+    35.44779333333334
+  ],
+  "limits": "Evidence only. 0.8m inset source footprint, upward normal threshold0.55 and heights15\u201340m are authored filters. One-metre grid medians. Surface may include roof plant; single plane is diagnostic, not approved replacement. Historical capture cannot verify present-day condition. No photographic textures.",
+  "decision": "Reject blanket single-plane replacement: median residual0.677m and90th percentile1.834m show compound surfaces. Current32.4m cap exceeds sampled median28.504m by3.896m; samples include Atrium, plant and lower roof regions, so this is diagnostic rather than a valid uniform lowering.",
+  "next_action": "Partition retained NGV roof samples by existing Atrium cut and connected roof regions; fit separate surfaces and reconcile facade tops with recovery backups."
+}

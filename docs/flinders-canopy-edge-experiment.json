@@ -1,0 +1,23 @@
+{
+  "candidate_faces": [
+    1502,
+    1281,
+    1826,
+    1480,
+    1455
+  ],
+  "surface_area_m2": [
+    159.17340571921991,
+    115.90501404592123,
+    208.50973176940533,
+    195.18144266076706,
+    130.56594595774732
+  ],
+  "band_below_roof_m": [
+    0.6,
+    2.3
+  ],
+  "edge_distance_m": 1.2,
+  "status": "Temporary render experiment only. Source blend not saved. May hide genuine canopy supports; not accepted repair.",
+  "review": "Rejected: exposes rails through roof edge gaps while leaving chunky remnants. Broad edge-distance masking is insufficient. Keep source scene unchanged; next repair needs fitted vertical fascia geometry and tighter scan selection."
+}

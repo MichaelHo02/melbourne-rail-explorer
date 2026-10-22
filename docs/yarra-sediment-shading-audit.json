@@ -1,0 +1,20 @@
+{
+  "material": "Authored Yarra water colour",
+  "backup": "Authored Yarra water colour before sediment shading",
+  "low": [
+    0.055,
+    0.044,
+    0.026,
+    1
+  ],
+  "high": [
+    0.125,
+    0.096,
+    0.052,
+    1
+  ],
+  "roughness": 0.24,
+  "IOR": 1.333,
+  "geometry_changed": false,
+  "limits": "Melbourne Water explains muddy lower-river colour from eroded clay. Ochre/brown palette, roughness and ripple strength authored, not measured water quality, current turbidity or time-varying simulation. Shared retained water surface includes dock water; exact spatial colour variation unresolved. Boundary and water level unchanged. No photographic textures."
+}

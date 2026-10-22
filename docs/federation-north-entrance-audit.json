@@ -1,0 +1,9 @@
+{
+  "removed_faces": {
+    "Atrium north west and southern glazing": 12,
+    "Atrium authored200mm square steel frame": 212
+  },
+  "reference": "https://www.azobuild.com/article.aspx?ArticleID=8004",
+  "limits": "Northern opening supported by historical Galvanizers Association account. Exact cut boundary, retained upper framing and present-day entrance dimensions approximate. Existing inferred floor and adjacent levels remain unresolved.",
+  "original_meshes_retained": true
+}

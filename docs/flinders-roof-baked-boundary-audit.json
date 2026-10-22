@@ -1,0 +1,14 @@
+{
+  "covered_area_m2": 5828.0,
+  "cut_original_faces": 53782,
+  "outside_xy_area_restored_from_centroid_cut_m2": 24.133568140679618,
+  "limits": "Exact XY subtraction of authored grid coverage; height/material selection approximate. Original roof surface interpolation retained outside repaired coverage. Vertical faces use covered centroid rule.",
+  "saved_verification": {
+    "baked_source_vertices_match": 213307,
+    "uncut_face_connectivity_and_materials_preserved": 343459,
+    "replacement_coordinates_verified": true,
+    "post_cut_smoothing_disabled": true,
+    "original_and_prior_meshes_recoverable": true,
+    "image_textures": 0
+  }
+}

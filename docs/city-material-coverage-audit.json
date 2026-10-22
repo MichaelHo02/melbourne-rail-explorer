@@ -1,0 +1,80 @@
+{
+  "render_engine": "CYCLES",
+  "saved_camera": "37 CBD aerial review",
+  "visible_meshes": 25452,
+  "missing_material_objects": [],
+  "image_texture_nodes": [],
+  "saved_viewports": [
+    {
+      "screen": "Animation",
+      "shading": "SOLID",
+      "scene_lights": true,
+      "scene_world": true,
+      "perspective": "CAMERA"
+    },
+    {
+      "screen": "Animation",
+      "shading": "SOLID",
+      "scene_lights": true,
+      "scene_world": true,
+      "perspective": "CAMERA"
+    },
+    {
+      "screen": "Geometry Nodes",
+      "shading": "SOLID",
+      "scene_lights": true,
+      "scene_world": true,
+      "perspective": "CAMERA"
+    },
+    {
+      "screen": "Layout",
+      "shading": "MATERIAL",
+      "scene_lights": true,
+      "scene_world": true,
+      "perspective": "CAMERA"
+    },
+    {
+      "screen": "Modeling",
+      "shading": "SOLID",
+      "scene_lights": true,
+      "scene_world": true,
+      "perspective": "CAMERA"
+    },
+    {
+      "screen": "Scripting",
+      "shading": "SOLID",
+      "scene_lights": true,
+      "scene_world": true,
+      "perspective": "CAMERA"
+    },
+    {
+      "screen": "Sculpting",
+      "shading": "SOLID",
+      "scene_lights": true,
+      "scene_world": true,
+      "perspective": "CAMERA"
+    },
+    {
+      "screen": "Shading",
+      "shading": "SOLID",
+      "scene_lights": true,
+      "scene_world": true,
+      "perspective": "CAMERA"
+    },
+    {
+      "screen": "Texture Paint",
+      "shading": "SOLID",
+      "scene_lights": true,
+      "scene_world": true,
+      "perspective": "CAMERA"
+    },
+    {
+      "screen": "UV Editing",
+      "shading": "SOLID",
+      "scene_lights": true,
+      "scene_world": true,
+      "perspective": "CAMERA"
+    }
+  ],
+  "limits": "Material slot coverage does not prove individual real colours, UV accuracy, complete geometry or visual realism. Scene-render visibility differs from live viewport visibility."
+}

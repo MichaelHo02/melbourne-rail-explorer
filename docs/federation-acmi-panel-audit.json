@@ -1,0 +1,7 @@
+{
+  "triangles": 7400,
+  "panels": 1480,
+  "status": "saved scene marker and geometry verified; render visually inspected",
+  "limits": "Two nested five-triangle subdivisions implement documented panel hierarchy.12m x6m target macro cells,68/26/6 material weighting and distribution authored; not real panel schedule. Source envelopes and captured upper roof slope retained; no photographic textures.",
+  "verification": "7400 positive-area triangles; all five-leaf groups share material; exactly two source owners; original cladding retained hidden; no image nodes"
+}

@@ -1,0 +1,14 @@
+{
+  "capture_source": "https://discover.data.vic.gov.au/dataset/city-of-melbourne-3d-textured-mesh-photomesh-2020",
+  "capture": "May2020",
+  "sample_sha256": "5b4b5084e759a4547904557077608245213ec97cb6633839b61a480c22ea49b7",
+  "road_sample_count": 1494,
+  "median_height_m": 6.206037267049084,
+  "height_quantiles_m": [
+    6.185759862263934,
+    6.206037267049084,
+    6.228905073801701
+  ],
+  "authored_deck_top_m": 6.2,
+  "limits": "Historical geometry-only capture, one-metre median samples inside municipal carriageway/tram polygons inset0.5m. Flat6.2m datum approximates observed deck. Balustrades translated, authored arch/pier heights compressed keeping foundation datum; exact engineering proportions and current elevations unverified."
+}

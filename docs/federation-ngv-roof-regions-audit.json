@@ -1,0 +1,63 @@
+{
+  "retained_cells": 978,
+  "diagnostic_bands": [
+    {
+      "y_band": [
+        0,
+        60
+      ],
+      "cells": 370,
+      "plane": [
+        -0.035781908732764385,
+        -0.05573139222383572,
+        38.20081347302257
+      ],
+      "median_residual": 1.4447750599629643,
+      "p90_residual": 3.0000632298534273,
+      "z_quantiles": [
+        26.739481666666666,
+        27.406791666666667,
+        31.705461333333336
+      ]
+    },
+    {
+      "y_band": [
+        60,
+        100
+      ],
+      "cells": 112,
+      "plane": [
+        0.3672323409229603,
+        0.08233789639703212,
+        -62.15389235135691
+      ],
+      "median_residual": 0.5499646769134134,
+      "p90_residual": 1.785716115163018,
+      "z_quantiles": [
+        27.0631945,
+        28.991690833333333,
+        30.4429325
+      ]
+    },
+    {
+      "y_band": [
+        100,
+        150
+      ],
+      "cells": 496,
+      "plane": [
+        -0.004641548687300608,
+        -0.0398610895573919,
+        35.285921432618814
+      ],
+      "median_residual": 0.1794508454717434,
+      "p90_residual": 0.6556625851855689,
+      "z_quantiles": [
+        28.431356666666666,
+        29.410219166666668,
+        30.030681666666666
+      ]
+    }
+  ],
+  "limits": "May2020 geometry only. Atrium visitor-map outline buffered0.5m, minimum24m and northing bands are authored diagnostic filters. Bands are not architectural roof boundaries. No Blender edits or photographic textures."
+}

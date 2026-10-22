@@ -1,0 +1,41 @@
+{
+  "revision": "historical-ground-contiguous-contact-v1",
+  "objects": {
+    "Federation fitted captured-height deck": {
+      "intersecting_original_faces": 298,
+      "partially_clipped_faces": 235,
+      "untouched_original_faces": 11291,
+      "original_vertex_count": 34767,
+      "backup": "Federation deck with official schematic Square regions"
+    },
+    "Federation approximate deck closure walls": {
+      "intersecting_original_faces": 133,
+      "partially_clipped_faces": 4,
+      "untouched_original_faces": 1696,
+      "original_vertex_count": 7316,
+      "backup": "Federation approximate deck closure walls"
+    },
+    "Federation approximate building base closures": {
+      "intersecting_original_faces": 24,
+      "partially_clipped_faces": 1,
+      "untouched_original_faces": 34,
+      "original_vertex_count": 232,
+      "backup": "Federation approximate building base closures"
+    },
+    "clean_foundation_boundary_walls": 529,
+    "Atrium adjacent upper and lower cut closures": {
+      "lower_vertices_fitted": 84
+    },
+    "NGV east Atrium exposed envelope closure": {
+      "lower_vertices_fitted": 21
+    },
+    "protected_ngv_mesh_hashes": {
+      "Federation NGV - nested pinwheel panels": "de691af2e658287d3d00d1ed01fe599da754edb6f193112cd800edda9225151e",
+      "Atrium capture guided glazed roof": "87a6288d0b8564afe4fd33788645f5a0d41f8cc9220b46d601d6a56a97d5e33c",
+      "NGV eastern captured-fit roof relief": "e7eff762ac7ead794d86961f91e7cdcfb97ffa86d4de578df2b60f81bfd4e90c"
+    }
+  },
+  "contact_vertices": 2268,
+  "contact_faces": 3955,
+  "limits": "Authored1m NGV foundation apron and8.345m flat foundation surface derived from retained8.4m building base. Mapped footprint retained; Atrium excluded. Vertical closure bottoms follow existing source-guided deck/ground/floor. Not surveyed structural podium or exact present-day paving; offset and foundation plane assumed. Historical ground cells retained as diagnostic evidence only."
+}

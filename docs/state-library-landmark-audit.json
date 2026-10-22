@@ -1,0 +1,36 @@
+{
+  "source_structure": "805833",
+  "source_ids": [
+    "12837",
+    "12838",
+    "12839",
+    "12840",
+    "12842",
+    "12843",
+    "12844",
+    "12845",
+    "12846",
+    "12848",
+    "12849",
+    "12850",
+    "12851",
+    "12852",
+    "12853"
+  ],
+  "removed_generic_faces": {
+    "Authored grouped window bays - varied low rise": 1987,
+    "Authored low rise sill and lintel bands": 3974,
+    "Authored roof edge cornices": 352,
+    "Continuous surveyed roofs - authored finishes": 294
+  },
+  "authored_faces": 2681,
+  "facade_bays": 21,
+  "columns": 8,
+  "references": [
+    "https://www.slv.vic.gov.au/visit/our-magnificent-spaces/swanston-street-welcome-zone",
+    "https://blogs.slv.vic.gov.au/our-stories/ask-a-librarian/dome-to-catacomb/",
+    "https://portal.engineersaustralia.org.au/system/files/engineering-heritage-australia/nomination-title/State_Library_Dome.pdf",
+    "https://latrobejournal.slv.vic.gov.au/latrobejournal/issue/latrobe-08/t1-g-t1.html"
+  ],
+  "limits": "Primary references support sandstone Palladian facade, Corinthian portico and 35m reading-room dome. Survey envelopes retained recoverably. Portico dimensions, six-front/two-return column interpretation, simplified capitals, facade bay positions, dome external profile and colours authored, not measured; no photographic textures."
+}

@@ -1,0 +1,104 @@
+{
+  "materials": {
+    "Authored pale roof finish": {
+      "before": [
+        [
+          0.1599999964237213,
+          0.18000000715255737,
+          0.1599999964237213,
+          1.0
+        ],
+        [
+          0.30000001192092896,
+          0.3199999928474426,
+          0.2800000011920929,
+          1.0
+        ]
+      ],
+      "after": [
+        [
+          0.21250000596046448,
+          0.23250000178813934,
+          0.20499999821186066,
+          1.0
+        ],
+        [
+          0.2475000023841858,
+          0.26749998331069946,
+          0.23499999940395355,
+          1.0
+        ]
+      ],
+      "backup": "Authored pale roof finish before restrained weathering"
+    },
+    "Authored warm roof finish": {
+      "before": [
+        [
+          0.11999999731779099,
+          0.054999999701976776,
+          0.029999999329447746,
+          1.0
+        ],
+        [
+          0.2800000011920929,
+          0.1599999964237213,
+          0.08500000089406967,
+          1.0
+        ]
+      ],
+      "after": [
+        [
+          0.17999999225139618,
+          0.09437499940395355,
+          0.05062500014901161,
+          1.0
+        ],
+        [
+          0.2199999988079071,
+          0.12062499672174454,
+          0.06437499821186066,
+          1.0
+        ]
+      ],
+      "backup": "Authored warm roof finish before restrained weathering"
+    },
+    "Authored light zinc roof finish": {
+      "before": [
+        [
+          0.06499999761581421,
+          0.10499999672174454,
+          0.14000000059604645,
+          1.0
+        ],
+        [
+          0.2199999988079071,
+          0.28999999165534973,
+          0.3199999928474426,
+          1.0
+        ]
+      ],
+      "after": [
+        [
+          0.153047114610672,
+          0.16842210292816162,
+          0.17835961282253265,
+          1.0
+        ],
+        [
+          0.19586777687072754,
+          0.21349278092384338,
+          0.22305528819561005,
+          1.0
+        ]
+      ],
+      "backup": "Authored light zinc roof finish before restrained weathering"
+    }
+  },
+  "limits": "Generic illustrative roof palette, not a material inventory. Ramp contrast reduced to25%; zinc blue tint desaturated70%. Source geometry, assignment patterns and landmark-specific finishes retained. No photographic textures.",
+  "saved_file_verification": {
+    "ramps_match": true,
+    "backups_present": true,
+    "no_image_texture_nodes": true
+  },
+  "native_verification": "F3 Revert confirmed, saved file reloaded, Z then R enabled Rendered shading; coloured aerial view visually inspected."
+}

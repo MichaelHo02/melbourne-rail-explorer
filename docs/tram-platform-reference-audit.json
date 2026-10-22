@@ -1,0 +1,24 @@
+{
+  "primary_references": [
+    "https://yarratrams.com.au/media/napbcqwu/la-trobe-and-swanston-streets-tram-track-upgrade-notification-2.pdf",
+    "https://yarratrams.com.au/media/vogb3umy/la-trobe-street-stop-upgrades-stage-two-notification-three.pdf"
+  ],
+  "reference_scope": "2023-2024 works notices describe planned raised platforms, shelters, seats, lighting and information displays; do not establish measured as-built outlines or present-day completion.",
+  "exhibition_stop_point_clearance": [
+    {
+      "stop_id": "46867",
+      "nearest_vicmap_tram_line_distance_m": 1.7630343271690199
+    },
+    {
+      "stop_id": "46868",
+      "nearest_vicmap_tram_line_distance_m": 4.043048380179684
+    }
+  ],
+  "orientation": [
+    0.9380750706806688,
+    0.34643204494887336
+  ],
+  "rejected_geometry": "Platform centred on point with guessed 2.8 m width would overlap authored .8 m half-gauge for stop46867. Stop point cannot be treated as platform centroid.",
+  "next_required_evidence": "As-built platform footprint or sufficiently clear primary plan, with reference alignment and current condition reconciliation.",
+  "applied_to_scene": false
+}

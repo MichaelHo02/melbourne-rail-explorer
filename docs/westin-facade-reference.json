@@ -1,0 +1,29 @@
+{
+  "source": "https://nationalprecast.com.au/wp-content/uploads/2015/09/Precaster-24.pdf",
+  "publication": "National Precast Concrete Association Australia, Precaster 24, September 2000",
+  "pages": [
+    4,
+    5
+  ],
+  "observations": [
+    "Original level 2\u20137 fa\u00e7ade used acid-washed load-bearing precast panels with a sandstone appearance.",
+    "Article describes off-white cement and coloured yellow/red sands.",
+    "Projecting sills were incorporated in panel casting."
+  ],
+  "source_candidate_structure_id": "804903",
+  "identity_status": "Location and long City Square-facing source edge are consistent with the Westin at 205 Collins Street. Structure name is not present in raw survey; identification remains inferred.",
+  "limits": [
+    "Historical construction account, not current-condition survey.",
+    "Mix proportions do not determine calibrated RGB colours.",
+    "No image or photograph used as surface texture.",
+    "Main survey section26410 receives authored sandstone-look material and projecting sills; window placement follows existing illustrative geometry. Remaining section finishes, podium, bays and balconies incomplete."
+  ],
+  "location_reference": "https://whatson.melbourne.vic.gov.au/places-to-stay/the-westin-melbourne",
+  "visual_inspection": "Page4 western elevation inspected from rasterized public PDF; projecting sill bands and warm wall panels visible.",
+  "municipal_aerial_photo_observations": [
+    "Visually inspected first carousel image on municipal listing.",
+    "Silver-blue steep upper crown with many windows above warm lower wall.",
+    "Projection and irregular bay rhythms visible; existing uniform window grids do not reproduce these."
+  ],
+  "municipal_image_limits": "Image capture date unspecified; catalogue page is current but photograph may be older. No surface textures copied."
+}

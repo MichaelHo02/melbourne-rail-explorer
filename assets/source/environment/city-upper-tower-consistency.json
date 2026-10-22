@@ -1,0 +1,5383 @@
+{
+  "source": "city-facade-groups.json",
+  "groups": [
+    {
+      "structure": "900669",
+      "anchor_section": "1000",
+      "finish": "Authored grouped tower glazing 5 - colour unverified",
+      "changes": [
+        {
+          "section": "1001",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "998",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "810368",
+      "anchor_section": "10644",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "10645",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "10646",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "814836",
+      "anchor_section": "10757",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "10760",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "10761",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "804961",
+      "anchor_section": "10787",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "10788",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "802235",
+      "anchor_section": "10929",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "10928",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "815073",
+      "anchor_section": "10966",
+      "finish": "Authored grouped tower glazing 3 - colour unverified",
+      "changes": [
+        {
+          "section": "10965",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "10967",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "10968",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "10969",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "10970",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "10971",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "808146",
+      "anchor_section": "11067",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "11066",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "810264",
+      "anchor_section": "11394",
+      "finish": "Authored grouped tower glazing 5 - colour unverified",
+      "changes": [
+        {
+          "section": "11393",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "11395",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "11396",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "804782",
+      "anchor_section": "11654",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "11652",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "11653",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "810258",
+      "anchor_section": "11760",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "11758",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "11759",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "11761",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "11762",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "11763",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "807610",
+      "anchor_section": "1181",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "1180",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "803604",
+      "anchor_section": "11872",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "11873",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "900438",
+      "anchor_section": "1225",
+      "finish": "Authored grouped tower glazing 6 - colour unverified",
+      "changes": [
+        {
+          "section": "1219",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "1220",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "1221",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "1222",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "1226",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "1228",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "1229",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "1231",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "1232",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "807134",
+      "anchor_section": "12262",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "12261",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "807302",
+      "anchor_section": "12323",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "12324",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "12325",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "12326",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "805453",
+      "anchor_section": "12351",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "12349",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "12350",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "801734",
+      "anchor_section": "12497",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "12498",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "12499",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "12500",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "12501",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "12502",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "12503",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "814615",
+      "anchor_section": "12559",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "12557",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "12558",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "12560",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "809764",
+      "anchor_section": "12710",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "12709",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "900680",
+      "anchor_section": "12797",
+      "finish": "Authored grouped tower glazing 7 - colour unverified",
+      "changes": [
+        {
+          "section": "12798",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "12799",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "808825",
+      "anchor_section": "1295",
+      "finish": "Authored grouped tower glazing 3 - colour unverified",
+      "changes": [
+        {
+          "section": "1290",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "1293",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "1294",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "808536",
+      "anchor_section": "1334",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "1333",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "808224",
+      "anchor_section": "13392",
+      "finish": "Authored grouped tower glazing 3 - colour unverified",
+      "changes": [
+        {
+          "section": "13394",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "900005",
+      "anchor_section": "13710",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "13712",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "13713",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "808959",
+      "anchor_section": "13749",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "13750",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "814396",
+      "anchor_section": "13879",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "13876",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "13877",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "13878",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "13880",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "817084",
+      "anchor_section": "1416",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "1418",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "806073",
+      "anchor_section": "14210",
+      "finish": "Authored grouped tower glazing 4 - colour unverified",
+      "changes": [
+        {
+          "section": "14211",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "14213",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "14214",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "819275",
+      "anchor_section": "14223",
+      "finish": "Authored grouped tower glazing 6 - colour unverified",
+      "changes": [
+        {
+          "section": "14224",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "14225",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "14226",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "14227",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "14228",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "808646",
+      "anchor_section": "14597",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "14598",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "14599",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "14600",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "14601",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "811849",
+      "anchor_section": "14646",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "14635",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "14636",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "14637",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "14638",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "14639",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "14640",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "14641",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "14642",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "14643",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "14644",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "14645",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "14647",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "14648",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "14649",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "14650",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "14651",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "14652",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "14653",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "14654",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "816279",
+      "anchor_section": "14709",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "14707",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "14708",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "816888",
+      "anchor_section": "1478",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "1480",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "801596",
+      "anchor_section": "14795",
+      "finish": "Authored grouped tower glazing 0 - colour unverified",
+      "changes": [
+        {
+          "section": "14796",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "14797",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "801030",
+      "anchor_section": "14980",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "14981",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "813408",
+      "anchor_section": "14993",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "14992",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "14994",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "14995",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "814230",
+      "anchor_section": "15118",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "15119",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "804136",
+      "anchor_section": "15368",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "15369",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "807849",
+      "anchor_section": "1547",
+      "finish": "Authored grouped tower glazing 0 - colour unverified",
+      "changes": [
+        {
+          "section": "1544",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "1546",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "1548",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "1549",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "814951",
+      "anchor_section": "1564",
+      "finish": "Authored grouped tower glazing 5 - colour unverified",
+      "changes": [
+        {
+          "section": "1563",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "813984",
+      "anchor_section": "15735",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "15736",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "818071",
+      "anchor_section": "15893",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "15894",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "15895",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "15896",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "15897",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "15898",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "15899",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "15900",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "811213",
+      "anchor_section": "16512",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "16513",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "819346",
+      "anchor_section": "16545",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "16546",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "802372",
+      "anchor_section": "16931",
+      "finish": "Authored grouped tower glazing 1 - colour unverified",
+      "changes": [
+        {
+          "section": "16932",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "806518",
+      "anchor_section": "17582",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "17580",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "17581",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "17583",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "17584",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "17585",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "800764",
+      "anchor_section": "1774",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "1776",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "1778",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "819290",
+      "anchor_section": "17789",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "17787",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "17788",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "17790",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "816828",
+      "anchor_section": "17795",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "17796",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "816261",
+      "anchor_section": "17798",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "17799",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "17800",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "819185",
+      "anchor_section": "1790",
+      "finish": "Authored grouped tower glazing 6 - colour unverified",
+      "changes": [
+        {
+          "section": "1788",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "1789",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "1791",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "1792",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "1794",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "1795",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "818570",
+      "anchor_section": "17984",
+      "finish": "Authored grouped tower glazing 6 - colour unverified",
+      "changes": [
+        {
+          "section": "17985",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "814770",
+      "anchor_section": "18032",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "18029",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "18031",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "814931",
+      "anchor_section": "18055",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "18056",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "816860",
+      "anchor_section": "18098",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "18095",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "18096",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "18097",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "807425",
+      "anchor_section": "18189",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "18190",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "18191",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "18192",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "18194",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "801950",
+      "anchor_section": "18311",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "18312",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "18313",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "18314",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "18315",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "817150",
+      "anchor_section": "18443",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "18432",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "18433",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "18434",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "18437",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "18438",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "18442",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "18444",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "18445",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "18446",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "18447",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "801767",
+      "anchor_section": "18477",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "18474",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "18475",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "18479",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "803714",
+      "anchor_section": "18484",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "18481",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "18485",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "811467",
+      "anchor_section": "18583",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "18580",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "18581",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "18582",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "18584",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "803319",
+      "anchor_section": "18685",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "18687",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "804445",
+      "anchor_section": "18735",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "18736",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "805764",
+      "anchor_section": "18773",
+      "finish": "Authored grouped tower glazing 2 - colour unverified",
+      "changes": [
+        {
+          "section": "18774",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "802117",
+      "anchor_section": "18840",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "18838",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "18839",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "807057",
+      "anchor_section": "18892",
+      "finish": "Authored grouped tower glazing 5 - colour unverified",
+      "changes": [
+        {
+          "section": "18893",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "815092",
+      "anchor_section": "1910",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "1911",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "1913",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "1914",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "806889",
+      "anchor_section": "19103",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "19101",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "19104",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "19105",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "19106",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "816822",
+      "anchor_section": "19260",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "19261",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "19262",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "19263",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "819082",
+      "anchor_section": "19266",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "19269",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "19270",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "19271",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "818348",
+      "anchor_section": "19284",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "19280",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "19281",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "19285",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "19286",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "19287",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "19288",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "816855",
+      "anchor_section": "19342",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "19340",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "19341",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "19343",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "19344",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "19346",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "19347",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "19348",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "801700",
+      "anchor_section": "19731",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "19732",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "19733",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "808913",
+      "anchor_section": "2009",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "2012",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "806575",
+      "anchor_section": "20117",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "20118",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "20119",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "20120",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "801509",
+      "anchor_section": "2014",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "2015",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "819195",
+      "anchor_section": "2032",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "2030",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "2033",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "2034",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "2036",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "816392",
+      "anchor_section": "20656",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "20657",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "900368",
+      "anchor_section": "2087",
+      "finish": "Authored grouped tower glazing 0 - colour unverified",
+      "changes": [
+        {
+          "section": "2086",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "2088",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "2089",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "2091",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "818696",
+      "anchor_section": "25",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "21",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "22",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "26",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "816138",
+      "anchor_section": "21135",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "21137",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "804737",
+      "anchor_section": "21377",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "21378",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "21379",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "21380",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "21381",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "21382",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "816936",
+      "anchor_section": "21390",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "21391",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "21392",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "21393",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "806352",
+      "anchor_section": "21481",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "21482",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "819297",
+      "anchor_section": "2151",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "2153",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "801082",
+      "anchor_section": "2157",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "2154",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "2156",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "2158",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "804325",
+      "anchor_section": "21553",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "21554",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "21555",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "817923",
+      "anchor_section": "21603",
+      "finish": "Authored grouped tower glazing 0 - colour unverified",
+      "changes": [
+        {
+          "section": "21604",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "21605",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "804265",
+      "anchor_section": "21917",
+      "finish": "Authored grouped tower glazing 2 - colour unverified",
+      "changes": [
+        {
+          "section": "21918",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "21919",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "804909",
+      "anchor_section": "21923",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "21924",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "21925",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "900469",
+      "anchor_section": "22018",
+      "finish": "Authored grouped tower glazing 2 - colour unverified",
+      "changes": [
+        {
+          "section": "22017",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "22019",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "22020",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "22021",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "22023",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "22024",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "22025",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "803427",
+      "anchor_section": "22161",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "22162",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "22163",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "807033",
+      "anchor_section": "22238",
+      "finish": "Authored grouped tower glazing 4 - colour unverified",
+      "changes": [
+        {
+          "section": "22229",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "22230",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "22231",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "22232",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "22233",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "22234",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "22236",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "22237",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "810128",
+      "anchor_section": "2228",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "2227",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "800876",
+      "anchor_section": "22537",
+      "finish": "Authored grouped tower glazing 6 - colour unverified",
+      "changes": [
+        {
+          "section": "22536",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "22538",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "22539",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "22540",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "22541",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "22542",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "22543",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "22544",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "900676",
+      "anchor_section": "2266",
+      "finish": "Authored grouped tower glazing 1 - colour unverified",
+      "changes": [
+        {
+          "section": "2267",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "816074",
+      "anchor_section": "22707",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "22705",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "22706",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "22715",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "22716",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "22717",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "802248",
+      "anchor_section": "23047",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "23048",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "23049",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "810757",
+      "anchor_section": "23139",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "23133",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "23140",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "23141",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "23142",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "23143",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "23145",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "23146",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "23147",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "818705",
+      "anchor_section": "23262",
+      "finish": "Authored grouped tower glazing 2 - colour unverified",
+      "changes": [
+        {
+          "section": "23257",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "23258",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "23259",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "23261",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "812661",
+      "anchor_section": "23512",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "23510",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "818630",
+      "anchor_section": "23529",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "23528",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "805836",
+      "anchor_section": "23767",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "23768",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "900483",
+      "anchor_section": "2379",
+      "finish": "Authored grouped tower glazing 2 - colour unverified",
+      "changes": [
+        {
+          "section": "2382",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "2385",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "802101",
+      "anchor_section": "2398",
+      "finish": "Authored grouped tower glazing 6 - colour unverified",
+      "changes": [
+        {
+          "section": "2395",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "2397",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "810562",
+      "anchor_section": "24094",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "24092",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "901132",
+      "anchor_section": "2439",
+      "finish": "Authored grouped tower glazing 4 - colour unverified",
+      "changes": [
+        {
+          "section": "2438",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "813388",
+      "anchor_section": "24441",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "24442",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "24443",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "804694",
+      "anchor_section": "24530",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "24531",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "24532",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "802903",
+      "anchor_section": "24659",
+      "finish": "Authored grouped tower glazing 3 - colour unverified",
+      "changes": [
+        {
+          "section": "24658",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "24660",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "24661",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "24662",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "819292",
+      "anchor_section": "2468",
+      "finish": "Authored grouped tower glazing 3 - colour unverified",
+      "changes": [
+        {
+          "section": "2470",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "2471",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "2472",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "814763",
+      "anchor_section": "2497",
+      "finish": "Authored grouped tower glazing 7 - colour unverified",
+      "changes": [
+        {
+          "section": "2489",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "2492",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "2493",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "2495",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "2496",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "2498",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "2499",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "819064",
+      "anchor_section": "24962",
+      "finish": "Authored grouped tower glazing 1 - colour unverified",
+      "changes": [
+        {
+          "section": "24961",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "24963",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "24964",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "810188",
+      "anchor_section": "25029",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "25027",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "25028",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "25030",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "25031",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "25032",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "811652",
+      "anchor_section": "25066",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "25064",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "25067",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "25068",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "25069",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "819277",
+      "anchor_section": "2521",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "2518",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "2522",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "814975",
+      "anchor_section": "25255",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "25253",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "25256",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "817439",
+      "anchor_section": "2533",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "2531",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "2532",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "819298",
+      "anchor_section": "2541",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "2543",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "806531",
+      "anchor_section": "2546",
+      "finish": "Authored grouped tower glazing 3 - colour unverified",
+      "changes": [
+        {
+          "section": "2545",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "804682",
+      "anchor_section": "25530",
+      "finish": "Authored grouped tower glazing 4 - colour unverified",
+      "changes": [
+        {
+          "section": "25531",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "900668",
+      "anchor_section": "2559",
+      "finish": "Authored grouped tower glazing 3 - colour unverified",
+      "changes": [
+        {
+          "section": "2557",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "2558",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "2561",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "2562",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "813991",
+      "anchor_section": "25679",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "25680",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "25681",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "818278",
+      "anchor_section": "2570",
+      "finish": "Authored grouped tower glazing 0 - colour unverified",
+      "changes": [
+        {
+          "section": "2571",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "2572",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "2573",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "807794",
+      "anchor_section": "25705",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "25706",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "816852",
+      "anchor_section": "25737",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "25736",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "25738",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "25739",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "816856",
+      "anchor_section": "25774",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "25771",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "812001",
+      "anchor_section": "25859",
+      "finish": "Authored grouped tower glazing 7 - colour unverified",
+      "changes": [
+        {
+          "section": "25857",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "25858",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "25860",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "25861",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "807365",
+      "anchor_section": "25896",
+      "finish": "Authored grouped tower glazing 6 - colour unverified",
+      "changes": [
+        {
+          "section": "25894",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "25897",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "808077",
+      "anchor_section": "2596",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "2595",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "2597",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "2598",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "2599",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "2600",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "2601",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "2602",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "2603",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "2604",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "816637",
+      "anchor_section": "25984",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "25985",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "802244",
+      "anchor_section": "26039",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "26037",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "26038",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "810521",
+      "anchor_section": "26085",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "26089",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "26090",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "805630",
+      "anchor_section": "26101",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "26099",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "26102",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "804903",
+      "anchor_section": "26404",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "26400",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "26401",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "26402",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "26403",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "26405",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "26406",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "26407",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "26408",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "26409",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "807940",
+      "anchor_section": "26589",
+      "finish": "Authored grouped tower glazing 2 - colour unverified",
+      "changes": [
+        {
+          "section": "26588",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "26590",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "26591",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "815635",
+      "anchor_section": "26727",
+      "finish": "Authored grouped tower glazing 2 - colour unverified",
+      "changes": [
+        {
+          "section": "26725",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "26726",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "900671",
+      "anchor_section": "2678",
+      "finish": "Authored grouped tower glazing 0 - colour unverified",
+      "changes": [
+        {
+          "section": "2679",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "2680",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "2682",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "807663",
+      "anchor_section": "26798",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "26799",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "811244",
+      "anchor_section": "26955",
+      "finish": "Authored grouped tower glazing 7 - colour unverified",
+      "changes": [
+        {
+          "section": "26956",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "26958",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "813735",
+      "anchor_section": "27048",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "27050",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "27051",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "27052",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "806378",
+      "anchor_section": "27268",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "27267",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "27269",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "27270",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "27271",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "814802",
+      "anchor_section": "27355",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "27356",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "804642",
+      "anchor_section": "27442",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "27443",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "812180",
+      "anchor_section": "2746",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "2747",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "900396",
+      "anchor_section": "27814",
+      "finish": "Authored grouped tower glazing 7 - colour unverified",
+      "changes": [
+        {
+          "section": "27815",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "27816",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "27817",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "808995",
+      "anchor_section": "27825",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "27826",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "806271",
+      "anchor_section": "2825",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "2822",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "2823",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "2824",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "814326",
+      "anchor_section": "28332",
+      "finish": "Authored grouped tower glazing 4 - colour unverified",
+      "changes": [
+        {
+          "section": "28333",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "28334",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "801838",
+      "anchor_section": "28383",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "28380",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "814052",
+      "anchor_section": "28547",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "28548",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "801897",
+      "anchor_section": "2859",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "2858",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "2860",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "2861",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "817883",
+      "anchor_section": "28666",
+      "finish": "Authored grouped tower glazing 4 - colour unverified",
+      "changes": [
+        {
+          "section": "28665",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "28667",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "28668",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "812410",
+      "anchor_section": "28742",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "28741",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "814350",
+      "anchor_section": "29027",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "29028",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "29029",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "29030",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "804609",
+      "anchor_section": "29624",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "29625",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "29626",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "29627",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "803701",
+      "anchor_section": "29670",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "29668",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "29669",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "813039",
+      "anchor_section": "29834",
+      "finish": "Authored grouped tower glazing 3 - colour unverified",
+      "changes": [
+        {
+          "section": "29833",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "29835",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "29836",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "816088",
+      "anchor_section": "2991",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "2984",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "2986",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "2989",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "2993",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "2994",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "2995",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "2996",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "2997",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "2999",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "807540",
+      "anchor_section": "29912",
+      "finish": "Authored grouped tower glazing 6 - colour unverified",
+      "changes": [
+        {
+          "section": "29905",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "29906",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "29907",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "29908",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "29910",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "29911",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "29913",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "29918",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "815733",
+      "anchor_section": "30136",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "30135",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "30137",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "30138",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "813400",
+      "anchor_section": "30140",
+      "finish": "Authored grouped tower glazing 5 - colour unverified",
+      "changes": [
+        {
+          "section": "30142",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "802829",
+      "anchor_section": "3030",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "3029",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "3031",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "3032",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "804391",
+      "anchor_section": "30321",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "30322",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "30323",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "30324",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "809102",
+      "anchor_section": "30475",
+      "finish": "Authored grouped tower glazing 0 - colour unverified",
+      "changes": [
+        {
+          "section": "30472",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "30473",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "30474",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "30476",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "30477",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "30478",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "816896",
+      "anchor_section": "33",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "31",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "32",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "34",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "35",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "808751",
+      "anchor_section": "31028",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "31029",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "31030",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "31031",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "31032",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "802728",
+      "anchor_section": "31197",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "31198",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "900677",
+      "anchor_section": "31225",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "31226",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "805280",
+      "anchor_section": "31245",
+      "finish": "Authored grouped tower glazing 7 - colour unverified",
+      "changes": [
+        {
+          "section": "31247",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "816260",
+      "anchor_section": "31275",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "31274",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "31276",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "31277",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "812466",
+      "anchor_section": "31303",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "31304",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "819348",
+      "anchor_section": "31332",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "31330",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "808454",
+      "anchor_section": "31512",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "31509",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "31510",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "31511",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "31513",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "31514",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "31515",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "31516",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "31517",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "805891",
+      "anchor_section": "31525",
+      "finish": "Authored grouped tower glazing 1 - colour unverified",
+      "changes": [
+        {
+          "section": "31526",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "31527",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "802677",
+      "anchor_section": "31592",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "31593",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "802081",
+      "anchor_section": "31679",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "31680",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "809212",
+      "anchor_section": "31949",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "31948",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "31953",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "31954",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "31955",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "818598",
+      "anchor_section": "32129",
+      "finish": "Authored grouped tower glazing 5 - colour unverified",
+      "changes": [
+        {
+          "section": "32126",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "32127",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "32128",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "800047",
+      "anchor_section": "3226",
+      "finish": "Authored grouped tower glazing 4 - colour unverified",
+      "changes": [
+        {
+          "section": "3225",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "3229",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "803176",
+      "anchor_section": "32275",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "32276",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "32277",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "32279",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "32280",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "32281",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "900142",
+      "anchor_section": "3234",
+      "finish": "Authored grouped tower glazing 1 - colour unverified",
+      "changes": [
+        {
+          "section": "3232",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "3233",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "3235",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "3236",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "813870",
+      "anchor_section": "32333",
+      "finish": "Authored grouped tower glazing 0 - colour unverified",
+      "changes": [
+        {
+          "section": "32332",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "32334",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "804485",
+      "anchor_section": "32348",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "32349",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "819286",
+      "anchor_section": "3262",
+      "finish": "Authored grouped tower glazing 1 - colour unverified",
+      "changes": [
+        {
+          "section": "3260",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "3263",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "801259",
+      "anchor_section": "32820",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "32821",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "801192",
+      "anchor_section": "33266",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "33267",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "33268",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "33269",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "808102",
+      "anchor_section": "33313",
+      "finish": "Authored grouped tower glazing 4 - colour unverified",
+      "changes": [
+        {
+          "section": "33314",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "813793",
+      "anchor_section": "33387",
+      "finish": "Authored grouped tower glazing 6 - colour unverified",
+      "changes": [
+        {
+          "section": "33388",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "815445",
+      "anchor_section": "33615",
+      "finish": "Authored grouped tower glazing 0 - colour unverified",
+      "changes": [
+        {
+          "section": "33613",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "33614",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "800975",
+      "anchor_section": "33653",
+      "finish": "Authored grouped tower glazing 6 - colour unverified",
+      "changes": [
+        {
+          "section": "33654",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "33655",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "33656",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "33657",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "903016",
+      "anchor_section": "3382",
+      "finish": "Authored grouped tower glazing 6 - colour unverified",
+      "changes": [
+        {
+          "section": "3383",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "808381",
+      "anchor_section": "33866",
+      "finish": "Authored grouped tower glazing 4 - colour unverified",
+      "changes": [
+        {
+          "section": "33867",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "33868",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "33869",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "817322",
+      "anchor_section": "33993",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "33992",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "33994",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "33995",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "814397",
+      "anchor_section": "34074",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "34073",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "34075",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "34076",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "810510",
+      "anchor_section": "34447",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "34448",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "34449",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "34451",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "34452",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "900171",
+      "anchor_section": "34702",
+      "finish": "Authored grouped tower glazing 2 - colour unverified",
+      "changes": [
+        {
+          "section": "34704",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "34705",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "34706",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "34707",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "801935",
+      "anchor_section": "34759",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "34760",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "34762",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "34763",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "807535",
+      "anchor_section": "34891",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "34892",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "807865",
+      "anchor_section": "3494",
+      "finish": "Authored grouped tower glazing 3 - colour unverified",
+      "changes": [
+        {
+          "section": "3496",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "3497",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "818657",
+      "anchor_section": "35397",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "35394",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "35395",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "35396",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "35398",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "35400",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "900347",
+      "anchor_section": "3550",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "3549",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "812085",
+      "anchor_section": "35561",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "35563",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "815393",
+      "anchor_section": "35588",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "35586",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "35587",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "804421",
+      "anchor_section": "35604",
+      "finish": "Authored grouped tower glazing 2 - colour unverified",
+      "changes": [
+        {
+          "section": "35605",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "800208",
+      "anchor_section": "3576",
+      "finish": "Authored grouped tower glazing 4 - colour unverified",
+      "changes": [
+        {
+          "section": "3575",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "810909",
+      "anchor_section": "35878",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "35879",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "35880",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "809458",
+      "anchor_section": "35884",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "35882",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "803918",
+      "anchor_section": "35969",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "35972",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "35973",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "35974",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "800482",
+      "anchor_section": "36063",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "36057",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "36058",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "36062",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "36064",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "36065",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "36066",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "808421",
+      "anchor_section": "36103",
+      "finish": "Authored grouped tower glazing 0 - colour unverified",
+      "changes": [
+        {
+          "section": "36102",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "36104",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "813141",
+      "anchor_section": "36109",
+      "finish": "Authored grouped tower glazing 7 - colour unverified",
+      "changes": [
+        {
+          "section": "36108",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "36110",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "810471",
+      "anchor_section": "36188",
+      "finish": "Authored grouped tower glazing 3 - colour unverified",
+      "changes": [
+        {
+          "section": "36189",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "900673",
+      "anchor_section": "3642",
+      "finish": "Authored grouped tower glazing 3 - colour unverified",
+      "changes": [
+        {
+          "section": "3638",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "3639",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "3640",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "3641",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "3643",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "3644",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "3645",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "3646",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "818800",
+      "anchor_section": "36477",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "36476",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "804788",
+      "anchor_section": "36495",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "36494",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "36496",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "36497",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "36499",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "811756",
+      "anchor_section": "36569",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "36570",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "36571",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "36572",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "801163",
+      "anchor_section": "36597",
+      "finish": "Authored grouped tower glazing 4 - colour unverified",
+      "changes": [
+        {
+          "section": "36593",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "36595",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "36596",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "36598",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "36599",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "36600",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "810894",
+      "anchor_section": "3666",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "3663",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "814208",
+      "anchor_section": "36691",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "36688",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "36689",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "36690",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "810415",
+      "anchor_section": "36759",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "36757",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "816486",
+      "anchor_section": "37272",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "37271",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "37273",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "37274",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "812650",
+      "anchor_section": "37301",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "37302",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "810880",
+      "anchor_section": "37373",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "37372",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "817637",
+      "anchor_section": "37440",
+      "finish": "Authored grouped tower glazing 4 - colour unverified",
+      "changes": [
+        {
+          "section": "37441",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "37442",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "37443",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "814160",
+      "anchor_section": "37533",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "37534",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "37535",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "37536",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "813516",
+      "anchor_section": "3759",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "3763",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "803022",
+      "anchor_section": "37708",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "37709",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "37710",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "805643",
+      "anchor_section": "37743",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "37744",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "37745",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "37746",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "807101",
+      "anchor_section": "37854",
+      "finish": "Authored grouped tower glazing 7 - colour unverified",
+      "changes": [
+        {
+          "section": "37853",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "37855",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "37856",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "37858",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "37859",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "37866",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "37867",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "37868",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "37869",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "801947",
+      "anchor_section": "37890",
+      "finish": "Authored grouped tower glazing 2 - colour unverified",
+      "changes": [
+        {
+          "section": "37888",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "37889",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "37891",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "813107",
+      "anchor_section": "37926",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "37927",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "37928",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "37929",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "817642",
+      "anchor_section": "38095",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "38096",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "38098",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "38099",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "38100",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "816776",
+      "anchor_section": "38310",
+      "finish": "Authored grouped tower glazing 4 - colour unverified",
+      "changes": [
+        {
+          "section": "38309",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "813864",
+      "anchor_section": "38468",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "38465",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "38469",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "38470",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "800275",
+      "anchor_section": "38511",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "38512",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "38513",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "38514",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "819288",
+      "anchor_section": "38559",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "38554",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "38555",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "814016",
+      "anchor_section": "38700",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "38698",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "38701",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "801343",
+      "anchor_section": "38708",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "38709",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "809639",
+      "anchor_section": "38954",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "38955",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "38956",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "38957",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "813286",
+      "anchor_section": "3897",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "3896",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "803212",
+      "anchor_section": "39138",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "39139",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "816827",
+      "anchor_section": "39185",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "39184",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "812842",
+      "anchor_section": "3922",
+      "finish": "Authored grouped tower glazing 6 - colour unverified",
+      "changes": [
+        {
+          "section": "3920",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "3921",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "3923",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "3927",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "3928",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "801763",
+      "anchor_section": "39313",
+      "finish": "Authored grouped tower glazing 2 - colour unverified",
+      "changes": [
+        {
+          "section": "39312",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "39314",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "808709",
+      "anchor_section": "39353",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "39354",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "39355",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "800174",
+      "anchor_section": "39802",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "39803",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "815751",
+      "anchor_section": "39914",
+      "finish": "Authored grouped tower glazing 6 - colour unverified",
+      "changes": [
+        {
+          "section": "39915",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "801591",
+      "anchor_section": "39961",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "39962",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "39963",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "39964",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "39965",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "39966",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "812639",
+      "anchor_section": "40043",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "40040",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "40041",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "40042",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "40044",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "40045",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "801384",
+      "anchor_section": "40260",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "40265",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "805441",
+      "anchor_section": "40291",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "40292",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "801668",
+      "anchor_section": "40569",
+      "finish": "Authored grouped tower glazing 2 - colour unverified",
+      "changes": [
+        {
+          "section": "40568",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "40570",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "816025",
+      "anchor_section": "40718",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "40717",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "818417",
+      "anchor_section": "4168",
+      "finish": "Authored grouped tower glazing 3 - colour unverified",
+      "changes": [
+        {
+          "section": "4165",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "4166",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "4167",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "4170",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "819279",
+      "anchor_section": "41662",
+      "finish": "Authored grouped tower glazing 5 - colour unverified",
+      "changes": [
+        {
+          "section": "41658",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "900617",
+      "anchor_section": "41670",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "41663",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "41664",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "41665",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "41667",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "41668",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "41669",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "41671",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "41672",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "41673",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "41674",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "41675",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "41676",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "41677",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "41678",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "41680",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "41681",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "41682",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "41683",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "41684",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "41685",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "41686",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "41688",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "41690",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "41692",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "41693",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "41694",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "41695",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "41696",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "41698",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "41699",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "41700",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "800234",
+      "anchor_section": "4513",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "4514",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "812616",
+      "anchor_section": "468",
+      "finish": "Authored grouped tower glazing 7 - colour unverified",
+      "changes": [
+        {
+          "section": "469",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "470",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "471",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "804036",
+      "anchor_section": "4802",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "4803",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "806809",
+      "anchor_section": "4974",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "4972",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "900117",
+      "anchor_section": "5018",
+      "finish": "Authored grouped tower glazing 7 - colour unverified",
+      "changes": [
+        {
+          "section": "5019",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "802423",
+      "anchor_section": "5151",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "5150",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "900621",
+      "anchor_section": "526",
+      "finish": "Authored grouped tower glazing 3 - colour unverified",
+      "changes": [
+        {
+          "section": "527",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "528",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "808886",
+      "anchor_section": "5522",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "5523",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "818123",
+      "anchor_section": "5757",
+      "finish": "Authored grouped tower glazing 2 - colour unverified",
+      "changes": [
+        {
+          "section": "5756",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "5758",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "5759",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "5760",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "5761",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "5762",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "5763",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "818839",
+      "anchor_section": "5802",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "5800",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "814088",
+      "anchor_section": "605",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "595",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "598",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "599",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "600",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "601",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "602",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "603",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "604",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "813534",
+      "anchor_section": "622",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "621",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "623",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "625",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "815419",
+      "anchor_section": "6591",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "6590",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "817886",
+      "anchor_section": "6675",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "6676",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "811602",
+      "anchor_section": "6722",
+      "finish": "Authored grouped tower glazing 4 - colour unverified",
+      "changes": [
+        {
+          "section": "6723",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "6724",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "6725",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "6726",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "6727",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "809108",
+      "anchor_section": "6740",
+      "finish": "Authored grouped tower glazing 2 - colour unverified",
+      "changes": [
+        {
+          "section": "6741",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "6742",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "815583",
+      "anchor_section": "6775",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "6776",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "810545",
+      "anchor_section": "7158",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "7162",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "7164",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "808797",
+      "anchor_section": "7283",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "7282",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "7284",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "816474",
+      "anchor_section": "734",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "732",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "733",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "900672",
+      "anchor_section": "748",
+      "finish": "Authored grouped tower glazing 2 - colour unverified",
+      "changes": [
+        {
+          "section": "742",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "743",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "744",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "746",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "750",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "806158",
+      "anchor_section": "7716",
+      "finish": "Authored grouped tower glazing 4 - colour unverified",
+      "changes": [
+        {
+          "section": "7717",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "819088",
+      "anchor_section": "7742",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "7743",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "7745",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "801201",
+      "anchor_section": "8008",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "8009",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "8010",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "817570",
+      "anchor_section": "8165",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "8166",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "902043",
+      "anchor_section": "828",
+      "finish": "Authored grouped tower glazing 1 - colour unverified",
+      "changes": [
+        {
+          "section": "826",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "829",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "812496",
+      "anchor_section": "8266",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "8265",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "810893",
+      "anchor_section": "8304",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "8305",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "811542",
+      "anchor_section": "8518",
+      "finish": "Authored grouped tower glazing 7 - colour unverified",
+      "changes": [
+        {
+          "section": "8519",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "8520",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "807760",
+      "anchor_section": "8640",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "8639",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "810102",
+      "anchor_section": "8744",
+      "finish": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "8745",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "814046",
+      "anchor_section": "883",
+      "finish": "Authored grouped tower glazing 2 - colour unverified",
+      "changes": [
+        {
+          "section": "877",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "880",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "881",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "882",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "807118",
+      "anchor_section": "8980",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "8981",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "8982",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "819194",
+      "anchor_section": "9039",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "9040",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "9041",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "900132",
+      "anchor_section": "9042",
+      "finish": "Authored grouped tower glazing 0 - colour unverified",
+      "changes": [
+        {
+          "section": "9044",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "9045",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "9046",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "819274",
+      "anchor_section": "9157",
+      "finish": "Authored grouped tower glazing 5 - colour unverified",
+      "changes": [
+        {
+          "section": "9156",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "803564",
+      "anchor_section": "9222",
+      "finish": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "9221",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "900679",
+      "anchor_section": "939",
+      "finish": "Authored grouped tower glazing 6 - colour unverified",
+      "changes": [
+        {
+          "section": "940",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "816798",
+      "anchor_section": "9451",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "9447",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "9452",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "9453",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+        },
+        {
+          "section": "9454",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+        },
+        {
+          "section": "9455",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 0 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "810808",
+      "anchor_section": "9574",
+      "finish": "Authored tall plain masonry - Authored concrete facade palette 1 - unsurveyed colour",
+      "changes": [
+        {
+          "section": "9572",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "801726",
+      "anchor_section": "9802",
+      "finish": "Authored grouped tower glazing 4 - colour unverified",
+      "changes": [
+        {
+          "section": "9800",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "9801",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 1 - unsurveyed colour"
+        },
+        {
+          "section": "9804",
+          "previous": "Authored tall plain masonry - Authored stone facade palette 2 - unsurveyed colour"
+        }
+      ]
+    },
+    {
+      "structure": "900471",
+      "anchor_section": "987",
+      "finish": "Authored grouped tower glazing 6 - colour unverified",
+      "changes": [
+        {
+          "section": "986",
+          "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+        },
+        {
+          "section": "988",
+          "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+        }
+      ]
+    }
+  ],
+  "limits": "Dominant vertical-area generic finish applied only to eligible sections base>=20m in source groups height>45m; selected bespoke landmarks excluded. Actual colours, mixed material zones, podium differentiation and current condition unverified. Individually authored landmark finishes excluded."
+}

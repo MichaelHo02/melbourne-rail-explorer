@@ -1,0 +1,19 @@
+{
+  "status": "studies only, canonical city unchanged",
+  "grid_skin": {
+    "triangles": 14054,
+    "result": "rejected: coarse relief and jagged roof gaps",
+    "image": "docs/images/ngv-captured-roof-skin-study.png"
+  },
+  "original_triangle_reduction": {
+    "weld_distance_m": 0.0001,
+    "decimate_ratio": 0.25,
+    "result": "captured folds preserved better; boundary holes remain",
+    "image": "docs/images/ngv-decimated-original-roof-study.png"
+  },
+  "captured_envelope": {
+    "source_triangles": 135413,
+    "limits": "0.2m footprint buffer and6..40m height filter authored. Mixed facade and plaza surfaces; own normal-based stone/zinc assignment approximate.25% decimation study, original source retained. Not approved city replacement."
+  },
+  "next_requirement": "Inspect captured wall and roof relationships; reconcile Atrium and remove obvious scan fragments before installed replacement."
+}

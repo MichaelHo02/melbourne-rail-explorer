@@ -1,0 +1,162 @@
+{
+  "saved_file_verification": [
+    {
+      "assetid": "1416599",
+      "type": "Road Channel",
+      "faces": 9,
+      "coordinate_error_m": 7.135841480180832e-06,
+      "area_m2": 23.520352948740065
+    },
+    {
+      "assetid": "1852499",
+      "type": "Road Kerb",
+      "faces": 72,
+      "coordinate_error_m": 8.262699091060223e-06,
+      "area_m2": 2.985912241085762
+    },
+    {
+      "assetid": "1852501",
+      "type": "Road Kerb",
+      "faces": 72,
+      "coordinate_error_m": 4.835075118026333e-06,
+      "area_m2": 2.986301237303257
+    },
+    {
+      "assetid": "1852502",
+      "type": "Road Kerb",
+      "faces": 72,
+      "coordinate_error_m": 5.3241369105938335e-06,
+      "area_m2": 2.9853923612272393
+    },
+    {
+      "assetid": "1852505",
+      "type": "Road Kerb",
+      "faces": 72,
+      "coordinate_error_m": 5.328565721713348e-06,
+      "area_m2": 2.985391027755588
+    },
+    {
+      "assetid": "1852513",
+      "type": "Road Kerb",
+      "faces": 72,
+      "coordinate_error_m": 7.71846235361832e-06,
+      "area_m2": 2.9865096673003784
+    },
+    {
+      "assetid": "1852516",
+      "type": "Road Kerb",
+      "faces": 72,
+      "coordinate_error_m": 5.3130816484080974e-06,
+      "area_m2": 2.9855983468648843
+    },
+    {
+      "assetid": "1416598",
+      "type": "Road Channel",
+      "faces": 16,
+      "coordinate_error_m": 7.679760075109543e-06,
+      "area_m2": 24.988564001757588
+    },
+    {
+      "assetid": "1852494",
+      "type": "Road Kerb",
+      "faces": 72,
+      "coordinate_error_m": 5.11434152952518e-06,
+      "area_m2": 2.986260639654402
+    },
+    {
+      "assetid": "1852500",
+      "type": "Road Kerb",
+      "faces": 72,
+      "coordinate_error_m": 8.071780847314641e-06,
+      "area_m2": 2.985452654607352
+    },
+    {
+      "assetid": "1852503",
+      "type": "Road Kerb",
+      "faces": 72,
+      "coordinate_error_m": 5.138907383567472e-06,
+      "area_m2": 2.986299051668018
+    },
+    {
+      "assetid": "1852514",
+      "type": "Road Kerb",
+      "faces": 72,
+      "coordinate_error_m": 5.337472275304279e-06,
+      "area_m2": 2.986127243176041
+    },
+    {
+      "assetid": "1852518",
+      "type": "Road Kerb",
+      "faces": 72,
+      "coordinate_error_m": 5.2574392936690645e-06,
+      "area_m2": 2.986066676510986
+    },
+    {
+      "assetid": "1387777",
+      "type": "Road Footway",
+      "faces": 5,
+      "coordinate_error_m": 5.942703252484663e-06,
+      "area_m2": 474.2654929132834
+    },
+    {
+      "assetid": "1396746",
+      "type": "Road Kerb",
+      "faces": 17,
+      "coordinate_error_m": 9.773851978273386e-06,
+      "area_m2": 19.254286419255195
+    },
+    {
+      "assetid": "1396799",
+      "type": "Road Kerb",
+      "faces": 9,
+      "coordinate_error_m": 7.145928742393553e-06,
+      "area_m2": 18.809540585267936
+    },
+    {
+      "assetid": "1389576",
+      "type": "Road Footway",
+      "faces": 23,
+      "coordinate_error_m": 9.73884536527339e-06,
+      "area_m2": 547.8881189688034
+    },
+    {
+      "assetid": "1852504",
+      "type": "Road Kerb",
+      "faces": 72,
+      "coordinate_error_m": 5.181432732500886e-06,
+      "area_m2": 2.986079251059266
+    },
+    {
+      "assetid": "1852512",
+      "type": "Road Kerb",
+      "faces": 72,
+      "coordinate_error_m": 7.720632400099876e-06,
+      "area_m2": 2.986738994752769
+    },
+    {
+      "assetid": "1852515",
+      "type": "Road Kerb",
+      "faces": 72,
+      "coordinate_error_m": 5.3273729847342576e-06,
+      "area_m2": 2.9860496922091553
+    },
+    {
+      "assetid": "1852517",
+      "type": "Road Kerb",
+      "faces": 72,
+      "coordinate_error_m": 5.157647719044179e-06,
+      "area_m2": 2.986048523027539
+    },
+    {
+      "assetid": "1852519",
+      "type": "Road Kerb",
+      "faces": 72,
+      "coordinate_error_m": 4.5934657045770796e-06,
+      "area_m2": 2.9866948615281523
+    }
+  ],
+  "limits": "Municipal road asset polygons clipped to retained2023 survey36402. Footway and kerb top9.65m, channel9.54m are authored levels on flat survey deck; procedural HMA and bluestone colours approximate. Planforms municipal; exact current heights and transitions unverified.",
+  "source_url": "https://data.melbourne.vic.gov.au/api/explore/v2.1/catalog/datasets/road-segments-with-surface-type/records?where=search%28description%2C+%22Princes+Bridge%22%29&limit=100",
+  "native_preview": "Canonical scene reloaded; native screenshot confirmed city visible in Rendered shading.",
+  "visual_review": "Mapped dark HMA footways remove pale side strips; narrow bluestone kerbs/channels differentiate pavement edge. Approach joins and tram centre unresolved."
+}

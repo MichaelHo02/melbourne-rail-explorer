@@ -1,0 +1,16 @@
+{
+  "new_eastern_northern_cells": 843,
+  "previous_western_fit_plane": [
+    -0.004641548687300608,
+    -0.0398610895573919,
+    35.285921432618814
+  ],
+  "signed_residual_quantiles_m": [
+    0.4269932380557343,
+    1.3627802021936972,
+    2.3578808072652393
+  ],
+  "median_absolute_residual_m": 1.3862007438330295,
+  "within_0_25m_cells": 45,
+  "limits": "Historical grid medians include plant and skylights. Diagnostic newly recovered eastern support, not present-day proof or finished-envelope verification. No scene edits."
+}

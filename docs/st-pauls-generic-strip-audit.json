@@ -1,0 +1,52 @@
+{
+  "Authored roof edge cornices": {
+    "faces": [
+      5515,
+      5516,
+      5519,
+      5520,
+      20041,
+      20042,
+      20043,
+      20044,
+      20045,
+      20046,
+      20047,
+      20048,
+      25634,
+      25635,
+      25636,
+      25639,
+      25640,
+      25641,
+      35551,
+      35552,
+      35555,
+      35556,
+      49888,
+      49889,
+      49890,
+      49891,
+      49892,
+      49893,
+      49894,
+      49895,
+      55371,
+      55372,
+      55373,
+      55376,
+      55377,
+      55378
+    ],
+    "materials": [
+      0,
+      3
+    ],
+    "material_names": [
+      "Authored pale roof finish",
+      "Federation western roof covered cap mask",
+      "Federation Atrium clipped source mask",
+      "Authored St Pauls warm masonry"
+    ]
+  }
+}

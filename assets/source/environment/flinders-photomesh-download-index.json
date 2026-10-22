@@ -1,0 +1,79 @@
+{
+  "source": "https://discover.data.vic.gov.au/dataset/city-of-melbourne-3d-textured-mesh-photomesh-2020",
+  "geometry_downloads": [
+    {
+      "region": "C4-34",
+      "url": "https://gis-3dmodelcapture-2020.s3.ap-southeast-2.amazonaws.com/photomesh/OBJ/C4-34.zip",
+      "bytes": 445140760,
+      "sha256": "02044d127c25688f330791b4a21f8a57b3c038d08ef04a81a8f504756dad204e"
+    },
+    {
+      "region": "C4-28",
+      "url": "https://gis-3dmodelcapture-2020.s3.ap-southeast-2.amazonaws.com/photomesh/OBJ/C4-28.zip",
+      "bytes": 994365625,
+      "sha256": "cffb3ac34ef8af53b7cf00356676a5eed0786208f6a655adf385c9b2d5687351"
+    },
+    {
+      "region": "C4-35",
+      "url": "https://gis-3dmodelcapture-2020.s3.ap-southeast-2.amazonaws.com/photomesh/OBJ/C4-35.zip",
+      "bytes": 497703914,
+      "sha256": "231d9a1200977343819e7bb3f98944227ba0203721a7b844a8f53c8d0d544258"
+    },
+    {
+      "region": "C4-29",
+      "url": "https://gis-3dmodelcapture-2020.s3.ap-southeast-2.amazonaws.com/photomesh/OBJ/C4-29.zip",
+      "bytes": 581554689,
+      "sha256": "4a0e1b4354b3085f3129e2b36b1dc120b467b330bec0f2b46dc504554d28fe0a"
+    }
+  ],
+  "zip_entries": [
+    {
+      "url": "https://gis-3dmodelcapture-2020.s3.ap-southeast-2.amazonaws.com/photomesh/OBJ/C4-34.zip",
+      "region": "C4-34",
+      "obj": {
+        "name": "C4-34/C4-34.obj",
+        "method": 8,
+        "compressed": 105657923,
+        "size": 445140760,
+        "offset": 11177
+      },
+      "data_start": 11222
+    },
+    {
+      "url": "https://gis-3dmodelcapture-2020.s3.ap-southeast-2.amazonaws.com/photomesh/OBJ/C4-28.zip",
+      "region": "C4-28",
+      "obj": {
+        "name": "C4-28/C4-28.obj",
+        "method": 8,
+        "compressed": 238124452,
+        "size": 994365625,
+        "offset": 29661
+      },
+      "data_start": 29706
+    },
+    {
+      "url": "https://gis-3dmodelcapture-2020.s3.ap-southeast-2.amazonaws.com/photomesh/OBJ/C4-35.zip",
+      "region": "C4-35",
+      "obj": {
+        "name": "C4-35/C4-35.obj",
+        "method": 8,
+        "compressed": 119326354,
+        "size": 497703914,
+        "offset": 14026
+      },
+      "data_start": 14071
+    },
+    {
+      "url": "https://gis-3dmodelcapture-2020.s3.ap-southeast-2.amazonaws.com/photomesh/OBJ/C4-29.zip",
+      "region": "C4-29",
+      "obj": {
+        "name": "C4-29/C4-29.obj",
+        "method": 8,
+        "compressed": 141449668,
+        "size": 581554689,
+        "offset": 16771
+      },
+      "data_start": 16816
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "saved_file_verification": [
+    {
+      "assetid": "1438852",
+      "type": "Road Tram Formation",
+      "faces": 3,
+      "coordinate_error_m": 3.822527791424261e-06,
+      "area_m2": 63.57232288058496
+    },
+    {
+      "assetid": "1438914",
+      "type": "Road Tram Formation",
+      "faces": 13,
+      "coordinate_error_m": 6.5929947144491616e-06,
+      "area_m2": 570.1650532076851
+    }
+  ],
+  "limits": "Municipal road asset polygons clipped to retained2023 survey36402. Tram assets are labelled adjacent Swanston Street but intersect bridge deck. Geometry clipped to survey36402. Authored flat top9.54m and grey concrete shade; current rails, markings, exact heights and southern coverage unverified.",
+  "source_url": "https://data.melbourne.vic.gov.au/api/explore/v2.1/catalog/datasets/road-segments-with-surface-type/records?where=search%28description%2C+%22Princes+Bridge%22%29&limit=100",
+  "material": "Municipal Concrete classification; own grey concrete shader RGB0.22,0.23,0.225 roughness0.88, approximate appearance.",
+  "visual_review": "Fresh saved-file render confirms mapped central surface; southern gap and approach elevation mismatch remain.",
+  "native_preview": "Canonical scene reloaded after concrete correction; native screenshot confirms rendered coloured city visible."
+}

@@ -1,0 +1,8 @@
+"""Authored bluestone paving on retained east Southbank promenade parcels."""
+import bpy,json
+from pathlib import Path
+root=globals().get('root') or Path(bpy.data.filepath).resolve().parents[3];name='Southbank authored bluestone upgrade reach'
+if not bpy.data.objects.get(name):
+ d=json.loads((root/'assets/source/environment/southbank-authored-paving.json').read_text());mat=bpy.data.materials.new('Authored Southbank sawn bluestone');mat.use_nodes=True;mat.diffuse_color=(.24,.27,.28,1);nodes=mat.node_tree.nodes;links=mat.node_tree.links;s=nodes.get('Principled BSDF');s.inputs['Roughness'].default_value=.83;g=nodes.new('ShaderNodeNewGeometry');brick=nodes.new('ShaderNodeTexBrick');brick.inputs['Scale'].default_value=1;brick.inputs['Brick Width'].default_value=1;brick.inputs['Row Height'].default_value=.5;brick.inputs['Mortar Size'].default_value=.006;brick.inputs['Color1'].default_value=(.20,.23,.25,1);brick.inputs['Color2'].default_value=(.32,.35,.36,1);brick.inputs['Mortar'].default_value=(.15,.17,.18,1);links.new(g.outputs['Position'],brick.inputs['Vector']);links.new(brick.outputs['Color'],s.inputs['Base Color']);b=nodes.new('ShaderNodeBump');b.inputs['Strength'].default_value=.15;b.inputs['Distance'].default_value=.008;links.new(brick.outputs['Fac'],b.inputs['Height']);links.new(b.outputs['Normal'],s.inputs['Normal']);m=bpy.data.meshes.new(name);m.from_pydata(d['vertices'],[],d['faces']);m.materials.append(mat);m.update();o=bpy.data.objects.new(name,m);bpy.data.collections['GROUND - official horizontal geography, authored levels'].objects.link(o)
+ for k in ['area_m2','reference','limits','source_sha256']:o[k]=d[k]
+ o['source_ids']=','.join(d['source_ids']);print('VERIFIED Southbank authored paving:',len(m.polygons),d['area_m2'])

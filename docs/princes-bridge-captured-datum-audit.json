@@ -1,0 +1,156 @@
+{
+  "fit": {
+    "capture_source": "https://discover.data.vic.gov.au/dataset/city-of-melbourne-3d-textured-mesh-photomesh-2020",
+    "capture": "May2020",
+    "sample_sha256": "5b4b5084e759a4547904557077608245213ec97cb6633839b61a480c22ea49b7",
+    "road_sample_count": 1494,
+    "median_height_m": 6.206037267049084,
+    "height_quantiles_m": [
+      6.185759862263934,
+      6.206037267049084,
+      6.228905073801701
+    ],
+    "authored_deck_top_m": 6.2,
+    "limits": "Historical geometry-only capture, one-metre median samples inside municipal carriageway/tram polygons inset0.5m. Flat6.2m datum approximates observed deck. Balustrades translated, authored arch/pier heights compressed keeping foundation datum; exact engineering proportions and current elevations unverified."
+  },
+  "changes": {
+    "Municipal Princes Bridge carriageway 1425102": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge carriageway 1425122": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge Road Channel 1416598": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge Road Channel 1416599": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge Road Footway 1387777": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge Road Footway 1389576": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge Road Kerb 1396746": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge Road Kerb 1396799": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge Road Kerb 1852494": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge Road Kerb 1852499": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge Road Kerb 1852500": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge Road Kerb 1852501": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge Road Kerb 1852502": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge Road Kerb 1852503": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge Road Kerb 1852504": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge Road Kerb 1852505": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge Road Kerb 1852512": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge Road Kerb 1852513": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge Road Kerb 1852514": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge Road Kerb 1852515": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge Road Kerb 1852516": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge Road Kerb 1852517": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge Road Kerb 1852518": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge Road Kerb 1852519": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge tram formation 1438852": {
+      "translation_z": -3.3
+    },
+    "Municipal Princes Bridge tram formation 1438914": {
+      "translation_z": -3.3
+    },
+    "Princes Bridge - authored simplified balustrade": {
+      "translation_z": -3.3
+    },
+    "Princes Bridge authored arch spandrels": {
+      "vertical_scale_above_foundation": 0.6184971098265898
+    },
+    "Princes Bridge authored piers and abutments": {
+      "vertical_scale_above_foundation": 0.6184971098265898
+    },
+    "Princes Bridge authored six arch ribs per span": {
+      "curve_vertical_scale": 0.6184971098265898
+    },
+    "survey_36402": {
+      "location_z": -3.309999942779541
+    },
+    "Continuous surveyed roofs - authored finishes": {
+      "vertices": 1332,
+      "deck_top": 6.2
+    }
+  },
+  "saved_file_verification": {
+    "checked_objects": [
+      "Municipal Princes Bridge carriageway 1425102",
+      "Municipal Princes Bridge carriageway 1425122",
+      "Municipal Princes Bridge Road Channel 1416598",
+      "Municipal Princes Bridge Road Channel 1416599",
+      "Municipal Princes Bridge Road Footway 1387777",
+      "Municipal Princes Bridge Road Footway 1389576",
+      "Municipal Princes Bridge Road Kerb 1396746",
+      "Municipal Princes Bridge Road Kerb 1396799",
+      "Municipal Princes Bridge Road Kerb 1852494",
+      "Municipal Princes Bridge Road Kerb 1852499",
+      "Municipal Princes Bridge Road Kerb 1852500",
+      "Municipal Princes Bridge Road Kerb 1852501",
+      "Municipal Princes Bridge Road Kerb 1852502",
+      "Municipal Princes Bridge Road Kerb 1852503",
+      "Municipal Princes Bridge Road Kerb 1852504",
+      "Municipal Princes Bridge Road Kerb 1852505",
+      "Municipal Princes Bridge Road Kerb 1852512",
+      "Municipal Princes Bridge Road Kerb 1852513",
+      "Municipal Princes Bridge Road Kerb 1852514",
+      "Municipal Princes Bridge Road Kerb 1852515",
+      "Municipal Princes Bridge Road Kerb 1852516",
+      "Municipal Princes Bridge Road Kerb 1852517",
+      "Municipal Princes Bridge Road Kerb 1852518",
+      "Municipal Princes Bridge Road Kerb 1852519",
+      "Municipal Princes Bridge tram formation 1438852",
+      "Municipal Princes Bridge tram formation 1438914",
+      "Princes Bridge - authored simplified balustrade",
+      "Princes Bridge authored arch spandrels",
+      "Princes Bridge authored piers and abutments",
+      "Princes Bridge authored six arch ribs per span",
+      "survey_36402",
+      "Continuous surveyed roofs - authored finishes"
+    ],
+    "roof_xy_preserved": true,
+    "recovery_meshes_present": true,
+    "image_textures": 0
+  },
+  "native_preview": "Saved canonical scene reloaded; native screenshot confirms city visible in Rendered shading.",
+  "visual_review": "Fresh saved-scene precinct render accepted after curve ribs moved below corrected deck. Road surface clean; approach joins still unresolved."
+}

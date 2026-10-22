@@ -1,0 +1,27 @@
+{
+  "reference": "https://bigbuild.vic.gov.au/__data/assets/pdf_file/0015/1016043/Appendix-D_CBD-South-Precinct-Development-Plan_Rev-L.pdf",
+  "document": "CBD South Precinct Development Plan Appendix D public realm plans",
+  "sheet": "TAS-CYP-CS-00-DRG-AUD-CBS-742101-DP G.14, hardscape sheet 01",
+  "sheet_revision_date": "2025-12-08",
+  "status": "Development plan submission; not for construction",
+  "observed": "Legend page 2 and hardscape sheet 01 page 3 visually inspected in Chrome PDF viewer; direct downloads returned HTTP 403. Plan zones interpreted with approximate affine alignment; as-built geometry unverified.",
+  "supported": "Design includes station entry, egress stairs, ancillary structures, event space, garden beds and multiple paving families.",
+  "limits": "Text extraction does not establish label-to-polygon association, dimensions, exact station footprint, garden geometry or installed finishes. No tracing or texture use. Existing M010918 parcel is unnamed and identified provisionally from location.",
+  "portal_terrace_reference": {
+    "url": "https://bigbuild.vic.gov.au/__data/assets/pdf_file/0014/1016042/Appendix-C_CBD-South-Precinct-Development-Plan_Rev-L.pdf",
+    "sheet": "TAS-CYP-CS-00-DRG-AUD-CBS-744207-DP G.5",
+    "pdf_page": 12,
+    "observed": "Portal axonometric and terrace seating sections A/B/C visually inspected in Chrome PDF viewer. Three seating tiers and bluestone terrace specification visible.",
+    "levels_m": [
+      10.716,
+      11.118,
+      11.549
+    ],
+    "limits": "Development submission, not as-built. Scene uses unified authored outside datum10.133 converted to flat ground .34m. Actual external levels vary in drawing; footprint and tread lengths approximate."
+  },
+  "canopy_reference": {
+    "url": "https://bigbuild.vic.gov.au/use-metro-tunnel/stations/town-hall/design",
+    "observed": "Official artist impression image2 visually inspected in Chrome: open pale branching supports and dense glass roof grid.",
+    "limits": "Artist impression supports form and material families, not surveyed dimensions, exact installed steelwork or optical calibration. Scene dimensions and pane/support counts are authored."
+  }
+}

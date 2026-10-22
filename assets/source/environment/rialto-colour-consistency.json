@@ -1,0 +1,39 @@
+{
+  "anchor_section": 16342,
+  "finish": "Authored grouped tower glazing 2 - colour unverified",
+  "changed": [
+    {
+      "section": "16340",
+      "previous": "Authored tall plain masonry - Authored terracotta facade palette 1 - unsurveyed colour"
+    },
+    {
+      "section": "16339",
+      "previous": "Authored tall plain masonry - Authored concrete facade palette 3 - unsurveyed colour"
+    },
+    {
+      "section": "16356",
+      "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+    },
+    {
+      "section": "16341",
+      "previous": "Authored tall plain masonry - Authored stone facade palette 3 - unsurveyed colour"
+    },
+    {
+      "section": "16343",
+      "previous": "Authored tall plain masonry - Authored terracotta facade palette 2 - unsurveyed colour"
+    },
+    {
+      "section": "16344",
+      "previous": "Authored tall plain masonry - Authored stone facade palette 0 - unsurveyed colour"
+    },
+    {
+      "section": "16346",
+      "previous": "Authored tall plain masonry - Authored terracotta facade palette 3 - unsurveyed colour"
+    },
+    {
+      "section": "16336",
+      "previous": "Authored tall plain masonry - Authored concrete facade palette 2 - unsurveyed colour"
+    }
+  ],
+  "limits": "Generic upper section consistency only, base cutoff31.5m authored. Roof caps retained. Actual optical glass properties, mixed facade zones and podium condition unverified."
+}

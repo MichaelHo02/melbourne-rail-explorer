@@ -1,0 +1,33 @@
+{
+  "objects": {
+    "Atrium adjacent upper and lower cut closures": 21,
+    "Continuous surveyed roofs - authored finishes": 61,
+    "Continuous surveyed roofs - authored finishes Atrium retained outside fragments": 20,
+    "Federation Square - authored triangular cladding": 2286,
+    "Federation Square - authored triangular cladding Atrium retained outside fragments": 36,
+    "NGV east Atrium exposed envelope closure": 15,
+    "survey_16222": 21
+  },
+  "plane": [
+    -0.004641548687300608,
+    -0.0398610895573919,
+    35.285921432618814
+  ],
+  "original_meshes": {
+    "Atrium adjacent upper and lower cut closures": "Atrium adjacent upper and lower cut closures before NGV northern fit",
+    "Continuous surveyed roofs - authored finishes": "Continuous surveyed roofs - authored finishes before NGV northern fit",
+    "Continuous surveyed roofs - authored finishes Atrium retained outside fragments": "Continuous surveyed roofs - authored finishes Atrium retained outside fragments before NGV northern fit",
+    "Federation Square - authored triangular cladding": "Federation Square - authored triangular cladding before NGV northern fit",
+    "Federation Square - authored triangular cladding Atrium retained outside fragments": "Federation Square - authored triangular cladding Atrium retained outside fragments before NGV northern fit",
+    "NGV east Atrium exposed envelope closure": "NGV east Atrium exposed envelope closure before NGV northern fit",
+    "survey_16222": "survey_16222 before NGV northern fit"
+  },
+  "limits": "Northern May2020 capture plane from496cells; median residual0.179m.95\u2013105m transition and27.9m deformation base are authored approximations. Southern roof regions, plant, glazing schedule and current condition unresolved. Closure ownership from retained NGV source records. No photographic textures.",
+  "saved_file_verification": {
+    "matched_northern_top_vertices": 29,
+    "maximum_plane_error_m": 2.3318810633554676e-06,
+    "backups_present": true,
+    "fresh_saved_render": "images/observatory-federation-ngv-north-envelope.png"
+  },
+  "native_reload": "Verified current revision through console assertion after open_mainfile; Rendered viewport visibly shows northern roof correction. Control+s completed; title has no unsaved marker."
+}
